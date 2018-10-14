@@ -5,22 +5,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.JLabel;
-import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -67,8 +59,8 @@ public class MainWindow {
 		frame2.getContentPane().setLayout(null);
 
 		JButton btnSignUp = new JButton("");
-		btnSignUp.setIcon(
-				new ImageIcon("C:\\Users\\rmsc1\\Desktop\\Faculdade\\ESI\\ES1-Projeto\\img\\button_sign-up.png"));
+		Image signUp = new ImageIcon(this.getClass().getResource("/button_sign-up.png")).getImage();
+		btnSignUp.setIcon(new ImageIcon(signUp));
 		btnSignUp.setForeground(SystemColor.window);
 		btnSignUp.setBackground(SystemColor.activeCaption);
 		btnSignUp.addActionListener(new ActionListener() {
@@ -84,7 +76,7 @@ public class MainWindow {
 		Image icon = new ImageIcon(this.getClass().getResource("/logop.png")).getImage();
 
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\rmsc1\\Desktop\\Faculdade\\ESI\\ES1-Projeto\\img\\Imagem.png"));
+		lblNewLabel.setIcon(new ImageIcon(icon));
 		lblNewLabel.setBounds(54, 11, 305, 337);
 		frame2.getContentPane().add(lblNewLabel);
 
@@ -134,13 +126,12 @@ public class MainWindow {
 		JButton btnLogin = new JButton("");
 		btnLogin.setBounds(69, 150, 158, 43);
 		panel.add(btnLogin);
+		Image logIn = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
 		btnLogin.setIcon(
-				new ImageIcon("C:\\Users\\rmsc1\\Desktop\\Faculdade\\ESI\\ES1-Projeto\\img\\button_login.png"));
+				new ImageIcon(logIn));
 		btnLogin.setForeground(SystemColor.window);
 		btnLogin.setBackground(SystemColor.window);
 		btnLogin.addActionListener(new ActionListener() {
-
-			Image icon = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
 
 			public void actionPerformed(ActionEvent arg0) {
 			}
