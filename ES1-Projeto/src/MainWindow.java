@@ -28,6 +28,7 @@ public class MainWindow {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,6 +52,7 @@ public class MainWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
 		frame2 = new JFrame("Bom Dia Academia");
 		frame2.getContentPane().setBackground(SystemColor.window);
@@ -65,23 +67,24 @@ public class MainWindow {
 		btnSignUp.setBackground(SystemColor.activeCaption);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				frame2.getContentPane().removeAll();
 				frame2.repaint();
+		//		frame2.getContentPane().add(lblNewLabel);
 			}
 		});
+		
 		btnSignUp.setFont(new Font("Calibri Light", Font.BOLD, 19));
-		btnSignUp.setBounds(465, 287, 158, 43);
+		btnSignUp.setBounds(472, 272, 151, 43);
 		frame2.getContentPane().add(btnSignUp);
-		Image icon = new ImageIcon(this.getClass().getResource("/logop.png")).getImage();
-
+		
+		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(icon));
-		lblNewLabel.setBounds(54, 11, 305, 337);
+		lblNewLabel.setBounds(42, 11, 305, 337);
 		frame2.getContentPane().add(lblNewLabel);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(393, 53, 298, 216);
+		panel.setBounds(393, 39, 313, 215);
 		frame2.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -92,7 +95,7 @@ public class MainWindow {
 		txtEmail.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				txtEmail.setText("");
+				txtEmail.setText(" ");
 			}
 		});
 		txtEmail.setBounds(21, 36, 264, 20);
@@ -124,7 +127,7 @@ public class MainWindow {
 		/// frame.setIconImage(arg0);
 
 		JButton btnLogin = new JButton("");
-		btnLogin.setBounds(69, 150, 158, 43);
+		btnLogin.setBounds(76, 161, 151, 43);
 		panel.add(btnLogin);
 		Image logIn = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
 		btnLogin.setIcon(
