@@ -9,6 +9,8 @@ import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
+
 import javax.swing.JMenuItem;
 import javax.swing.JList;
 import javax.swing.JMenu;
@@ -21,10 +23,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.table.TableModel;
+import javax.swing.JTable;
+import java.awt.GridLayout;
+import javax.swing.JTextPane;
+import javax.swing.Box;
 
 public class Timeline {
 
 	private JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -111,23 +119,63 @@ public class Timeline {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 		
+//		
+//		DefaultListModel<String> notificationsList = new DefaultListModel<String>();
+//		JList<String> list = new JList<String>();
+//		list.setBounds(297, 18, 0, 0);
+//		list.setBackground(SystemColor.white);
+//		for (int i=0; i!=10; i++) {
+//			notificationsList.addElement("Bom dia Academia");
+//			System.out.println("LOOP"+ i);
+//		}
+//		System.out.println(notificationsList);
+//		
+//		list.setModel(notificationsList);
+//		System.out.println(notificationsList);
+//		
+//		JScrollPane scroll1 = new JScrollPane();
+//		list.setVisibleRowCount(10);
+//		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
+//		lblListaDeNotificaes.setBounds(197, 13, 187, 27);
+//		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
+//		
+//		
+//		panel.add(lblListaDeNotificaes);
+//		panel.add(scroll1);
+		frame.getContentPane().add(panel);
+//		panel.setLayout(null);
 		
-		DefaultListModel<String> notificationsList = new DefaultListModel<String>();
-		JList<String> list = new JList<String>();
-		list.setBounds(297, 18, 0, 0);
-		list.setBackground(SystemColor.white);
-		for (int i=0; i!=10; i++) {
-			notificationsList.addElement("Bom dia Academia");
-		}
-		JScrollPane scroll1 = new JScrollPane(list);
-		list.setVisibleRowCount(10);
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
-		lblListaDeNotificaes.setBounds(197, 13, 187, 27);
+		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
-		panel.add(scroll1);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		
+		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+
+	        Vector<Object> row = new Vector<Object>();
+	        row.add( "facebook");
+	        row.add( "18.10.2018");
+	        row.add( "blabla" );
+	        data.add(row);
+
+	        Vector<Object> otherRow = new Vector<Object>();
+	        otherRow.add( "Twitter");
+	        otherRow.add( "18.10.2018");
+	        otherRow.add( "blabla" );
+	        data.add(otherRow);
+
+	        Vector<String> headers = new Vector<String>();
+	        headers.add("Plataforma");
+	        headers.add("Data");
+	        headers.add( "Notificação");
+
+
+	        JTable table = new JTable( data, headers );
+
+	        panel.add( new JScrollPane( table ));
+		 
+	
+//		panel.setLayout(null);
 		
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
