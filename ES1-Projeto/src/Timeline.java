@@ -28,11 +28,15 @@ import javax.swing.JTable;
 import java.awt.GridLayout;
 import javax.swing.JTextPane;
 import javax.swing.Box;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 
 public class Timeline {
 
 	private JFrame frame;
 	private JTable table;
+	private JTextField txtEscrevaAquiA;
+	private JTextField txtEscrevaAqui;
 
 	/**
 	 * Launch the application.
@@ -96,23 +100,51 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 		
-		JMenuItem mntmFacebook = new JMenuItem("Facebook");
-		mntmFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
-		mntmFacebook.setForeground(new Color(0, 0, 0));
-		mnFiltrar.add(mntmFacebook);
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa\u00E7\u00E3o");
+		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFiltrar.add(mnFonteDeInformao);
 		
-		JMenuItem mntmElearning = new JMenuItem("Elearning");
-		mntmElearning.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mntmElearning);
+		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
+		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFonteDeInformao.add(chckbxFacebook);
 		
-		JMenuItem mntmTwitter = new JMenuItem("Twitter");
-		mntmTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
-		mntmTwitter.setForeground(new Color(0, 0, 0));
-		mnFiltrar.add(mntmTwitter);
+		JCheckBox chckbxEmail = new JCheckBox("Email");
+		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFonteDeInformao.add(chckbxEmail);
 		
-		JMenuItem mntmEmail = new JMenuItem("Email");
-		mntmEmail.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mntmEmail);
+		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
+		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFonteDeInformao.add(chckbxTwitter);
+		
+		JMenu mnPalavraChave = new JMenu("Palavra Chave");
+		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFiltrar.add(mnPalavraChave);
+		
+		txtEscrevaAquiA = new JTextField();
+		txtEscrevaAquiA.setText("Escreva aqui");
+		mnPalavraChave.add(txtEscrevaAquiA);
+		txtEscrevaAquiA.setColumns(10);
+		
+		JMenu mnData = new JMenu("Data");
+		mnData.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnFiltrar.add(mnData);
+		
+		txtEscrevaAqui = new JTextField();
+		txtEscrevaAqui.setText("Escreva aqui");
+		mnData.add(txtEscrevaAqui);
+		txtEscrevaAqui.setColumns(10);
+		
+		JMenu mnConfiguraes = new JMenu("Configura\u00E7\u00F5es");
+		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
+		menuBar.add(mnConfiguraes);
+		
+		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
+		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnConfiguraes.add(mntmASuaConta);
+		
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mntmLogout.setFont(new Font("Calibri", Font.BOLD, 16));
+		mnConfiguraes.add(mntmLogout);
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		JPanel panel = new JPanel();
