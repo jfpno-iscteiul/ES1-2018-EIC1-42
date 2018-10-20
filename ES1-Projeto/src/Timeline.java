@@ -188,6 +188,8 @@ public class Timeline {
 	        JTable table = new JTable( data, headers );
 
 	        panel.add( new JScrollPane( table ));
+	        
+	        frame.add(panel);
 		 
 	
 //		panel.setLayout(null);

@@ -7,8 +7,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import java.awt.Font;
@@ -105,7 +107,7 @@ public class SignUp {
 		
 		emailField = new JTextField();
 		emailField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		emailField.setText("xxx@iscte-iul.pt");
+		emailField.setText("xxxx@iscte-iul.pt");
 		emailField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -138,9 +140,18 @@ public class SignUp {
 		btnSignUp.setBackground(SystemColor.activeCaption);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(confirmarpassField.getPassword().equals(passField.getPassword())) {
+				String password1 = new String(passField.getPassword());
+				String password2 = new String(confirmarpassField.getPassword());
+				System.out.println(password1 + password2 );
+				if(password1.equals(password2)) {
+					String password = new String(passField.getPassword());
+					XMLFile.addUsers(emailField.getText(), password, nomeField.getText(),usernameField.getText() );
 					
 				} else {
+					JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("As Password inseridas não coincidem");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
 					
 				}
 			}
