@@ -34,7 +34,6 @@ import javax.swing.JPasswordField;
 
 public class Configurations {
 
-	JFrame frame;
 	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
@@ -45,34 +44,8 @@ public class Configurations {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Configurations window = new Configurations();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public Configurations() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame("Bom dia Academia");
+	public void initialize(JFrame frame) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -250,6 +223,14 @@ public class Configurations {
 		frame.getContentPane().add(button_2);
 		
 		JButton btnListarremoverContas = new JButton("Listar/Remover Contas");
+		btnListarremoverContas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				ConfigurationsRem nova = new ConfigurationsRem();
+				nova.initialize(frame);
+			}
+		});
 		btnListarremoverContas.setBounds(315, 499, 190, 23);
 		frame.getContentPane().add(btnListarremoverContas);
 		

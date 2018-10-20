@@ -33,7 +33,7 @@ import javax.swing.JCheckBox;
 
 public class Timeline {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
@@ -139,6 +139,14 @@ public class Timeline {
 		menuBar.add(mnConfiguraes);
 		
 		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
+		mntmASuaConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				Configurations conf = new Configurations();
+				conf.initialize(frame);
+			}
+		});
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
@@ -151,32 +159,7 @@ public class Timeline {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 		
-//		
-//		DefaultListModel<String> notificationsList = new DefaultListModel<String>();
-//		JList<String> list = new JList<String>();
-//		list.setBounds(297, 18, 0, 0);
-//		list.setBackground(SystemColor.white);
-//		for (int i=0; i!=10; i++) {
-//			notificationsList.addElement("Bom dia Academia");
-//			System.out.println("LOOP"+ i);
-//		}
-//		System.out.println(notificationsList);
-//		
-//		list.setModel(notificationsList);
-//		System.out.println(notificationsList);
-//		
-//		JScrollPane scroll1 = new JScrollPane();
-//		list.setVisibleRowCount(10);
-//		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
-//		lblListaDeNotificaes.setBounds(197, 13, 187, 27);
-//		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
-//		
-//		
-//		panel.add(lblListaDeNotificaes);
-//		panel.add(scroll1);
-		frame.getContentPane().add(panel);
-//		panel.setLayout(null);
-		
+
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));

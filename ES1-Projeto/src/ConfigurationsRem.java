@@ -34,40 +34,16 @@ import javax.swing.JPasswordField;
 
 public class ConfigurationsRem {
 
-	JFrame frame;
 	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 	private JTable table_1;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConfigurationsRem window = new ConfigurationsRem();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public ConfigurationsRem() {
-		initialize();
-	}
-
-	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame("Bom dia Academia");
+	public void initialize(JFrame frame) {
+
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
