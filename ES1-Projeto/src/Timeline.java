@@ -1,8 +1,6 @@
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -10,9 +8,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
-
 import javax.swing.JMenuItem;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import java.awt.Font;
 import java.awt.Image;
@@ -23,49 +19,21 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
-import javax.swing.table.TableModel;
 import javax.swing.JTable;
-import java.awt.GridLayout;
-import javax.swing.JTextPane;
-import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
 public class Timeline {
 
-	JFrame frame;
 	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Timeline window = new Timeline();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Timeline() {
-		initialize();
-	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame("Bom dia Academia");
+	void initialize(JFrame frame) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

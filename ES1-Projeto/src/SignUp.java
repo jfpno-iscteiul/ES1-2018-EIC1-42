@@ -1,4 +1,3 @@
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -18,45 +17,21 @@ import javax.swing.JTextField;
 import java.awt.Cursor;
 
 public class SignUp {
-
-	public JFrame frame;
 	private JTextField nomeField;
 	private JTextField usernameField;
 	private JTextField emailField;
 	private JPasswordField passField;
 	private JPasswordField confirmarpassField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SignUp window = new SignUp();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public SignUp() {
-		initialize();
-	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
-		frame = new JFrame("Bom Dia Academia");
+	public void initialize(JFrame frame) {
+		frame.getContentPane().setBackground(SystemColor.window);
 		frame.setBounds(100, 100, 779, 410);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setBackground(SystemColor.window);
 		frame.getContentPane().setLayout(null);
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
@@ -67,7 +42,7 @@ public class SignUp {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(393, 23, 334, 337);
-		frame.getContentPane().add(panel);
+		//frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome ");
@@ -156,7 +131,6 @@ public class SignUp {
 				}
 			}
 		});
-		
+		frame.getContentPane().add(panel);
 	}
-	
 }

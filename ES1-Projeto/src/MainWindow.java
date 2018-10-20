@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -69,13 +68,15 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				frame2.getContentPane().removeAll();
 				frame2.repaint();
-		//		frame2.getContentPane().add(lblNewLabel);
+				SignUp signUp= new SignUp();
+				signUp.initialize(frame2);
 			}
 		});
 		
 		btnSignUp.setFont(new Font("Calibri Light", Font.BOLD, 19));
 		btnSignUp.setBounds(472, 272, 151, 43);
 		frame2.getContentPane().add(btnSignUp);
+		
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		lblNewLabel = new JLabel("");
@@ -124,7 +125,6 @@ public class MainWindow {
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPassword.setBounds(21, 67, 70, 14);
 		panel.add(lblPassword);
-		/// frame.setIconImage(arg0);
 
 		JButton btnLogin = new JButton("");
 		btnLogin.setBounds(76, 161, 151, 43);
