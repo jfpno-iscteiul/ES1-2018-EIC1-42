@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -96,7 +99,7 @@ public class MainWindow {
 		txtEmail.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				txtEmail.setText(" ");
+				txtEmail.setText("");
 			}
 		});
 		txtEmail.setBounds(21, 36, 264, 20);
@@ -116,7 +119,7 @@ public class MainWindow {
 		lblEmail.setBounds(21, 11, 46, 14);
 		panel.add(lblEmail);
 
-		passwordField = new JPasswordField("");
+		passwordField = new JPasswordField();
 		passwordField.setBounds(21, 92, 264, 20);
 		panel.add(passwordField);
 		passwordField.setEchoChar('*');
@@ -135,8 +138,19 @@ public class MainWindow {
 		btnLogin.setForeground(SystemColor.window);
 		btnLogin.setBackground(SystemColor.window);
 		btnLogin.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent arg0) {
+				String pass = new String(passwordField.getPassword());
+				if(XMLFile.checkIfUserExists(txtEmail.getText(), pass)) {
+					frame2.getContentPane().removeAll();
+					frame2.repaint();
+					Timeline timeline= new Timeline();
+					timeline.initialize(frame2);
+				} else {
+					JOptionPane optionPane = new JOptionPane("Os dados que inseriu estão incorretos!", JOptionPane.ERROR_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("ERRO!");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
+				}
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 7));

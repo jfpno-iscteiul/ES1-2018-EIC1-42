@@ -123,8 +123,8 @@ public class SignUp {
 					XMLFile.addUsers(emailField.getText(), password, nomeField.getText(),usernameField.getText() );
 					
 				} else {
-					JOptionPane optionPane = new JOptionPane("ErrorMsg", JOptionPane.ERROR_MESSAGE);    
-					JDialog dialog = optionPane.createDialog("As Password inseridas não coincidem");
+					JOptionPane optionPane = new JOptionPane("As Password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("ERRO");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
 					

@@ -68,4 +68,26 @@ public class XMLFile {
 	         transformer.transform(source, result);
 	      } catch (Exception e) { e.printStackTrace(); }
 	   }
+   
+   
+   public static boolean checkIfUserExists(String email, String pass) {
+	   try {
+		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	       DocumentBuilder db = dbf.newDocumentBuilder();
+	       Document document = db.parse(new File("config.xml"));
+	       NodeList nodeList = document.getElementsByTagName("Utilizador");
+	       for(int x=0,size= nodeList.getLength(); x<size; x++) {
+	    	  String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+	    	  if (mail.equals(email)) {
+	    		  if(nodeList.item(x).getAttributes().getNamedItem("Password").getNodeValue().equals(pass)) {
+	    			  return true;
+	    		  }
+	    	  }
+	       }
+	   } catch (Exception e) {}
+	return false;
    }
+   
+}
+   
+   
