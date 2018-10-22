@@ -24,7 +24,6 @@ public class SignUp {
 	private JPasswordField confirmarpassField;
 
 
-
 	/**
 	 * Initialize the contents of the frame.
 	 */

@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 
+
 public class XMLFile {
 	
    public static void addUsers(String email, String password, String nome, String username) {

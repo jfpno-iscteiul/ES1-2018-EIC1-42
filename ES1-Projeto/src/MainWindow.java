@@ -21,7 +21,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 
 public class MainWindow {
-
+	
 	private JFrame frame2;
 	private JTextField txtEmail;
 	private JPasswordField passwordField;
