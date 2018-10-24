@@ -137,6 +137,8 @@ public class Timeline {
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
 		
+// ADICIONAR ESTA PARTE AO MANAGER
+		
 		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 
 //	        Vector<Object> row = new Vector<Object>();

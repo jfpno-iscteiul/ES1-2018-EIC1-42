@@ -7,9 +7,7 @@ import twitter4j.conf.ConfigurationBuilder;
 public final class Twitter {
 	static ArrayList<String>  content = new ArrayList <String> ();
 	public static ArrayList<String> getTweets() {
-		// http://twitter4j.org
-		// http://twitter4j.org/en/code-examples.html
-		// https://www.youtube.com/watch?v=uYPmkzMpnxw
+
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
         	cb.setDebugEnabled(true)
