@@ -164,7 +164,6 @@ public class Timeline {
 	        data.add(row);
 
 		 }
-			 
 		 
 	        Vector<String> headers = new Vector<String>();
 	        headers.add("Plataforma");
