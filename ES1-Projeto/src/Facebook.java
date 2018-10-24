@@ -30,21 +30,21 @@ public class Facebook {
 		FacebookClient fbClient3 = new DefaultFacebookClient(token3Access);
 		Connection<Post> result = fbClient3.fetchConnection("me/feed",Post.class);
 		System.out.println("\nPosts:");
-		int counter5 = 0;
-		int counterTotal = 0;
+		int count = 0;
+		int countTotal = 0;
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
-				// Filters only posts that contain the word "Inform"
-				if (aPost.getMessage() != null && aPost.getMessage().contains("happy")) {
-					System.out.println("---- Post "+ counter5 + " ----");
-					System.out.println("Id: "+"fb.com/"+aPost.getId());
-					System.out.println("Message: "+aPost.getMessage());
-					System.out.println("Created: "+aPost.getCreatedTime());
-					counter5++;
-				}
-				counterTotal++;
+				// Change/delete filter
+				//if (aPost.getMessage() != null && aPost.getMessage().contains("happy")) {
+					System.out.println("---- Post "+ count + " ----");
+					System.out.println("Id: "+"fb.com/" + aPost.getId());
+					System.out.println("Message: " + aPost.getMessage());
+					System.out.println("Created: " + aPost.getCreatedTime());
+					count++;
+				//}
+				countTotal++;
 			}
 		}
-		System.out.println("-------------\nNumber of Results: " + counter5+"/"+counterTotal);		
+		System.out.println("-------------\nNumber of Results: " + count + "/"+ countTotal);		
 	}
 }
