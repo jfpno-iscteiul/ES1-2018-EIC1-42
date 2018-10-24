@@ -17,6 +17,11 @@ import javax.swing.JTextField;
 import java.awt.Cursor;
 
 public class SignUp {
+	
+	/**
+	 * This class allows the user to create an account in this application
+	 */
+
 	private JTextField nomeField;
 	private JTextField usernameField;
 	private JTextField emailField;
@@ -41,7 +46,6 @@ public class SignUp {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(393, 23, 334, 337);
-		//frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome ");
@@ -85,7 +89,7 @@ public class SignUp {
 		emailField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				emailField.setText(" ");
+				emailField.setText("");
 			}
 		});
 		emailField.setBounds(10, 148, 314, 20);
@@ -113,22 +117,43 @@ public class SignUp {
 		btnSignUp.setIcon(new ImageIcon(signUp));
 		btnSignUp.setForeground(SystemColor.window);
 		btnSignUp.setBackground(SystemColor.activeCaption);
+		
+		/**
+		 * Checks if a registered user already exists with the email entered, if the entered passwords are the same and if the email is the right type
+		 */
+		
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String password1 = new String(passField.getPassword());
 				String password2 = new String(confirmarpassField.getPassword());
-				System.out.println(password1 + password2 );
-				if(password1.equals(password2)) {
-					String password = new String(passField.getPassword());
-					XMLFile.addUsers(emailField.getText(), password, nomeField.getText(),usernameField.getText() );
-					
-				} else {
-					JOptionPane optionPane = new JOptionPane("As Password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    
+				if(emailField.getText().contains("@iscte-iul.pt")) {
+					if(password1.equals(password2)) {
+						if(XMLFile.checkIfUserExistsByEmail(emailField.getText())) {
+							JOptionPane optionPane = new JOptionPane("O email inserido já está associado a um utilizador.", JOptionPane.ERROR_MESSAGE);    
+							JDialog dialog = optionPane.createDialog("ERRO");
+							dialog.setAlwaysOnTop(true);
+							dialog.setVisible(true);
+						}else {
+						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText() );
+						frame.getContentPane().removeAll();
+						frame.repaint();
+						Timeline timeline= new Timeline();
+						timeline.initialize(frame);
+						}
+					} else {
+						JOptionPane optionPane = new JOptionPane("As Password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    
+						JDialog dialog = optionPane.createDialog("ERRO");
+						dialog.setAlwaysOnTop(true);
+						dialog.setVisible(true);
+					}
+						
+				}else {
+					JOptionPane optionPane = new JOptionPane("O email inserido não é do dominio IscteIul.", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
-					
 				}
+			
 			}
 		});
 		frame.getContentPane().add(panel);

@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,6 +36,7 @@ public class MainWindow {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame2.setVisible(true);
+					window.frame2.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,6 +53,7 @@ public class MainWindow {
 
 	/**
 	 * Initialize the contents of the frame.
+	 *  @author All the members of the team ES1-EIC1-42
 	 */
 	
 	private void initialize() {
@@ -80,6 +81,9 @@ public class MainWindow {
 		btnSignUp.setBounds(472, 272, 151, 43);
 		frame2.getContentPane().add(btnSignUp);
 		
+		/**
+		 * Add imagens which work as buttons
+		 */
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		lblNewLabel = new JLabel("");
@@ -91,6 +95,10 @@ public class MainWindow {
 		panel.setBounds(393, 39, 313, 215);
 		frame2.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		/**
+		 * Create a login form
+		 */
 
 		txtEmail = new JTextField();
 		txtEmail.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
@@ -137,6 +145,10 @@ public class MainWindow {
 				new ImageIcon(logIn));
 		btnLogin.setForeground(SystemColor.window);
 		btnLogin.setBackground(SystemColor.window);
+		
+		/**
+		 * Checks if the email and password are registered in the xml file
+		 */
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String pass = new String(passwordField.getPassword());

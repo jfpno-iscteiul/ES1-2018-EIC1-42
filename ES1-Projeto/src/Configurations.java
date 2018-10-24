@@ -1,18 +1,13 @@
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Vector;
-
 import javax.swing.JMenuItem;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import java.awt.Font;
 import java.awt.Image;
@@ -23,18 +18,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
-import javax.swing.table.TableModel;
-import javax.swing.JTable;
-import java.awt.GridLayout;
-import javax.swing.JTextPane;
-import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 
 public class Configurations {
 
-	private JTable table;
+	/**
+	 * Allows the user to enter new data for their accounts
+	 */
+	
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 	private JPasswordField passwordField;
@@ -236,10 +229,13 @@ public class Configurations {
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainWindow.main(null);
 			}
 		});
 		
 	}
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

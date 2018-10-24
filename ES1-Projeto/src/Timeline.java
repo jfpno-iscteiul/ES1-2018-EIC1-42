@@ -25,8 +25,11 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
 public class Timeline {
+	
+	/**
+	 * This is where you can view the content of your accounts.
+	 */
 
-	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 	private ArrayList<String> content;
@@ -34,6 +37,7 @@ public class Timeline {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("static-access")
 	void initialize(JFrame frame) {
 		
 		Twitter twitter = new Twitter();
@@ -122,9 +126,6 @@ public class Timeline {
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
-		JMenuItem mntmLogout = new JMenuItem("Logout");
-		mntmLogout.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmLogout);
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		JPanel panel = new JPanel();
@@ -140,18 +141,9 @@ public class Timeline {
 // ADICIONAR ESTA PARTE AO MANAGER
 		
 		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-
-//	        Vector<Object> row = new Vector<Object>();
-//	        row.add( "facebook");
-//	        row.add( "18.10.2018");
-//	        row.add( "blabla" );
-//	        data.add(row);
-//
-//	        Vector<Object> otherRow = new Vector<Object>();
-//	        otherRow.add( "Twitter");
-//	        otherRow.add( "18.10.2018");
-//	        otherRow.add( "blabla" );
-//	        data.add(otherRow);
+		 /**
+		  * Inserts the posts in the table.
+		 */
 		 
 		 content = twitter.getTweets();
 		 for (int i = 0; i<content.size(); i++) {
@@ -178,8 +170,6 @@ public class Timeline {
 	        
 	        frame.add(panel);
 		 
-	
-//		panel.setLayout(null);
 		
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
@@ -187,10 +177,13 @@ public class Timeline {
 		button.setIcon(new ImageIcon(logout));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainWindow.main(null);
 			}
 		});
 		
 	}
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

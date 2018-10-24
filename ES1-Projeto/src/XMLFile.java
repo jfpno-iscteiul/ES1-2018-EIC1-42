@@ -21,6 +21,10 @@ import org.w3c.dom.Element;
 
 public class XMLFile {
 	
+	/**
+	 * Creates an XML file where new users can be saved.
+	 */
+	
    public static void addUsers(String email, String password, String nome, String username) {
 	   try {	
 	         File inputFile = new File("config.xml");
@@ -71,6 +75,10 @@ public class XMLFile {
 	   }
    
    
+   /**
+	* Checks if a given email with a given password is already registered in the XML file.
+	*/
+   
    public static boolean checkIfUserExists(String email, String pass) {
 	   try {
 		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -85,6 +93,27 @@ public class XMLFile {
 	    		  }
 	    	  }
 	       }
+	   } catch (Exception e) {}
+	return false;
+   }
+   
+   
+   /**
+	* Checks if a given email is already registered in the XML file.
+	*/
+   
+   public static boolean checkIfUserExistsByEmail(String email) {
+	   try {
+		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	       DocumentBuilder db = dbf.newDocumentBuilder();
+	       Document document = db.parse(new File("config.xml"));
+	       NodeList nodeList = document.getElementsByTagName("Utilizador");
+	       for(int x=0,size= nodeList.getLength(); x<size; x++) {
+	    	  String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+	    	  if (mail.equals(email)) {
+	    			  return true;
+	    		  }
+	    	  }
 	   } catch (Exception e) {}
 	return false;
    }
