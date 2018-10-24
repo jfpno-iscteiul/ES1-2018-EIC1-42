@@ -24,8 +24,8 @@ public final class Twitter {
             for (Status status : statuses) {
 				// Filters only tweets from user "catarina"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("IUL")) {
-					System.out.println(status.getUser().getName() + ":" + status.getText());
-					content.add(status.getUser().getName() + ":" + status.getText());
+					System.out.println(status.getUser().getName() + ";;" + status.getText());
+					content.add(status.getCreatedAt().toString() + ";;"+ status.getUser().getName() + ";;" + status.getText());
 					counter++;
 				}
 				counterTotal++;

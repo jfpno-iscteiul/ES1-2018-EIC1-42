@@ -153,11 +153,14 @@ public class Timeline {
 //	        otherRow.add( "blabla" );
 //	        data.add(otherRow);
 		 
+		 content = twitter.getTweets();
 		 for (int i = 0; i<content.size(); i++) {
+			 String [] lineSplited = content.get(i).split(";;");
 			   Vector<Object> row = new Vector<Object>();
 			row.add( "Twitter");
-			row.add( "18.10.2018");
-	        row.add( content.get(i));
+			row.add( lineSplited [0] );
+	        row.add( lineSplited [1]);
+	        row.add( lineSplited [2]);
 	        data.add(row);
 
 		 }
@@ -166,6 +169,7 @@ public class Timeline {
 	        Vector<String> headers = new Vector<String>();
 	        headers.add("Plataforma");
 	        headers.add("Data");
+	        headers.add("User");
 	        headers.add( "Notificação");
 
 
