@@ -92,6 +92,7 @@ public class SignUp {
 		panel.add(emailField);
 		emailField.setColumns(10);
 		
+		
 		passField = new JPasswordField();
 		passField.setBounds(10, 204, 314, 20);
 		panel.add(passField);

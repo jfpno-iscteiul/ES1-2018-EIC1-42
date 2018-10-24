@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -28,12 +29,15 @@ public class Timeline {
 	private JTable table;
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
-
+	private ArrayList<String> content;
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	void initialize(JFrame frame) {
+		
+		Twitter twitter = new Twitter();
+		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,23 +137,38 @@ public class Timeline {
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
 		
+// ADICIONAR ESTA PARTE AO MANAGER
+		
 		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 
-	        Vector<Object> row = new Vector<Object>();
-	        row.add( "facebook");
-	        row.add( "18.10.2018");
-	        row.add( "blabla" );
+//	        Vector<Object> row = new Vector<Object>();
+//	        row.add( "facebook");
+//	        row.add( "18.10.2018");
+//	        row.add( "blabla" );
+//	        data.add(row);
+//
+//	        Vector<Object> otherRow = new Vector<Object>();
+//	        otherRow.add( "Twitter");
+//	        otherRow.add( "18.10.2018");
+//	        otherRow.add( "blabla" );
+//	        data.add(otherRow);
+		 
+		 content = twitter.getTweets();
+		 for (int i = 0; i<content.size(); i++) {
+			 String [] lineSplited = content.get(i).split(";;");
+			   Vector<Object> row = new Vector<Object>();
+			row.add( "Twitter");
+			row.add( lineSplited [0] );
+	        row.add( lineSplited [1]);
+	        row.add( lineSplited [2]);
 	        data.add(row);
 
-	        Vector<Object> otherRow = new Vector<Object>();
-	        otherRow.add( "Twitter");
-	        otherRow.add( "18.10.2018");
-	        otherRow.add( "blabla" );
-	        data.add(otherRow);
-
+		 }
+		 
 	        Vector<String> headers = new Vector<String>();
 	        headers.add("Plataforma");
 	        headers.add("Data");
+	        headers.add("User");
 	        headers.add( "Notificação");
 
 
