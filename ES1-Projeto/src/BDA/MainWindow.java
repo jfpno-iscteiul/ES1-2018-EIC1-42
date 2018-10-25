@@ -1,4 +1,5 @@
-import java.awt.EventQueue;
+package BDA;
+
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
