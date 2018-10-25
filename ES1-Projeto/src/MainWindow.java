@@ -31,24 +31,21 @@ public class MainWindow {
 	 */
 	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow window = new MainWindow();
-					window.frame2.setVisible(true);
-					window.frame2.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		MainWindow window = new MainWindow();
 	}
-
+	
+	
+	public JFrame getFrame() {
+		return frame2;
+	}
+	
 	/**
 	 * Create the application.
 	 */
+	
 	public MainWindow() {
 		initialize();
+		frame2.setVisible(true);
 	}
 
 	/**
@@ -82,7 +79,7 @@ public class MainWindow {
 		frame2.getContentPane().add(btnSignUp);
 		
 		/**
-		 * Add imagens which work as buttons
+		 * Add images which work as buttons
 		 */
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
