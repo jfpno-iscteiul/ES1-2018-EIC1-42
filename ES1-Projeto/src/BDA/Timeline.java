@@ -1,3 +1,4 @@
+package BDA;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -7,6 +8,7 @@ import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -23,29 +25,30 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
-public class ConfigurationsRem {
+public class Timeline {
 	
 	/**
-	 * Allows the user to view a list of their accounts and remove them if they see fit.
+	 * This is where you can view the content of your accounts.
 	 */
 
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
-
+	private ArrayList<String> content;
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize(JFrame frame) {
-
+	@SuppressWarnings("static-access")
+	void initialize(JFrame frame) {
+		
+		Twitter twitter = new Twitter();
+		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		/**
-		 * Creates the menu for this window
-		 */
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
@@ -113,67 +116,66 @@ public class ConfigurationsRem {
 		menuBar.add(mnConfiguraes);
 		
 		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
+		mntmASuaConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				Configurations conf = new Configurations();
+				conf.initialize(frame);
+			}
+		});
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
-		JMenuItem mntmLogout = new JMenuItem("Logout");
-		mntmLogout.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmLogout);
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(50, 73, 603, 431);
+		panel.setBounds(130, 73, 603, 431);
 		
 
+		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
+		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
+		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
+		panel.add(lblListaDeNotificaes);
+		
+// ADICIONAR ESTA PARTE AO MANAGER
+		
+		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		 /**
+		  * Inserts the posts in the table.
+		 */
+		 
+		 content = twitter.getTweets();
+		 for (int i = 0; i<content.size(); i++) {
+			 String [] lineSplited = content.get(i).split(";;");
+			   Vector<Object> row = new Vector<Object>();
+			row.add( "Twitter");
+			row.add( lineSplited [0] );
+	        row.add( lineSplited [1]);
+	        row.add( lineSplited [2]);
+	        data.add(row);
+
+		 }
+		 
+	        Vector<String> headers = new Vector<String>();
+	        headers.add("Plataforma");
+	        headers.add("Data");
+	        headers.add("User");
+	        headers.add( "Notificação");
+
+
+	        JTable table = new JTable( data, headers );
+
+	        panel.add( new JScrollPane( table ));
+	        
+	        frame.add(panel);
+		 
+		
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(170, 430, 557, -346);
-		frame.getContentPane().add(scrollPane);
-	
-	
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(675, 420, 158, 23);
-		frame.getContentPane().add(btnAlterar);
-		
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.setBounds(675, 454, 158, 23);
-		frame.getContentPane().add(btnRemover);
-		
-	
-		
-		
-		
-		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-
-	        Vector<Object> row = new Vector<Object>();
-	        row.add( "facebook");
-	        row.add( "jose@iscte-iul.pt");
-	        data.add(row);
-
-	        Vector<Object> otherRow = new Vector<Object>();
-	        otherRow.add( "Twitter");
-	        otherRow.add( "@Ana");
-	        data.add(otherRow);
-
-	        Vector<String> headers = new Vector<String>();
-	        headers.add("Plataforma");
-	        headers.add("Username/Email");
-
-
-	        JTable table_1 = new JTable( data, headers );
-
-			table_1.setBounds(82, 137, 441, 321);
-	        panel.add( new JScrollPane( table_1 ));
-	        
-	        frame.getContentPane().add(panel);
-
-	        
-	        
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
