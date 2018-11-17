@@ -9,8 +9,9 @@ public final class Twitter {
 	/**
 	 * Get the tweets for the desired account and save them in a list.
 	 */
-	static ArrayList<String>  content = new ArrayList <String> ();
-	public static ArrayList<String> getTweets() {
+	ArrayList<String>  content = new ArrayList <String> ();
+	public  ArrayList<String> getTweets() {
+		ArrayList<String>  content = new ArrayList <String> ();
 
         try {
         	ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -29,7 +30,7 @@ public final class Twitter {
 				// Filters only tweets from user "user"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("IUL")) {
 					//System.out.println(status.getUser().getName() + ";;" + status.getText());
-					content.add(status.getCreatedAt().toString() + ";;"+ status.getUser().getName() + ";;" + status.getText());
+					content.add( "Twitter" + ";;"+ status.getCreatedAt().toString() + ";;"+ status.getUser().getName() + ";;" + status.getText());
 					//counter++;
 				}
 				//counterTotal++;

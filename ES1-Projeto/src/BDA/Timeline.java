@@ -1,15 +1,14 @@
 package BDA;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
@@ -21,7 +20,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
@@ -33,21 +31,22 @@ public class Timeline {
 
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
-	private ArrayList<String> content;
+	private Gestor gestor;
+	private ArrayList<String> sourceFilters;
+	private JPanel panel;
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings("static-access")
 	void initialize(JFrame frame) {
-		
-		Twitter twitter = new Twitter();
+		gestor=new Gestor();
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		sourceFilters = new ArrayList<String>();
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
@@ -84,14 +83,40 @@ public class Timeline {
 		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
 		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxFacebook);
+		chckbxFacebook.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	sourceFilters.add("Facebook");
+            	gestor.filterBySource(panel, sourceFilters, frame);
+            }
+        });
 		
 		JCheckBox chckbxEmail = new JCheckBox("Email");
 		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxEmail);
+		chckbxEmail.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	sourceFilters.add("Email");
+            	gestor.filterBySource(panel, sourceFilters, frame);
+            }
+        });
 		
 		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
 		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxTwitter);
+		chckbxTwitter.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	sourceFilters.add("Twitter");
+            	gestor.filterBySource(panel, sourceFilters, frame);
+                
+            }
+        });
+		
 		
 		JMenu mnPalavraChave = new JMenu("Palavra Chave");
 		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
@@ -129,7 +154,7 @@ public class Timeline {
 		
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 		
@@ -138,38 +163,9 @@ public class Timeline {
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
+		gestor.filterBySource(panel, sourceFilters, frame);
 		
-// ADICIONAR ESTA PARTE AO MANAGER
-		
-		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-		 /**
-		  * Inserts the posts in the table.
-		 */
-		 
-		 content = twitter.getTweets();
-		 for (int i = 0; i<content.size(); i++) {
-			 String [] lineSplited = content.get(i).split(";;");
-			   Vector<Object> row = new Vector<Object>();
-			row.add( "Twitter");
-			row.add( lineSplited [0] );
-	        row.add( lineSplited [1]);
-	        row.add( lineSplited [2]);
-	        data.add(row);
 
-		 }
-		 
-	        Vector<String> headers = new Vector<String>();
-	        headers.add("Plataforma");
-	        headers.add("Data");
-	        headers.add("User");
-	        headers.add( "Notificação");
-
-
-	        JTable table = new JTable( data, headers );
-
-	        panel.add( new JScrollPane( table ));
-	        
-	        frame.add(panel);
 		 
 		
 		JButton button = new JButton("");

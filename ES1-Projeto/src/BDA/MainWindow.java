@@ -1,5 +1,6 @@
 package BDA;
 
+
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class MainWindow {
 	 */
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		MainWindow window = new MainWindow();
 	}
 	
