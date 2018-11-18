@@ -35,11 +35,17 @@ public class Configurations {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
-	private JTextField textField;
+	private JTextField textFieldACK;
+	private JTextField textFieldACKS;
+	private JTextField textFieldAAT;
+	private JTextField textFieldAATS;
 	private JTextField textField_1;
 	private JTextField textField_2;
 
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void initialize(JFrame frame) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
@@ -126,6 +132,10 @@ public class Configurations {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 		
+		
+		
+		
+		
 
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
@@ -154,22 +164,53 @@ public class Configurations {
 		label_1.setBounds(91, 339, 130, 126);
 		frame.getContentPane().add(label_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(347, 266, 130, 20);
-		frame.getContentPane().add(passwordField);
+		//  TWITTER
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(347, 137, 130, 20);
-		frame.getContentPane().add(passwordField_1);
+		JLabel AuthConsumerKey = new JLabel("AuthConsumerKey:");
+		AuthConsumerKey.setBounds(261, 110, 76, 14);
+		frame.getContentPane().add(AuthConsumerKey);
+		
+		JLabel AuthConsumerSecret = new JLabel("AuthConsumerSecret:");
+		AuthConsumerSecret.setBounds(261, 140, 76, 14);
+		frame.getContentPane().add(AuthConsumerSecret);
+		
+		JLabel AuthAccessToken = new JLabel("AuthAccessToken:");
+		AuthAccessToken.setBounds(261, 170, 76, 14);
+		frame.getContentPane().add(AuthAccessToken);
+		
+		JLabel AuthAccessTokenSecret = new JLabel("AuthAccessTokenSecret:");
+		AuthAccessTokenSecret.setBounds(261, 200, 76, 14);
+		frame.getContentPane().add(AuthAccessTokenSecret);
+		
+		textFieldACK = new JTextField();
+		textFieldACK.setBounds(347, 110, 130, 20);
+		frame.getContentPane().add(textFieldACK);
+		textFieldACK.setColumns(10);
+	
+		textFieldACKS = new JTextField();
+		textFieldACKS.setBounds(347, 1, 130, 20);
+		frame.getContentPane().add(textFieldACKS);
+		textFieldACKS.setColumns(10);
+
+		textFieldAATS = new JTextField();
+		textFieldAATS.setBounds(347, 1, 200, 20);
+		frame.getContentPane().add(textFieldAATS);
+		textFieldAATS.setColumns(10);
+
+		textFieldAAT = new JTextField();
+		textFieldAAT.setBounds(347, 1, 170, 20);
+		frame.getContentPane().add(textFieldAAT);
+		textFieldAAT.setColumns(10);
+		
+		
+		
+		
+		
 		
 		passwordField_2 = new JPasswordField();
 		passwordField_2.setBounds(347, 402, 130, 20);
 		frame.getContentPane().add(passwordField_2);
 		
-		textField = new JTextField();
-		textField.setBounds(347, 106, 130, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(347, 235, 130, 20);
@@ -181,29 +222,19 @@ public class Configurations {
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(261, 109, 76, 14);
-		frame.getContentPane().add(lblUsername);
+
 		
-		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(261, 238, 76, 14);
-		frame.getContentPane().add(lblEmail);
 		
 		JLabel lblEmail_1 = new JLabel("Email:");
 		lblEmail_1.setBounds(261, 374, 76, 14);
 		frame.getContentPane().add(lblEmail_1);
 		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(261, 140, 65, 14);
-		frame.getContentPane().add(lblPassword);
-		
-		JLabel label_2 = new JLabel("Password:");
-		label_2.setBounds(261, 269, 65, 14);
-		frame.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("Password:");
 		label_3.setBounds(261, 405, 65, 14);
 		frame.getContentPane().add(label_3);
+		
+		
 		
 		JButton btnAdicionarConta = new JButton("Adicionar Conta");
 		btnAdicionarConta.setBounds(555, 136, 158, 23);
@@ -216,6 +247,8 @@ public class Configurations {
 		JButton button_2 = new JButton("Adicionar Conta");
 		button_2.setBounds(555, 391, 158, 23);
 		frame.getContentPane().add(button_2);
+		
+		
 		
 		JButton btnListarremoverContas = new JButton("Listar/Remover Contas");
 		btnListarremoverContas.addActionListener(new ActionListener() {
