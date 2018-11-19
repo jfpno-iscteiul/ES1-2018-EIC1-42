@@ -1,4 +1,5 @@
 package BDA;
+
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -135,11 +136,13 @@ public class SignUp {
 							dialog.setAlwaysOnTop(true);
 							dialog.setVisible(true);
 						}else {
-						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText() );
+						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), "vazio",  "vazio",  "vazio", "vazio", "vazio" );
 						frame.getContentPane().removeAll();
 						frame.repaint();
-						Timeline timeline= new Timeline();
-						timeline.initialize(frame);
+						//Timeline timeline= new Timeline();
+						//timeline.initialize(frame);
+						Configurations conf= new Configurations();
+						conf.initialize(frame,emailField.getText());
 						}
 					} else {
 						JOptionPane optionPane = new JOptionPane("As Password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    

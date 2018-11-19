@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <XML>
-<Utilizador Email="1234" Nome="Rita" Password="1234" Username="ritamsc"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="123" Nome="Ze carlos" Password="123" TokenAccessFacebook="vazio" Username="zecarlos"/>
 </XML>

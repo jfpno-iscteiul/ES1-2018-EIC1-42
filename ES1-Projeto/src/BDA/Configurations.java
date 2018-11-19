@@ -33,8 +33,6 @@ public class Configurations {
 	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JPasswordField passwordField_2;
 	private JTextField textFieldACK;
 	private JTextField textFieldACKS;
 	private JTextField textFieldAAT;
@@ -43,10 +41,8 @@ public class Configurations {
 	private JTextField textField_2;
 
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	public void initialize(JFrame frame) {
+
+	public void initialize(JFrame frame, String Email) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,10 +54,20 @@ public class Configurations {
 		menuBar.setBounds(0, 0, 881, 47);
 		frame.getContentPane().add(menuBar);
 		
-		JLabel lblNewLabel = new JLabel(" ");
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
-		lblNewLabel.setIcon(new ImageIcon(icone));
-		menuBar.add(lblNewLabel);
+		
+		JButton button2 = new JButton("");
+		button2.setBounds(774, 499, 59, 35);
+		button2.setIcon(new ImageIcon(icone));
+		menuBar.add(button2);
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				Timeline tm= new Timeline();
+				tm.initialize(frame, Email);
+			}
+		});
 		
 		JMenu mnOrdenar = new JMenu("Ordenar");
 		mnOrdenar.setFont(new Font("Calibri", Font.BOLD, 18));
@@ -218,9 +224,9 @@ public class Configurations {
 		
 		
 		
-		passwordField_2 = new JPasswordField();
-		passwordField_2.setBounds(347, 402, 130, 20);
-		frame.getContentPane().add(passwordField_2);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(347, 402, 130, 20);
+		frame.getContentPane().add(passwordField);
 		
 	
 		
@@ -246,10 +252,26 @@ public class Configurations {
 		JButton btnAdicionarConta = new JButton("Adicionar Conta");
 		btnAdicionarConta.setBounds(555, 136, 158, 23);
 		frame.getContentPane().add(btnAdicionarConta);
+		btnAdicionarConta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", textFieldACK.getText());
+				XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", textFieldACKS.getText());
+				XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", textFieldAATS.getText());
+				XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", textFieldAAT.getText());
+			
+			}
+		});
 		
 		JButton button_1 = new JButton("Adicionar Conta");
 		button_1.setBounds(555, 265, 158, 23);
 		frame.getContentPane().add(button_1);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XMLFile.changeAttributte(Email, "TokenAccessFacebook", textField_1.getText());
+			
+			}
+		});
+		
 		
 		JButton button_2 = new JButton("Adicionar Conta");
 		button_2.setBounds(555, 391, 158, 23);
@@ -263,7 +285,7 @@ public class Configurations {
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				ConfigurationsRem nova = new ConfigurationsRem();
-				nova.initialize(frame);
+				nova.initialize(frame, Email);
 			}
 		});
 		btnListarremoverContas.setBounds(315, 499, 190, 23);

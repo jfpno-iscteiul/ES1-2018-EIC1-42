@@ -18,7 +18,12 @@ class RegistrationTest {
 		String pass = new String("teste");
 		String nome = new String("teste");
 		String username = new String("teste");
-		XMLFile.addUsers(email, pass, nome, username);
+		String ACKT=new String("teste");
+		String ACST=new String("teste");
+		String AATT=new String("teste");
+		String ACTST=new String("teste"); 
+		String TAF=new String("teste");
+		XMLFile.addUsers(email, pass, nome, username, ACKT, ACST, AATT, ACTST, TAF);
 		boolean userRegistered = XMLFile.checkIfUserExists(email, pass);
 		assertEquals(true, userRegistered);
 	}

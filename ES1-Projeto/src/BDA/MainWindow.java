@@ -1,6 +1,8 @@
 package BDA;
 
 
+
+
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -156,7 +158,7 @@ public class MainWindow {
 					frame2.getContentPane().removeAll();
 					frame2.repaint();
 					Timeline timeline= new Timeline();
-					timeline.initialize(frame2);
+					timeline.initialize(frame2, txtEmail.getText() );
 				} else {
 					JOptionPane optionPane = new JOptionPane("Os dados que inseriu estão incorretos!", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO!");

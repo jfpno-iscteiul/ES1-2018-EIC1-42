@@ -15,7 +15,6 @@ import javax.swing.JMenu;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,7 +36,7 @@ public class ConfigurationsRem {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize(JFrame frame) {
+	public void initialize(JFrame frame, String Email) {
 
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
@@ -53,10 +52,20 @@ public class ConfigurationsRem {
 		menuBar.setBounds(0, 0, 881, 47);
 		frame.getContentPane().add(menuBar);
 		
-		JLabel lblNewLabel = new JLabel(" ");
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
-		lblNewLabel.setIcon(new ImageIcon(icone));
-		menuBar.add(lblNewLabel);
+		
+		JButton button2 = new JButton("");
+		button2.setBounds(774, 499, 59, 35);
+		button2.setIcon(new ImageIcon(icone));
+		menuBar.add(button2);
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				Timeline tm= new Timeline();
+				tm.initialize(frame, Email);
+			}
+		});
 		
 		JMenu mnOrdenar = new JMenu("Ordenar");
 		mnOrdenar.setFont(new Font("Calibri", Font.BOLD, 18));

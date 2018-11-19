@@ -1,5 +1,7 @@
 package BDA;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 import com.restfb.Connection;
@@ -16,7 +18,9 @@ public class Facebook {
 			ArrayList<String> posts= new ArrayList<String>();
 			Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
 			System.out.println("\nPosts:");
+			@SuppressWarnings("unused")
 			int count = 0;
+			@SuppressWarnings("unused")
 			int countTotal = 0;
 			List<Post> listOfPosts= result.getData();
 			for (Post post : listOfPosts) {
@@ -30,7 +34,7 @@ public class Facebook {
 				countTotal++;
 			 }
 			//}
-			System.out.println("-------------\nNumber of Results: " + count + "/"+ countTotal);	
+			//System.out.println("-------------\nNumber of Results: " + count + "/"+ countTotal);	
 			return posts;
 	}
 

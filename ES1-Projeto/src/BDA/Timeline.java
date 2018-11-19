@@ -1,5 +1,7 @@
 package BDA;
 
+
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -39,7 +41,7 @@ public class Timeline {
 	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings("static-access")
-	void initialize(JFrame frame) {
+	void initialize(JFrame frame, String Email) {
 		gestor=new Gestor();
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
@@ -146,7 +148,7 @@ public class Timeline {
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				Configurations conf = new Configurations();
-				conf.initialize(frame);
+				conf.initialize(frame,Email);
 			}
 		});
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));

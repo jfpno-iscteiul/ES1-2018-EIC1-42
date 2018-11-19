@@ -1,10 +1,12 @@
 package BDA;
 import java.io.File;
 import java.io.FileOutputStream;
-
+import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -15,8 +17,10 @@ import javax.xml.xpath.XPathFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 
 
 
@@ -26,7 +30,7 @@ public class XMLFile {
 	 * Creates an XML file where new users can be saved.
 	 */
 	
-   public static void addUsers(String email, String password, String nome, String username) {
+   public static void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF) {
 	   try {	
 	         File inputFile = new File("config.xml");
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -59,6 +63,11 @@ public class XMLFile {
 	         newElement1.setAttribute("Username", username);
 	         newElement1.setAttribute("Email", email);
 	         newElement1.setAttribute("Password", password);
+	         newElement1.setAttribute("AuthConsumerKeyTwitter", ACKT);
+	         newElement1.setAttribute("AuthConsumerSecretTwitter", ACST);
+	         newElement1.setAttribute("AuthAccessTokenTwitter", AATT);
+	         newElement1.setAttribute("AuthAccessTokenSecretTwitter", ACTST);
+	         newElement1.setAttribute("TokenAccessFacebook", TAF);
 	         
 	         // Add new nodes to XML document (root element)
 	         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());         
@@ -118,6 +127,55 @@ public class XMLFile {
 	   } catch (Exception e) {}
 	return false;
    }
+   
+   
+   public static void changeAttributte(String email, String Attributte, String newValue) {
+	   String filePath = "config.xml";
+       File xmlFile = new File(filePath);
+       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+       DocumentBuilder dBuilder;
+       try {
+           dBuilder = dbFactory.newDocumentBuilder();
+           Document doc = dBuilder.parse(xmlFile);
+           doc.getDocumentElement().normalize();
+           
+           //update attribute value
+           updateAttributeValue(doc,email, Attributte, newValue );
+           
+           //write the updated document to file or console
+           doc.getDocumentElement().normalize();
+           TransformerFactory transformerFactory = TransformerFactory.newInstance();
+           Transformer transformer = transformerFactory.newTransformer();
+           DOMSource source = new DOMSource(doc);
+           StreamResult result = new StreamResult(new File("config.xml"));
+           transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+           transformer.transform(source, result);
+
+           
+       } catch (SAXException | ParserConfigurationException | IOException | TransformerException e1) {
+           e1.printStackTrace();
+       }
+   }
+	   
+   
+   
+   
+   private static void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
+       NodeList users = doc.getElementsByTagName("Utilizador");
+       Element user;
+       //loop for each Utilizador
+       for(int x=0,size= users.getLength(); x<size; x++) {
+    	   String mail = users.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+           user = (Element) users.item(x);
+           if(mail.equalsIgnoreCase(email)){
+               user.setAttribute(Attributte, newValue);
+           }
+       }
+   }
+   
+   
+   
+   
    
 }
    
