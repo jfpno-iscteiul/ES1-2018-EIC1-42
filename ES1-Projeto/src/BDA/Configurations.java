@@ -167,38 +167,38 @@ public class Configurations {
 		//  TWITTER
 		
 		JLabel AuthConsumerKey = new JLabel("AuthConsumerKey:");
-		AuthConsumerKey.setBounds(261, 110, 76, 14);
+		AuthConsumerKey.setBounds(261, 110, 150, 14);
 		frame.getContentPane().add(AuthConsumerKey);
 		
 		JLabel AuthConsumerSecret = new JLabel("AuthConsumerSecret:");
-		AuthConsumerSecret.setBounds(261, 140, 76, 14);
+		AuthConsumerSecret.setBounds(261, 140, 150, 14);
 		frame.getContentPane().add(AuthConsumerSecret);
 		
 		JLabel AuthAccessToken = new JLabel("AuthAccessToken:");
-		AuthAccessToken.setBounds(261, 170, 76, 14);
+		AuthAccessToken.setBounds(261, 170, 150, 14);
 		frame.getContentPane().add(AuthAccessToken);
 		
 		JLabel AuthAccessTokenSecret = new JLabel("AuthAccessTokenSecret:");
-		AuthAccessTokenSecret.setBounds(261, 200, 76, 14);
+		AuthAccessTokenSecret.setBounds(261, 200, 150, 14);
 		frame.getContentPane().add(AuthAccessTokenSecret);
 		
 		textFieldACK = new JTextField();
-		textFieldACK.setBounds(347, 110, 130, 20);
+		textFieldACK.setBounds(420, 110, 130, 20);
 		frame.getContentPane().add(textFieldACK);
 		textFieldACK.setColumns(10);
 	
 		textFieldACKS = new JTextField();
-		textFieldACKS.setBounds(347, 1, 130, 20);
+		textFieldACKS.setBounds(420, 140, 130, 20);
 		frame.getContentPane().add(textFieldACKS);
 		textFieldACKS.setColumns(10);
 
 		textFieldAATS = new JTextField();
-		textFieldAATS.setBounds(347, 1, 200, 20);
+		textFieldAATS.setBounds(420, 170, 130, 20);
 		frame.getContentPane().add(textFieldAATS);
 		textFieldAATS.setColumns(10);
 
 		textFieldAAT = new JTextField();
-		textFieldAAT.setBounds(347, 1, 170, 20);
+		textFieldAAT.setBounds(420, 200, 130, 20);
 		frame.getContentPane().add(textFieldAAT);
 		textFieldAAT.setColumns(10);
 		
@@ -206,16 +206,23 @@ public class Configurations {
 		
 		
 		
+// FACEBOOK (555, 265, 158, 23);
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setBounds(261, 265, 150, 14);
+		frame.getContentPane().add(lblEmail);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(420, 265, 130, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		
 		
 		passwordField_2 = new JPasswordField();
 		passwordField_2.setBounds(347, 402, 130, 20);
 		frame.getContentPane().add(passwordField_2);
 		
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(347, 235, 130, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+	
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(347, 371, 130, 20);
