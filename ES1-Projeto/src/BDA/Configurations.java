@@ -207,7 +207,7 @@ public class Configurations {
 		
 		
 // FACEBOOK (555, 265, 158, 23);
-		JLabel lblEmail = new JLabel("Email:");
+		JLabel lblEmail = new JLabel("tokenAccess:");
 		lblEmail.setBounds(261, 265, 150, 14);
 		frame.getContentPane().add(lblEmail);
 		
