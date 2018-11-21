@@ -27,14 +27,17 @@ public class TwitterPage {
 	 * Allows the user to enter new data for their accounts
 	 */
 	
+	JPanel panel;
 
-
-	public void initialize(JFrame frame, String Email, JPanel panel) {
+	public void initialize(JFrame frame, String Email) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		panel = new JPanel();
+		panel.setBackground(new Color(240, 255, 255));
+		panel.setBounds(130, 73, 603, 431);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
@@ -73,7 +76,7 @@ public class TwitterPage {
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(130, 73, 603, 431);
+		panel.setBounds(130, 100, 603, 431);
 		
 		
 
@@ -123,6 +126,7 @@ public class TwitterPage {
 	       JTable table = new JTable( data, headers );
 	       panel.add( new JScrollPane( table ));
 	       frame.add(panel);
+	     
 		
 		
 	}

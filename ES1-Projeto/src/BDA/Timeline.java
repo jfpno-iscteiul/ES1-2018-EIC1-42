@@ -163,7 +163,7 @@ public class Timeline {
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				TwitterPage tp= new TwitterPage();
-				tp.initialize(frame, Email,panel);
+				tp.initialize(frame, Email);
 			}
 		});
 		
