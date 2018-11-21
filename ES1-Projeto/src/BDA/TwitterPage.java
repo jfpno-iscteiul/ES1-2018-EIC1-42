@@ -97,20 +97,20 @@ public class TwitterPage {
 		  * Inserts the posts in the table.
 		 */
 		 for (int i = 0; i<list.size(); i++) {
-			 long indice= ids.get(i);
+		//	 long indice= ids.get(i);
 			 	String [] lineSplited = list.get(i).split(";;");
 			   Vector<Object> row = new Vector<Object>();
 			   row.add(lineSplited [0]);
 			   row.add( lineSplited [1] );
 			   row.add( lineSplited [2]);
 			   row.add( lineSplited [3]);
-			   JButton retweetar = new JButton("Retweetar");
-			   retweetar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Twitter.retweet(indice, Email);
-					}
-				});
-			   row.add(retweetar);
+	//		   JButton retweetar = new JButton("Retweetar");
+//			   retweetar.addActionListener(new ActionListener() {
+//					public void actionPerformed(ActionEvent e) {
+//						Twitter.retweet(indice, Email);
+//					}
+//				});
+//			   row.add(retweetar);
 			   data.add(row);
 
 		 }
@@ -121,12 +121,28 @@ public class TwitterPage {
 	       headers.add("Data");
 	       headers.add("User");
 	       headers.add( "Notificação");
+	       headers.add( "Botao");
+
 
 
 	       JTable table = new JTable( data, headers );
 	       panel.add( new JScrollPane( table ));
 	       frame.add(panel);
 	     
+	       JButton retweetar = new JButton("Retweetar");
+	       retweetar.setBounds(650, 200, 120, 20);
+	       
+		   retweetar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int i = table.getRowCount();
+					long indice= ids.get(i);
+					
+					// +1???
+					Twitter.retweet(indice, Email);
+				}
+			});
+		   frame.add(retweetar);
+	//	   row.add(retweetar);
 		
 		
 	}
