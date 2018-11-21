@@ -1,5 +1,4 @@
 package BDA;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -9,6 +8,7 @@ import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -42,6 +42,7 @@ public class ConfigurationsRem {
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		ArrayList<String> accounts_list = XMLFile.list_account(Email);
 		
 		/**
 		 * Creates the menu for this window
@@ -67,69 +68,7 @@ public class ConfigurationsRem {
 			}
 		});
 		
-		JMenu mnOrdenar = new JMenu("Ordenar");
-		mnOrdenar.setFont(new Font("Calibri", Font.BOLD, 18));
-		mnOrdenar.setForeground(SystemColor.windowBorder);
-		menuBar.add(mnOrdenar);
 		
-		JMenuItem mntmAntigasPrimeiro = new JMenuItem("Antigas Primeiro");
-		mntmAntigasPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnOrdenar.add(mntmAntigasPrimeiro);
-		
-		JMenuItem mntmRecentesPrimeiro = new JMenuItem("Recentes Primeiro");
-		mntmRecentesPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnOrdenar.add(mntmRecentesPrimeiro);
-		
-		JMenu mnFiltrar = new JMenu("Filtrar");
-		mnFiltrar.setForeground(SystemColor.windowBorder);
-		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
-		menuBar.add(mnFiltrar);
-		
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa\u00E7\u00E3o");
-		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnFonteDeInformao);
-		
-		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
-		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxFacebook);
-		
-		JCheckBox chckbxEmail = new JCheckBox("Email");
-		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxEmail);
-		
-		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
-		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxTwitter);
-		
-		JMenu mnPalavraChave = new JMenu("Palavra Chave");
-		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnPalavraChave);
-		
-		txtEscrevaAquiA = new JTextField();
-		txtEscrevaAquiA.setText("Escreva aqui");
-		mnPalavraChave.add(txtEscrevaAquiA);
-		txtEscrevaAquiA.setColumns(10);
-		
-		JMenu mnData = new JMenu("Data");
-		mnData.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnData);
-		
-		txtEscrevaAqui = new JTextField();
-		txtEscrevaAqui.setText("Escreva aqui");
-		mnData.add(txtEscrevaAqui);
-		txtEscrevaAqui.setColumns(10);
-		
-		JMenu mnConfiguraes = new JMenu("Configura\u00E7\u00F5es");
-		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
-		menuBar.add(mnConfiguraes);
-		
-		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
-		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmASuaConta);
-		
-		JMenuItem mntmLogout = new JMenuItem("Logout");
-		mntmLogout.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmLogout);
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		JPanel panel = new JPanel();
@@ -157,25 +96,21 @@ public class ConfigurationsRem {
 		
 	
 		
-		
-		
-		 Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-
-	        Vector<Object> row = new Vector<Object>();
-	        row.add( "facebook");
-	        row.add( "jose@iscte-iul.pt");
+		  Vector<String> headers = new Vector<String>();
+	        headers.add("Serviços Associados");
+	    	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+	        if(accounts_list.size()!=0) {
+		for (int i = 0; i<accounts_list.size(); i++) {
+			Vector<Object> row = new Vector<Object>();
+			row.add(accounts_list.get(i));
 	        data.add(row);
-
-	        Vector<Object> otherRow = new Vector<Object>();
-	        otherRow.add( "Twitter");
-	        otherRow.add( "@Ana");
-	        data.add(otherRow);
-
-	        Vector<String> headers = new Vector<String>();
-	        headers.add("Plataforma");
-	        headers.add("Username/Email");
-
-
+		}
+	        }
+	        else {
+	        	Vector<Object> row = new Vector<Object>();
+	        	row.add("Não tem serviços associados a esta conta.");
+		        data.add(row);
+	        }
 	        JTable table_1 = new JTable( data, headers );
 
 			table_1.setBounds(82, 137, 441, 321);

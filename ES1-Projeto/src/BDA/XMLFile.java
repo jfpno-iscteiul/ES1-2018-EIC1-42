@@ -2,6 +2,8 @@ package BDA;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -174,9 +176,26 @@ public class XMLFile {
    }
    
    
-   
-   
-   
-}
+   public static ArrayList<String> list_account(String email){
+	   ArrayList<String> res= new ArrayList<String>();
+	   try {
+		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	       DocumentBuilder db = dbf.newDocumentBuilder();
+	       Document document = db.parse(new File("config.xml"));
+	       NodeList nodeList = document.getElementsByTagName("Utilizador");
+	       for(int x=0,size= nodeList.getLength(); x<size; x++) {
+	    	  String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+	    	  if (mail.equals(email)) {
+	    		  
+	    			if(!nodeList.item(x).getAttributes().getNamedItem("AuthConsumerKeyTwitter").getNodeValue().equals("vazio"))
+	    				res.add("Twitter");
+	    			if(!nodeList.item(x).getAttributes().getNamedItem("TokenAccessFacebook").getNodeValue().equals("vazio"))
+	    				res.add("Facebook");
+	    		  }
+	    	  }
+	   } catch (Exception e) {}
+	return res;
+   }
+   }
    
    

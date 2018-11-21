@@ -1,5 +1,4 @@
 package BDA;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -9,9 +8,6 @@ import javax.swing.JScrollPane;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -21,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 
 public class Configurations {
@@ -30,8 +25,6 @@ public class Configurations {
 	 * Allows the user to enter new data for their accounts
 	 */
 	
-	private JTextField txtEscrevaAquiA;
-	private JTextField txtEscrevaAqui;
 	private JPasswordField passwordField;
 	private JTextField textFieldACK;
 	private JTextField textFieldACKS;
@@ -69,77 +62,14 @@ public class Configurations {
 			}
 		});
 		
-		JMenu mnOrdenar = new JMenu("Ordenar");
-		mnOrdenar.setFont(new Font("Calibri", Font.BOLD, 18));
-		mnOrdenar.setForeground(SystemColor.windowBorder);
-		menuBar.add(mnOrdenar);
 		
-		JMenuItem mntmAntigasPrimeiro = new JMenuItem("Antigas Primeiro");
-		mntmAntigasPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnOrdenar.add(mntmAntigasPrimeiro);
 		
-		JMenuItem mntmRecentesPrimeiro = new JMenuItem("Recentes Primeiro");
-		mntmRecentesPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnOrdenar.add(mntmRecentesPrimeiro);
-		
-		JMenu mnFiltrar = new JMenu("Filtrar");
-		mnFiltrar.setForeground(SystemColor.windowBorder);
-		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
-		menuBar.add(mnFiltrar);
-		
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa\u00E7\u00E3o");
-		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnFonteDeInformao);
-		
-		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
-		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxFacebook);
-		
-		JCheckBox chckbxEmail = new JCheckBox("Email");
-		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxEmail);
-		
-		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
-		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxTwitter);
-		
-		JMenu mnPalavraChave = new JMenu("Palavra Chave");
-		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnPalavraChave);
-		
-		txtEscrevaAquiA = new JTextField();
-		txtEscrevaAquiA.setText("Escreva aqui");
-		mnPalavraChave.add(txtEscrevaAquiA);
-		txtEscrevaAquiA.setColumns(10);
-		
-		JMenu mnData = new JMenu("Data");
-		mnData.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnData);
-		
-		txtEscrevaAqui = new JTextField();
-		txtEscrevaAqui.setText("Escreva aqui");
-		mnData.add(txtEscrevaAqui);
-		txtEscrevaAqui.setColumns(10);
-		
-		JMenu mnConfiguraes = new JMenu("Configura\u00E7\u00F5es");
-		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
-		menuBar.add(mnConfiguraes);
-		
-		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
-		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmASuaConta);
-		
-		JMenuItem mntmLogout = new JMenuItem("Logout");
-		mntmLogout.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnConfiguraes.add(mntmLogout);
+
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
-		
-		
-		
 		
 		
 
