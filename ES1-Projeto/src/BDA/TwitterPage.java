@@ -1,10 +1,14 @@
 package BDA;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,29 +21,21 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
-import javax.swing.JTable;
-public class ConfigurationsRem {
+public class TwitterPage {
+
+	/**
+	 * Allows the user to enter new data for their accounts
+	 */
 	
-	/**
-	 * Allows the user to view a list of their accounts and remove them if they see fit.
-	 */
 
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	public void initialize(JFrame frame, String Email) {
-
+	public void initialize(JFrame frame, String Email, JPanel panel) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		ArrayList<String> accounts_list = XMLFile.list_account(Email);
 		
-		/**
-		 * Creates the menu for this window
-		 */
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
@@ -61,11 +57,24 @@ public class ConfigurationsRem {
 		});
 		
 		
+		
+		JTextField textfield = new JTextField("");
+		textfield.setBounds(200, 70, 400, 20);
+		frame.add(textfield);
+		JButton tweetar = new JButton("Publicar Tweet");
+		tweetar.setBounds(620, 70, 150, 20);
+		frame.add(tweetar);
+		tweetar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Twitter.tweet(textfield.getText(), Email);
+			}
+		});
+		
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
-		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(50, 73, 603, 431);
+		panel.setBounds(130, 73, 603, 431);
+		
 		
 
 		JButton button = new JButton("");
@@ -76,48 +85,45 @@ public class ConfigurationsRem {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
-	
-	
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(675, 420, 158, 23);
-		frame.getContentPane().add(btnAlterar);
 		
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.setBounds(675, 454, 158, 23);
-		frame.getContentPane().add(btnRemover);
-		
-	
-		
-		  Vector<String> headers = new Vector<String>();
-	        headers.add("Serviços Associados");
-	    	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-	        if(accounts_list.size()!=0) {
-		for (int i = 0; i<accounts_list.size(); i++) {
-			Vector<Object> row = new Vector<Object>();
-			row.add(accounts_list.get(i));
-	        data.add(row);
-		}
-	        }
-	        else {
-	        	Vector<Object> row = new Vector<Object>();
-	        	row.add("Não tem serviços associados a esta conta.");
-		        data.add(row);
-	        }
-	        JTable table_1 = new JTable( data, headers );
+		Twitter twitter= new Twitter();
+		ArrayList<String> list = twitter.getTweets(Email);
+		ArrayList<Long> ids = Twitter.getTweetsId();
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		 /**
+		  * Inserts the posts in the table.
+		 */
+		 for (int i = 0; i<list.size(); i++) {
+			 long indice= ids.get(i);
+			 	String [] lineSplited = list.get(i).split(";;");
+			   Vector<Object> row = new Vector<Object>();
+			   row.add(lineSplited [0]);
+			   row.add( lineSplited [1] );
+			   row.add( lineSplited [2]);
+			   row.add( lineSplited [3]);
+			   JButton retweetar = new JButton("Retweetar");
+			   retweetar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Twitter.retweet(indice, Email);
+					}
+				});
+			   row.add(retweetar);
+			   data.add(row);
 
-			table_1.setBounds(82, 137, 441, 321);
-	        panel.add( new JScrollPane( table_1 ));
-	        
-	        frame.getContentPane().add(panel);
+		 }
+		 
+		 
+	       Vector<String> headers = new Vector<String>();
+	       headers.add("Plataforma");
+	       headers.add("Data");
+	       headers.add("User");
+	       headers.add( "Notificação");
 
-	        
-	        
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				MainWindow.main(null);
-			}
-		});
+
+	       JTable table = new JTable( data, headers );
+	       panel.add( new JScrollPane( table ));
+	       frame.add(panel);
+		
 		
 	}
 	@SuppressWarnings("unused")

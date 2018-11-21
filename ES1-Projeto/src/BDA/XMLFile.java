@@ -22,10 +22,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-
-
-
-
 public class XMLFile {
 	
 	/**
@@ -174,6 +170,27 @@ public class XMLFile {
            }
        }
    }
+   
+   
+   public static String getAttributteByEmail(String email, String attribute) {
+	   String value= null;
+	   try {
+		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	       DocumentBuilder db = dbf.newDocumentBuilder();
+	       Document document = db.parse(new File("config.xml"));
+	       NodeList nodeList = document.getElementsByTagName("Utilizador");
+	       for(int x=0,size= nodeList.getLength(); x<size; x++) {
+	    	  String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+	    	  if (mail.equals(email)) {
+	    		  value = nodeList.item(x).getAttributes().getNamedItem(attribute).getNodeValue();
+	    	  }
+	       }
+	   } catch (Exception e) {} 
+	       return value;
+	   
+	   
+   }
+   
    
    
    public static ArrayList<String> list_account(String email){

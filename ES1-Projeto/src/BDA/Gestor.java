@@ -1,32 +1,30 @@
 package BDA;
-
-
-
 import java.awt.Frame;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+
 public class Gestor {
 	
-	
+	private static Twitter twitter = new Twitter();
 	private ArrayList<String> content;
 	private ArrayList<String >fbPosts;
 	private ArrayList<String> allNotifications;
-	private Twitter twitter = new Twitter();
 	private Facebook facebook= new Facebook();
 	private ArrayList<String> filteredPosts;
 	
 	
-	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame) {
-		content = twitter.getTweets();
-		System.out.println(Sources.isEmpty());
-		fbPosts= facebook.getFBNotifications();
+	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
+		content=twitter.getTweets(Email);
+		fbPosts= facebook.getFBNotifications(Email);
 		allNotifications = new ArrayList<String> ();
 		allNotifications.addAll(content);
 		allNotifications.addAll(fbPosts);
@@ -91,4 +89,22 @@ public class Gestor {
 	
 	}
 	
+	public static void writeTweetsFile (String Email){
+		ArrayList<String> tweets= twitter.getTweets(Email);
+		File fold=new File("../src/Tweets/"+ Email +".txt");
+		fold.delete();
+		File fnew=new File("Tweets/"+ Email +".txt");
+		for(int i =0; i!=tweets.size();i++) {
+
+			try {
+				FileWriter f2 = new FileWriter(fnew, false);
+				f2.write(tweets.get(i));
+				f2.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}       
+		}
+		
+	}
+
 }

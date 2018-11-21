@@ -11,8 +11,8 @@ import com.restfb.types.Post;
 
 public class Facebook {
 
-	public ArrayList<String> getFBNotifications(){
-		String tokenAccess = "EAADlXhdm78kBAOKFtFenkmD5FDNowheADeUp6HukIcunllNB8nP8IZCZBZCoj8pWhf4DMR8qXlYIqF7X2otZA2HO4eOoASIKJcMu0ire8aeQg6nPUlIRBgFfwlKt0zZBk1GNadH2e69s2PZCZACK09T9qbjjXTzZAZA0GO8DFYBtC3OUkLRwrWwQH";
+	public ArrayList<String> getFBNotifications(String email){
+		String tokenAccess =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 		
 			ArrayList<String> posts= new ArrayList<String>();

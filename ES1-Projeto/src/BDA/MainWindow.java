@@ -1,9 +1,4 @@
 package BDA;
-
-
-
-
-
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -62,7 +57,7 @@ public class MainWindow {
 	private void initialize() {
 		frame2 = new JFrame("Bom Dia Academia");
 		frame2.getContentPane().setBackground(SystemColor.window);
-		frame2.setBounds(100, 100, 779, 410);
+		frame2.setBounds(100, 100, 863, 594);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
 

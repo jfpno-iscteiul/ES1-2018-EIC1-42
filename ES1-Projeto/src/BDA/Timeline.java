@@ -1,8 +1,4 @@
 package BDA;
-
-
-
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -91,7 +87,7 @@ public class Timeline {
             @Override
             public void actionPerformed(ActionEvent e) {
             	sourceFilters.add("Facebook");
-            	gestor.filterBySource(panel, sourceFilters, frame);
+            	gestor.filterBySource(panel, sourceFilters, frame, Email);
             }
         });
 		
@@ -103,7 +99,7 @@ public class Timeline {
             @Override
             public void actionPerformed(ActionEvent e) {
             	sourceFilters.add("Email");
-            	gestor.filterBySource(panel, sourceFilters, frame);
+            	gestor.filterBySource(panel, sourceFilters, frame, Email);
             }
         });
 		
@@ -115,7 +111,7 @@ public class Timeline {
             @Override
             public void actionPerformed(ActionEvent e) {
             	sourceFilters.add("Twitter");
-            	gestor.filterBySource(panel, sourceFilters, frame);
+            	gestor.filterBySource(panel, sourceFilters, frame, Email);
                 
             }
         });
@@ -155,6 +151,50 @@ public class Timeline {
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
+		
+		Image icone11 = new ImageIcon(this.getClass().getResource("/twitterm.png")).getImage();
+		
+		JButton button2 = new JButton("");
+		button2.setBounds(774, 499, 59, 35);
+		button2.setIcon(new ImageIcon(icone11));
+		menuBar.add(button2);
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				TwitterPage tp= new TwitterPage();
+				tp.initialize(frame, Email,panel);
+			}
+		});
+		
+		Image icone2 = new ImageIcon(this.getClass().getResource("/facebookm.png")).getImage();
+		
+		JButton button3 = new JButton("");
+		button3.setBounds(774, 499, 59, 35);
+		button3.setIcon(new ImageIcon(icone2));
+		menuBar.add(button3);
+		button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+			}
+		});
+		
+		Image icone4 = new ImageIcon(this.getClass().getResource("/emailm.png")).getImage();
+		
+		JButton button5 = new JButton("");
+		button5.setBounds(774, 499, 59, 35);
+		button5.setIcon(new ImageIcon(icone4));
+		menuBar.add(button5);
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.repaint();
+			}
+		});
+		
+		
+		
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
 		panel = new JPanel();
@@ -166,7 +206,7 @@ public class Timeline {
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
-		gestor.filterBySource(panel, sourceFilters, frame);
+		gestor.filterBySource(panel, sourceFilters, frame, Email);
 		
 
 		 
@@ -181,7 +221,6 @@ public class Timeline {
 				MainWindow.main(null);
 			}
 		});
-		
 	}
 	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
