@@ -18,7 +18,7 @@ public class Gestor {
 	private ArrayList<String> content;
 	private ArrayList<String >fbPosts;
 	private ArrayList<String> allNotifications;
-	private Facebook facebook= new Facebook();
+	private static Facebook facebook= new Facebook();
 	private ArrayList<String> filteredPosts;
 	
 	
@@ -89,22 +89,52 @@ public class Gestor {
 	
 	}
 	
-	public static void writeTweetsFile (String Email){
+	public static void writeTweetsFile (String Email) {
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		File fold=new File("../src/Tweets/"+ Email +".txt");
 		fold.delete();
 		File fnew=new File("Tweets/"+ Email +".txt");
+		FileWriter f2= null;
+		try {
+			f2 = new FileWriter(fnew, false);
+		} catch (IOException e1) {e1.printStackTrace();}
 		for(int i =0; i!=tweets.size();i++) {
-
 			try {
-				FileWriter f2 = new FileWriter(fnew, false);
-				f2.write(tweets.get(i));
-				f2.close();
+				String text = tweets.get(i).replace("\n", "");
+				f2.write(text + "\n");
+				
 			} catch (IOException e) {
 				e.printStackTrace();
-			}       
+			}     
 		}
 		
+		try {
+			f2.close();
+		} catch (IOException e) {e.printStackTrace();}
 	}
+	
+	public static void writeFacebookPostsFile (String Email) {
+		ArrayList<String> posts = Facebook.getFBNotifications(Email);
+		File fold=new File("../src/FBPosts/"+ Email +".txt");
+		fold.delete();
+		File fnew=new File("FBPosts/"+ Email +".txt");
+		FileWriter f2=null;
+		try {
+			f2 = new FileWriter(fnew, false);
+		} catch (IOException e1) {e1.printStackTrace();}
+				try {
+					for(int i =0; i!=posts.size();i++) {
+						String text = posts.get(i).replace("\n", "");
+						f2.write(text + "\n");
+					}
+				} catch (IOException e1) {e1.printStackTrace();}
+				try {
+					f2.close();
+				} catch (IOException e) {e.printStackTrace();}     
+		
+		
+	}
+	
+	
 
 }

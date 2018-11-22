@@ -40,6 +40,8 @@ public class Timeline {
 	@SuppressWarnings("static-access")
 	void initialize(JFrame frame, String Email) {
 		gestor=new Gestor();
+		gestor.writeTweetsFile(Email);
+		gestor.writeFacebookPostsFile(Email);
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);

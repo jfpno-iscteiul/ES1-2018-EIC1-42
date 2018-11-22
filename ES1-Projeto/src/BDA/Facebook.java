@@ -12,7 +12,7 @@ import com.restfb.types.Post;
 
 public class Facebook {
 
-	public ArrayList<String> getFBNotifications(String email){
+	public static ArrayList<String> getFBNotifications(String email){
 		String tokenAccess =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 		

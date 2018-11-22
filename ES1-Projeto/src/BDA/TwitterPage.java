@@ -3,12 +3,12 @@ package BDA;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-
+import javax.swing.JTextArea;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+
 public class TwitterPage {
 
 	/**
@@ -54,22 +55,27 @@ public class TwitterPage {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				Timeline tm= new Timeline();
+				Timeline tm= new Timeline(); 
 				tm.initialize(frame, Email);
 			}
 		});
 		
 		
 		
-		JTextField textfield = new JTextField("");
-		textfield.setBounds(200, 70, 400, 20);
-		frame.add(textfield);
+		JTextArea textarea = new JTextArea("");
+		javax.swing.border.Border border = BorderFactory.createLineBorder(Color.BLACK);
+		textarea.setBorder(BorderFactory.createCompoundBorder(border, 
+		BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		textarea.setBounds(200, 50, 400, 40);
+		JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		//frame.add(textarea);
+		frame.getContentPane().add(textarea);
 		JButton tweetar = new JButton("Publicar Tweet");
 		tweetar.setBounds(620, 70, 150, 20);
 		frame.add(tweetar);
 		tweetar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Twitter.tweet(textfield.getText(), Email);
+				Twitter.tweet(textarea.getText(), Email);
 			}
 		});
 		
@@ -100,7 +106,6 @@ public class TwitterPage {
 		//	 long indice= ids.get(i);
 			 	String [] lineSplited = list.get(i).split(";;");
 			   Vector<Object> row = new Vector<Object>();
-			   row.add(lineSplited [0]);
 			   row.add( lineSplited [1] );
 			   row.add( lineSplited [2]);
 			   row.add( lineSplited [3]);
@@ -117,27 +122,26 @@ public class TwitterPage {
 		 
 		 
 	       Vector<String> headers = new Vector<String>();
-	       headers.add("Plataforma");
 	       headers.add("Data");
 	       headers.add("User");
 	       headers.add( "Notificação");
-	       headers.add( "Botao");
+	   
 
 
 
 	       JTable table = new JTable( data, headers );
+	       //table.setBounds(x, y, width, height);
 	       panel.add( new JScrollPane( table ));
+	       
 	       frame.add(panel);
 	     
 	       JButton retweetar = new JButton("Retweetar");
-	       retweetar.setBounds(650, 200, 120, 20);
+	       retweetar.setBounds(734, 200, 100, 20);
 	       
 		   retweetar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int i = table.getRowCount();
-					long indice= ids.get(i);
-					
-					// +1???
+					long indice= ids.get(i+1);
 					Twitter.retweet(indice, Email);
 				}
 			});
