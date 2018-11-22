@@ -173,6 +173,14 @@ public class Gestor {
 		return result;
 	
 		}
+	public boolean isOnline(String Email) {
+		ArrayList<String> posts = Facebook.getFBNotifications(Email);
+		ArrayList<String> tweets= twitter.getTweets(Email);
+		if (posts.size()== 0 || tweets.size()==0)
+			return false;
+		else
+			return true;
+	}
 	
 
 }

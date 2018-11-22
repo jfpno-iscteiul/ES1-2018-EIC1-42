@@ -154,7 +154,7 @@ public class Timeline {
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
-		
+		if (gestor.isOnline(Email)) {
 		Image icone11 = new ImageIcon(this.getClass().getResource("/twitterm.png")).getImage();
 		
 		JButton button2 = new JButton("");
@@ -198,7 +198,7 @@ public class Timeline {
 			}
 		});
 		
-		
+		}
 		
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 		
