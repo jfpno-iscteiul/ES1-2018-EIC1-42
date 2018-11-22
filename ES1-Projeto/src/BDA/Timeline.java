@@ -177,6 +177,8 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				FacebookPage fbp= new FacebookPage();
+				fbp.initialize(frame, Email);
 			}
 		});
 		

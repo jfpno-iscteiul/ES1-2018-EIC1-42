@@ -1,13 +1,14 @@
 package BDA;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.exception.FacebookException;
+import com.restfb.types.FacebookType;
 import com.restfb.types.Post;
+
 
 public class Facebook {
 
@@ -34,6 +35,23 @@ public class Facebook {
 			//}
 			System.out.println("-------------\nNumber of Results: " + count + "/"+ countTotal);	
 			return posts;
+		
+	}
+
+
+	
+	
+	public static void publish(String email, String text) {
+		String id = "100029513953648";
+		String pageAccessToken =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
+		FacebookClient fbClient=null;
+		try {
+			fbClient = new DefaultFacebookClient(pageAccessToken);
+		} catch (FacebookException ex) {     //So that you can see what went wrong
+            ex.printStackTrace(System.err);  //in case you did anything incorrectly
+        }
+		
+		fbClient.publish(id + "/feed", FacebookType.class, Parameter.with("message", text));
 	}
 
 }
