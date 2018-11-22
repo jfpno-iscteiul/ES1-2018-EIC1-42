@@ -1,4 +1,5 @@
 package BDA;
+import java.awt.Color;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,24 +34,45 @@ public class Gestor {
 		allNotifications.addAll(fbPosts);
 		filteredPosts= new ArrayList<String>();
 		if(allNotifications!= null) {
-			if(Sources.isEmpty()==false) {
-				for (int i = 0; i<allNotifications.size(); i++) {
-					String [] lineSplited = allNotifications.get(i).split(";;");
-					for(int j=0; j!= Sources.size();j++) {
-						if(lineSplited[0]== Sources.get(j)) {
-							filteredPosts.add(allNotifications.get(i));
-						}
-					}
-				}
-			}else {
-				filteredPosts=allNotifications;
-				addRows(panel, filteredPosts, frame);
-			}	
 			
-			if(filteredPosts!=null) {
-				addRows(panel, filteredPosts, frame);
+//			if(Sources.size()==0) {
+				
+//				for (int i = 0; i<allNotifications.size(); i++) {
+//					String [] lineSplited = allNotifications.get(i).split(";;");
+//					for(int j=0; j!= Sources.size();j++) {
+//						if(lineSplited[0]== Sources.get(j)) {
+//							filteredPosts.add(allNotifications.get(i));
+//						}
+//					}
+//				}
+//			}else {
+//				filteredPosts=allNotifications;
+//				addRows(panel, filteredPosts, frame);
+//			}	
+//			
+//			if(filteredPosts!=null) {
+//				addRows(panel, filteredPosts, frame);
+//			}
+		if(Sources.size()!=0) {
+			for (int i = 0 ; i< Sources.size(); i++) {
+				if (Sources.get(i).equals("Twitter")) {
+					filteredPosts.addAll(content);
+				}
+				
+				else if(Sources.get(i).equals("Facebook")) {
+					filteredPosts.addAll(fbPosts);
+				}
+				else if (Sources.get(i).equals("Email")) {
+					// colocar recurso do email
+				}
 			}
-	
+			System.out.println(filteredPosts);
+			addRows(panel, filteredPosts, frame);
+			
+		}
+			else {
+				addRows(panel, allNotifications, frame);
+			}
 		}else {
 			JOptionPane optionPane = new JOptionPane("Não há dados para mostrar!", JOptionPane.ERROR_MESSAGE);
 			JDialog dialog = optionPane.createDialog("ERRO!");
@@ -61,7 +83,7 @@ public class Gestor {
 	}
 	
 	public void addRows(JPanel panel, ArrayList<String> list, Frame frame) {
-		
+	
 	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 	 /**
 	  * Inserts the posts in the table.
@@ -89,6 +111,7 @@ public class Gestor {
        JTable table = new JTable( data, headers );
        panel.add( new JScrollPane( table ));
        frame.add(panel);
+       frame.repaint();
 	
 	}
 	
@@ -147,7 +170,6 @@ public class Gestor {
 			Scanner scanner = new Scanner (new File("Tweets/"+ Email +".txt"));
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
-				System.out.println(line);
 				result.add(line);
 
 			}
@@ -164,7 +186,6 @@ public class Gestor {
 			Scanner scanner = new Scanner (new File("FBPosts/"+ Email +".txt"));
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
-				System.out.println(line);
 				result.add(line);
 			}
 		}catch (FileNotFoundException e) {
