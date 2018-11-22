@@ -42,8 +42,7 @@ public class Timeline {
 		gestor=new Gestor();
 		gestor.writeTweetsFile(Email);
 		gestor.writeFacebookPostsFile(Email);
-		gestor.getTweets(Email);
-		gestor.getFBPosts(Email);
+		
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);

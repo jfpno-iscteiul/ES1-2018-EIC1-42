@@ -26,8 +26,8 @@ public class Gestor {
 	
 	
 	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
-		content=twitter.getTweets(Email);
-		fbPosts= Facebook.getFBNotifications(Email);
+		content=getTweets(Email);
+		fbPosts= getFBPosts(Email);
 		allNotifications = new ArrayList<String> ();
 		allNotifications.addAll(content);
 		allNotifications.addAll(fbPosts);
@@ -137,35 +137,37 @@ public class Gestor {
 		
 		
 	}
-	public static void getTweets (String Email) {
+	public static ArrayList <String> getTweets (String Email) {
+		ArrayList <String> result = new ArrayList <String>();
 		try {
 			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner (new File("Tweets/"+ Email +".txt"));
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
 				System.out.println(line);
-//				String [] vetordepontuacao = line2.split(";");
-//				line = line + System.getProperty("line.separator")+ "Nome Do Jogador: "  + vetordepontuacao[0] + "     " + "Pontuação: " + vetordepontuacao[1];
+				result.add(line);
+
 			}
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
-	public static void getFBPosts (String Email) {
+	public static ArrayList<String> getFBPosts (String Email) {
+		ArrayList <String> result = new ArrayList <String>();
 		try {
 			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner (new File("FBPosts/"+ Email +".txt"));
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
 				System.out.println(line);
-//				String [] vetordepontuacao = line2.split(";");
-//				line = line + System.getProperty("line.separator")+ "Nome Do Jogador: "  + vetordepontuacao[0] + "     " + "Pontuação: " + vetordepontuacao[1];
+				result.add(line);
 			}
 		}catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+		return result;
 	
 		}
 	
