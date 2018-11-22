@@ -22,13 +22,11 @@
 	<classpathentry kind="lib" path="ES1-Projeto/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="lib" path="ES1-Projeto/miglayout15-swing.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/joaof/Downloads/twitter4j-4.0.7/lib/twitter4j-core-4.0.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/joaof/Downloads/restfb-1.6.9.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
@@ -36,5 +34,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/rmsc1/Desktop/Faculdade/3º Ano/1ºSemestre/1ºSemestre/ES I/Java/twitter4j-4.0.7/lib/twitter4j-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rmsc1/Downloads/restfb-1.6.2.jar/restfb-1.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
