@@ -94,6 +94,7 @@ public class Gestor {
 	
 	public static void writeTweetsFile (String Email) {
 		ArrayList<String> tweets= twitter.getTweets(Email);
+		if(tweets.size()!=0) {
 		File fold=new File("../src/Tweets/"+ Email +".txt");
 		fold.delete();
 		File fnew=new File("Tweets/"+ Email +".txt");
@@ -115,9 +116,11 @@ public class Gestor {
 			f2.close();
 		} catch (IOException e) {e.printStackTrace();}
 	}
+	}
 	
 	public static void writeFacebookPostsFile (String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
+		if(posts.size()!=0) {
 		File fold=new File("../src/FBPosts/"+ Email +".txt");
 		fold.delete();
 		File fnew=new File("FBPosts/"+ Email +".txt");
@@ -134,7 +137,7 @@ public class Gestor {
 				try {
 					f2.close();
 				} catch (IOException e) {e.printStackTrace();}     
-		
+		}
 		
 	}
 	public static ArrayList <String> getTweets (String Email) {

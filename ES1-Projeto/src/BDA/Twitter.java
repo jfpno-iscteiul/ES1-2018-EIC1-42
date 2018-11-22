@@ -47,6 +47,7 @@ public final class Twitter {
             }
     		//System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
         } catch (Exception e) { System.out.println(e.getMessage()); }
+        System.out.println(content);
 		return content;
      }
 	

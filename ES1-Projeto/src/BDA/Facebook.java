@@ -13,10 +13,11 @@ import com.restfb.types.Post;
 public class Facebook {
 
 	public static ArrayList<String> getFBNotifications(String email){
+		ArrayList<String> posts= new ArrayList<String>();
+		try {
 		String tokenAccess =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 		
-			ArrayList<String> posts= new ArrayList<String>();
 			Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
 			System.out.println("\nPosts:");
 			int count = 0;
@@ -34,8 +35,10 @@ public class Facebook {
 			 }
 			//}
 			System.out.println("-------------\nNumber of Results: " + count + "/"+ countTotal);	
+		}
+		finally{
 			return posts;
-		
+		}
 	}
 
 
