@@ -67,7 +67,7 @@ public class TwitterPage {
 		textarea.setBorder(BorderFactory.createCompoundBorder(border, 
 		BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		textarea.setBounds(200, 50, 400, 40);
-		JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		//JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//frame.add(textarea);
 		frame.getContentPane().add(textarea);
 		JButton tweetar = new JButton("Publicar Tweet");

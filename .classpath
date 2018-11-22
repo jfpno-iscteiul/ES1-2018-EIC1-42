@@ -34,7 +34,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/rmsc1/Desktop/Faculdade/3º Ano/1ºSemestre/1ºSemestre/ES I/Java/twitter4j-4.0.7/lib/twitter4j-core-4.0.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/rmsc1/Downloads/restfb-1.6.2.jar/restfb-1.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

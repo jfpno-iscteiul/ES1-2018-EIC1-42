@@ -12,10 +12,12 @@ import com.restfb.types.Post;
 
 public class Facebook {
 
+	@SuppressWarnings("finally")
 	public static ArrayList<String> getFBNotifications(String email){
 		ArrayList<String> posts= new ArrayList<String>();
 		try {
 		String tokenAccess =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
+		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 		
 			Connection<Post> result = fbClient.fetchConnection("me/feed",Post.class);
@@ -44,6 +46,7 @@ public class Facebook {
 
 	
 	
+	@SuppressWarnings("deprecation")
 	public static void publish(String email, String text) {
 		String id = "100029513953648";
 		String pageAccessToken =  XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");

@@ -1,4 +1,5 @@
 package BDA;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -205,6 +206,7 @@ public class Timeline {
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
+		
 		
 
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");

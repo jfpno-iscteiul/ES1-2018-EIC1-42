@@ -1,5 +1,4 @@
 package BDA;
-import java.awt.Color;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +21,6 @@ public class Gestor {
 	private ArrayList<String> content;
 	private ArrayList<String >fbPosts;
 	private ArrayList<String> allNotifications;
-	private static Facebook facebook= new Facebook();
 	private ArrayList<String> filteredPosts;
 	
 	
@@ -35,24 +33,8 @@ public class Gestor {
 		filteredPosts= new ArrayList<String>();
 		if(allNotifications!= null) {
 			
-//			if(Sources.size()==0) {
-				
-//				for (int i = 0; i<allNotifications.size(); i++) {
-//					String [] lineSplited = allNotifications.get(i).split(";;");
-//					for(int j=0; j!= Sources.size();j++) {
-//						if(lineSplited[0]== Sources.get(j)) {
-//							filteredPosts.add(allNotifications.get(i));
-//						}
-//					}
-//				}
-//			}else {
-//				filteredPosts=allNotifications;
-//				addRows(panel, filteredPosts, frame);
-//			}	
-//			
-//			if(filteredPosts!=null) {
-//				addRows(panel, filteredPosts, frame);
-//			}
+
+			
 		if(Sources.size()!=0) {
 			for (int i = 0 ; i< Sources.size(); i++) {
 				if (Sources.get(i).equals("Twitter")) {
@@ -80,6 +62,7 @@ public class Gestor {
 			dialog.setVisible(true);
 		}
 		
+		
 	}
 	
 	public void addRows(JPanel panel, ArrayList<String> list, Frame frame) {
@@ -89,6 +72,9 @@ public class Gestor {
 	  * Inserts the posts in the table.
 	 */
 	 
+	panel.removeAll();
+	panel.revalidate();
+	panel.repaint();
 	 for (int i = 0; i<list.size(); i++) {
 		 	String [] lineSplited = list.get(i).split(";;");
 		   Vector<Object> row = new Vector<Object>();
