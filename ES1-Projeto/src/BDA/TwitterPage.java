@@ -25,7 +25,7 @@ import javax.swing.UIManager;
 public class TwitterPage {
 
 	/**
-	 * Allows the user to enter new data for their accounts
+	 * Allows the user to view and retweet tweets.
 	 */
 	
 	JPanel panel;

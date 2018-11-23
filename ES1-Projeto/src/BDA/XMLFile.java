@@ -126,7 +126,9 @@ public class XMLFile {
 	return false;
    }
    
-   
+   /**
+  	* Changes the data of a user in the XML file.
+  	*/
    public static void changeAttributte(String email, String Attributte, String newValue) {
 	   String filePath = "config.xml";
        File xmlFile = new File(filePath);
@@ -157,6 +159,9 @@ public class XMLFile {
 	   
    
    
+   /**
+ 	* Changes the data of a user in the XML file.
+ 	*/
    
    private static void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
        NodeList users = doc.getElementsByTagName("Utilizador");
@@ -171,6 +176,9 @@ public class XMLFile {
        }
    }
    
+   /**
+ 	* Returns an attribute of a particular user.
+ 	*/
    
    public static String getAttributteByEmail(String email, String attribute) {
 	   String value= null;
@@ -192,7 +200,9 @@ public class XMLFile {
    }
    
    
-   
+   /**
+	* Returns a list of services associated with a particular user.
+	*/
    public static ArrayList<String> list_account(String email){
 	   ArrayList<String> res= new ArrayList<String>();
 	   try {

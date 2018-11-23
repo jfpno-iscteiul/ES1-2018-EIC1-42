@@ -9,6 +9,9 @@ import com.restfb.exception.FacebookException;
 import com.restfb.types.FacebookType;
 import com.restfb.types.Post;
 
+/**
+ * Remove information about facebook using the restfb library
+ */
 
 public class Facebook {
 
@@ -45,6 +48,9 @@ public class Facebook {
 
 
 	
+	/**
+	 * Post a facebook post 
+	 */
 	
 	@SuppressWarnings("deprecation")
 	public static void publish(String email, String text) {

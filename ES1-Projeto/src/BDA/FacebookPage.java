@@ -21,11 +21,15 @@ import javax.swing.UIManager;
 public class FacebookPage {
 
 	/**
-	 * Allows the user to enter new data for their accounts
+	 * It allows the user to make facebook posts.
 	 */
 	
 	JPanel panel;
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	
 	public void initialize(JFrame frame, String Email) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);

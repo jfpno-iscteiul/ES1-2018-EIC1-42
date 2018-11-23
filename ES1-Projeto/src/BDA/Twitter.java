@@ -52,11 +52,22 @@ public final class Twitter {
      }
 	
 	
+	
+	/**
+	 * Returns the ids of the timeline tweets.
+	 */
+	
 	public static ArrayList<Long> getTweetsId(){
 		return ids;
 	}
 	
-	
+
+
+
+	/**
+	 * Retweets a particular tweet.
+	 */
+
 	public static void retweet(long id, String email) {
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");
 		String AuthConsumerSecret = XMLFile.getAttributteByEmail(email, "AuthConsumerSecretTwitter");
@@ -75,6 +86,10 @@ public final class Twitter {
 				} catch (TwitterException e) {e.printStackTrace();}
 	}
 	
+	
+	/**
+	 * Tweets a particular content.
+	 */
 	
 	public static void tweet(String text, String email) {
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");

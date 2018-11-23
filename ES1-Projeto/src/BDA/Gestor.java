@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
+/**
+ * Class responsible for managing the accounts and adding content to the timeline.
+ */
 
 public class Gestor {
 	
@@ -23,6 +25,10 @@ public class Gestor {
 	private ArrayList<String> allNotifications;
 	private ArrayList<String> filteredPosts;
 	
+	
+	/**
+	 * Filters notifications according to their source
+	 */
 	
 	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
 		content=getTweets(Email);
@@ -65,12 +71,14 @@ public class Gestor {
 		
 	}
 	
+	/**
+	  * Inserts the posts in the table.
+	 */
+	
 	public void addRows(JPanel panel, ArrayList<String> list, Frame frame) {
 	
 	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-	 /**
-	  * Inserts the posts in the table.
-	 */
+	 
 	 
 	panel.removeAll();
 	panel.revalidate();
@@ -101,6 +109,10 @@ public class Gestor {
 	
 	}
 	
+	/**
+	  * Write a file with the contents of each user related to twitter when it is offline.
+	 */
+	
 	public static void writeTweetsFile (String Email) {
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		if(tweets.size()!=0) {
@@ -127,6 +139,10 @@ public class Gestor {
 	}
 	}
 	
+	/**
+	  * Write a file with the contents of each user related to facebook when it is offline.
+	 */
+	
 	public static void writeFacebookPostsFile (String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		if(posts.size()!=0) {
@@ -149,6 +165,12 @@ public class Gestor {
 		}
 		
 	}
+	
+
+
+	/**
+	 * Gets tweets from a particular user.
+	*/
 	public static ArrayList <String> getTweets (String Email) {
 		ArrayList <String> result = new ArrayList <String>();
 		try {
@@ -165,6 +187,10 @@ public class Gestor {
 		return result;
 	}
 	
+	/**
+	 * Gets Facebook posts from a particular user.
+	*/
+	
 	public static ArrayList<String> getFBPosts (String Email) {
 		ArrayList <String> result = new ArrayList <String>();
 		try {
@@ -180,6 +206,13 @@ public class Gestor {
 		return result;
 	
 		}
+	
+
+
+
+	/**
+	 * Checks if a user is online.
+	*/
 	public boolean isOnline(String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		ArrayList<String> tweets= twitter.getTweets(Email);

@@ -33,7 +33,9 @@ public class Configurations {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-
+	/**
+	 * Initialize the contents of the frame.
+	 */
 
 	public void initialize(JFrame frame, String Email) {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
@@ -102,6 +104,10 @@ public class Configurations {
 		
 		//  TWITTER
 		
+		/**
+		 * Creates a form for entering twitter data
+		 */
+		
 		JLabel AuthConsumerKey = new JLabel("AuthConsumerKey:");
 		AuthConsumerKey.setBounds(261, 110, 150, 14);
 		frame.getContentPane().add(AuthConsumerKey);
@@ -140,7 +146,9 @@ public class Configurations {
 		
 		
 		
-		
+		/**
+		 * Creates a form for entering facebook data
+		 */
 		
 // FACEBOOK (555, 265, 158, 23);
 		JLabel lblEmail = new JLabel("tokenAccess:");
