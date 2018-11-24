@@ -105,6 +105,8 @@ public class Gestor {
 
 
        JTable table = new JTable( data, headers );
+       table.setDefaultEditor(Object.class, null);
+  
        panel.add( new JScrollPane( table ));
        frame.add(panel);
        frame.repaint();
