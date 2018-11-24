@@ -67,26 +67,10 @@ public class ConfigurationsRem {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(50, 73, 603, 431);
 		
-
-		JButton button = new JButton("");
-		button.setBounds(774, 499, 59, 35);
-		frame.getContentPane().add(button);
-		button.setIcon(new ImageIcon(logout));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(170, 430, 557, -346);
-		frame.getContentPane().add(scrollPane);
-	
-	
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(675, 420, 158, 23);
-		frame.getContentPane().add(btnAlterar);
 		
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.setBounds(675, 454, 158, 23);
-		frame.getContentPane().add(btnRemover);
 		
-	
+		
 		
 		  Vector<String> headers = new Vector<String>();
 	        headers.add("Serviços Associados");
@@ -110,6 +94,61 @@ public class ConfigurationsRem {
 	        
 	        frame.getContentPane().add(panel);
 
+		
+		
+		
+		
+		
+	
+		
+		
+
+		JButton button = new JButton("");
+		button.setBounds(774, 499, 59, 35);
+		frame.getContentPane().add(button);
+		button.setIcon(new ImageIcon(logout));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(170, 430, 557, -346);
+		frame.getContentPane().add(scrollPane);
+	
+	
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setBounds(675, 420, 158, 23);
+		frame.getContentPane().add(btnAlterar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table_1.getRowCount();
+				System.out.println(i);
+				System.out.println(accounts_list);
+				System.out.println(accounts_list.get(i-1));
+				String service = accounts_list.get(i-1);
+				if(service.equals("Facebook")){
+						XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
+				}else if (service.equals("Twitter")){
+						XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
+						XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
+						XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
+						XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
+				}else if (service.equals("Email")){
+					//COLOCAR INFOS DE EMAIL
+				}
+				accounts_list.remove(i-1);
+				System.out.println("VOU REMOVER!");
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				initialize( frame, Email);
+			
+			}
+		});
+		btnRemover.setBounds(675, 454, 158, 23);
+		frame.getContentPane().add(btnRemover);
+		
+	
+		
+		
 	        
 	        
 		button.addActionListener(new ActionListener() {

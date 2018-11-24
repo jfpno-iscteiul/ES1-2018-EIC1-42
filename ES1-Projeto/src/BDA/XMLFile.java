@@ -199,7 +199,6 @@ public class XMLFile {
 	   
    }
    
-   
    /**
 	* Returns a list of services associated with a particular user.
 	*/
