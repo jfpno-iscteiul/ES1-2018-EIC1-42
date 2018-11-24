@@ -90,8 +90,15 @@ public class Timeline {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+            	if(chckbxFacebook.isSelected()) {
             	sourceFilters.add("Facebook");
             	gestor.filterBySource(panel, sourceFilters, frame, Email);
+            }
+            	else {
+            		sourceFilters.remove("Facebook");
+            		gestor.filterBySource(panel, sourceFilters, frame, Email);
+            		
+            	}
             }
         });
 		
@@ -102,8 +109,14 @@ public class Timeline {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+            	if(chckbxEmail.isSelected()) {
             	sourceFilters.add("Email");
             	gestor.filterBySource(panel, sourceFilters, frame, Email);
+            }else {
+        		sourceFilters.remove("Email");
+        		gestor.filterBySource(panel, sourceFilters, frame, Email);
+        		
+        	}
             }
         });
 		
@@ -114,8 +127,15 @@ public class Timeline {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+            	if(chckbxTwitter.isSelected()) {
             	sourceFilters.add("Twitter");
             	gestor.filterBySource(panel, sourceFilters, frame, Email);
+            	}
+            	else {
+            		sourceFilters.remove("Twitter");
+            		gestor.filterBySource(panel, sourceFilters, frame, Email);
+            		
+            	}
                 
             }
         });

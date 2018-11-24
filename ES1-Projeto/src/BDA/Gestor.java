@@ -31,6 +31,8 @@ public class Gestor {
 	 */
 	
 	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
+		writeTweetsFile (Email);
+		writeFacebookPostsFile(Email);
 		content=getTweets(Email);
 		fbPosts= getFBPosts(Email);
 		allNotifications = new ArrayList<String> ();
