@@ -104,6 +104,7 @@ public class XMLFile {
    
    /** * @param    email is the email relative to the user.
 	 * @param    pass is the password relative to the user.
+	  * @return      true if a given email with a given password is already registered in the XML file.
 	 */
    
    public static boolean checkIfUserExists(String email, String pass) {
@@ -130,7 +131,8 @@ public class XMLFile {
 	*/
    
    
-   /** * @param    email is the email relative to the user.
+   /**  @param    email is the email relative to the user.
+     * @return      true if a user exists with that email
 	 */
    
    public static boolean checkIfUserExistsByEmail(String email) {
@@ -153,8 +155,8 @@ public class XMLFile {
   	* Changes the data of a user in the XML file.
   	*/
    
-   /** * @param    email is the email relative to the user.
-	 * @param    Attribute is the name of the attribute to modify.
+   /**  @param    email is the email relative to the user.
+	 * @param    Attributte is the name of the attribute to modify.
 	 * @param    newValue is the new value to assign.
 	 */
    
@@ -193,7 +195,7 @@ public class XMLFile {
  	*/
    
    /** * @param    email is the email relative to the user.
- 	 * @param    Attribute is the name of the attribute to modify.
+ 	 * @param    Attributte is the name of the attribute to modify.
  	 * @param    newValue is the new value to assign.
  	  * @param    doc is the DocumentBuilderFactory.
  	 */
@@ -218,6 +220,7 @@ public class XMLFile {
    
    /** * @param    email is the email relative to the user.
 	 * @param    attribute is the name of the attribute to modify.
+	  * @return      the attributte asked in the method
 	 */
    
    public static String getAttributteByEmail(String email, String attribute) {

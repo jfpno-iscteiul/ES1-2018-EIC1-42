@@ -33,7 +33,7 @@ public class Gestor {
 	/** @param   panel parameter gives an instance of the panel of the main page.
 	 * @param    Email is the email relative to the user.
 	 * @param   frame parameter gives an instance of the frame of the main page.
-	 * * @param   sources  gives a list of sources to filter.
+	 *  @param   Sources  gives a list of sources to filter.
 	 */
 	
 	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
@@ -86,7 +86,7 @@ public class Gestor {
 	
 	/** @param   panel parameter gives an instance of the panel of the main page.
 	 * @param   frame parameter gives an instance of the frame of the main page.
-	 * * @param   list  gives a list of Strings to add to the table.
+	 *  @param   list  gives a list of Strings to add to the table.
 	 */
 	public void addRows(JPanel panel, ArrayList<String> list, Frame frame) {
 	
@@ -201,6 +201,7 @@ public class Gestor {
 	
 	/**
 	 * @param    Email is the email relative to the user.
+	  * @return      a list of tweets.
 	 */
 	public static ArrayList <String> getTweets (String Email) {
 		ArrayList <String> result = new ArrayList <String>();

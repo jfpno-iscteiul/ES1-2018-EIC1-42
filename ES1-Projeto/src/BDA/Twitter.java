@@ -16,8 +16,8 @@ public final class Twitter {
 	static ArrayList<Long>  ids = new ArrayList <Long> ();
 	
 	/**
-	 * @param    Email is the email relative to the user.
-	   * @return    a list of tweets.
+	 * @param    email is the email relative to the user.
+	 * @return    a list of tweets.
 	 */
 	public  ArrayList<String> getTweets(String email) {
 		ArrayList<String>  content = new ArrayList <String> ();
