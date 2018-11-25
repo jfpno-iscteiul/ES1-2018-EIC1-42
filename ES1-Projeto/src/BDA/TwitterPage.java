@@ -29,8 +29,26 @@ public class TwitterPage {
 	 */
 	
 	JPanel panel;
+	private JFrame frame;
+	private String Email;
+	
+	public TwitterPage(JFrame frame, String Email) {
+		this.frame = frame;
+		this.Email = Email;
+		initialize();
+		setVisible(true);
+	}
+	
+	
+	public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 
-	public void initialize(JFrame frame, String Email) {
+	public void initialize() {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,8 +73,7 @@ public class TwitterPage {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				Timeline tm= new Timeline(); 
-				tm.initialize(frame, Email);
+				Timeline tm= new Timeline(frame, Email); 
 			}
 		});
 		

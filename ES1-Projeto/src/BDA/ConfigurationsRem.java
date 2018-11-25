@@ -1,4 +1,5 @@
 package BDA;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
@@ -11,6 +12,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.awt.Image;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -18,35 +22,55 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JTable;
-public class ConfigurationsRem {
-	
-	/**
-	 * Allows the user to view a list of their accounts and remove them if they see fit.
-	 */
 
+public class ConfigurationsRem {
+
+	/**
+	 * Allows the user to view a list of their accounts and remove them if they see
+	 * fit.
+	 */
+	
+	private JFrame frame;
+	private String Email;
+	
+	public ConfigurationsRem(JFrame frame, String Email) {
+		this.frame = frame;
+		this.Email = Email;
+		initialize();
+		setVisible(true);
+	}
+	
+	
+	public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize(JFrame frame, String Email) {
+	public void initialize() {
 
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		ArrayList<String> accounts_list = XMLFile.list_account(Email);
-		
+
 		/**
 		 * Creates the menu for this window
 		 */
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
 		frame.getContentPane().add(menuBar);
-		
+
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
-		
+
 		JButton button2 = new JButton("");
 		button2.setBounds(774, 499, 59, 35);
 		button2.setIcon(new ImageIcon(icone));
@@ -55,111 +79,89 @@ public class ConfigurationsRem {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				Timeline tm= new Timeline();
-				tm.initialize(frame, Email);
+				Timeline tm = new Timeline(frame, Email);
 			}
 		});
-		
-		
+
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(50, 73, 603, 431);
-		
-		
-		
-		
-		
-		
-		  Vector<String> headers = new Vector<String>();
-	        headers.add("Serviços Associados");
-	    	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-	        if(accounts_list.size()!=0) {
-		for (int i = 0; i<accounts_list.size(); i++) {
+
+		Vector<String> headers = new Vector<String>();
+		headers.add("Serviços Associados");
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		if (accounts_list.size() != 0) {
+			for (int i = 0; i < accounts_list.size(); i++) {
+				Vector<Object> row = new Vector<Object>();
+				row.add(accounts_list.get(i));
+				data.add(row);
+			}
+		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add(accounts_list.get(i));
-	        data.add(row);
+			row.add("Não tem serviços associados a esta conta.");
+			data.add(row);
 		}
-	        }
-	        else {
-	        	Vector<Object> row = new Vector<Object>();
-	        	row.add("Não tem serviços associados a esta conta.");
-		        data.add(row);
-	        }
-	        JTable table_1 = new JTable( data, headers );
+		JTable table_1 = new JTable(data, headers);
 
-			table_1.setBounds(82, 137, 441, 321);
-			table_1.setDefaultEditor(Object.class, null);
-	        panel.add( new JScrollPane( table_1 ));
-	        
-	        frame.getContentPane().add(panel);
+		table_1.setBounds(82, 137, 441, 321);
+		table_1.setDefaultEditor(Object.class, null);
+		panel.add(new JScrollPane(table_1));
 
-		
-		
-		
-		
-		
-	
-		
-		
+		frame.getContentPane().add(panel);
 
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
-	
-	
+
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.setBounds(675, 420, 158, 23);
 		frame.getContentPane().add(btnAlterar);
-		
+
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table_1.getRowCount();
 				System.out.println(i);
 				System.out.println(accounts_list);
-				System.out.println(accounts_list.get(i-1));
-				String service = accounts_list.get(i-1);
-				if(service.equals("Facebook")){
-						XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
-				}else if (service.equals("Twitter")){
-						XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
-						XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
-						XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
-						XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
-				}else if (service.equals("Email")){
-					//COLOCAR INFOS DE EMAIL
+				System.out.println(accounts_list.get(i - 1));
+				String service = accounts_list.get(i - 1);
+				if (service.equals("Facebook")) {
+					XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
+				} else if (service.equals("Twitter")) {
+					XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
+					XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
+					XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
+					XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
+				} else if (service.equals("Email")) {
+					// COLOCAR INFOS DE EMAIL
 				}
-				accounts_list.remove(i-1);
+				accounts_list.remove(i - 1);
 				System.out.println("VOU REMOVER!");
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				initialize( frame, Email);
-			
+				initialize();
+
 			}
 		});
 		btnRemover.setBounds(675, 454, 158, 23);
 		frame.getContentPane().add(btnRemover);
-		
-	
-		
-		
-	        
-	        
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				MainWindow.main(null);
 			}
 		});
-		
+
 	}
+
 	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
@@ -168,11 +170,13 @@ public class ConfigurationsRem {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}

@@ -81,7 +81,6 @@ public class Gestor {
 	
 	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 	 
-	 
 	panel.removeAll();
 	panel.revalidate();
 	panel.repaint();
@@ -95,7 +94,6 @@ public class Gestor {
 		   data.add(row);
 
 	 }
-	 
 	 
        Vector<String> headers = new Vector<String>();
        headers.add("Plataforma");
@@ -121,27 +119,27 @@ public class Gestor {
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		if(tweets.size()!=0) {
 			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS TWEETS");
-		File fold=new File("../src/Tweets/"+ Email +".txt");
-		fold.delete();
-		File fnew=new File("Tweets/"+ Email +".txt");
-		FileWriter f2= null;
-		try {
-			f2 = new FileWriter(fnew, false);
-		} catch (IOException e1) {e1.printStackTrace();}
-		for(int i =0; i!=tweets.size();i++) {
+			File fold=new File("../src/Tweets/"+ Email +".txt");
+			fold.delete();
+			File fnew=new File("Tweets/"+ Email +".txt");
+			FileWriter f2= null;
 			try {
-				String text = tweets.get(i).replace("\n", "");
-				f2.write(text + "\n");
+				f2 = new FileWriter(fnew, false);
+			} catch (IOException e1) { e1.printStackTrace();}
+			for(int i =0; i!=tweets.size();i++) {
+				try {
+					String text = tweets.get(i).replace("\n", "");
+					f2.write(text + "\n");
 				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}     
-		}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}     
+			}
 		
-		try {
-			f2.close();
-		} catch (IOException e) {e.printStackTrace();}
-	}
+			try {
+				f2.close();
+			} catch (IOException e) {e.printStackTrace();}
+		}
 	}
 	
 	/**
@@ -149,18 +147,17 @@ public class Gestor {
 	 */
 	
 	public static void writeFacebookPostsFile (String Email) {
-		
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
-		System.out.println("TWITTER");
+		
 		if(posts.size()!=0) {
 			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS POSTS");
-		File fold=new File("../src/FBPosts/"+ Email +".txt");
-		fold.delete();
-		File fnew=new File("FBPosts/"+ Email +".txt");
-		FileWriter f2=null;
-		try {
+			File fold=new File("../src/FBPosts/"+ Email +".txt");
+			fold.delete();
+			File fnew=new File("FBPosts/"+ Email +".txt");
+			FileWriter f2=null;
+			try {
 			f2 = new FileWriter(fnew, false);
-		} catch (IOException e1) {e1.printStackTrace();}
+			} catch (IOException e1) {e1.printStackTrace();}
 				try {
 					for(int i =0; i!=posts.size();i++) {
 						String text = posts.get(i).replace("\n", "");
@@ -216,12 +213,10 @@ public class Gestor {
 		}
 	
 
-
-
 	/**
 	 * Checks if a user is online.
 	*/
-	public boolean isOnline(String Email) {
+	public static boolean isOnline(String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		if (posts.size()== 0 && tweets.size()==0)

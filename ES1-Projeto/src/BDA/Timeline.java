@@ -34,12 +34,27 @@ public class Timeline {
 	private Gestor gestor;
 	private ArrayList<String> sourceFilters;
 	private JPanel panel;
+	private JFrame frame;
+	private String Email;
+	
+	public Timeline(JFrame frame, String Email) {
+		this.frame = frame;
+		this.Email = Email;
+		initialize();
+		setVisible(true);
+	}
+	
+	
+	public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+	
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings("static-access")
-	void initialize(JFrame frame, String Email) {
+	void initialize() {
 		gestor=new Gestor();
 		gestor.writeTweetsFile(Email);
 		gestor.writeFacebookPostsFile(Email);
@@ -168,8 +183,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				Configurations conf = new Configurations();
-				conf.initialize(frame,Email);
+				Configurations conf = new Configurations(frame,Email);
 			}
 		});
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
@@ -186,8 +200,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				TwitterPage tp= new TwitterPage();
-				tp.initialize(frame, Email);
+				TwitterPage tp = new TwitterPage(frame, Email);
 			}
 		});
 		
@@ -201,8 +214,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
-				FacebookPage fbp= new FacebookPage();
-				fbp.initialize(frame, Email);
+				FacebookPage fbp= new FacebookPage(frame, Email);
 			}
 		});
 		
@@ -266,5 +278,11 @@ public class Timeline {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+
+
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return frame;
 	}
 }

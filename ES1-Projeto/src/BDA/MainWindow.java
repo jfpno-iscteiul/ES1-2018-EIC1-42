@@ -70,8 +70,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				frame2.getContentPane().removeAll();
 				frame2.repaint();
-				SignUp signUp= new SignUp();
-				signUp.initialize(frame2);
+				SignUp signUp = new SignUp(frame2);
 			}
 		});
 		
@@ -153,8 +152,7 @@ public class MainWindow {
 				if(XMLFile.checkIfUserExists(txtEmail.getText(), pass)) {
 					frame2.getContentPane().removeAll();
 					frame2.repaint();
-					Timeline timeline= new Timeline();
-					timeline.initialize(frame2, txtEmail.getText() );
+					Timeline timeline= new Timeline(frame2, txtEmail.getText());
 				} else {
 					JOptionPane optionPane = new JOptionPane("Os dados que inseriu estão incorretos!", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO!");

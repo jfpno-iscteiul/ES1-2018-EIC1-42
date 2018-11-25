@@ -22,17 +22,12 @@
 	<classpathentry kind="lib" path="ES1-Projeto/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="lib" path="ES1-Projeto/miglayout15-swing.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
-		<attributes>
-			<attribute name="test" value="true"/>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/3ºANO LEI @ ISCTE/ES1/restfb-1.6.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/3ºANO LEI @ ISCTE/ES1/twitter4j-core-4.0.7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

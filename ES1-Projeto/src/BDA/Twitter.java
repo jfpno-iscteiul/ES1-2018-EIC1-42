@@ -32,22 +32,23 @@ public final class Twitter {
         	TwitterFactory tf = new TwitterFactory(cb.build());
         	twitter4j.Twitter twitter = tf.getInstance();        		
             List<Status> statuses = twitter.getHomeTimeline();
-            //System.out.println("------------------------\n Showing home timeline \n------------------------");
-//    		int counter=0;
-//    		int counterTotal = 0;
+
             for (Status status : statuses) {
 				// Filters only tweets from user "user"
-				if (status.getUser().getName() != null && status.getUser().getName().contains("IUL")) {
-					//System.out.println(status.getUser().getName() + ";;" + status.getText());
-					content.add( "Twitter" + ";;"+ status.getCreatedAt().toString() + ";;"+ status.getUser().getName() + ";;" + status.getText());
-					ids.add(status.getId());
-					//counter++;
-				}
+				if (status.getUser().getName() != null) {
+					//System.out.println(status.getUser());
+					if (status.getUser().getName().equals("EIC142") ||  status.getUser().getName().contains("IUL") ) {
+					//	System.out.println(status.getUser().getName() + ";;" + status.getText());
+						content.add( "Twitter" + ";;"+ status.getCreatedAt().toString() + ";;"+ status.getUser().getName() + ";;" + status.getText());
+						ids.add(status.getId());
+						//counter++;
+					}
+				}  
 				//counterTotal++;
             }
     		//System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
         } catch (Exception e) { System.out.println(e.getMessage()); }
-        System.out.println(content);
+        //System.out.println(content);
 		return content;
      }
 	

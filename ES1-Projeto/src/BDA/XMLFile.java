@@ -22,6 +22,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 public class XMLFile {
 	
 	/**
@@ -35,26 +36,26 @@ public class XMLFile {
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	         Document doc = dBuilder.parse(inputFile);
 	         doc.getDocumentElement().normalize();         
-	         System.out.println("\n----- Search the XML document with xpath queries -----");  
+	         //System.out.println("\n----- Search the XML document with xpath queries -----");  
 	         // Query 1 
 	         System.out.println("Query 1: ");
 	         XPathFactory xpathFactory = XPathFactory.newInstance();
 	         XPath xpath = xpathFactory.newXPath();
 	         XPathExpression expr = xpath.compile("/XML/Service/@*");
 	         NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-	         for (int i = 0; i < nl.getLength(); i++) {
-	             System.out.print(nl.item(i).getNodeName()  + ": ");
-	             System.out.println(nl.item(i).getFirstChild().getNodeValue());
-	         }
+	         //for (int i = 0; i < nl.getLength(); i++) {
+	         //    System.out.print(nl.item(i).getNodeName()  + ": ");
+	         //    System.out.println(nl.item(i).getFirstChild().getNodeValue());
+	        // }
 	         // Query 2
-	         System.out.println("\nQuery 2: ");         
+	         //System.out.println("\nQuery 2: ");         
 	         expr = xpath.compile("/XML/Paths/docPath");
 	         String str = (String) expr.evaluate(doc, XPathConstants.STRING);
 	         
-	         System.out.println("docPath: " + str);
+	         //System.out.println("docPath: " + str);
 	         
 	         // Adding new element Service with attributes to the XML document (root node)
-	         System.out.println("\n----- Adding new element <Service> with attributes to the XML document -----");
+	         //System.out.println("\n----- Adding new element <Service> with attributes to the XML document -----");
 
 	         Element newElement1 = doc.createElement("Utilizador");
 	         newElement1.setAttribute("Nome", nome);
@@ -68,7 +69,7 @@ public class XMLFile {
 	         newElement1.setAttribute("TokenAccessFacebook", TAF);
 	         
 	         // Add new nodes to XML document (root element)
-	         System.out.println("Root element :" + doc.getDocumentElement().getNodeName());         
+	         //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());         
 	         Node n = doc.getDocumentElement();
 	         n.appendChild(newElement1);         
 	       

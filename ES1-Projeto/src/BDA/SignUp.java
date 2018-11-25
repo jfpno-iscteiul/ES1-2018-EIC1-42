@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import java.awt.Component;
 import java.awt.Cursor;
 
 public class SignUp {
@@ -28,12 +30,24 @@ public class SignUp {
 	private JTextField emailField;
 	private JPasswordField passField;
 	private JPasswordField confirmarpassField;
+	private JFrame frame;
+	 
+	
+	public SignUp(JFrame frame) {
+		this.frame = frame;
+		initialize();
+		setVisible(true);
+	}
 
+	
+	public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize(JFrame frame) {
+	public void initialize() {
 		frame.getContentPane().setBackground(SystemColor.window);
 		frame.setBounds(100, 100, 779, 410);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,10 +152,7 @@ public class SignUp {
 						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), "vazio",  "vazio",  "vazio", "vazio", "vazio" );
 						frame.getContentPane().removeAll();
 						frame.repaint();
-						//Timeline timeline= new Timeline();
-						//timeline.initialize(frame);
-						Configurations conf= new Configurations();
-						conf.initialize(frame,emailField.getText());
+						Configurations conf= new Configurations(frame, emailField.getText());
 						}
 					} else {
 						JOptionPane optionPane = new JOptionPane("As Password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    
@@ -160,5 +171,10 @@ public class SignUp {
 			}
 		});
 		frame.getContentPane().add(panel);
+	}
+
+
+	public JFrame getFrame() {
+		return frame;
 	}
 }
