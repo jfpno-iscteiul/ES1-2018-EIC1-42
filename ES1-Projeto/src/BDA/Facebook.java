@@ -5,9 +5,6 @@ import java.util.List;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.exception.FacebookException;
-import com.restfb.types.FacebookType;
 import com.restfb.types.Post;
 
 /**
@@ -25,7 +22,7 @@ public class Facebook {
 			FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 
 			Connection<Post> result = fbClient.fetchConnection("me/feed", Post.class);
-			System.out.println("\nPosts:");
+			//System.out.println("\nPosts:");
 			int count = 0;
 			int countTotal = 0;
 			List<Post> listOfPosts = result.getData();

@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JTextField;
-
-import java.awt.Component;
 import java.awt.Cursor;
 
 public class SignUp {
@@ -33,6 +31,9 @@ public class SignUp {
 	private JFrame frame;
 	 
 	
+	
+	/** @param   frame parameter gives an instance of the frame of the main page.
+	 */
 	public SignUp(JFrame frame) {
 		this.frame = frame;
 		initialize();
@@ -152,6 +153,7 @@ public class SignUp {
 						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), "vazio",  "vazio",  "vazio", "vazio", "vazio" );
 						frame.getContentPane().removeAll();
 						frame.repaint();
+						@SuppressWarnings("unused")
 						Configurations conf= new Configurations(frame, emailField.getText());
 						}
 					} else {

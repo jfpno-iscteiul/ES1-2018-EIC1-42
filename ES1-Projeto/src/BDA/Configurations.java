@@ -26,6 +26,7 @@ public class Configurations {
 	 * Allows the user to enter new data for their accounts
 	 */
 
+	
 	private JPasswordField passwordField;
 	private JTextField textFieldACK;
 	private JTextField textFieldACKS;
@@ -35,6 +36,10 @@ public class Configurations {
 	private JTextField textField_2;
 	private JFrame frame;
 	private String Email;
+	
+	/** @param   frame parameter gives an instance of the frame of the main page.
+	 * @param    Email is the email relative to the user.
+	 */
 	
 	public Configurations(JFrame frame, String Email) {
 		this.frame = frame;
@@ -73,6 +78,7 @@ public class Configurations {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				Timeline tm = new Timeline(frame, Email);
 			}
 		});
@@ -217,6 +223,7 @@ public class Configurations {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				ConfigurationsRem nova = new ConfigurationsRem(frame, Email);
 			}
 		});

@@ -12,9 +12,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.awt.Image;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -32,6 +29,10 @@ public class ConfigurationsRem {
 	
 	private JFrame frame;
 	private String Email;
+	
+	/** @param   frame parameter gives an instance of the frame of the main page.
+	 * @param    Email is the email relative to the user.
+	 */
 	
 	public ConfigurationsRem(JFrame frame, String Email) {
 		this.frame = frame;
@@ -52,6 +53,8 @@ public class ConfigurationsRem {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
 	public void initialize() {
 
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
@@ -79,6 +82,7 @@ public class ConfigurationsRem {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				Timeline tm = new Timeline(frame, Email);
 			}
 		});
@@ -128,9 +132,9 @@ public class ConfigurationsRem {
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table_1.getRowCount();
-				System.out.println(i);
-				System.out.println(accounts_list);
-				System.out.println(accounts_list.get(i - 1));
+//				System.out.println(i);
+//				System.out.println(accounts_list);
+//				System.out.println(accounts_list.get(i - 1));
 				String service = accounts_list.get(i - 1);
 				if (service.equals("Facebook")) {
 					XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
@@ -143,7 +147,7 @@ public class ConfigurationsRem {
 					// COLOCAR INFOS DE EMAIL
 				}
 				accounts_list.remove(i - 1);
-				System.out.println("VOU REMOVER!");
+//				System.out.println("VOU REMOVER!");
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				initialize();

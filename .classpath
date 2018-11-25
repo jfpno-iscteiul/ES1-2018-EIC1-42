@@ -27,7 +27,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/3ºANO LEI @ ISCTE/ES1/restfb-1.6.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/3ºANO LEI @ ISCTE/ES1/twitter4j-core-4.0.7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

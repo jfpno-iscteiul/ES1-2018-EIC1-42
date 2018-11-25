@@ -1,3 +1,4 @@
+
 package BDA;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,10 @@ public final class Twitter {
 	ArrayList<String>  content = new ArrayList <String> ();
 	static ArrayList<Long>  ids = new ArrayList <Long> ();
 	
-	
+	/**
+	 * @param    Email is the email relative to the user.
+	   * @return    a list of tweets.
+	 */
 	public  ArrayList<String> getTweets(String email) {
 		ArrayList<String>  content = new ArrayList <String> ();
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");
@@ -58,6 +62,10 @@ public final class Twitter {
 	 * Returns the ids of the timeline tweets.
 	 */
 	
+	
+	/**
+	   * @return    a list with the ids of the tweets.
+	 */
 	public static ArrayList<Long> getTweetsId(){
 		return ids;
 	}
@@ -67,6 +75,11 @@ public final class Twitter {
 
 	/**
 	 * Retweets a particular tweet.
+	 */
+	
+	/**
+	 * @param    id is the id relative to the tweet.
+	 @param    email is the email relative to the user.
 	 */
 
 	public static void retweet(long id, String email) {
@@ -92,6 +105,14 @@ public final class Twitter {
 	 * Tweets a particular content.
 	 */
 	
+	
+
+	/**
+	 * @param    text is the text which the user wants to tweet.
+	 @param    email is the email relative to the user.
+	 */
+	
+	
 	public static void tweet(String text, String email) {
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");
 		String AuthConsumerSecret = XMLFile.getAttributteByEmail(email, "AuthConsumerSecretTwitter");
@@ -110,8 +131,9 @@ public final class Twitter {
 	          TwitterFactory factory = new TwitterFactory(cb.build());
 	          twitter4j.Twitter twitter = factory.getInstance();
 	         // System.out.println(twitter.getScreenName());
-	          Status status = twitter.updateStatus(text);
-	          System.out.println("Successfully updated the status to [" + status.getText() + "].");
+	          @SuppressWarnings("unused")
+			Status status = twitter.updateStatus(text);
+	         // System.out.println("Successfully updated the status to [" + status.getText() + "].");
 	           }catch (TwitterException te) {
 	              te.printStackTrace();
 	           }

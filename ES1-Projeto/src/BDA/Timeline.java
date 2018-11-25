@@ -183,6 +183,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				Configurations conf = new Configurations(frame,Email);
 			}
 		});
@@ -200,6 +201,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				TwitterPage tp = new TwitterPage(frame, Email);
 			}
 		});
@@ -214,6 +216,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				FacebookPage fbp= new FacebookPage(frame, Email);
 			}
 		});
@@ -282,7 +285,6 @@ public class Timeline {
 
 
 	public JFrame getFrame() {
-		// TODO Auto-generated method stub
 		return frame;
 	}
 }

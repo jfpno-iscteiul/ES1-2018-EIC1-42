@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,6 +29,10 @@ public class FacebookPage {
 	JPanel panel;
 	private JFrame frame;
 	private String Email;
+	
+	/** @param   frame parameter gives an instance of the frame of the main page.
+	 * @param    Email is the email relative to the user.
+	 */
 	
 	public FacebookPage(JFrame frame, String Email) {
 		this.frame = frame;
@@ -76,6 +79,7 @@ public class FacebookPage {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				Timeline tm = new Timeline(frame, Email);
 			}
 		});
@@ -103,8 +107,7 @@ public class FacebookPage {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 
-		Facebook facebook = new Facebook();
-		ArrayList<String> list = facebook.getFBNotifications(Email);
+		ArrayList<String> list = Facebook.getFBNotifications(Email);
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		/**
 		 * Inserts the posts in the table.

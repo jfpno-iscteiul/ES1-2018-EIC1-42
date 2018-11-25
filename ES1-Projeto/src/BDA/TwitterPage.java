@@ -73,6 +73,7 @@ public class TwitterPage {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
 				frame.repaint();
+				@SuppressWarnings("unused")
 				Timeline tm= new Timeline(frame, Email); 
 			}
 		});
@@ -112,8 +113,7 @@ public class TwitterPage {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 		
-		Twitter twitter= new Twitter();
-		ArrayList<String> list = twitter.getTweets(Email);
+		ArrayList<String> list = Gestor.getTweets(Email);
 		ArrayList<Long> ids = Twitter.getTweetsId();
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		 /**

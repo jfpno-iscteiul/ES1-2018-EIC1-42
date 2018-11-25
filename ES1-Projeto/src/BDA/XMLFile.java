@@ -29,6 +29,18 @@ public class XMLFile {
 	 * Creates an XML file where new users can be saved.
 	 */
 	
+	/** * @param    email is the email relative to the user.
+	 * @param    password is the password relative to the user.
+	 * @param    nome is the name relative to the user.
+	 *  @param    username is the username relative to the user.
+	 * @param    ACKT is the AuthConsumerKeyTwitter relative to the user.
+	 * @param    ACST is the AuthConsumerSecretTwitter relative to the user.
+	 * @param    AATT is the AuthAccessTokenTwitter relative to the user.
+	 * @param    ACTST is the AuthAccessTokenSecretTwitter relative to the user.
+	 * @param    TAF is the TokenAccessFacebook relative to the user.
+	 */
+	
+	
    public static void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF) {
 	   try {	
 	         File inputFile = new File("config.xml");
@@ -38,11 +50,12 @@ public class XMLFile {
 	         doc.getDocumentElement().normalize();         
 	         //System.out.println("\n----- Search the XML document with xpath queries -----");  
 	         // Query 1 
-	         System.out.println("Query 1: ");
+	        // System.out.println("Query 1: ");
 	         XPathFactory xpathFactory = XPathFactory.newInstance();
 	         XPath xpath = xpathFactory.newXPath();
 	         XPathExpression expr = xpath.compile("/XML/Service/@*");
-	         NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+	         @SuppressWarnings("unused")
+			NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 	         //for (int i = 0; i < nl.getLength(); i++) {
 	         //    System.out.print(nl.item(i).getNodeName()  + ": ");
 	         //    System.out.println(nl.item(i).getFirstChild().getNodeValue());
@@ -50,7 +63,8 @@ public class XMLFile {
 	         // Query 2
 	         //System.out.println("\nQuery 2: ");         
 	         expr = xpath.compile("/XML/Paths/docPath");
-	         String str = (String) expr.evaluate(doc, XPathConstants.STRING);
+	         @SuppressWarnings("unused")
+			String str = (String) expr.evaluate(doc, XPathConstants.STRING);
 	         
 	         //System.out.println("docPath: " + str);
 	         
@@ -74,7 +88,7 @@ public class XMLFile {
 	         n.appendChild(newElement1);         
 	       
 	         // Save XML document
-	         System.out.println("\nSave XML document.");
+	        // System.out.println("\nSave XML document.");
 	         Transformer transformer = TransformerFactory.newInstance().newTransformer();
 	         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 	         StreamResult result = new StreamResult(new FileOutputStream("config.xml"));
@@ -87,6 +101,10 @@ public class XMLFile {
    /**
 	* Checks if a given email with a given password is already registered in the XML file.
 	*/
+   
+   /** * @param    email is the email relative to the user.
+	 * @param    pass is the password relative to the user.
+	 */
    
    public static boolean checkIfUserExists(String email, String pass) {
 	   try {
@@ -111,6 +129,10 @@ public class XMLFile {
 	* Checks if a given email is already registered in the XML file.
 	*/
    
+   
+   /** * @param    email is the email relative to the user.
+	 */
+   
    public static boolean checkIfUserExistsByEmail(String email) {
 	   try {
 		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -130,6 +152,12 @@ public class XMLFile {
    /**
   	* Changes the data of a user in the XML file.
   	*/
+   
+   /** * @param    email is the email relative to the user.
+	 * @param    Attribute is the name of the attribute to modify.
+	 * @param    newValue is the new value to assign.
+	 */
+   
    public static void changeAttributte(String email, String Attributte, String newValue) {
 	   String filePath = "config.xml";
        File xmlFile = new File(filePath);
@@ -164,6 +192,13 @@ public class XMLFile {
  	* Changes the data of a user in the XML file.
  	*/
    
+   /** * @param    email is the email relative to the user.
+ 	 * @param    Attribute is the name of the attribute to modify.
+ 	 * @param    newValue is the new value to assign.
+ 	  * @param    doc is the DocumentBuilderFactory.
+ 	 */
+    
+   
    private static void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
        NodeList users = doc.getElementsByTagName("Utilizador");
        Element user;
@@ -180,6 +215,10 @@ public class XMLFile {
    /**
  	* Returns an attribute of a particular user.
  	*/
+   
+   /** * @param    email is the email relative to the user.
+	 * @param    attribute is the name of the attribute to modify.
+	 */
    
    public static String getAttributteByEmail(String email, String attribute) {
 	   String value= null;
@@ -203,6 +242,10 @@ public class XMLFile {
    /**
 	* Returns a list of services associated with a particular user.
 	*/
+   
+   /** * @param    email is the email relative to the user.
+	 * @return     a list of services associated with a particular user.
+	 */
    public static ArrayList<String> list_account(String email){
 	   ArrayList<String> res= new ArrayList<String>();
 	   try {

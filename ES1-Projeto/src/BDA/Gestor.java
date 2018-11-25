@@ -30,6 +30,12 @@ public class Gestor {
 	 * Filters notifications according to their source
 	 */
 	
+	/** @param   panel parameter gives an instance of the panel of the main page.
+	 * @param    Email is the email relative to the user.
+	 * @param   frame parameter gives an instance of the frame of the main page.
+	 * * @param   sources  gives a list of sources to filter.
+	 */
+	
 	public void filterBySource(JPanel panel,ArrayList<String> Sources, Frame frame, String Email) {
 		writeTweetsFile (Email);
 		writeFacebookPostsFile(Email);
@@ -56,7 +62,7 @@ public class Gestor {
 					// colocar recurso do email
 				}
 			}
-			System.out.println(filteredPosts);
+			//System.out.println(filteredPosts);
 			addRows(panel, filteredPosts, frame);
 			
 		}
@@ -77,6 +83,11 @@ public class Gestor {
 	  * Inserts the posts in the table.
 	 */
 	
+	
+	/** @param   panel parameter gives an instance of the panel of the main page.
+	 * @param   frame parameter gives an instance of the frame of the main page.
+	 * * @param   list  gives a list of Strings to add to the table.
+	 */
 	public void addRows(JPanel panel, ArrayList<String> list, Frame frame) {
 	
 	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
@@ -115,10 +126,15 @@ public class Gestor {
 	  * Write a file with the contents of each user related to twitter when it is offline.
 	 */
 	
+	/**
+	 * @param    Email is the email relative to the user.
+	 */
+	
+	
 	public static void writeTweetsFile (String Email) {
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		if(tweets.size()!=0) {
-			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS TWEETS");
+			//System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS TWEETS");
 			File fold=new File("../src/Tweets/"+ Email +".txt");
 			fold.delete();
 			File fnew=new File("Tweets/"+ Email +".txt");
@@ -146,11 +162,16 @@ public class Gestor {
 	  * Write a file with the contents of each user related to facebook when it is offline.
 	 */
 	
+	
+	/**
+	 * @param    Email is the email relative to the user.
+	 */
+	
 	public static void writeFacebookPostsFile (String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		
 		if(posts.size()!=0) {
-			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS POSTS");
+			//System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS POSTS");
 			File fold=new File("../src/FBPosts/"+ Email +".txt");
 			fold.delete();
 			File fnew=new File("FBPosts/"+ Email +".txt");
@@ -176,6 +197,11 @@ public class Gestor {
 	/**
 	 * Gets tweets from a particular user.
 	*/
+	
+	
+	/**
+	 * @param    Email is the email relative to the user.
+	 */
 	public static ArrayList <String> getTweets (String Email) {
 		ArrayList <String> result = new ArrayList <String>();
 		try {
@@ -196,6 +222,11 @@ public class Gestor {
 	 * Gets Facebook posts from a particular user.
 	*/
 	
+	
+	/**
+	 * @param    Email is the email relative to the user.
+	   * @return   a lits of facebook posts.
+	 */
 	public static ArrayList<String> getFBPosts (String Email) {
 		ArrayList <String> result = new ArrayList <String>();
 		try {
@@ -216,6 +247,11 @@ public class Gestor {
 	/**
 	 * Checks if a user is online.
 	*/
+	
+	
+	/** @param    Email is the email relative to the user.
+	   * @return    true if the user is online and false otherwise.
+	 */
 	public static boolean isOnline(String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		ArrayList<String> tweets= twitter.getTweets(Email);

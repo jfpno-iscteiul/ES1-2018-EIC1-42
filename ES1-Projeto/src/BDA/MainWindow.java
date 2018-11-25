@@ -30,6 +30,10 @@ public class MainWindow {
 	 * Launch the application.
 	 */
 	
+	
+	/** @param   args is the main method.
+	 */
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		MainWindow window = new MainWindow();
@@ -70,6 +74,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				frame2.getContentPane().removeAll();
 				frame2.repaint();
+				@SuppressWarnings("unused")
 				SignUp signUp = new SignUp(frame2);
 			}
 		});
@@ -152,6 +157,7 @@ public class MainWindow {
 				if(XMLFile.checkIfUserExists(txtEmail.getText(), pass)) {
 					frame2.getContentPane().removeAll();
 					frame2.repaint();
+					@SuppressWarnings("unused")
 					Timeline timeline= new Timeline(frame2, txtEmail.getText());
 				} else {
 					JOptionPane optionPane = new JOptionPane("Os dados que inseriu estão incorretos!", JOptionPane.ERROR_MESSAGE);    
