@@ -90,6 +90,7 @@ public class ConfigurationsRem {
 	        JTable table_1 = new JTable( data, headers );
 
 			table_1.setBounds(82, 137, 441, 321);
+			table_1.setDefaultEditor(Object.class, null);
 	        panel.add( new JScrollPane( table_1 ));
 	        
 	        frame.getContentPane().add(panel);

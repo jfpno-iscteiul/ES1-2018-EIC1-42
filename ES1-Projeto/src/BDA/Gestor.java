@@ -120,6 +120,7 @@ public class Gestor {
 	public static void writeTweetsFile (String Email) {
 		ArrayList<String> tweets= twitter.getTweets(Email);
 		if(tweets.size()!=0) {
+			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS TWEETS");
 		File fold=new File("../src/Tweets/"+ Email +".txt");
 		fold.delete();
 		File fnew=new File("Tweets/"+ Email +".txt");
@@ -148,8 +149,11 @@ public class Gestor {
 	 */
 	
 	public static void writeFacebookPostsFile (String Email) {
+		
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
+		System.out.println("TWITTER");
 		if(posts.size()!=0) {
+			System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS POSTS");
 		File fold=new File("../src/FBPosts/"+ Email +".txt");
 		fold.delete();
 		File fnew=new File("FBPosts/"+ Email +".txt");
@@ -220,7 +224,7 @@ public class Gestor {
 	public boolean isOnline(String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
 		ArrayList<String> tweets= twitter.getTweets(Email);
-		if (posts.size()== 0 || tweets.size()==0)
+		if (posts.size()== 0 && tweets.size()==0)
 			return false;
 		else
 			return true;
