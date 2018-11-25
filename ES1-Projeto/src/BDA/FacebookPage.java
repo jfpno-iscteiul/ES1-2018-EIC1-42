@@ -5,10 +5,14 @@ import javax.swing.JMenuBar;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Vector;
 import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -86,65 +90,38 @@ public class FacebookPage {
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
 		
-//		JScrollPane scrollPane = new JScrollPane();
-//		scrollPane.setBounds(170, 430, 557, -346);
-//		frame.getContentPane().add(scrollPane);
-//		
-//		Twitter twitter= new Twitter();
-//		ArrayList<String> list = twitter.getTweets(Email);
-//		ArrayList<Long> ids = Twitter.getTweetsId();
-//		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-//		 /**
-//		  * Inserts the posts in the table.
-//		 */
-//		 for (int i = 0; i<list.size(); i++) {
-//		//	 long indice= ids.get(i);
-//			 	String [] lineSplited = list.get(i).split(";;");
-//			   Vector<Object> row = new Vector<Object>();
-//			   row.add(lineSplited [0]);
-//			   row.add( lineSplited [1] );
-//			   row.add( lineSplited [2]);
-//			   row.add( lineSplited [3]);
-//	//		   JButton retweetar = new JButton("Retweetar");
-////			   retweetar.addActionListener(new ActionListener() {
-////					public void actionPerformed(ActionEvent e) {
-////						Twitter.retweet(indice, Email);
-////					}
-////				});
-////			   row.add(retweetar);
-//			   data.add(row);
-//
-//		 }
-//		 
-//		 
-//	       Vector<String> headers = new Vector<String>();
-//	       headers.add("Plataforma");
-//	       headers.add("Data");
-//	       headers.add("User");
-//	       headers.add( "Notificação");
-//	       headers.add( "Botao");
-//
-//
-//
-//	       JTable table = new JTable( data, headers );
-//	       panel.add( new JScrollPane( table ));
-//	       frame.add(panel);
-//	     
-//	       JButton retweetar = new JButton("Retweetar");
-//	       retweetar.setBounds(650, 200, 120, 20);
-//	       
-//		   retweetar.addActionListener(new ActionListener() {
-//				public void actionPerformed(ActionEvent e) {
-//					int i = table.getRowCount();
-//					long indice= ids.get(i);
-//					
-//					// +1???
-//					Twitter.retweet(indice, Email);
-//				}
-//			});
-//		   frame.add(retweetar);
-//	//	   row.add(retweetar);
-//		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(170, 430, 557, -346);
+		frame.getContentPane().add(scrollPane);
+		
+		Facebook facebook = new Facebook();
+		ArrayList<String> list = facebook.getFBNotifications(Email);
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		 /**
+		  * Inserts the posts in the table.
+		 */
+		 for (int i = 0; i<list.size(); i++) {
+			 	String [] lineSplited = list.get(i).split(";;");
+			   Vector<Object> row = new Vector<Object>();
+			   row.add( lineSplited [1] );
+			   row.add( lineSplited [2]);
+			   row.add( lineSplited [3]);
+			   data.add(row);
+
+		 }
+		 
+		 
+	       Vector<String> headers = new Vector<String>();
+	       headers.add("Data");
+	       headers.add("User");
+	       headers.add( "Notificação");
+
+
+
+	       JTable table = new JTable( data, headers );
+	       panel.add( new JScrollPane( table ));
+	       frame.add(panel);
+	     
 		
 	}
 	@SuppressWarnings("unused")

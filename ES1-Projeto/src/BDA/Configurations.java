@@ -160,16 +160,16 @@ public class Configurations {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		
+		//EMAIL
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(347, 402, 130, 20);
+		passwordField.setBounds(420, 402, 130, 20);
 		frame.getContentPane().add(passwordField);
 		
 	
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(347, 371, 130, 20);
+		textField_2.setBounds(420, 371, 130, 20);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
