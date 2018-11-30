@@ -41,7 +41,7 @@ public class XMLFile {
 	 */
 	
 	
-   public static void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF) {
+   public static void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF, String passmail) {
 	   try {	
 	         File inputFile = new File("config.xml");
 	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -81,6 +81,7 @@ public class XMLFile {
 	         newElement1.setAttribute("AuthAccessTokenTwitter", AATT);
 	         newElement1.setAttribute("AuthAccessTokenSecretTwitter", ACTST);
 	         newElement1.setAttribute("TokenAccessFacebook", TAF);
+	         newElement1.setAttribute("PassEmail", passmail);
 	         
 	         // Add new nodes to XML document (root element)
 	         //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());         
@@ -264,6 +265,8 @@ public class XMLFile {
 	    				res.add("Twitter");
 	    			if(!nodeList.item(x).getAttributes().getNamedItem("TokenAccessFacebook").getNodeValue().equals("vazio"))
 	    				res.add("Facebook");
+	    			if(!nodeList.item(x).getAttributes().getNamedItem("PassEmail").getNodeValue().equals("vazio"))
+	    				res.add("Email");
 	    		  }
 	    	  }
 	   } catch (Exception e) {}

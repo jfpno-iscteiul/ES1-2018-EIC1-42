@@ -16,7 +16,7 @@ public class Email {
 
 	public static ArrayList<String> getEmails(String email) {
 		ArrayList<String> result = new ArrayList<String>();
-		String password = XMLFile.getAttributteByEmail(email, "Password");
+		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
 
 		// set properties
 		Properties properties = new Properties();

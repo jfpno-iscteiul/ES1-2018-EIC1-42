@@ -145,26 +145,26 @@ public class SignUp {
 				if(emailField.getText().contains("@iscte-iul.pt")) {
 					if(password1.equals(password2)) {
 						if(XMLFile.checkIfUserExistsByEmail(emailField.getText())) {
-							JOptionPane optionPane = new JOptionPane("O email inserido j· est· associado a um utilizador.", JOptionPane.ERROR_MESSAGE);    
+							JOptionPane optionPane = new JOptionPane("O email inserido j√° est√° associado a um utilizador.", JOptionPane.ERROR_MESSAGE);    
 							JDialog dialog = optionPane.createDialog("ERRO");
 							dialog.setAlwaysOnTop(true);
 							dialog.setVisible(true);
 						}else {
-						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), "vazio",  "vazio",  "vazio", "vazio", "vazio" );
+						XMLFile.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), "vazio",  "vazio",  "vazio", "vazio", "vazio", "vazio");
 						frame.getContentPane().removeAll();
 						frame.repaint();
 						@SuppressWarnings("unused")
 						Configurations conf= new Configurations(frame, emailField.getText());
 						}
 					} else {
-						JOptionPane optionPane = new JOptionPane("As Password inseridas n„o coincidem.", JOptionPane.ERROR_MESSAGE);    
+						JOptionPane optionPane = new JOptionPane("As password inseridas n√£o coincidem.", JOptionPane.ERROR_MESSAGE);    
 						JDialog dialog = optionPane.createDialog("ERRO");
 						dialog.setAlwaysOnTop(true);
 						dialog.setVisible(true);
 					}
 						
 				}else {
-					JOptionPane optionPane = new JOptionPane("O email inserido n„o È do dominio IscteIul.", JOptionPane.ERROR_MESSAGE);    
+					JOptionPane optionPane = new JOptionPane("O email inserido n√£o √© do dominio IscteIul.", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);

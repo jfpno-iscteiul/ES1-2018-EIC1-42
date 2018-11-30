@@ -2,6 +2,8 @@ package BDA;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
@@ -14,6 +16,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -178,11 +182,6 @@ public class Configurations {
 		passwordField.setBounds(420, 402, 130, 20);
 		frame.getContentPane().add(passwordField);
 
-		//textField_2 = new JTextField();
-		//textField_2.setBounds(420, 371, 130, 20);
-		//frame.getContentPane().add(textField_2);
-		//textField_2.setColumns(10);
-
 		JLabel labelemail = new JLabel(Email);
 		labelemail.setBounds(420, 371, 130, 20);
 		frame.getContentPane().add(labelemail);
@@ -195,6 +194,7 @@ public class Configurations {
 		label_3.setBounds(261, 405, 65, 14);
 		frame.getContentPane().add(label_3);
 
+		// add twitter
 		JButton btnAdicionarConta = new JButton("Adicionar Conta");
 		btnAdicionarConta.setBounds(555, 136, 158, 23);
 		frame.getContentPane().add(btnAdicionarConta);
@@ -204,24 +204,42 @@ public class Configurations {
 				XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", textFieldACKS.getText());
 				XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", textFieldAATS.getText());
 				XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", textFieldAAT.getText());
-
+				JOptionPane optionPane = new JOptionPane("Twitter adicionado com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+				JDialog dialog = optionPane.createDialog("Alerta!");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
 			}
 		});
 
+		//add facebook
 		JButton button_1 = new JButton("Adicionar Conta");
 		button_1.setBounds(555, 265, 158, 23);
 		frame.getContentPane().add(button_1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				XMLFile.changeAttributte(Email, "TokenAccessFacebook", textField_1.getText());
-
+				JOptionPane optionPane = new JOptionPane("Facebook adicionado com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+				JDialog dialog = optionPane.createDialog("Alerta!");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
 			}
 		});
 
+		//add email
 		JButton button_2 = new JButton("Adicionar Conta");
 		button_2.setBounds(555, 391, 158, 23);
 		frame.getContentPane().add(button_2);
-
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pass = new String(passwordField.getPassword());
+				XMLFile.changeAttributte(Email, "PassEmail", pass);
+				JOptionPane optionPane = new JOptionPane("Email adicionado com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+				JDialog dialog = optionPane.createDialog("Alerta!");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
+			}
+		});
+		
 		JButton btnListarremoverContas = new JButton("Listar/Remover Contas");
 		btnListarremoverContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -2,6 +2,8 @@ package BDA;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
@@ -15,6 +17,8 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -94,7 +98,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("Serviços Associados");
+		headers.add("ServiÃ§os Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -104,7 +108,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("Não tem serviços associados a esta conta.");
+			row.add("NÃ£o tem serviÃ§os associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
@@ -132,22 +136,30 @@ public class ConfigurationsRem {
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table_1.getRowCount();
-//				System.out.println(i);
-//				System.out.println(accounts_list);
-//				System.out.println(accounts_list.get(i - 1));
 				String service = accounts_list.get(i - 1);
 				if (service.equals("Facebook")) {
 					XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
+					JOptionPane optionPane = new JOptionPane("Facebook removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("Alerta!");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
 				} else if (service.equals("Twitter")) {
 					XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
 					XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
 					XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
 					XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
+					JOptionPane optionPane = new JOptionPane("Twitter removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("Alerta!");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
 				} else if (service.equals("Email")) {
-					// COLOCAR INFOS DE EMAIL
+					XMLFile.changeAttributte(Email, "PassEmail", "vazio");
+					JOptionPane optionPane = new JOptionPane("Email removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("Alerta!");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
 				}
 				accounts_list.remove(i - 1);
-//				System.out.println("VOU REMOVER!");
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				initialize();

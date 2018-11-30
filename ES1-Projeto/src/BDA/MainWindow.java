@@ -160,7 +160,7 @@ public class MainWindow {
 					@SuppressWarnings("unused")
 					Timeline timeline= new Timeline(frame2, txtEmail.getText());
 				} else {
-					JOptionPane optionPane = new JOptionPane("Os dados que inseriu est„o incorretos!", JOptionPane.ERROR_MESSAGE);    
+					JOptionPane optionPane = new JOptionPane("Os dados que inseriu est√£o incorretos!", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);

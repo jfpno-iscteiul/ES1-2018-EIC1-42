@@ -25,7 +25,8 @@ class TesteXMLFile {
 		String AATT=new String("teste");
 		String ACTST=new String("teste"); 
 		String TAF=new String("teste");
-		XMLFile.addUsers(email, pass, nome, username, ACKT, ACST, AATT, ACTST, TAF);
+		String l = new String("teste");
+		XMLFile.addUsers(email, pass, nome, username, ACKT, ACST, AATT, ACTST, TAF, l);
 		boolean userRegistered = XMLFile.checkIfUserExists(email, pass);
 		boolean notReal = XMLFile.checkIfUserExists("notReal", "NotReal");
 		assertEquals(true, userRegistered);
