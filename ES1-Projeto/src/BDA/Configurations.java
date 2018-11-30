@@ -178,11 +178,15 @@ public class Configurations {
 		passwordField.setBounds(420, 402, 130, 20);
 		frame.getContentPane().add(passwordField);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(420, 371, 130, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		//textField_2 = new JTextField();
+		//textField_2.setBounds(420, 371, 130, 20);
+		//frame.getContentPane().add(textField_2);
+		//textField_2.setColumns(10);
 
+		JLabel labelemail = new JLabel(Email);
+		labelemail.setBounds(420, 371, 130, 20);
+		frame.getContentPane().add(labelemail);
+		
 		JLabel lblEmail_1 = new JLabel("Email:");
 		lblEmail_1.setBounds(261, 374, 76, 14);
 		frame.getContentPane().add(lblEmail_1);

@@ -56,8 +56,9 @@ public class Timeline {
 	@SuppressWarnings("static-access")
 	void initialize() {
 		gestor=new Gestor();
-		gestor.writeTweetsFile(Email);
-		gestor.writeFacebookPostsFile(Email);
+	//	gestor.writeTweetsFile(Email);
+	//	gestor.writeFacebookPostsFile(Email);
+	//	gestor.writeEmailsFile(Email);
 		
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
@@ -190,7 +191,7 @@ public class Timeline {
 		mntmASuaConta.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnConfiguraes.add(mntmASuaConta);
 		
-		if (gestor.isOnline(Email)) {
+		if (gestor.isOnline()) {
 		Image icone11 = new ImageIcon(this.getClass().getResource("/twitterm.png")).getImage();
 		
 		JButton button2 = new JButton("");
@@ -241,17 +242,12 @@ public class Timeline {
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
-		
-		
 
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
 		gestor.filterBySource(panel, sourceFilters, frame, Email);
-		
-
-		 
 		
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
