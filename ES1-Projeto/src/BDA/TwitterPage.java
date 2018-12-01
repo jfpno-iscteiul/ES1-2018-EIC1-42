@@ -2,6 +2,8 @@ package BDA;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,6 +20,8 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -94,6 +98,12 @@ public class TwitterPage {
 		tweetar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Twitter.tweet(textarea.getText(), Email);
+				JOptionPane optionPane = new JOptionPane("O twwet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+				JDialog dialog = optionPane.createDialog("OK");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
+				textarea.setText("");
+				frame.repaint();
 			}
 		});
 		
