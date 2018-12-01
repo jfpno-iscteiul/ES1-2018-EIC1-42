@@ -98,7 +98,7 @@ public class TwitterPage {
 		tweetar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Twitter.tweet(textarea.getText(), Email);
-				JOptionPane optionPane = new JOptionPane("O twwet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+				JOptionPane optionPane = new JOptionPane("O tweet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
 				JDialog dialog = optionPane.createDialog("OK");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
@@ -170,6 +170,8 @@ public class TwitterPage {
 					int i = table.getRowCount();
 					long indice= ids.get(i+1);
 					Twitter.retweet(indice, Email);
+					JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+					JDialog dialog = optionPane.createDialog("OK");
 				}
 			});
 		   frame.add(retweetar);
