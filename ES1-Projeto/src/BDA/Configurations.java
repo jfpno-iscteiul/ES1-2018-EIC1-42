@@ -167,15 +167,35 @@ public class Configurations {
 		 */
 
 // FACEBOOK (555, 265, 158, 23);
-		JLabel lblEmail = new JLabel("tokenAccess:");
-		lblEmail.setBounds(261, 265, 150, 14);
-		frame.getContentPane().add(lblEmail);
+		
+		if (!XMLFile.haveFacebook(Email)) {
+			// FACEBOOK (555, 265, 158, 23);
+					JLabel lblEmail = new JLabel("tokenAccess:");
+					lblEmail.setBounds(261, 265, 150, 14);
+					frame.getContentPane().add(lblEmail);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(420, 265, 130, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-
+					textField_1 = new JTextField();
+					textField_1.setBounds(420, 265, 130, 20);
+					frame.getContentPane().add(textField_1);
+					textField_1.setColumns(10);
+					//add facebook
+					JButton button_1 = new JButton("Adicionar Conta");
+					button_1.setBounds(555, 265, 158, 23);
+					frame.getContentPane().add(button_1);
+					button_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							XMLFile.changeAttributte(Email, "TokenAccessFacebook", textField_1.getText());
+							JOptionPane optionPane = new JOptionPane("Facebook adicionado com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+							JDialog dialog = optionPane.createDialog("Alerta!");
+							dialog.setAlwaysOnTop(true);
+							dialog.setVisible(true);
+						}
+					});
+					} else {
+						JLabel lblEmail = new JLabel("Já possui uma conta de Facebook adicionada!");
+						lblEmail.setBounds(261, 265, 265, 14);
+						frame.getContentPane().add(lblEmail);
+					}
 		// EMAIL
 
 		passwordField = new JPasswordField();

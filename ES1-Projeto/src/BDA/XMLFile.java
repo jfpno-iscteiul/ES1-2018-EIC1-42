@@ -126,7 +126,38 @@ public class XMLFile {
 	return false;
    }
    
-   
+   /**
+	* Checks if the user have facebook.
+	*/
+  
+  /** * @param    email is the email relative to the user.
+	  * @return      true if a user have a valid TokenAccessFacebook in the XML file.
+	 */
+  
+   public static boolean haveFacebook(String email) {
+		  DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	      DocumentBuilder db;
+		try {
+			db = dbf.newDocumentBuilder();
+	      Document document = db.parse(new File("config.xml"));
+	      NodeList nodeList = document.getElementsByTagName("Utilizador");
+	      for(int x=0,size= nodeList.getLength(); x<size; x++) {
+	   	  String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+	   	  if (mail.equals(email)) {
+	   		  
+	   			if(!nodeList.item(x).getAttributes().getNamedItem("TokenAccessFacebook").getNodeValue().equals("vazio")) {
+	   			
+	   				return true;
+	   			}else
+	   				return false;
+	   	  }
+	      }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+   }
    /**
 	* Checks if a given email is already registered in the XML file.
 	*/
