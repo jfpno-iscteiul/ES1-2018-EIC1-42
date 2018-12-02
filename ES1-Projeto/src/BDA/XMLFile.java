@@ -158,6 +158,31 @@ public class XMLFile {
 		}
 		return false;
    }
+   
+   
+   public static boolean haveEmail(String email) {
+	   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	   DocumentBuilder db;
+	   try {
+		   db = dbf.newDocumentBuilder();
+		   Document document = db.parse(new File("config.xml"));
+		   NodeList nodeList = document.getElementsByTagName("Utilizador");
+		   for(int x=0,size= nodeList.getLength(); x<size; x++) {
+			   String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
+			   if (mail.equals(email)) {
+				   if(!nodeList.item(x).getAttributes().getNamedItem("PassEmail").getNodeValue().equals("vazio")) {
+					   return true;
+	   			} else
+	   				return false;
+	   	  }
+	      }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+   }
+   
    /**
   	* Checks if the user have twitter.
   	*/
@@ -339,6 +364,9 @@ public class XMLFile {
 	   } catch (Exception e) {}
 	return res;
    }
+
+
+
    }
    
    
