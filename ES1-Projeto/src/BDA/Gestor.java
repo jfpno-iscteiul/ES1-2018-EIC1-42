@@ -281,6 +281,15 @@ public class Gestor {
 		}
 	}
 
+	/**
+	 * Write a file with the contents of each user related to email when it is
+	 * offline.
+	 */
+
+	/**
+	 * @param Email is the email relative to the user.
+	 */
+	
 	public static void writeEmailsFile(String email) {
 		ArrayList<String> emails = Email.getEmails(email);
 		File fold = new File("../src/Emails/" + email + ".txt");
@@ -308,6 +317,16 @@ public class Gestor {
 
 	}
 
+	
+	/**
+	 * Gets emails from a particular user.
+	 */
+
+	/**
+	 * @param Email is the email relative to the user.
+	 * @return a lits of emails.
+	 */
+	
 	public ArrayList<String> getEmail(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {

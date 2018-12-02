@@ -66,10 +66,10 @@ public class Timeline {
 	}
 	
 	
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	@SuppressWarnings("static-access")
 	void initialize() {
 		gestor = new Gestor();

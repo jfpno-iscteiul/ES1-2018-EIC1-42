@@ -101,9 +101,11 @@ public class FacebookPage {
 
 		ArrayList<String> list = Facebook.getFBNotifications(Email);
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		
 		/**
 		 * Inserts the posts in the table.
 		 */
+		
 		for (int i = 0; i < list.size(); i++) {
 			String[] lineSplited = list.get(i).split(";;");
 			Vector<Object> row = new Vector<Object>();

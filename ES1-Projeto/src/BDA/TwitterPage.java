@@ -32,7 +32,7 @@ public class TwitterPage {
 	 * Allows the user to view and retweet tweets.
 	 */
 	
-	JPanel panel;
+	private JPanel panel;
 	private JFrame frame;
 	private String Email;
 	

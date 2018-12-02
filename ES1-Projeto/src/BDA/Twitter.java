@@ -9,16 +9,20 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public final class Twitter {
+	
 	/**
 	 * Get the tweets for the desired account and save them in a list.
 	 */
-	ArrayList<String>  content = new ArrayList <String> ();
-	static ArrayList<Long>  ids = new ArrayList <Long> ();
+	
+	private ArrayList<String>  content = new ArrayList <String> ();
+	private static ArrayList<Long>  ids = new ArrayList <Long> ();
+	
 	
 	/**
 	 * @param    email is the email relative to the user.
 	 * @return    a list of tweets.
 	 */
+	
 	public static ArrayList<String> getTweets(String email) {
 		ArrayList<String>  content = new ArrayList <String> ();
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");
