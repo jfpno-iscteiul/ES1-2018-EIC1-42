@@ -73,7 +73,6 @@ public class Timeline {
 
 		JMenu mnOrdenar = new JMenu("Ordenar");
 		mnOrdenar.setFont(new Font("Calibri", Font.BOLD, 18));
-		mnOrdenar.setForeground(SystemColor.windowBorder);
 		menuBar.add(mnOrdenar);
 
 		JMenuItem mntmAntigasPrimeiro = new JMenuItem("Antigas Primeiro");
@@ -85,11 +84,10 @@ public class Timeline {
 		mnOrdenar.add(mntmRecentesPrimeiro);
 
 		JMenu mnFiltrar = new JMenu("Filtrar");
-		mnFiltrar.setForeground(SystemColor.windowBorder);
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa\u00E7\u00E3o");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informação");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
@@ -166,11 +164,11 @@ public class Timeline {
 		mnData.add(txtEscrevaAqui);
 		txtEscrevaAqui.setColumns(10);
 
-		JMenu mnConfiguraes = new JMenu("Configura\u00E7\u00F5es");
+		JMenu mnConfiguraes = new JMenu("A minha conta");
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("A sua conta");
+		JMenuItem mntmASuaConta = new JMenuItem("Configurações");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
@@ -241,7 +239,7 @@ public class Timeline {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 
-		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica\u00E7\u00F5es");
+		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
