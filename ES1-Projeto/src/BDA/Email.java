@@ -8,12 +8,25 @@ import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ * The Class Email.
+ */
 public class Email {
 
+	/**
+	 * Gets the emails.
+	 *
+	 * @param email the email
+	 * @return the emails
+	 */
 	public static ArrayList<String> getEmails(String email) {
 		ArrayList<String> result = new ArrayList<String>();
 		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
@@ -54,10 +67,6 @@ public class Email {
 				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
 				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject );
-		//		System.out.println("Mail Subject:- " + inbox.getMessage(messageCount - i).getSubject().toString());
-		//		System.out.println("Mail From:- " + inbox.getMessage(messageCount - i).getFrom()[0].toString());
-		//		System.out.println("Mail Content:- " + getTextFromMessage(inbox.getMessage(messageCount - i)));
-		//		System.out.println("------------------------------------------------------------");
 			}
 
 			inbox.close(true);
@@ -69,7 +78,60 @@ public class Email {
 		return result;
 	}
 	
+	
+	/**
+	 * Send email.
+	 *
+	 * @param email the email
+	 * @param to the to
+	 * @param subject the subject
+	 * @param text the text
+	 */
+	public void sendEmail(String email, String to, String subject, String text) {
+		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
+		Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp-mail.outlook.com");
+        props.put("mail.smtp.port", "587");
 
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            
+            /* (non-Javadoc)
+             * @see javax.mail.Authenticator#getPasswordAuthentication()
+             */
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+          });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+            message.setText(text);
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+	}
+	
+
+	/**
+	 * Gets the text from message.
+	 *
+	 * @param message the message
+	 * @return the text from message
+	 * @throws MessagingException the messaging exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private static String getTextFromMessage(Message message) throws MessagingException, IOException {
 	    String result = "";
 	    if (message.isMimeType("text/plain")) {
@@ -81,6 +143,14 @@ public class Email {
 	    return result;
 	}
 
+	/**
+	 * Gets the text from mime multipart.
+	 *
+	 * @param mimeMultipart the mime multipart
+	 * @return the text from mime multipart
+	 * @throws MessagingException the messaging exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private static String getTextFromMimeMultipart(MimeMultipart mimeMultipart)  throws MessagingException, IOException{
 	    String result = "";
 	    int count = mimeMultipart.getCount();
