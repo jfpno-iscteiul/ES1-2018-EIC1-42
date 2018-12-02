@@ -29,8 +29,7 @@ public class Notification {
 			e.printStackTrace();
 		}
 	
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 755, 457);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,8 +49,6 @@ public class Notification {
 		Label label_1 = new Label(Plataform);
 		panel.add(label_1);
 		contentPane.add(panel);
-		
-		
 		
 		
 		JPanel panel_1 = new JPanel();
