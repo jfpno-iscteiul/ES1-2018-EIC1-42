@@ -80,7 +80,7 @@ public class Gestor {
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane optionPane = new JOptionPane("NÃ£o existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
 			JDialog dialog = optionPane.createDialog("Alerta!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
@@ -119,7 +119,7 @@ public class Gestor {
 		headers.add("Plataforma");
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("NotificaÃ§Ã£o");
 
 		JTable table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);
