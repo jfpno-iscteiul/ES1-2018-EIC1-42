@@ -89,8 +89,6 @@ public class TwitterPage {
 		textarea.setBorder(BorderFactory.createCompoundBorder(border, 
 		BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		textarea.setBounds(200, 50, 400, 40);
-		//JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		//frame.add(textarea);
 		frame.getContentPane().add(textarea);
 		JButton tweetar = new JButton("Publicar Tweet");
 		tweetar.setBounds(620, 70, 150, 20);
@@ -123,7 +121,7 @@ public class TwitterPage {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 		
-		ArrayList<String> list = Gestor.getTweets(Email);
+		ArrayList<String> list = Twitter.getTweets(Email);
 		ArrayList<Long> ids = Twitter.getTweetsId();
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		 /**
@@ -151,10 +149,7 @@ public class TwitterPage {
 	       Vector<String> headers = new Vector<String>();
 	       headers.add("Data");
 	       headers.add("User");
-	       headers.add( "Notificação");
-	   
-
-
+	       headers.add("NotificaÃ§Ã£o");
 
 	       JTable table = new JTable( data, headers );
 	       //table.setBounds(x, y, width, height);

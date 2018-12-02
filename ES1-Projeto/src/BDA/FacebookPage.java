@@ -84,14 +84,6 @@ public class FacebookPage {
 			}
 		});
 
-		/*
-		 * JTextField textfield = new JTextField(""); textfield.setBounds(200, 70, 400,
-		 * 20); frame.add(textfield); JButton tweetar = new JButton("Publicar Posts");
-		 * tweetar.setBounds(620, 70, 150, 20); frame.add(tweetar);
-		 * tweetar.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { Facebook.publish(Email,
-		 * textfield.getText()); } });
-		 */
 
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
 
@@ -125,7 +117,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("Notificaï¿½ï¿½o");
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));

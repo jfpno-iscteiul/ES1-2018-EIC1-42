@@ -24,8 +24,7 @@ import javax.swing.JTable;
 
 public class Gestor {
 
-	private static Twitter twitter = new Twitter();
-	private ArrayList<String> content;
+	private ArrayList<String> tweets;
 	private ArrayList<String> fbPosts;
 	private ArrayList<String> emails;
 	private ArrayList<String> allNotifications;
@@ -43,23 +42,30 @@ public class Gestor {
 	 */
 
 	public void filterBySource(JPanel panel, ArrayList<String> Sources, Frame frame, String Email) {
-		writeTweetsFile(Email);
-		writeFacebookPostsFile(Email);
-		writeEmailsFile(Email);
-		content = getTweets(Email);
-		fbPosts = getFBPosts(Email);
-		emails = getEmail(Email);
 		allNotifications = new ArrayList<String>();
-		allNotifications.addAll(content);
-		allNotifications.addAll(fbPosts);
-		allNotifications.addAll(emails);
+
+		if (XMLFile.haveTwitter(Email)) {
+			// writeTweetsFile(Email);
+			tweets = getTweets(Email);
+			allNotifications.addAll(tweets);
+		}
+		if (XMLFile.haveFacebook(Email)) {
+			// writeFacebookPostsFile(Email);
+			fbPosts = getFBPosts(Email);
+			allNotifications.addAll(fbPosts);
+		}
+		if (XMLFile.haveEmail(Email)) {
+			// writeEmailsFile(Email);
+			emails = getEmail(Email);
+			allNotifications.addAll(emails);
+		}
+
 		filteredPosts = new ArrayList<String>();
 		if (allNotifications != null) {
-
 			if (Sources.size() != 0) {
 				for (int i = 0; i < Sources.size(); i++) {
 					if (Sources.get(i).equals("Twitter")) {
-						filteredPosts.addAll(content);
+						filteredPosts.addAll(tweets);
 					}
 					if (Sources.get(i).equals("Facebook")) {
 						filteredPosts.addAll(fbPosts);
@@ -74,8 +80,8 @@ public class Gestor {
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.ERROR_MESSAGE);
-			JDialog dialog = optionPane.createDialog("ERRO!");
+			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
+			JDialog dialog = optionPane.createDialog("Alerta!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 		}
@@ -134,33 +140,32 @@ public class Gestor {
 	 */
 
 	public static void writeTweetsFile(String Email) {
-		ArrayList<String> tweets = twitter.getTweets(Email);
-		if (tweets.size() != 0) {
-			File fold = new File("../src/Tweets/" + Email + ".txt");
-			fold.delete();
-			File fnew = new File("Tweets/" + Email + ".txt");
-			FileWriter f2 = null;
+		ArrayList<String> tweets = Twitter.getTweets(Email);
+		File fold = new File("../src/Tweets/" + Email + ".txt");
+		fold.delete();
+		File fnew = new File("Tweets/" + Email + ".txt");
+		FileWriter f2 = null;
+		try {
+			f2 = new FileWriter(fnew, false);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		for (int i = 0; i != tweets.size(); i++) {
 			try {
-				f2 = new FileWriter(fnew, false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			for (int i = 0; i != tweets.size(); i++) {
-				try {
-					String text = tweets.get(i).replace("\n", "");
-					f2.write(text + "\n");
+				String text = tweets.get(i).replace("\n", "");
+				f2.write(text + "\n");
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-
-			try {
-				f2.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+
+		try {
+			f2.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -174,30 +179,27 @@ public class Gestor {
 
 	public static void writeFacebookPostsFile(String Email) {
 		ArrayList<String> posts = Facebook.getFBNotifications(Email);
-		if (posts.size() != 0) {
-			// System.out.println("VOU APAGAR O FICHEIRO ANTIGO DOS POSTS");
-			File fold = new File("../src/FBPosts/" + Email + ".txt");
-			fold.delete();
-			File fnew = new File("FBPosts/" + Email + ".txt");
-			FileWriter f2 = null;
-			try {
-				f2 = new FileWriter(fnew, false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
+		File fold = new File("../src/FBPosts/" + Email + ".txt");
+		fold.delete();
+		File fnew = new File("FBPosts/" + Email + ".txt");
+		FileWriter f2 = null;
+		try {
+			f2 = new FileWriter(fnew, false);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			for (int i = 0; i != posts.size(); i++) {
+				String text = posts.get(i).replace("\n", "");
+				f2.write(text + "\n");
 			}
-			try {
-				for (int i = 0; i != posts.size(); i++) {
-					String text = posts.get(i).replace("\n", "");
-					f2.write(text + "\n");
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				f2.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			f2.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -210,16 +212,16 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 * @return a list of tweets.
 	 */
-	public static ArrayList<String> getTweets(String Email) {
+	public ArrayList<String> getTweets(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
-			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("Tweets/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				result.add(line);
 
 			}
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -234,10 +236,9 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 * @return a lits of facebook posts.
 	 */
-	public static ArrayList<String> getFBPosts(String Email) {
+	public ArrayList<String> getFBPosts(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
-			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("FBPosts/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
@@ -255,80 +256,65 @@ public class Gestor {
 	 */
 
 	/**
-	 * @param mail is the email relative to the user.
 	 * @return true if the user is online and false otherwise.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	/*public static boolean isOnline(String mail) {
-		ArrayList<String> posts = Facebook.getFBNotifications(mail);
-		ArrayList<String> tweets = twitter.getTweets(mail);
-		ArrayList<String> emails = Email.getEmails(mail);
-		if (posts.size() == 0 || emails.size() == 0 || tweets.size() == 0)
-			return false;
-		else
-			return true;
-	} */
-	
+
 	public static boolean isOnline() {
-        try {
-			return isHostAvailable("google.com") || isHostAvailable("outlook.com")
-			        || isHostAvailable("facebook.com")|| isHostAvailable("twitter.com");
+		try {
+			return isHostAvailable("google.com") || isHostAvailable("outlook.com") || isHostAvailable("facebook.com")
+					|| isHostAvailable("twitter.com");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return false;
-    }
+	}
 
-    private static boolean isHostAvailable(String hostName) throws IOException {
-        try(Socket socket = new Socket()){
-            int port = 80;
-            InetSocketAddress socketAddress = new InetSocketAddress(hostName, port);
-            socket.connect(socketAddress, 3000);
-            return true;
-        }
-        catch(UnknownHostException unknownHost){
-            return false;
-        }
-    }
-
-	
-	public static void writeEmailsFile(String email) {
-		ArrayList<String> emails = Email.getEmails(email);
-		File fold = new File("../src/Emails/" + email + ".txt");
-		if (emails.size() != 0) {
-			fold.delete();
-			File fnew = new File("Emails/" + email + ".txt");
-			FileWriter f2 = null;
-			try {
-				f2 = new FileWriter(fnew, false);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				for (int i = 0; i != emails.size(); i++) {
-					String text = emails.get(i).replace("\n", "");
-					f2.write(text + "\n");
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				f2.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	private static boolean isHostAvailable(String hostName) throws IOException {
+		try (Socket socket = new Socket()) {
+			int port = 80;
+			InetSocketAddress socketAddress = new InetSocketAddress(hostName, port);
+			socket.connect(socketAddress, 3000);
+			return true;
+		} catch (UnknownHostException unknownHost) {
+			return false;
 		}
 	}
 
-	public static ArrayList<String> getEmail(String Email) {
+	public static void writeEmailsFile(String email) {
+		ArrayList<String> emails = Email.getEmails(email);
+		File fold = new File("../src/Emails/" + email + ".txt");
+		fold.delete();
+		File fnew = new File("Emails/" + email + ".txt");
+		FileWriter f2 = null;
+		try {
+			f2 = new FileWriter(fnew, false);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			for (int i = 0; i != emails.size(); i++) {
+				String text = emails.get(i).replace("\n", "");
+				f2.write(text + "\n");
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			f2.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public ArrayList<String> getEmail(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
-			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("Emails/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				result.add(line);
-
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

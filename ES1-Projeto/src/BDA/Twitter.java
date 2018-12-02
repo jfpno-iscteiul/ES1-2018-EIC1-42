@@ -19,7 +19,7 @@ public final class Twitter {
 	 * @param    email is the email relative to the user.
 	 * @return    a list of tweets.
 	 */
-	public  ArrayList<String> getTweets(String email) {
+	public static ArrayList<String> getTweets(String email) {
 		ArrayList<String>  content = new ArrayList <String> ();
 		String AuthConsumerKey = XMLFile.getAttributteByEmail(email, "AuthConsumerKeyTwitter");
 		String AuthConsumerSecret = XMLFile.getAttributteByEmail(email, "AuthConsumerSecretTwitter");
@@ -50,7 +50,7 @@ public final class Twitter {
 				}  
 				//counterTotal++;
             }
-    		//System.out.println("-------------\nNº of Results: " + counter+"/"+counterTotal);
+    		//System.out.println("-------------\nNï¿½ of Results: " + counter+"/"+counterTotal);
         } catch (Exception e) { System.out.println(e.getMessage()); }
         //System.out.println(content);
 		return content;

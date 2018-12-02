@@ -49,12 +49,32 @@ public class Timeline {
 	}
 
 	/**
+	 * if the user turns offline.
+	 */
+	
+	@SuppressWarnings("static-access")
+	private void writeFiles() {
+		if(XMLFile.haveTwitter(Email)) {
+			gestor.writeTweetsFile(Email);
+		}
+		if(XMLFile.haveFacebook(Email)) {
+			gestor.writeFacebookPostsFile(Email);
+		}
+		if(XMLFile.haveEmail(Email)) {
+			gestor.writeEmailsFile(Email);
+		}
+	}
+	
+	
+	
+	/**
 	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings("static-access")
 	void initialize() {
 		gestor = new Gestor();
-
+		writeFiles();
+		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
