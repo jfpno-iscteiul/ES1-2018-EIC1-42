@@ -29,7 +29,8 @@ public class Gestor {
 	private ArrayList<String> emails;
 	private ArrayList<String> allNotifications;
 	private ArrayList<String> filteredPosts;
-
+	private ArrayList<String> atualist;
+	private JTable table;
 	/**
 	 * Filters notifications according to their source
 	 */
@@ -74,14 +75,15 @@ public class Gestor {
 						filteredPosts.addAll(emails);
 					}
 				}
+				atualist.addAll(filteredPosts);
 				addRows(panel, filteredPosts, frame);
-
 			} else {
+				atualist.addAll(allNotifications);
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("NÃ£o existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
-			JDialog dialog = optionPane.createDialog("Alerta!");
+			JOptionPane optionPane = new JOptionPane("N�o h� dados para mostrar!", JOptionPane.ERROR_MESSAGE);
+			JDialog dialog = optionPane.createDialog("ERRO!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 		}
@@ -119,15 +121,31 @@ public class Gestor {
 		headers.add("Plataforma");
 		headers.add("Data");
 		headers.add("User");
-		headers.add("NotificaÃ§Ã£o");
+		headers.add("Notificação");
 
-		JTable table = new JTable(data, headers);
+		
+		table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);
 
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
 		frame.repaint();
 
+	}
+	/**
+	 * Show the notification in a new window.
+	 */
+
+
+	public void selectedRow (){
+
+		int i = table.getRowCount();
+		System.out.println(i);
+		String res = atualist.get(i-1);
+		System.out.println(res);
+		String[] lineSplited = res.split(";;");
+		Notification res1 = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3]);
+		
 	}
 
 	/**

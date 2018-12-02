@@ -275,6 +275,14 @@ public class Timeline {
 				MainWindow.main(null);
 			}
 		});
+		JButton show = new JButton("Show");
+		show.setBounds(0, 499, 70, 35);
+		frame.getContentPane().add(show);
+		show.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestor.selectedRow();
+			}
+		});
 	}
 
 	@SuppressWarnings("unused")
