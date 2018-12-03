@@ -33,7 +33,7 @@ public class Gestor {
 	private ArrayList<String> emails;
 	private ArrayList<String> allNotifications;
 	private ArrayList<String> filteredPosts;
-	private ArrayList<String> atualist;
+	private static ArrayList<String> atualist;
 	private JTable table;
 	private int selected;
 	
@@ -405,34 +405,66 @@ public class Gestor {
 					{
 					    out.println(tweet);
 					} catch (IOException e) {
-					    //exception handling left as an exercise for the reader
 					}
 	}
 	
-	public boolean isRetweeted (long tweet, String Email) {
-		boolean res = false;
+	public static boolean isRetweeted (long tweet, String Email) {
+		boolean res=false;
 		Scanner scanner;
 		String myString = Long.toString(tweet);
-		//String myString = String.valueOf(tweet);
-		System.out.println(myString);
 		try {
 			scanner = new Scanner(new File("Retweets/" + Email + ".txt"));
 		while (scanner.hasNextLine()) {
 			 String line = scanner.nextLine();
-			 System.out.println(line);
-			 long linen = Long.valueOf(line).longValue();
-			// if (linen == tweet) {
-			if( line.equals(tweet)) {
-				return true;
+			if( line.equals(myString)) {
+				res= true;
 			}
 		}
-		
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return res;
 		
+	}
+	
+	/**
+	 * Filters the results by a given word.
+	 */
+
+	/**
+	 * @param list is the list to be filtered.
+	 * @return a list of filtered notifications by word.
+	 */
+	
+	public static  ArrayList<String> filterByWord(ArrayList<String> list, String word){
+		ArrayList<String> result = new ArrayList<String>();
+		String line=("");
+		int k=0;
+		for(int i =0;i!= list.size();i++) {
+			String [] words = list.get(i).split(";;");
+			if(k< words.length) {
+				line= line + words[k];
+				k++;
+			}
+			String [] words2 = line.split(" ");
+
+			for (String palavra : words2) {
+				if (palavra.toLowerCase().equals(word.toLowerCase())) {
+					result.add(list.get(i));
+				}
+			}
+		}
+		atualist=result;
+		return result;
+	}
+	
+	
+
+	/**
+	 * @return an actual list of notifications.
+	 */
+	public static ArrayList<String> getAtualist(){
+		return atualist;
 	}
 
 }

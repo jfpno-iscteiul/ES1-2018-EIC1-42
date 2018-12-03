@@ -30,7 +30,6 @@ public class Timeline {
 	 * This is where you can view the content of your accounts.
 	 */
 
-	private JTextField txtEscrevaAquiA;
 	private JTextField txtEscrevaAqui;
 	private Gestor gestor;
 	private ArrayList<String> sourceFilters;
@@ -109,7 +108,7 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa��o");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informação");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
@@ -174,15 +173,6 @@ public class Timeline {
 		});
 		}
 
-		JMenu mnPalavraChave = new JMenu("Palavra Chave");
-		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFiltrar.add(mnPalavraChave);
-
-		txtEscrevaAquiA = new JTextField();
-		txtEscrevaAquiA.setText("Escreva aqui");
-		mnPalavraChave.add(txtEscrevaAquiA);
-		txtEscrevaAquiA.setColumns(10);
-
 		JMenu mnData = new JMenu("Data");
 		mnData.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnData);
@@ -196,7 +186,7 @@ public class Timeline {
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("Configura��es");
+		JMenuItem mntmASuaConta = new JMenuItem("Configurações");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
@@ -255,6 +245,7 @@ public class Timeline {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
 						frame.repaint();
+						@SuppressWarnings("unused")
 						EmailPage email = new EmailPage(frame, Email);
 					}
 				});
@@ -281,7 +272,8 @@ public class Timeline {
 		go.setBounds(290, 47, 100, 20);
 		go.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//codigo de pesquisa por palavra
+				ArrayList<String> lista= Gestor.filterByWord(Gestor.getAtualist(),search.getText() );
+				gestor.addRows(panel, lista, frame);
 			}
 		});
 		

@@ -186,16 +186,17 @@ public class TwitterPage {
 					
 					int i = table.getSelectedRow();
 					long indice= ids.get(i);
-					if(!gestor.isRetweeted(i,Email)) {
+					if(Gestor.isRetweeted(indice,Email)==false) {
 						Twitter.retweet(indice, Email);
 						JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
 						JDialog dialog = optionPane.createDialog("OK");
 						gestor.writeRetweet(indice,Email);
 					}else {
 						JOptionPane fail = new JOptionPane("OPPSEste tweet já foi retweetado!", JOptionPane.INFORMATION_MESSAGE);    
-						JDialog ok = fail.createDialog("OK");
+						JDialog ok = fail.createDialog("ERRO");
 						ok.setAlwaysOnTop(true);
 						ok.setVisible(true);
+						gestor.writeRetweet(indice,Email);
 						
 					}
 				}
