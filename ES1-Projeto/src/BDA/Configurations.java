@@ -96,6 +96,16 @@ public class Configurations {
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
+		
+		JButton setPassword = new JButton("Alterar Password");
+		setPassword.setBounds(0, 499, 200, 35);
+		frame.getContentPane().add(setPassword);
+		setPassword.addActionListener(new ActionListener() {/////////////NOVO//////////////
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				SetPasswordPage sp= new SetPasswordPage();
+			}
+		});
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(170, 430, 557, -346);
@@ -182,7 +192,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("Já tem uma conta de Twitter adicionada!");
+			JLabel lblEmail = new JLabel("Jï¿½ tem uma conta de Twitter adicionada!");
 			lblEmail.setBounds(261, 140, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -220,7 +230,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("Já tem uma conta de Facebook adicionada!");
+			JLabel lblEmail = new JLabel("Jï¿½ tem uma conta de Facebook adicionada!");
 			lblEmail.setBounds(261, 265, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -264,7 +274,7 @@ public class Configurations {
 			});
 
 		} else {
-			JLabel lblEmail = new JLabel("Já tem uma conta de Email adicionada!");
+			JLabel lblEmail = new JLabel("Jï¿½ tem uma conta de Email adicionada!");
 			lblEmail.setBounds(261, 405, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
