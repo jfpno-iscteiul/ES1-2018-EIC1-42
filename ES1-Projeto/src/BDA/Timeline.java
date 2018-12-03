@@ -286,7 +286,7 @@ public class Timeline {
 		frame.getContentPane().add(go);
 		
 		
-		
+
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
