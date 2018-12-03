@@ -51,17 +51,14 @@ public class Gestor {
 		atualist = new ArrayList<String>();
 
 		if (XMLFile.haveTwitter(Email)) {
-			// writeTweetsFile(Email);
 			tweets = getTweets(Email);
 			allNotifications.addAll(tweets);
 		}
 		if (XMLFile.haveFacebook(Email)) {
-			// writeFacebookPostsFile(Email);
 			fbPosts = getFBPosts(Email);
 			allNotifications.addAll(fbPosts);
 		}
 		if (XMLFile.haveEmail(Email)) {
-			// writeEmailsFile(Email);
 			emails = getEmail(Email);
 			allNotifications.addAll(emails);
 		}
@@ -135,7 +132,6 @@ public class Gestor {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				selected = (int) table.getSelectedRow();
-				System.out.println(table.getSelectedRow());
 			}
 	    });
 		panel.add(new JScrollPane(table));
@@ -151,7 +147,11 @@ public class Gestor {
 	public void selectedRow (){
 		String res = atualist.get(selected);
 		String[] lineSplited = res.split(";;");
-		Notification res1 = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3]);
+		if(lineSplited[0].equals("Email")) {
+			Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
+		} else {
+			Notification res1 = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], null);
+		}
 	}
 
 	/**

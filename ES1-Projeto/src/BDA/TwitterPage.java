@@ -100,8 +100,9 @@ public class TwitterPage {
 				JDialog dialog = optionPane.createDialog("OK");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
-				textarea.setText("");
+				frame.getContentPane().removeAll();
 				frame.repaint();
+				initialize();
 			}
 		});
 		
