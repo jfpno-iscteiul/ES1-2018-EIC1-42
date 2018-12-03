@@ -120,6 +120,12 @@ public class FacebookPage {
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainWindow.main(null);
+			}
+		});
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(170, 430, 557, -346);

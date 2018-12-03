@@ -398,6 +398,15 @@ public class Gestor {
 		return result;
 	}
 	
+	/**
+	 * Write a txt file with the tweets wich are already retweeted.
+	 */
+	
+	/** * @param    tweet is id of the tweet.
+	 * @param   email is the email relative to the user.
+	 */
+	
+	
 	public void writeRetweet(long tweet , String Email) {
 			try(FileWriter fw = new FileWriter("Retweets/" + Email + ".txt", true);
 					    BufferedWriter bw = new BufferedWriter(fw);
@@ -407,6 +416,15 @@ public class Gestor {
 					} catch (IOException e) {
 					}
 	}
+	
+	/**
+	 * Verify if one tweet is already retweeted.
+	 */
+	
+	/** * @param    tweet is id of the tweet.
+	 * @param   email is the email relative to the user.
+	 * @return if a twitter has already been retweet.
+	 */
 	
 	public static boolean isRetweeted (long tweet, String Email) {
 		boolean res=false;
