@@ -119,7 +119,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificaï¿½ï¿½o");
+		headers.add("Notificação");
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));

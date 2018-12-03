@@ -107,7 +107,7 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de InformaÃ§Ã£o");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informa��o");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
@@ -188,7 +188,7 @@ public class Timeline {
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("ConfiguraÃ§Ãµes");
+		JMenuItem mntmASuaConta = new JMenuItem("Configura��es");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
@@ -259,7 +259,7 @@ public class Timeline {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 
-		JLabel lblListaDeNotificaes = new JLabel("Lista de NotificaÃ§Ãµes");
+		JLabel lblListaDeNotificaes = new JLabel("Lista de Notifica��es");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);

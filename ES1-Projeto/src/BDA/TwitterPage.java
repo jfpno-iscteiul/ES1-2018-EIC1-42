@@ -149,7 +149,7 @@ public class TwitterPage {
 	       Vector<String> headers = new Vector<String>();
 	       headers.add("Data");
 	       headers.add("User");
-	       headers.add("NotificaÃ§Ã£o");
+	       headers.add("Notifica��o");
 
 	       JTable table = new JTable( data, headers );
 	       //table.setBounds(x, y, width, height);

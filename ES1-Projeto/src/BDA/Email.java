@@ -39,10 +39,21 @@ public class Email {
 		properties.put("mail.imaps.host", "imap.outlook.com");
 		// Port number of your Mail Host
 		properties.put("mail.imaps.port", "993");
+		
 
 		try {
 			// create a session
-			Session session = Session.getDefaultInstance(properties, null);
+			Session session = Session.getInstance(properties,
+			          new javax.mail.Authenticator() {
+			            
+			            /* (non-Javadoc)
+			             * @see javax.mail.Authenticator#getPasswordAuthentication()
+			             */
+			            protected PasswordAuthentication getPasswordAuthentication() {
+			                return new PasswordAuthentication(email, password);
+			            }
+			          });
+			
 			// SET the store for IMAPS
 			Store store = session.getStore("imaps");
 

@@ -82,8 +82,8 @@ public class Gestor {
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("N�o h� dados para mostrar!", JOptionPane.ERROR_MESSAGE);
-			JDialog dialog = optionPane.createDialog("ERRO!");
+			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
+			JDialog dialog = optionPane.createDialog("Alerta!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 		}

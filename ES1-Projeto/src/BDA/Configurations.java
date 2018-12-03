@@ -179,7 +179,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Twitter adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Twitter adicionada!");
 			lblEmail.setBounds(261, 140, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -214,7 +214,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Facebook adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Facebook adicionada!");
 			lblEmail.setBounds(261, 265, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -255,7 +255,7 @@ public class Configurations {
 			});
 
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Email adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Email adicionada!");
 			lblEmail.setBounds(261, 405, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
