@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informação");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informaï¿½ï¿½o");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
@@ -194,7 +195,7 @@ public class Timeline {
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("Configurações");
+		JMenuItem mntmASuaConta = new JMenuItem("Configuraï¿½ï¿½es");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
@@ -260,12 +261,36 @@ public class Timeline {
 		}
 
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
+//pesquisa por palavra chave
+		JTextField search = new JTextField();
+		search.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		search.setText("Escreva aqui");
 
+		search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				search.setText("");
+			}
+		});
+		search.setBounds(130, 47, 150, 20);
+		frame.getContentPane().add(search);
+		
+		JButton go = new JButton ("Filtrar");
+		go.setBounds(290, 47, 100, 20);
+		go.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//codigo de pesquisa por palavra
+			}
+		});
+		frame.getContentPane().add(go);
+		
+		
+		
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 
-		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
+		JLabel lblListaDeNotificaes = new JLabel("Lista de NotificaÃ§Ãµes");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
