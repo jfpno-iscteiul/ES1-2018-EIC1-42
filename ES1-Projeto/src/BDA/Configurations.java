@@ -98,9 +98,10 @@ public class Configurations {
 		button.setIcon(new ImageIcon(logout));
 		
 		JButton setPassword = new JButton("Alterar Password");
-		setPassword.setBounds(0, 499, 200, 35);
+		//btnListarremoverContas.setBounds(315, 499, 190, 23);
+		setPassword.setBounds(200, 499, 190, 23);
 		frame.getContentPane().add(setPassword);
-		setPassword.addActionListener(new ActionListener() {/////////////NOVO//////////////
+		setPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
 				SetPasswordPage sp= new SetPasswordPage();
@@ -288,7 +289,7 @@ public class Configurations {
 				ConfigurationsRem nova = new ConfigurationsRem(frame, Email);
 			}
 		});
-		btnListarremoverContas.setBounds(315, 499, 190, 23);
+		btnListarremoverContas.setBounds(450, 499, 190, 23);
 		frame.getContentPane().add(btnListarremoverContas);
 
 		button.addActionListener(new ActionListener() {

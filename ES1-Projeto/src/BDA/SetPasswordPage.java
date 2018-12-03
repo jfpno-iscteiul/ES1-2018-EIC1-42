@@ -21,20 +21,20 @@ public class SetPasswordPage {
 	private JPasswordField passwordField_2;
 	/**
 	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SetPasswordPage window = new SetPasswordPage();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	*/
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					SetPasswordPage window = new SetPasswordPage();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+ 
 	/**
 	 * Create the application.
 	 */
@@ -48,7 +48,7 @@ public class SetPasswordPage {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 350);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblAlterarPassword = new JLabel("Alterar Password");
