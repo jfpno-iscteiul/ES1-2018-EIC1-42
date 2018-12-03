@@ -72,6 +72,7 @@ public class TwitterPage {
 	 * Initialize.
 	 */
 	public void initialize() {
+		Gestor gestor = new Gestor();
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,7 +170,7 @@ public class TwitterPage {
 	       Vector<String> headers = new Vector<String>();
 	       headers.add("Data");
 	       headers.add("User");
-	       headers.add("NotificaÁ„o");
+	       headers.add("Notifica√ß√£o");
 
 	       JTable table = new JTable( data, headers );
 	       //table.setBounds(x, y, width, height);
@@ -182,11 +183,21 @@ public class TwitterPage {
 	       
 		   retweetar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int i = table.getRowCount();
-					long indice= ids.get(i+1);
-					Twitter.retweet(indice, Email);
-					JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
-					JDialog dialog = optionPane.createDialog("OK");
+					
+					int i = table.getSelectedRow();
+					long indice= ids.get(i);
+					if(!gestor.isRetweeted(i,Email)) {
+						Twitter.retweet(indice, Email);
+						JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
+						JDialog dialog = optionPane.createDialog("OK");
+						gestor.writeRetweet(indice,Email);
+					}else {
+						JOptionPane fail = new JOptionPane("OPPSEste tweet j√° foi retweetado!", JOptionPane.INFORMATION_MESSAGE);    
+						JDialog ok = fail.createDialog("OK");
+						ok.setAlwaysOnTop(true);
+						ok.setVisible(true);
+						
+					}
 				}
 			});
 		   frame.add(retweetar);

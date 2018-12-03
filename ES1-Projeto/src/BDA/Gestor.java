@@ -1,10 +1,12 @@
 package BDA;
 
 import java.awt.Frame;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -394,6 +396,43 @@ public class Gestor {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public void writeRetweet(long tweet , String Email) {
+			try(FileWriter fw = new FileWriter("Retweets/" + Email + ".txt", true);
+					    BufferedWriter bw = new BufferedWriter(fw);
+					    PrintWriter out = new PrintWriter(bw))
+					{
+					    out.println(tweet);
+					} catch (IOException e) {
+					    //exception handling left as an exercise for the reader
+					}
+	}
+	
+	public boolean isRetweeted (long tweet, String Email) {
+		boolean res = false;
+		Scanner scanner;
+		String myString = Long.toString(tweet);
+		//String myString = String.valueOf(tweet);
+		System.out.println(myString);
+		try {
+			scanner = new Scanner(new File("Retweets/" + Email + ".txt"));
+		while (scanner.hasNextLine()) {
+			 String line = scanner.nextLine();
+			 System.out.println(line);
+			 long linen = Long.valueOf(line).longValue();
+			// if (linen == tweet) {
+			if( line.equals(tweet)) {
+				return true;
+			}
+		}
+		
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return res;
+		
 	}
 
 }
