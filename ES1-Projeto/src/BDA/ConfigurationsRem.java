@@ -101,7 +101,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("Serviços Associados");
+		headers.add("Serviï¿½os Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -111,7 +111,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("Não tem serviços associados a esta conta.");
+			row.add("Nï¿½o tem serviï¿½os associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
@@ -134,6 +134,13 @@ public class ConfigurationsRem {
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				MainWindow.main(null);
+			}
+		});
+		
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(170, 430, 557, -346);
