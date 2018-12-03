@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * Class responsible for managing the accounts and adding content to the
@@ -31,6 +33,8 @@ public class Gestor {
 	private ArrayList<String> filteredPosts;
 	private ArrayList<String> atualist;
 	private JTable table;
+	private int selected;
+	
 	/**
 	 * Filters notifications according to their source
 	 */
@@ -44,6 +48,7 @@ public class Gestor {
 
 	public void filterBySource(JPanel panel, ArrayList<String> Sources, Frame frame, String Email) {
 		allNotifications = new ArrayList<String>();
+		atualist = new ArrayList<String>();
 
 		if (XMLFile.haveTwitter(Email)) {
 			// writeTweetsFile(Email);
@@ -126,7 +131,13 @@ public class Gestor {
 		
 		table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);
-
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				selected = (int) table.getSelectedRow();
+				System.out.println(table.getSelectedRow());
+			}
+	    });
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
 		frame.repaint();
@@ -138,14 +149,9 @@ public class Gestor {
 
 
 	public void selectedRow (){
-
-		int i = table.getRowCount();
-		System.out.println(i);
-		String res = atualist.get(i-1);
-		System.out.println(res);
+		String res = atualist.get(selected);
 		String[] lineSplited = res.split(";;");
 		Notification res1 = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3]);
-		
 	}
 
 	/**

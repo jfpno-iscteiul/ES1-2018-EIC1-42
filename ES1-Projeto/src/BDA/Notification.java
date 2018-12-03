@@ -29,7 +29,7 @@ public class Notification {
 			e.printStackTrace();
 		}
 	
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 755, 457);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -111,6 +111,7 @@ public class Timeline {
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
+		if(XMLFile.haveFacebook(Email)) {
 		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
 		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxFacebook);
@@ -128,7 +129,9 @@ public class Timeline {
 				}
 			}
 		});
-
+		}
+		
+		if(XMLFile.haveEmail(Email)) {
 		JCheckBox chckbxEmail = new JCheckBox("Email");
 		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxEmail);
@@ -146,7 +149,9 @@ public class Timeline {
 				}
 			}
 		});
+		}
 
+		if(XMLFile.haveTwitter(Email)) {
 		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
 		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxTwitter);
@@ -165,6 +170,7 @@ public class Timeline {
 
 			}
 		});
+		}
 
 		JMenu mnPalavraChave = new JMenu("Palavra Chave");
 		mnPalavraChave.setFont(new Font("Calibri", Font.BOLD, 16));
@@ -269,12 +275,14 @@ public class Timeline {
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				MainWindow.main(null);
 			}
 		});
+		
 		JButton show = new JButton("Show");
 		show.setBounds(0, 499, 70, 35);
 		frame.getContentPane().add(show);

@@ -176,6 +176,9 @@ public class Configurations {
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
+					frame.getContentPane().removeAll();
+					frame.repaint();
+					initialize();
 				}
 			});
 		} else {
@@ -211,6 +214,9 @@ public class Configurations {
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
+					frame.getContentPane().removeAll();
+					frame.repaint();
+					initialize();
 				}
 			});
 		} else {
@@ -251,6 +257,9 @@ public class Configurations {
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
+					frame.getContentPane().removeAll();
+					frame.repaint();
+					initialize();
 				}
 			});
 

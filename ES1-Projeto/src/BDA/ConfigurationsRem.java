@@ -22,6 +22,8 @@ import javax.swing.JDialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JTable;
 
 public class ConfigurationsRem {
@@ -33,6 +35,7 @@ public class ConfigurationsRem {
 	
 	private JFrame frame;
 	private String Email;
+	private int selected;
 	
 	/** @param   frame parameter gives an instance of the frame of the main page.
 	 * @param    Email is the email relative to the user.
@@ -98,7 +101,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("ServiÃ§os Associados");
+		headers.add("Serviços Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -108,13 +111,21 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("NÃ£o tem serviÃ§os associados a esta conta.");
+			row.add("Não tem serviços associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
 
 		table_1.setBounds(82, 137, 441, 321);
 		table_1.setDefaultEditor(Object.class, null);
+		
+		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				selected = (int) table_1.getSelectedRow();
+			}
+	    });
+		
 		panel.add(new JScrollPane(table_1));
 
 		frame.getContentPane().add(panel);
@@ -128,15 +139,10 @@ public class ConfigurationsRem {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(675, 420, 158, 23);
-		frame.getContentPane().add(btnAlterar);
-
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = table_1.getRowCount();
-				String service = accounts_list.get(i - 1);
+				String service = accounts_list.get(selected);
 				if (service.equals("Facebook")) {
 					XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
 					JOptionPane optionPane = new JOptionPane("Facebook removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
@@ -159,7 +165,7 @@ public class ConfigurationsRem {
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
 				}
-				accounts_list.remove(i - 1);
+				accounts_list.remove(selected);
 				frame.getContentPane().removeAll();
 				frame.repaint();
 				initialize();
