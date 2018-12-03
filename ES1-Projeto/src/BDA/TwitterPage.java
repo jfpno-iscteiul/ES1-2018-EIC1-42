@@ -36,6 +36,12 @@ public class TwitterPage {
 	private JFrame frame;
 	private String Email;
 	
+	/**
+	 * Instantiates a new twitter page.
+	 *
+	 * @param frame the frame
+	 * @param Email the email
+	 */
 	public TwitterPage(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
@@ -44,14 +50,27 @@ public class TwitterPage {
 	}
 	
 	
+	/**
+	 * Sets the visible.
+	 *
+	 * @param b the new visible
+	 */
 	public void setVisible(boolean b) {
 		frame.setVisible(b);
 	}
 	
+	/**
+	 * Gets the frame.
+	 *
+	 * @return the frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
@@ -100,8 +119,9 @@ public class TwitterPage {
 				JDialog dialog = optionPane.createDialog("OK");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
-				textarea.setText("");
+				frame.getContentPane().removeAll();
 				frame.repaint();
+				initialize();
 			}
 		});
 		
@@ -174,6 +194,13 @@ public class TwitterPage {
 		
 		
 	}
+	
+	/**
+	 * Adds the popup.
+	 *
+	 * @param component the component
+	 * @param popup the popup
+	 */
 	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

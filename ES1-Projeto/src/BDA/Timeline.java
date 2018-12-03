@@ -55,18 +55,19 @@ public class Timeline {
 	
 	@SuppressWarnings("static-access")
 	private void writeFiles() {
-		if(XMLFile.haveTwitter(Email)) {
-			gestor.writeTweetsFile(Email);
-		}
-		if(XMLFile.haveFacebook(Email)) {
-			gestor.writeFacebookPostsFile(Email);
-		}
-		if(XMLFile.haveEmail(Email)) {
-			gestor.writeEmailsFile(Email);
+		if (gestor.isOnline()) {
+			if (XMLFile.haveTwitter(Email)) {
+				gestor.writeTweetsFile(Email);
+			}
+			if (XMLFile.haveFacebook(Email)) {
+				gestor.writeFacebookPostsFile(Email);
+			}
+			if (XMLFile.haveEmail(Email)) {
+				gestor.writeEmailsFile(Email);
+			}
 		}
 	}
-	
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */

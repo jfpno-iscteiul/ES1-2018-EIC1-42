@@ -21,6 +21,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Email {
 
+	private static String content;
+	
 	/**
 	 * Gets the emails.
 	 *
@@ -75,9 +77,9 @@ public class Email {
 			for (int i = 10; i > 0; i--) {
 				String from = inbox.getMessage(messageCount - i).getFrom()[0].toString();
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				content = getTextFromMessage(inbox.getMessage(messageCount - i));
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
-				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject );
+				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject + ";;" + content);
 			}
 
 			inbox.close(true);

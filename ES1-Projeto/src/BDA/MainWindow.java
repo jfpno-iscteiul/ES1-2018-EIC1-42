@@ -104,7 +104,7 @@ public class MainWindow {
 
 		txtEmail = new JTextField();
 		txtEmail.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		txtEmail.setText("xxx@iscte-iul.pt");
+		txtEmail.setText("xxxx@iscte-iul.pt");
 
 		txtEmail.addMouseListener(new MouseAdapter() {
 			@Override
