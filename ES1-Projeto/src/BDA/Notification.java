@@ -20,7 +20,12 @@ public class Notification {
 
 	/**
 	 * Create the frame.
-	 * @param  
+	 *
+	 * @param Plataform the plataform
+	 * @param Sender the sender
+	 * @param Date the date
+	 * @param subject the subject
+	 * @param content the content
 	 */
 	public Notification(String Plataform, String Sender, String Date, String subject, String content) {
 		frame = new JFrame("Bom dia Academia");
