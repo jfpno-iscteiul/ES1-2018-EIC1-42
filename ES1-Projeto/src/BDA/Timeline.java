@@ -282,6 +282,7 @@ public class Timeline {
 				//codigo de pesquisa por palavra
 			}
 		});
+		
 		frame.getContentPane().add(go);
 		
 		
