@@ -3,10 +3,14 @@ package BDA;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.SystemColor;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -70,7 +74,29 @@ public class FacebookPage {
 		frame.getContentPane().add(menuBar);
 
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
+		
+		JTextArea textarea = new JTextArea("");
+		javax.swing.border.Border border = BorderFactory.createLineBorder(Color.BLACK);
+		textarea.setBorder(BorderFactory.createCompoundBorder(border, 
+		BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		textarea.setBounds(200, 50, 400, 40);
+		//JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		//frame.add(textarea);
+		frame.getContentPane().add(textarea);
+		JButton postar = new JButton("Publicar Post no grupo de ESI");
+		postar.setBounds(620, 70, 220, 20);
+		frame.add(postar);
+		postar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Facebook.postOnGroup(textarea.getText(),Email);
+				frame.getContentPane().removeAll();
+				frame.repaint();
+				@SuppressWarnings("unused")
+				Timeline tm = new Timeline(frame, Email);
+			}
+		});
 
+		
 		JButton button2 = new JButton("");
 		button2.setBounds(774, 499, 59, 35);
 		button2.setIcon(new ImageIcon(icone));
@@ -119,7 +145,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("Notificaï¿½ï¿½o");
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));

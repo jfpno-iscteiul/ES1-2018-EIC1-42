@@ -5,6 +5,8 @@ import java.util.List;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.GraphResponse;
 import com.restfb.types.Post;
 
 /**
@@ -12,7 +14,6 @@ import com.restfb.types.Post;
  */
 
 public class Facebook {
-
 	@SuppressWarnings("finally")
 	public static ArrayList<String> getFBNotifications(String email) {
 		ArrayList<String> posts = new ArrayList<String>();
@@ -60,5 +61,12 @@ public class Facebook {
 	 * fbClient.publish(id + "/feed", FacebookType.class, Parameter.with("message",
 	 * text)); }
 	 */
+	
+	public static void postOnGroup (String text,String email) {
+		String groupID = "1254500671355958";
+		String tokenAccess = XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
+		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
+		GraphResponse response = fbClient.publish(groupID + "/feed", GraphResponse.class, Parameter.with("message",text));
+	}
 
 }
