@@ -1,5 +1,6 @@
 package BDA;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Frame;
@@ -102,7 +103,9 @@ public class SetPasswordPage {
 				setPasswords(emailText.getText(),password1,password2,password3);
 			}
 		});
+		frame.setBackground(new Color(51, 204, 204));
 		frame.setVisible(true);
+		
 	}
 	
 	public void setPasswords(String emailText, String password1,String password2,String password3) {

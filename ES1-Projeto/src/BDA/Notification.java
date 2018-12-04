@@ -11,13 +11,14 @@ import javax.swing.ImageIcon;
 import java.awt.Label;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 
 import javax.swing.Box;
 
 public class Notification {
 
 	private JPanel contentPane;
-	private JFrame frame;
+	private static JFrame frame;
 	
 
 	/**
@@ -127,5 +128,8 @@ public class Notification {
 		frame.getContentPane().add(panel);
 
 		
+	}
+	public static Frame getFrame() {
+		return frame;
 	}
 }

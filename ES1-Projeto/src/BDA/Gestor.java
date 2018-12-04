@@ -323,15 +323,16 @@ public class Gestor {
 	 * @return true, if is host available
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	private static boolean isHostAvailable(String hostName) throws IOException {
+	public static boolean isHostAvailable(String hostName) throws IOException {
+		boolean aux = false;
 		try (Socket socket = new Socket()) {
 			int port = 80;
 			InetSocketAddress socketAddress = new InetSocketAddress(hostName, port);
 			socket.connect(socketAddress, 3000);
-			return true;
+			aux=true;
 		} catch (UnknownHostException unknownHost) {
-			return false;
 		}
+		return aux;
 	}
 
 	/**

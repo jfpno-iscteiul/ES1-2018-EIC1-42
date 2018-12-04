@@ -24,7 +24,7 @@ class App {
 		assertEquals(true, visible);
 		
 		sp.setPasswords(email, password, password2, password3);
-		assertEquals("123", XMLFile.getAttributteByEmail(email, "password"));
+		assertEquals("123", XMLFile.getAttributteByEmail(email, "Password"));
 	}
 
 }
