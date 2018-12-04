@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import java.awt.Label;
 import java.awt.Component;
+import java.awt.Font;
+
 import javax.swing.Box;
 
 public class Notification {
@@ -50,6 +52,7 @@ public class Notification {
 		panel.add(logo);
 
 		Label label_1 = new Label(Plataform);
+		label_1.setFont(new Font("Serif", Font.PLAIN, 20));
 		panel.add(label_1);
 		contentPane.add(panel);
 
@@ -58,6 +61,7 @@ public class Notification {
 		panel_1.setBounds(0, 60, 863, 40);
 
 		Label user = new Label(Sender);
+		user.setFont(new Font("Serif", Font.PLAIN, 20));
 		panel_1.add(user);
 		contentPane.add(panel_1);
 
@@ -66,6 +70,7 @@ public class Notification {
 		panel_2.setBounds(0, 100, 863, 40);
 
 		Label date = new Label(Date);
+		date.setFont(new Font("Serif", Font.PLAIN, 20));
 		panel_2.add(date);
 		contentPane.add(panel_2);
 
@@ -75,6 +80,7 @@ public class Notification {
 
 		if (Plataform.equals("Email")) {
 			JTextArea textArea = new JTextArea();
+			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
 			textArea.setBounds(1, 140, 863, 200);
 			textArea.setEditable(false);
 			textArea.setText(subject);
@@ -89,11 +95,17 @@ public class Notification {
 			scrollPane_2.setBounds(1, 219, 850, 312);
 			contentPane.add(scrollPane_2);
 
-			JTextArea textArea_1 = new JTextArea(content);
+			JTextArea textArea_1 = new JTextArea();
+			textArea_1.setEditable(false);
+			textArea_1.setText(content);
+			textArea_1.setEditable(false);
+			textArea_1.setLineWrap(true);
+			textArea_1.setWrapStyleWord(true);
 			scrollPane_2.setViewportView(textArea_1);
 		
 		} else {
 			JTextArea textArea = new JTextArea();
+			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
 			textArea.setBounds(1, 140, 863, 400);
 			textArea.setEditable(false);
 			textArea.setText(subject);

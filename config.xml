@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <XML>
 <Utilizador AuthAccessTokenSecretTwitter="3VpBfl2BgLp3xXy7jNWlQhTzLo4GDolc0uoJMYh9mT8nC" AuthAccessTokenTwitter="1053330543281094656-GHcgJiGjTmt6WUS2RpMsh1kW9ijn7a" AuthConsumerKeyTwitter="PaQDlX63u15a6moYQ2VmxZEbg" AuthConsumerSecretTwitter="PSptJzC05HXYaiHLDdBtJfqwIjTOq4MEXh2OKVtN9zsMpsVbox" Email="123" Nome="Carlos" PassEmail="vazio" Password="123" TokenAccessFacebook="EAADlXhdm78kBAOKFtFenkmD5FDNowheADeUp6HukIcunllNB8nP8IZCZBZCoj8pWhf4DMR8qXlYIqF7X2otZA2HO4eOoASIKJcMu0ire8aeQg6nPUlIRBgFfwlKt0zZBk1GNadH2e69s2PZCZACK09T9qbjjXTzZAZA0GO8DFYBtC3OUkLRwrWwQH" Username="zecarlos"/>
-<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="1234@iscte-iul.pt" Nome="ze" PassEmail="vazio" Password="123" TokenAccessFacebook="vazio" Username="1234"/>
 </XML>

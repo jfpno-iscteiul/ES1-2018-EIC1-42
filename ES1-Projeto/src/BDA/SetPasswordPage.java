@@ -112,13 +112,13 @@ public class SetPasswordPage {
 				dialog.setVisible(true);
 				frame.dispose();
 			}else {
-				JOptionPane optionPane = new JOptionPane("As palavras pass n�o coincidem.", JOptionPane.ERROR_MESSAGE);    
+				JOptionPane optionPane = new JOptionPane("As palavras pass não coincidem.", JOptionPane.ERROR_MESSAGE);    
 				JDialog dialog = optionPane.createDialog("ERRO!");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
 			}
 		}else {
-			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu est� errada.", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu está errada.", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog("ERRO!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);

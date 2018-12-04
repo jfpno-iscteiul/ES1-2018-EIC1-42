@@ -100,7 +100,7 @@ public class Email {
 	 * @param subject the subject
 	 * @param text the text
 	 */
-	public void sendEmail(String email, String to, String subject, String text) {
+	public static void sendEmail(String email, String to, String subject, String text) {
 		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
 		Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
