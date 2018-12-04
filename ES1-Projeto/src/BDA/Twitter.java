@@ -14,7 +14,7 @@ public final class Twitter {
 	 * Get the tweets for the desired account and save them in a list.
 	 */
 	
-	private ArrayList<String>  content = new ArrayList <String> ();
+	
 	private static ArrayList<Long>  ids = new ArrayList <Long> ();
 	
 	

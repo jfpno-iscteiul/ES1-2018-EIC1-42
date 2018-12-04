@@ -76,10 +76,13 @@ public class TwitterPage {
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(130, 73, 603, 431);
+		panel.setBounds(130, 100, 603, 431);
+
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
