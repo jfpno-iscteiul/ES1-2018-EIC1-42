@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.channels.ShutdownChannelGroupException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -101,11 +102,20 @@ public class EmailPage {
 		});
 		
 		JButton b = new JButton("Enviar email");
-		b.setBounds(300, 50, 150, 30);
+		b.setBounds(200, 50, 150, 30);
 		frame.add(b);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SendEmailPage s = new SendEmailPage(email);
+			}
+		});
+		
+		JButton bu = new JButton("Email Enviados");
+		bu.setBounds(500, 50, 150, 30);
+		frame.add(bu);
+		bu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowSentEmail s = new ShowSentEmail(email);
 			}
 		});
 		

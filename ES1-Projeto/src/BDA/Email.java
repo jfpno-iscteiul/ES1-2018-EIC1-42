@@ -93,6 +93,59 @@ public class Email {
 	
 	
 	/**
+	 * Gets the sent emails.
+	 *
+	 * @param email the email
+	 * @return the sent emails
+	 */
+	public static ArrayList<String> getSentEmails(String email) {
+		ArrayList<String> result = new ArrayList<String>();
+		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
+		Properties properties = new Properties();
+		properties.put("mail.store.protocol", "imaps");
+		properties.put("mail.imaps.host", "imap.outlook.com");
+		properties.put("mail.imaps.port", "993");
+		try {
+			Session session = Session.getInstance(properties,
+			          new javax.mail.Authenticator() {
+			            
+			            /* (non-Javadoc)
+			             * @see javax.mail.Authenticator#getPasswordAuthentication()
+			             */
+			            protected PasswordAuthentication getPasswordAuthentication() {
+			                return new PasswordAuthentication(email, password);
+			            }
+			          });
+			
+			Store store = session.getStore("imaps");
+
+			System.out.println("Connection initiated......");
+			store.connect(email, password);
+			System.out.println("Connection is ready :)");
+			Folder inbox = store.getFolder("sent items");
+			inbox.open(Folder.READ_ONLY);
+			
+			int messageCount = inbox.getMessageCount();
+
+			// Print Last 10 email information
+			for (int i = 6; i > 0; i--) {
+				String to = inbox.getMessage(messageCount - i).getAllRecipients()[0].toString();
+				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
+				content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
+				result.add("Email" + ";;" + date + ";;" + to + ";;" + subject + ";;" + content);
+			}
+
+			inbox.close(true);
+			store.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
 	 * Send email.
 	 *
 	 * @param email the email
@@ -135,6 +188,8 @@ public class Email {
             throw new RuntimeException(e);
         }
 	}
+	
+	
 	
 
 	/**
