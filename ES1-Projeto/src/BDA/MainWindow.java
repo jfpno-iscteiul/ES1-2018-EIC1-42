@@ -122,7 +122,7 @@ public class MainWindow {
 		txtEmail.setColumns(10);
 
 		JCheckBox chckbxMostrarPassword = new JCheckBox("Mostrar password");
-		chckbxMostrarPassword.setBounds(151, 119, 134, 23);
+		chckbxMostrarPassword.setBounds(143, 119, 150, 23);
 		panel.add(chckbxMostrarPassword);
 
 		JLabel lblEmail = new JLabel("Email");
