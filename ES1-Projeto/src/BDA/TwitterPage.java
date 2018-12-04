@@ -177,11 +177,13 @@ public class TwitterPage {
 					Twitter.retweet(indice, Email);
 					JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
-					JDialog dialog = optionPane.createDialog("OK");
+					JDialog dialog = optionPane.createDialog("INFO");
+					dialog.setAlwaysOnTop(true);
+					dialog.setVisible(true);
 					gestor.writeRetweet(indice, Email);
 				} else {
 					JOptionPane fail = new JOptionPane("Este tweet já foi retweetado!",
-							JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.ERROR_MESSAGE);
 					JDialog ok = fail.createDialog("ERRO");
 					ok.setAlwaysOnTop(true);
 					ok.setVisible(true);
