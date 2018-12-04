@@ -456,21 +456,10 @@ public class Gestor {
 	
 	public static  ArrayList<String> filterByWord(ArrayList<String> list, String word){
 		ArrayList<String> result = new ArrayList<String>();
-		String line=("");
-		int k=0;
 		for(int i =0;i!= list.size();i++) {
-			String [] words = list.get(i).split(";;");
-			if(k< words.length) {
-				line= line + words[k];
-				k++;
-			}
-			String [] words2 = line.split(" ");
-
-			for (String palavra : words2) {
-				if (palavra.toLowerCase().equals(word.toLowerCase())) {
+				if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
 					result.add(list.get(i));
 				}
-			}
 		}
 		atualist=result;
 		return result;
