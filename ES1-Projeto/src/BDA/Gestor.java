@@ -10,7 +10,10 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -31,7 +34,7 @@ public class Gestor {
 	private ArrayList<String> tweets;
 	private ArrayList<String> fbPosts;
 	private ArrayList<String> emails;
-	private ArrayList<String> allNotifications;
+	private static ArrayList<String> allNotifications;
 	private ArrayList<String> filteredPosts;
 	private static ArrayList<String> atualist;
 	private JTable table;
@@ -464,6 +467,43 @@ public class Gestor {
 		}
 		atualist=result;
 		return result;
+	}
+	
+	public static ArrayList<String> filterByDate(String searchDate){
+		if (!searchDate.isEmpty()) {
+			ArrayList<String> result = new ArrayList<String>();
+			// Formato da data procurada
+			SimpleDateFormat mainFormatter = new SimpleDateFormat("d-M-yyyy");
+			// Formato da data na lista
+			SimpleDateFormat fullFormatter = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
+			
+			for(int i = 0; i != allNotifications.size(); i++) {
+				String[] columns = allNotifications.get(i).split(";;");
+				// Isolar a coluna que contem a data
+				String inspectDate = columns[1];
+				
+				try {
+					// Converter ambas as datas para o mesmo formato antes de as comparar
+					Date searchedDate = mainFormatter.parse(searchDate);
+					Date date = fullFormatter.parse(inspectDate);
+					
+					// Validar ano, mes e dia
+					if (searchedDate.getYear() == date.getYear()) {
+						if (searchedDate.getMonth() == date.getMonth()) {
+							if (searchedDate.getDate() == date.getDate()) {
+								result.add(allNotifications.get(i));
+							}
+						}
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			atualist = result;
+			return result;
+		}
+		return allNotifications;
 	}
 	
 	

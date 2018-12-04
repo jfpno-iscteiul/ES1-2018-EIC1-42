@@ -9,7 +9,13 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
@@ -19,6 +25,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -180,10 +188,24 @@ public class Timeline {
 		mnFiltrar.add(mnData);
 
 		txtEscrevaAqui = new JTextField();
-		txtEscrevaAqui.setText("Escreva aqui");
+		txtEscrevaAqui.setText("dd-mm-yyyy");
 		mnData.add(txtEscrevaAqui);
 		txtEscrevaAqui.setColumns(10);
 
+		txtEscrevaAqui.addKeyListener(new KeyAdapter() {
+		    public void keyPressed(KeyEvent e) {
+		         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+		        	 String date = txtEscrevaAqui.getText();
+
+		        	 // Filtrar por data
+		        	 ArrayList<String> lista = Gestor.filterByDate(date);
+		        	 gestor.addRows(panel, lista, frame);
+		        	 
+		         }
+		    } 
+		 });
+
+		
 		JMenu mnConfiguraes = new JMenu("A minha conta");
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
