@@ -95,7 +95,12 @@ public class Notification {
 			scrollPane_2.setBounds(1, 219, 850, 312);
 			contentPane.add(scrollPane_2);
 
-			JTextArea textArea_1 = new JTextArea(content);
+			JTextArea textArea_1 = new JTextArea();
+			textArea_1.setEditable(false);
+			textArea_1.setText(content);
+			textArea_1.setEditable(false);
+			textArea_1.setLineWrap(true);
+			textArea_1.setWrapStyleWord(true);
 			scrollPane_2.setViewportView(textArea_1);
 		
 		} else {
