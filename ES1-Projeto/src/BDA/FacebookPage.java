@@ -2,6 +2,8 @@ package BDA;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 
 import javax.swing.BorderFactory;
@@ -20,6 +22,8 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -89,10 +93,12 @@ public class FacebookPage {
 		postar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Facebook.postOnGroup(textarea.getText(),Email);
-				frame.getContentPane().removeAll();
-				frame.repaint();
-				@SuppressWarnings("unused")
-				Timeline tm = new Timeline(frame, Email);
+				JOptionPane optionPane = new JOptionPane("O post foi feito com sucesso!",
+						JOptionPane.INFORMATION_MESSAGE);
+				JDialog dialog = optionPane.createDialog("OK");
+				dialog.setAlwaysOnTop(true);
+				dialog.setVisible(true);
+				textarea.setText("");
 			}
 		});
 

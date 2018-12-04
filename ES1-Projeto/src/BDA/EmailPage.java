@@ -72,7 +72,8 @@ public class EmailPage {
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 90, 603, 431);

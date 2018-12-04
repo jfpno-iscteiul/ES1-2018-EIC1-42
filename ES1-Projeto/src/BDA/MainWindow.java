@@ -64,7 +64,8 @@ public class MainWindow {
 		frame2.setBounds(100, 100, 863, 594);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
-
+		frame2.setResizable(false);
+		frame2.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		JButton btnSignUp = new JButton("");
 		Image signUp = new ImageIcon(this.getClass().getResource("/button_sign-up.png")).getImage();
 		btnSignUp.setIcon(new ImageIcon(signUp));

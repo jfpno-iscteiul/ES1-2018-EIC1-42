@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -50,7 +52,8 @@ public class SetPasswordPage {
 		frame.setBounds(100, 100, 450, 350);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		JLabel lblAlterarPassword = new JLabel("Alterar Password");
 		lblAlterarPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblAlterarPassword.setBounds(149, 13, 165, 33);

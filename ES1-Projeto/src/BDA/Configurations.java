@@ -65,7 +65,9 @@ public class Configurations {
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);

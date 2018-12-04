@@ -68,6 +68,8 @@ public class ConfigurationsRem {
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		ArrayList<String> accounts_list = XMLFile.list_account(Email);
 
 		/**

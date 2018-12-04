@@ -33,6 +33,8 @@ public class Notification {
 		frame = new JFrame("Bom dia Academia");
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 
 		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 858, 560);
