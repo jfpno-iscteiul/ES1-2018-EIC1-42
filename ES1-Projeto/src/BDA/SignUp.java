@@ -53,6 +53,8 @@ public class SignUp {
 		frame.setBounds(100, 100, 779, 410);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		JLabel label = new JLabel("");

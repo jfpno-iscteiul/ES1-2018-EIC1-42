@@ -151,6 +151,7 @@ public class EmailPage {
 			public void valueChanged(ListSelectionEvent e) {
 				selected = table.getSelectedRow();
 				String res = list.get(selected);
+				System.out.println(res);
 				String[] lineSplited = res.split(";;");
 				Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
 			}

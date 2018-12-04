@@ -18,6 +18,7 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
@@ -60,6 +61,8 @@ public class SendEmailPage {
 		frame.setBounds(new Rectangle(100, 100, 594, 400));
 		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
