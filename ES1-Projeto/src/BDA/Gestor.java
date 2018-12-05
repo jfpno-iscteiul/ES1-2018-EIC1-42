@@ -456,6 +456,7 @@ public class Gestor {
 
 	/**
 	 * @param list is the list to be filtered.
+	 * @param word is the word to be searched.
 	 * @return a list of filtered notifications by word.
 	 */
 	
@@ -471,40 +472,61 @@ public class Gestor {
 	}
 	
 	public static ArrayList<String> filterByDate(String searchDate){
-		if (!searchDate.isEmpty()) {
-			ArrayList<String> result = new ArrayList<String>();
-			// Formato da data procurada
-			SimpleDateFormat mainFormatter = new SimpleDateFormat("d-M-yyyy");
-			// Formato da data na lista
-			SimpleDateFormat fullFormatter = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.getDefault());
-			
-			for(int i = 0; i != allNotifications.size(); i++) {
-				String[] columns = allNotifications.get(i).split(";;");
-				// Isolar a coluna que contem a data
-				String inspectDate = columns[1];
-				
-				try {
-					// Converter ambas as datas para o mesmo formato antes de as comparar
-					Date searchedDate = mainFormatter.parse(searchDate);
-					Date date = fullFormatter.parse(inspectDate);
-					
-					// Validar ano, mes e dia
-					if (searchedDate.getYear() == date.getYear()) {
-						if (searchedDate.getMonth() == date.getMonth()) {
-							if (searchedDate.getDate() == date.getDate()) {
-								result.add(allNotifications.get(i));
-							}
-						}
-					}
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		ArrayList<String> result= new ArrayList <String>();
+		String [] date = searchDate.split("-");
+		String day = date[0];
+		String month = date[1];
+		String year = date[2];
+		
+		for(int i =0; i!= atualist.size();i++) {
+			String [] data = atualist.get(i).split(";;");
+			String datas=data[1];
+			String [] date2= datas.split(" ");
+			String month2 = auxDate(date2[1]);
+			if(date2[2].equals(day)&& date2[5].equals(year) && month.equals(month2)) {
+				result.add(atualist.get(i));
 			}
-			atualist = result;
-			return result;
 		}
-		return allNotifications;
+		return result;
+	}
+	
+	/**
+	 * Returns a String relative to the month
+	 */
+
+	/**
+	 * @param string is the string to be changed.
+	 * @return a month.
+	 */
+
+	private static String auxDate(String string) {
+		String result="";
+		if(string.equals("Jan")) {
+			result="01";
+		}else if(string.equals("Feb")) {
+			result="02";
+		}else if(string.equals("Mar")) {
+			result="03";
+		}else if(string.equals("Apr")) {
+			result="04";
+		}else if(string.equals("May")) {
+			result="05";
+		}else if(string.equals("Jun")) {
+			result="06";
+		}else if(string.equals("Jul")) {
+			result="07";
+		}else if(string.equals("Aug")) {
+			result="08";
+		}else if(string.equals("Sep")) {
+			result="09";
+		}else if(string.equals("Oct")) {
+			result="10";
+		}else if(string.equals("Nov")) {
+			result="11";
+		}else if(string.equals("Dec")) {
+			result="12";
+		}
+		return result;
 	}
 	
 	
