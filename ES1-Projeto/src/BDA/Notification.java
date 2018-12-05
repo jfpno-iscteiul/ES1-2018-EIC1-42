@@ -1,4 +1,5 @@
 package BDA;
+
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,7 +8,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
+
 import java.awt.Label;
 import java.awt.Component;
 import java.awt.Font;
@@ -19,16 +23,15 @@ public class Notification {
 
 	private JPanel contentPane;
 	private static JFrame frame;
-	
 
 	/**
 	 * Create the frame.
 	 *
 	 * @param Plataform the plataform
-	 * @param Sender the sender
-	 * @param Date the date
-	 * @param subject the subject
-	 * @param content the content
+	 * @param Sender    the sender
+	 * @param Date      the date
+	 * @param subject   the subject
+	 * @param content   the content
 	 */
 	public Notification(String Plataform, String Sender, String Date, String subject, String content) {
 		frame = new JFrame("Bom dia Academia");
@@ -76,17 +79,12 @@ public class Notification {
 		panel_2.add(date);
 		contentPane.add(panel_2);
 
-//		JScrollPane scrollPane = new JScrollPane();
-//		scrollPane.setBounds(708, 151, -706, 229);
-//		contentPane.add(scrollPane);
-
 		if (Plataform.equals("Email")) {
 			JTextArea textArea = new JTextArea();
 			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
 			textArea.setBounds(1, 140, 863, 200);
 			textArea.setEditable(false);
 			textArea.setText(subject);
-			textArea.setEditable(false);
 			textArea.setLineWrap(true);
 			textArea.setWrapStyleWord(true);
 
@@ -97,14 +95,12 @@ public class Notification {
 			scrollPane_2.setBounds(1, 219, 850, 312);
 			contentPane.add(scrollPane_2);
 
-			JTextArea textArea_1 = new JTextArea();
-			textArea_1.setEditable(false);
-			textArea_1.setText(content);
-			textArea_1.setEditable(false);
-			textArea_1.setLineWrap(true);
-			textArea_1.setWrapStyleWord(true);
-			scrollPane_2.setViewportView(textArea_1);
-		
+			JTextPane p = new JTextPane();
+			p.setContentType("text/html");
+			p.setText("<html>" + content);
+			p.setEditable(false);
+			scrollPane_2.setViewportView(p);
+
 		} else {
 			JTextArea textArea = new JTextArea();
 			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
@@ -114,20 +110,19 @@ public class Notification {
 			textArea.setEditable(false);
 			textArea.setLineWrap(true);
 			textArea.setWrapStyleWord(true);
-			
+
 			JScrollPane scrollPane = new JScrollPane(textArea);
 			scrollPane.setBounds(1, 140, 863, 400);
 			contentPane.add(scrollPane);
-			
+
 		}
-		
 
 		frame.getContentPane().add(panel_2);
 		frame.getContentPane().add(panel_1);
 		frame.getContentPane().add(panel);
 
-		
 	}
+
 	public static Frame getFrame() {
 		return frame;
 	}
