@@ -40,8 +40,8 @@ public class Gestor {
 	private static ArrayList<String> atualist;
 	private JTable table;
 	private int selected;
-	
-	
+
+
 	/**
 	 * Filter by source.
 	 *
@@ -141,7 +141,7 @@ public class Gestor {
 		headers.add("User");
 		headers.add("Notificação");
 
-		
+
 		table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
@@ -149,13 +149,13 @@ public class Gestor {
 			public void valueChanged(ListSelectionEvent e) {
 				selected = (int) table.getSelectedRow();
 			}
-	    });
+		});
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
 		frame.repaint();
 
 	}
-	
+
 	/**
 	 * Selected row.
 	 */
@@ -348,7 +348,7 @@ public class Gestor {
 	/**
 	 * @param Email is the email relative to the user.
 	 */
-	
+
 	public static void writeEmailsFile(String email) {
 		ArrayList<String> emails = Email.getEmails(email);
 		File fold = new File("../src/Emails/" + email + ".txt");
@@ -376,7 +376,7 @@ public class Gestor {
 
 	}
 
-	
+
 	/**
 	 * Gets the email.
 	 *
@@ -388,7 +388,7 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 * @return a lits of emails.
 	 */
-	
+
 	public ArrayList<String> getEmail(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
@@ -402,54 +402,54 @@ public class Gestor {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Write a txt file with the tweets wich are already retweeted.
 	 */
-	
+
 	/** * @param    tweet is id of the tweet.
 	 * @param   email is the email relative to the user.
 	 */
-	
-	
+
+
 	public void writeRetweet(long tweet , String Email) {
-			try(FileWriter fw = new FileWriter("Retweets/" + Email + ".txt", true);
-					    BufferedWriter bw = new BufferedWriter(fw);
-					    PrintWriter out = new PrintWriter(bw))
-					{
-					    out.println(tweet);
-					} catch (IOException e) {
-					}
+		try(FileWriter fw = new FileWriter("Retweets/" + Email + ".txt", true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw))
+		{
+			out.println(tweet);
+		} catch (IOException e) {
+		}
 	}
-	
+
 	/**
 	 * Verify if one tweet is already retweeted.
 	 */
-	
+
 	/** * @param    tweet is id of the tweet.
 	 * @param   email is the email relative to the user.
 	 * @return if a twitter has already been retweet.
 	 */
-	
+
 	public static boolean isRetweeted (long tweet, String Email) {
 		boolean res=false;
 		Scanner scanner;
 		String myString = Long.toString(tweet);
 		try {
 			scanner = new Scanner(new File("Retweets/" + Email + ".txt"));
-		while (scanner.hasNextLine()) {
-			 String line = scanner.nextLine();
-			if( line.equals(myString)) {
-				res= true;
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if( line.equals(myString)) {
+					res= true;
+				}
 			}
-		}
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
 		return res;
-		
+
 	}
-	
+
 	/**
 	 * Filters the results by a given word.
 	 */
@@ -459,83 +459,87 @@ public class Gestor {
 	 * @param word is the word to be searched.
 	 * @return a list of filtered notifications by word.
 	 */
-	
+
 	public static  ArrayList<String> filterByWord(ArrayList<String> list, String word){
 		ArrayList<String> result = new ArrayList<String>();
 		for(int i =0;i!= list.size();i++) {
-				if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
-					result.add(list.get(i));
-				}
+			if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
+				result.add(list.get(i));
+			}
 		}
 		atualist=result;
 		return result;
 	}
-	
+
 	public static ArrayList<String> filterByDate(String searchDate){
-		ArrayList<String> result= new ArrayList <String>();
-		String [] date = searchDate.split("-");
-		String day = date[0];
-		String month = date[1];
-		String year = date[2];
-		
-		for(int i =0; i!= atualist.size();i++) {
-			String [] data = atualist.get(i).split(";;");
-			String datas=data[1];
-			String [] date2= datas.split(" ");
-			String month2 = auxDate(date2[1]);
-			if(date2[2].equals(day)&& date2[5].equals(year) && month.equals(month2)) {
-				result.add(atualist.get(i));
+		if (!searchDate.isEmpty()) {
+			ArrayList<String> result= new ArrayList <String>();
+			String [] dateForSearch = searchDate.split("-");
+			String day = dateForSearch[0];
+			String month = dateForSearch[1];
+			String year = dateForSearch[2];
+
+			for(int i =0; i!= allNotifications.size();i++) {
+				String [] data = allNotifications.get(i).split(";;");
+				String datas=data[1];
+				String [] date2= datas.split(" ");
+				String month2 = auxDate(date2[1]);
+				if(date2[2].equals(day)&& date2[5].equals(year) && month.equals(month2)) {
+					result.add(allNotifications.get(i));
+				}
 			}
+			atualist = result;
+			return result;
 		}
-		return result;
+		return allNotifications;
 	}
-	
-	/**
-	 * Returns a String relative to the month
-	 */
 
-	/**
-	 * @param string is the string to be changed.
-	 * @return a month.
-	 */
+		/**
+		 * Returns a String relative to the month
+		 */
 
-	private static String auxDate(String string) {
-		String result="";
-		if(string.equals("Jan")) {
-			result="01";
-		}else if(string.equals("Feb")) {
-			result="02";
-		}else if(string.equals("Mar")) {
-			result="03";
-		}else if(string.equals("Apr")) {
-			result="04";
-		}else if(string.equals("May")) {
-			result="05";
-		}else if(string.equals("Jun")) {
-			result="06";
-		}else if(string.equals("Jul")) {
-			result="07";
-		}else if(string.equals("Aug")) {
-			result="08";
-		}else if(string.equals("Sep")) {
-			result="09";
-		}else if(string.equals("Oct")) {
-			result="10";
-		}else if(string.equals("Nov")) {
-			result="11";
-		}else if(string.equals("Dec")) {
-			result="12";
+		/**
+		 * @param string is the string to be changed.
+		 * @return a month.
+		 */
+
+		private static String auxDate(String string) {
+			String result="";
+			if(string.equals("Jan")) {
+				result="01";
+			}else if(string.equals("Feb")) {
+				result="02";
+			}else if(string.equals("Mar")) {
+				result="03";
+			}else if(string.equals("Apr")) {
+				result="04";
+			}else if(string.equals("May")) {
+				result="05";
+			}else if(string.equals("Jun")) {
+				result="06";
+			}else if(string.equals("Jul")) {
+				result="07";
+			}else if(string.equals("Aug")) {
+				result="08";
+			}else if(string.equals("Sep")) {
+				result="09";
+			}else if(string.equals("Oct")) {
+				result="10";
+			}else if(string.equals("Nov")) {
+				result="11";
+			}else if(string.equals("Dec")) {
+				result="12";
+			}
+			return result;
 		}
-		return result;
-	}
-	
-	
 
-	/**
-	 * @return an actual list of notifications.
-	 */
-	public static ArrayList<String> getAtualist(){
-		return atualist;
-	}
 
-}
+
+		/**
+		 * @return an actual list of notifications.
+		 */
+		public static ArrayList<String> getAtualist(){
+			return atualist;
+		}
+
+	}
