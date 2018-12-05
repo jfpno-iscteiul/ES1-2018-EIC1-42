@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -475,7 +476,7 @@ public class Gestor {
 			// Formato da data procurada
 			SimpleDateFormat mainFormatter = new SimpleDateFormat("d-M-yyyy");
 			// Formato da data na lista
-			SimpleDateFormat fullFormatter = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
+			SimpleDateFormat fullFormatter = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.getDefault());
 			
 			for(int i = 0; i != allNotifications.size(); i++) {
 				String[] columns = allNotifications.get(i).split(";;");
