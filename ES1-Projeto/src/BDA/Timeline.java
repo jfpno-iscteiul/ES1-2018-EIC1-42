@@ -9,13 +9,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
+import java.util.Collections;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
@@ -109,10 +104,23 @@ public class Timeline {
 		JMenuItem mntmAntigasPrimeiro = new JMenuItem("Antigas Primeiro");
 		mntmAntigasPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnOrdenar.add(mntmAntigasPrimeiro);
+		mntmAntigasPrimeiro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> list = Gestor.orderByDate();
+				Collections.reverse(list);
+				gestor.addRows(panel, list, frame);
+			}
+		});
 
 		JMenuItem mntmRecentesPrimeiro = new JMenuItem("Recentes Primeiro");
 		mntmRecentesPrimeiro.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnOrdenar.add(mntmRecentesPrimeiro);
+		mntmRecentesPrimeiro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> list = Gestor.orderByDate();
+				gestor.addRows(panel, list, frame);
+			}
+		});
 
 		JMenu mnFiltrar = new JMenu("Filtrar");
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));

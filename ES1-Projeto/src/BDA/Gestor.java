@@ -10,11 +10,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -164,8 +160,10 @@ public class Gestor {
 		String res = atualist.get(selected);
 		String[] lineSplited = res.split(";;");
 		if(lineSplited[0].equals("Email")) {
+			@SuppressWarnings("unused")
 			Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
 		} else {
+			@SuppressWarnings("unused")
 			Notification res1 = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], null);
 		}
 	}
@@ -260,6 +258,7 @@ public class Gestor {
 	public ArrayList<String> getTweets(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("Tweets/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
@@ -282,11 +281,12 @@ public class Gestor {
 
 	/**
 	 * @param Email is the email relative to the user.
-	 * @return a lits of facebook posts.
+	 * @return a list of facebook posts.
 	 */
 	public ArrayList<String> getFBPosts(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("FBPosts/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
@@ -386,12 +386,13 @@ public class Gestor {
 
 	/**
 	 * @param Email is the email relative to the user.
-	 * @return a lits of emails.
+	 * @return a list of emails.
 	 */
 
 	public ArrayList<String> getEmail(String Email) {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(new File("Emails/" + Email + ".txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
@@ -533,6 +534,57 @@ public class Gestor {
 			return result;
 		}
 
+		
+		/**
+		 * Returns an ordered list by date.
+		 */
+
+		/**
+		 * @return an ordered list by date.
+		 */
+
+		
+		public static ArrayList<String> orderByDate(){
+			ArrayList<Data> datesList= new ArrayList<Data>();
+			ArrayList<String> orderedList= new ArrayList<String>();
+			for(int i=0;i!= atualist.size();i++) {
+				String [] datas= atualist.get(i).split(";;");
+				String listDate= datas[1];
+				String [] data= listDate.split(" ");
+				int dia=Integer.parseInt(data[2]);
+				int mes=Integer.parseInt(auxDate(data[1]));
+				int ano=Integer.parseInt(data[5]);
+				String [] horas =data[3].split(":");
+				int hora=Integer.parseInt(horas[0]); 
+				int min=Integer.parseInt(horas[1]); 
+				int seg=Integer.parseInt(horas[2]); 
+				Data finalData= new Data(dia,mes,ano,hora,min,seg);
+				datesList.add(finalData);
+			}
+			
+			datesList.sort(new ComparadorDatas());
+			
+			
+			for(int i=0;i!= atualist.size();i++) {
+				String [] datas= atualist.get(i).split(";;");
+				String listDate= datas[1];
+				String [] data= listDate.split(" ");
+				int dia=Integer.parseInt(data[2]);
+				int mes=Integer.parseInt(auxDate(data[1]));
+				int ano=Integer.parseInt(data[5]);
+				String [] horas =data[3].split(":");
+				int hora=Integer.parseInt(horas[0]); 
+				int min=Integer.parseInt(horas[1]); 
+				int seg=Integer.parseInt(horas[2]); 
+				Data finalData= new Data(dia,mes,ano,hora,min,seg);
+				for(int k=0;k!= datesList.size();k++) {
+					if(finalData.toString().equals(datesList.get(k).toString())) {
+						orderedList.add(atualist.get(i));
+					}
+				}
+			}
+			return orderedList;
+		}
 
 
 		/**
