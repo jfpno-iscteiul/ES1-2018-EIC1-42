@@ -1,4 +1,5 @@
 package BDA;
+
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,16 +23,15 @@ public class Notification {
 
 	private JPanel contentPane;
 	private static JFrame frame;
-	
 
 	/**
 	 * Create the frame.
 	 *
 	 * @param Plataform the plataform
-	 * @param Sender the sender
-	 * @param Date the date
-	 * @param subject the subject
-	 * @param content the content
+	 * @param Sender    the sender
+	 * @param Date      the date
+	 * @param subject   the subject
+	 * @param content   the content
 	 */
 	public Notification(String Plataform, String Sender, String Date, String subject, String content) {
 		frame = new JFrame("Bom dia Academia");
@@ -100,7 +100,7 @@ public class Notification {
 			p.setText("<html>" + content);
 			p.setEditable(false);
 			scrollPane_2.setViewportView(p);
-		
+
 		} else {
 			JTextArea textArea = new JTextArea();
 			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
@@ -110,20 +110,19 @@ public class Notification {
 			textArea.setEditable(false);
 			textArea.setLineWrap(true);
 			textArea.setWrapStyleWord(true);
-			
+
 			JScrollPane scrollPane = new JScrollPane(textArea);
 			scrollPane.setBounds(1, 140, 863, 400);
 			contentPane.add(scrollPane);
-			
+
 		}
-		
 
 		frame.getContentPane().add(panel_2);
 		frame.getContentPane().add(panel_1);
 		frame.getContentPane().add(panel);
 
-		
 	}
+
 	public static Frame getFrame() {
 		return frame;
 	}
