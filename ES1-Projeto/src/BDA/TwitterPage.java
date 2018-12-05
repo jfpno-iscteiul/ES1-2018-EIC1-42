@@ -165,6 +165,7 @@ public class TwitterPage {
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));
+		table.setDefaultEditor(Object.class, null);
 
 		frame.add(panel);
 

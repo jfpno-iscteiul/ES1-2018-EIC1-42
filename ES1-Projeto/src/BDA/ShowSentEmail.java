@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -79,16 +80,31 @@ public class ShowSentEmail {
 		
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));
+		table.setDefaultEditor(Object.class, null);
 		
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel model = table.getSelectionModel();
+		
+		model.addListSelectionListener(new ListSelectionListener() {
+			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				int selected = table.getSelectedRow();
-				String res = list.get(selected);
-				String[] lineSplited = res.split(";;");
-				Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
+				if(e.getValueIsAdjusting()) {
+					return;
+				} 
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				
+				if(lsm.isSelectionEmpty()) {
+					return;
+				} else {
+					int selected = lsm.getMinSelectionIndex();
+					String res = list.get(selected);
+					String[] lineSplited = res.split(";;");
+					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
+				}
+				
 			}
-	    });
+		});
 		
 		frame.add(panel);
 		

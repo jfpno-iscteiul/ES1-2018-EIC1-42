@@ -160,6 +160,7 @@ public class FacebookPage {
 		headers.add("Notificação");
 
 		JTable table = new JTable(data, headers);
+		table.setDefaultEditor(Object.class, null);
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
 
