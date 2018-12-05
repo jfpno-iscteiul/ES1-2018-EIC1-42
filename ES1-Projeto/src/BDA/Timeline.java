@@ -299,6 +299,7 @@ public class Timeline {
 		search.setBounds(130, 47, 150, 20);
 		frame.getContentPane().add(search);
 		
+		
 		JButton go = new JButton ("Filtrar");
 		go.setBounds(290, 47, 100, 20);
 		go.addActionListener(new ActionListener() {
@@ -309,6 +310,8 @@ public class Timeline {
 		});
 		
 		frame.getContentPane().add(go);
+		
+		
 
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));

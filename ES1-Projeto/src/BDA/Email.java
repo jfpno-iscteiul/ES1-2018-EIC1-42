@@ -1,7 +1,6 @@
 package BDA;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -9,8 +8,6 @@ import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Part;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
@@ -18,13 +15,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
 
 /**
  * The Class Email.
  */
 public class Email {
 
+	private static String content;
 	
 	/**
 	 * Gets the emails.
@@ -45,6 +42,7 @@ public class Email {
 		// Port number of your Mail Host
 		properties.put("mail.imaps.port", "993");
 		
+
 		try {
 			// create a session
 			Session session = Session.getInstance(properties,
@@ -76,15 +74,12 @@ public class Email {
 			System.out.println("Total Messages in INBOX:- " + messageCount);
 
 			// Print Last 10 email information
-			for (int i = 1; i > 0; i--) {
-				String from = MimeUtility.decodeText(inbox.getMessage(messageCount - i).getFrom()[0].toString());
+			for (int i = 10; i > 0; i--) {
+				String from = inbox.getMessage(messageCount - i).getFrom()[0].toString();
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
-				if(content.isEmpty()) {
-					content = "Erro! Ver no browser este e-mail!";
-				}
+				content = getTextFromMessage(inbox.getMessage(messageCount - i));
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
-				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject + ";;" + content + ";;");
+				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject + ";;" + content);
 			}
 
 			inbox.close(true);
@@ -132,15 +127,13 @@ public class Email {
 			
 			int messageCount = inbox.getMessageCount();
 
-			for (int i = 5; i > 0; i--) {
-				String to = MimeUtility.decodeText(inbox.getMessage(messageCount - i).getAllRecipients()[0].toString());
+			// Print Last 10 email information
+			for (int i = 6; i > 0; i--) {
+				String to = inbox.getMessage(messageCount - i).getAllRecipients()[0].toString();
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
-				if(content.isEmpty()) {
-					content = "Erro! Ver no browser este e-mail.";
-				}
+				content = getTextFromMessage(inbox.getMessage(messageCount - i));
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
-				result.add("Email" + ";;" + date + ";;" + to + ";;" + subject + ";;" + content + ";;");
+				result.add("Email" + ";;" + date + ";;" + to + ";;" + subject + ";;" + content);
 			}
 
 			inbox.close(true);
@@ -195,6 +188,9 @@ public class Email {
             throw new RuntimeException(e);
         }
 	}
+	
+	
+	
 
 	/**
 	 * Gets the text from message.
@@ -217,7 +213,7 @@ public class Email {
 
 	/**
 	 * Gets the text from mime multipart.
-
+	 *
 	 * @param mimeMultipart the mime multipart
 	 * @return the text from mime multipart
 	 * @throws MessagingException the messaging exception
@@ -236,9 +232,9 @@ public class Email {
 	            result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
 	        } else if (bodyPart.getContent() instanceof MimeMultipart){
 	            result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
-        }
+	        }
 	    }
-	return result;
+	    return result;
 	}
 		
 }
