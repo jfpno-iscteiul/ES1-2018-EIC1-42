@@ -53,11 +53,13 @@ public class Data implements Comparable<Data> {
 	public int compareTo(Data data) {
 		if(this.getAno()<data.getAno()){
 			return -1;
-		}else if((this.getAno()==data.getAno()) && (this.getDia()<data.getDia())){
+		}else if((this.getAno()==data.getAno()) && (this.getMes() <data.getMes())){
 			return -1;
-		}else if((this.getAno()==data.getAno()) && (this.getDia()==data.getDia()) && (this.getHora()<data.getHora())){
+		}else if((this.getAno()==data.getAno()) && (this.getMes()==data.getMes()) && (this.getDia()<data.getDia())){
 			return -1;
-		}else if((this.getAno()==data.getAno()) && (this.getDia()==data.getDia()) && (this.getHora()==data.getHora()) && (this.getMin()<data.getMin())){
+		}else if((this.getAno()==data.getAno()) && (this.getMes()==data.getMes()) && (this.getDia()==data.getDia()) && (this.getHora()<data.getHora())){
+			return -1;
+		}else if((this.getAno()==data.getAno())  && (this.getMes()==data.getMes()) && (this.getDia()==data.getDia()) && (this.getHora()==data.getHora()) && (this.getMin()<data.getMin())){
 			return -1;
 		}else if((this.getAno()==data.getAno()) && (this.getDia()==data.getDia()) && (this.getHora()==data.getHora()) && (this.getMin()==data.getMin())
 				&& (this.getSeg()<data.getSeg())){

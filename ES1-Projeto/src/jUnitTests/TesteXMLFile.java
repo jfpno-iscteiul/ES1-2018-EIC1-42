@@ -59,7 +59,7 @@ class TesteXMLFile {
 //		expected.add("Facebook");
 //		boolean result = listServices.equals(expected);
 		boolean result = listServices.isEmpty();
-		assertEquals(false, result);
+		assertEquals(true, result);
 		
 	} 
 
