@@ -76,14 +76,7 @@ public class Notification {
 		panel_2.add(date);
 		contentPane.add(panel_2);
 
-//		JScrollPane scrollPane = new JScrollPane();
-//		scrollPane.setBounds(708, 151, -706, 229);
-//		contentPane.add(scrollPane);
-
 		if (Plataform.equals("Email")) {
-			if(content.equals(null)) {
-				content = "HTTP not found";
-			}
 			JTextArea textArea = new JTextArea();
 			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
 			textArea.setBounds(1, 140, 863, 200);
