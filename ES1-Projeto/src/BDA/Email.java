@@ -78,10 +78,10 @@ public class Email {
 			System.out.println("Total Messages in INBOX:- " + messageCount);
 
 			// Print Last 10 email information
-			for (int i = 1; i > 0; i--) {
+			for (int i = 10; i > 0; i--) {
 				String from = MimeUtility.decodeText(inbox.getMessage(messageCount - i).getFrom()[0].toString());
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				String content = getText(inbox.getMessage(messageCount - i));
 				if (content.isEmpty()) {
 					content = "Erro! Ver no browser.";
 				}
@@ -200,6 +200,12 @@ public class Email {
 		}
 	}
 
+	/**
+	 * Gets the text.
+	 *
+	 * @param message the message
+	 * @return the text
+	 */
 	private static String getText(Message message) {
 		String result = new String();
 		if (message instanceof MimeMessage) {
@@ -235,51 +241,6 @@ public class Email {
 				}
 			} catch (IOException | MessagingException e) {
 				e.printStackTrace();
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Gets the text from message.
-	 *
-	 * @param message the message
-	 * @return the text from message
-	 * @throws MessagingException the messaging exception
-	 * @throws IOException        Signals that an I/O exception has occurred.
-	 */
-	private static String getTextFromMessage(Message message) throws MessagingException, IOException {
-		String result = "";
-		if (message.isMimeType("text/plain")) {
-			result = message.getContent().toString();
-		} else if (message.isMimeType("multipart/*")) {
-			MimeMultipart mimeMultipart = (MimeMultipart) message.getContent();
-			result = getTextFromMimeMultipart(mimeMultipart);
-		}
-		return result;
-	}
-
-	/**
-	 * Gets the text from mime multipart.
-	 *
-	 * @param mimeMultipart the mime multipart
-	 * @return the text from mime multipart
-	 * @throws MessagingException the messaging exception
-	 * @throws IOException        Signals that an I/O exception has occurred.
-	 */
-	private static String getTextFromMimeMultipart(MimeMultipart mimeMultipart) throws MessagingException, IOException {
-		String result = "";
-		int count = mimeMultipart.getCount();
-		for (int i = 0; i < count; i++) {
-			BodyPart bodyPart = mimeMultipart.getBodyPart(i);
-			if (bodyPart.isMimeType("text/plain")) {
-				result = result + "\n" + bodyPart.getContent();
-				break; // without break same text appears twice in my tests
-			} else if (bodyPart.isMimeType("text/html")) {
-				String html = (String) bodyPart.getContent();
-				result = result + "\n" + org.jsoup.Jsoup.parse(html).text();
-			} else if (bodyPart.getContent() instanceof MimeMultipart) {
-				result = result + getTextFromMimeMultipart((MimeMultipart) bodyPart.getContent());
 			}
 		}
 		return result;

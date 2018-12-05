@@ -191,7 +191,8 @@ public class Gestor {
 		}
 		for (int i = 0; i != tweets.size(); i++) {
 			try {
-				String text = tweets.get(i).replace("\n", "");
+				String text = tweets.get(i);
+				text = text.replace("\n", " ").replace("\r", " ");
 				f2.write(text + "\n");
 
 			} catch (IOException e) {
@@ -230,7 +231,8 @@ public class Gestor {
 		}
 		try {
 			for (int i = 0; i != posts.size(); i++) {
-				String text = posts.get(i).replace("\n", "");
+				String text = posts.get(i);
+				text = text.replace("\n", " ").replace("\r", " ");
 				f2.write(text + "\n");
 			}
 		} catch (IOException e1) {
@@ -362,7 +364,8 @@ public class Gestor {
 		}
 		try {
 			for (int i = 0; i != emails.size(); i++) {
-				String text = emails.get(i).replace("\n", "");
+				String text = emails.get(i);
+				text = text.replace("\n", " ").replace("\r", " ");
 				f2.write(text + "\n");
 			}
 		} catch (IOException e1) {
