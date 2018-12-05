@@ -70,7 +70,6 @@ public class Data implements Comparable<Data> {
 		}else {
 			return 1;
 		}
-		
 	}
 
 	@Override
