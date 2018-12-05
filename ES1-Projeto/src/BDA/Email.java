@@ -15,14 +15,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 
 /**
  * The Class Email.
  */
 public class Email {
 
-	private static String content;
-	
+
 	/**
 	 * Gets the emails.
 	 *
@@ -75,9 +75,12 @@ public class Email {
 
 			// Print Last 10 email information
 			for (int i = 10; i > 0; i--) {
-				String from = inbox.getMessage(messageCount - i).getFrom()[0].toString();
+				String from = MimeUtility.decodeText(inbox.getMessage(messageCount - i).getFrom()[0].toString());
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				if(content.isEmpty()) {
+					content = "Erro! Ver no browser.";
+				}
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
 				result.add("Email" + ";;" + date + ";;" + from + ";;" + subject + ";;" + content);
 			}
@@ -129,9 +132,12 @@ public class Email {
 
 			// Print Last 10 email information
 			for (int i = 6; i > 0; i--) {
-				String to = inbox.getMessage(messageCount - i).getAllRecipients()[0].toString();
+				String to =  MimeUtility.decodeText(inbox.getMessage(messageCount - i).getAllRecipients()[0].toString());
 				String subject = inbox.getMessage(messageCount - i).getSubject().toString();
-				content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				String content = getTextFromMessage(inbox.getMessage(messageCount - i));
+				if(content.isEmpty()) {
+					content = "Erro! Ver no browser.";
+				}
 				String date = inbox.getMessage(messageCount - i).getReceivedDate().toString();
 				result.add("Email" + ";;" + date + ";;" + to + ";;" + subject + ";;" + content);
 			}

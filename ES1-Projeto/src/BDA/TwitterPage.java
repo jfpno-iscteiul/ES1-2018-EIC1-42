@@ -11,6 +11,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,6 +27,8 @@ import javax.swing.JDialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TwitterPage {
 
@@ -167,6 +171,31 @@ public class TwitterPage {
 		panel.add(new JScrollPane(table));
 		table.setDefaultEditor(Object.class, null);
 
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel model = table.getSelectionModel();
+		table.setDefaultEditor(Object.class, null);
+		
+		model.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if(e.getValueIsAdjusting()) {
+					return;
+				} 
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				
+				if(lsm.isSelectionEmpty()) {
+					return;
+				} else {
+					int selected = lsm.getMinSelectionIndex();
+					String res = list.get(selected);
+					String[] lineSplited = res.split(";;");
+					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
+				}
+				
+			}
+		});
+		
 		frame.add(panel);
 
 		JButton retweetar = new JButton("Retweetar");

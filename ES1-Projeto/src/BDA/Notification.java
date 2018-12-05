@@ -81,9 +81,6 @@ public class Notification {
 //		contentPane.add(scrollPane);
 
 		if (Plataform.equals("Email")) {
-			if(content.equals(null)) {
-				content = "HTTP not found";
-			}
 			JTextArea textArea = new JTextArea();
 			textArea.setFont(new Font("Serif", Font.PLAIN, 18));
 			textArea.setBounds(1, 140, 863, 200);
