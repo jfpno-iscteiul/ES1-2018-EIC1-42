@@ -2,8 +2,11 @@ package jUnitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
+import BDA.Gestor;
 import BDA.SetPasswordPage;
 import BDA.XMLFile;
 
@@ -25,6 +28,22 @@ class App {
 		
 		sp.setPasswords(email, password, password2, password3);
 		assertEquals("123", XMLFile.getAttributteByEmail(email, "Password"));
+		
+		
+		String test= "Jan";
+		assertEquals("01", Gestor.auxDate(test));
+		
+		String test2="Apenas para testar";
+		String test3="Olá";
+		String test4="Vamos verificar se funciona";
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(test2);
+		list.add(test3);
+		list.add(test4);
+		ArrayList<String> list2 = new ArrayList<String>();
+		list2.add(test2);
+		assertEquals(list2,Gestor.filterByWord(list, "testar"));
+		
 	}
 
 }

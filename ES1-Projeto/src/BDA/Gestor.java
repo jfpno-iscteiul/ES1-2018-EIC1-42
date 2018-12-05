@@ -504,7 +504,7 @@ public class Gestor {
 		 * @return a month.
 		 */
 
-		private static String auxDate(String string) {
+		public static String auxDate(String string) {
 			String result="";
 			if(string.equals("Jan")) {
 				result="01";
