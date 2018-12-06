@@ -55,9 +55,20 @@ class TesteXMLFile {
 		*/
 
 		ArrayList<String> listServices = xml.list_account(email);
-		ArrayList<String> expected = new ArrayList<String>();
 		boolean result = listServices.isEmpty();
 		assertEquals(true, result);
 		
+		assertEquals(false, xml.haveEmail(email));
+		assertEquals(false, xml.haveFacebook(email));
+		assertEquals(false, xml.haveTwitter(email));
+		
+		String fun = "123";
+		assertEquals(true, xml.haveFacebook(fun));
+		assertEquals(true, xml.haveTwitter(fun));
+		assertEquals(true, xml.haveEmail("cacaa@iscte-iul.pt"));
+		
+		listServices = xml.list_account(fun);
+		result = listServices.isEmpty();
+		assertEquals(false, result);
 	} 
 }

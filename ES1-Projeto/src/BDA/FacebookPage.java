@@ -168,7 +168,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notifica��o");
+		headers.add("Notificação");
 
 		JTable table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);

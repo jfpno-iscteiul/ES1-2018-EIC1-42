@@ -146,15 +146,13 @@ public class XMLFile {
 				if (mail.equals(email)) {
 
 					if(!nodeList.item(x).getAttributes().getNamedItem("TokenAccessFacebook").getNodeValue().equals("vazio")) {
-
 						return true;
 					}else
 						return false;
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 		return false;
 	}
@@ -177,8 +175,7 @@ public class XMLFile {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 		return false;
 	}
@@ -211,7 +208,7 @@ public class XMLFile {
 						return false;
 				}
 			}
-		} catch (Exception e) {e.printStackTrace();}
+		} catch (Exception e) {return false;}
 		return false;
 
 	}

@@ -41,7 +41,7 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
-		Configurations conf = new Configurations(window.getFrame(), teste);
+		Configurations conf = new Configurations(window.getFrame(), "teste@iscte-iul.pt");
 		visible = conf.getFrame().isVisible();
 		w = conf.getFrame().getWidth();
 		h = conf.getFrame().getHeight();
@@ -73,7 +73,7 @@ class TesteFrame {
 		assertEquals(594, w);
 		assertEquals(400, h);
 		
-		EmailPage ep = new EmailPage(window.getFrame(), teste);
+		EmailPage ep = new EmailPage(window.getFrame(), "cacaa@iscte-iul.pt");
 		visible = ep.getFrame().isVisible();
 		w = ep.getFrame().getWidth();
 		h = ep.getFrame().getHeight();
@@ -81,7 +81,7 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
-		ShowSentEmail se = new ShowSentEmail(teste);
+		ShowSentEmail se = new ShowSentEmail("cacaa@iscte-iul.pt");
 		visible = se.getFrame().isVisible();
 		w = se.getFrame().getWidth();
 		h = se.getFrame().getHeight();

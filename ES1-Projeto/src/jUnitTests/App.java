@@ -32,9 +32,6 @@ class App {
 		assertEquals("123", xml.getAttributteByEmail(email, "Password"));
 		
 		
-		String test= "Jan";
-		assertEquals("01", gestor.auxDate(test));
-		
 		String test2="Apenas para testar";
 		String test3="Ola";
 		String test4="Vamos verificar se funciona";
@@ -44,7 +41,7 @@ class App {
 		list.add(test4);
 		ArrayList<String> list2 = new ArrayList<String>();
 		list2.add(test2);
-		assertEquals(list2,gestor.filterByWord(list, "testar"));
+		assertEquals(list2, gestor.filterByWord(list, "testar"));
 		
 	}
 

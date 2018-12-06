@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import BDA.Notification;
-import BDA.SetPasswordPage;
-import BDA.XMLFile;
 
 class Notifications {
 
@@ -17,8 +15,7 @@ class Notifications {
 			String Date = "2018-12-04";
 			String Content = "Teste JUnit das notificações";
 			String Subject =  "";
-			// String subject
-			Notification n = new Notification(Plataform,Sender,Subject,Date,Content);
+			new Notification(Plataform,Sender,Subject,Date,Content);
 			
 			boolean visible = Notification.getFrame().isVisible();
 			int w = Notification.getFrame().getWidth();
@@ -27,8 +24,20 @@ class Notifications {
 			assertEquals(560, h);
 			assertEquals(true, visible);
 			
-
-		
+			Plataform = "Email";
+			Sender = "ISTAR-TESTE";
+			Date = "2018-12-04";
+			Content = "Teste JUnit das notificações";
+			Subject =  "Teste!!";
+			
+			new Notification(Plataform,Sender,Subject,Date,Content);
+			visible = Notification.getFrame().isVisible();
+			w = Notification.getFrame().getWidth();
+			h = Notification.getFrame().getHeight();
+			assertEquals(858, w);
+			assertEquals(560, h);
+			assertEquals(true, visible);
+			
 	}
 
 }
