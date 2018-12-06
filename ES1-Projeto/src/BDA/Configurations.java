@@ -128,6 +128,7 @@ public class Configurations {
 		Image email = new ImageIcon(this.getClass().getResource("/emailicone.png")).getImage();
 		label_1.setIcon(new ImageIcon(email));
 		label_1.setBounds(91, 339, 130, 126);
+		label_1.setOpaque(false);
 		frame.getContentPane().add(label_1);
 
 		// TWITTER

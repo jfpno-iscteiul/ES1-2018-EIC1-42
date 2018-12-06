@@ -233,6 +233,16 @@ public class Timeline {
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
+				
+				JLabel labelBackground6 = new JLabel();
+				//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+				Image imagem6 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+				labelBackground6.setIcon(new ImageIcon(imagem6));
+				labelBackground6.setForeground(SystemColor.window);
+				labelBackground6.setBackground(SystemColor.activeCaption);
+				labelBackground6.setBounds(0, 0, 863, 594);
+				frame.getContentPane().add(labelBackground6);
+				frame.setIconImage(imagem6);
 				frame.repaint();
 				@SuppressWarnings("unused")
 				Configurations conf = new Configurations(frame, Email);
