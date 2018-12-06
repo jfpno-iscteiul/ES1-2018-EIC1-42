@@ -122,6 +122,7 @@ public class Timeline {
 				ArrayList<String> list = gestor.orderByDate();
 				Collections.reverse(list);
 				gestor.addRows(panel, list, frame);
+				frame.getContentPane().add(labelBackground);
 			}
 		});
 
@@ -132,6 +133,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> list = gestor.orderByDate();
 				gestor.addRows(panel, list, frame);
+				frame.getContentPane().add(labelBackground);
 			}
 		});
 
@@ -221,6 +223,7 @@ public class Timeline {
 		        	 // Filtrar por data
 		        	 ArrayList<String> lista = gestor.filterByDate(date);
 		        	 gestor.addRows(panel, lista, frame);
+		        	 frame.getContentPane().add(labelBackground);
 		        	 
 		         }
 		    } 
@@ -316,6 +319,7 @@ public class Timeline {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> lista= gestor.filterByWord(gestor.getAtualist(),search.getText() );
 				gestor.addRows(panel, lista, frame);
+				frame.getContentPane().add(labelBackground);
 			}
 		});
 		
