@@ -123,6 +123,7 @@ public class Timeline {
 				Collections.reverse(list);
 				gestor.addRows(panel, list, frame);
 				frame.getContentPane().add(labelBackground);
+				frame.repaint();
 			}
 		});
 
@@ -134,6 +135,7 @@ public class Timeline {
 				ArrayList<String> list = gestor.orderByDate();
 				gestor.addRows(panel, list, frame);
 				frame.getContentPane().add(labelBackground);
+				frame.repaint();
 			}
 		});
 
@@ -156,9 +158,13 @@ public class Timeline {
 				if (chckbxFacebook.isSelected()) {
 					sourceFilters.add("Facebook");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 				} else {
 					sourceFilters.remove("Facebook");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 
 				}
 			}
@@ -176,9 +182,13 @@ public class Timeline {
 				if (chckbxEmail.isSelected()) {
 					sourceFilters.add("Email");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 				} else {
 					sourceFilters.remove("Email");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 
 				}
 			}
@@ -196,9 +206,13 @@ public class Timeline {
 				if (chckbxTwitter.isSelected()) {
 					sourceFilters.add("Twitter");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 				} else {
 					sourceFilters.remove("Twitter");
 					gestor.filterBySource(panel, sourceFilters, frame, Email);
+					frame.getContentPane().add(labelBackground);
+					frame.repaint();
 
 				}
 
@@ -224,6 +238,7 @@ public class Timeline {
 		        	 ArrayList<String> lista = gestor.filterByDate(date);
 		        	 gestor.addRows(panel, lista, frame);
 		        	 frame.getContentPane().add(labelBackground);
+					frame.repaint();
 		        	 
 		         }
 		    } 
@@ -320,6 +335,7 @@ public class Timeline {
 				ArrayList<String> lista= gestor.filterByWord(gestor.getAtualist(),search.getText() );
 				gestor.addRows(panel, lista, frame);
 				frame.getContentPane().add(labelBackground);
+				frame.repaint();
 			}
 		});
 		
@@ -334,6 +350,8 @@ public class Timeline {
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
 		gestor.filterBySource(panel, sourceFilters, frame, Email);
+		frame.getContentPane().add(labelBackground);
+		frame.repaint();
 	
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
