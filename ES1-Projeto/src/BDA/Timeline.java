@@ -80,14 +80,14 @@ public class Timeline {
 		writeFiles();
 		
 		JLabel labelBackground3 = new JLabel();
-		Image imagemTEST3 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagemTEST3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
 		labelBackground3.setIcon(new ImageIcon(imagemTEST3));
 		labelBackground3.setForeground(SystemColor.window);
 		labelBackground3.setBackground(SystemColor.activeCaption);
 		labelBackground3.setBounds(0, 48, 863, 594);
 		frame.getContentPane().add(labelBackground3);
 		frame.setIconImage(imagemTEST3);
-		
 		
 		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
@@ -100,7 +100,6 @@ public class Timeline {
 		JMenuBar menuBar = new JMenuBar();
 		//menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
-		
 		
 		frame.getContentPane().add(menuBar);
 
@@ -297,7 +296,7 @@ public class Timeline {
 		}
 
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
-//pesquisa por palavra chave
+		//pesquisa por palavra chave
 		JTextField search = new JTextField();
 		search.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		search.setText("Escreva aqui");
@@ -311,7 +310,6 @@ public class Timeline {
 		search.setBounds(130, 47, 150, 20);
 		frame.getContentPane().add(search);
 		
-		
 		JButton go = new JButton ("Filtrar");
 		go.setBounds(290, 47, 100, 20);
 		go.addActionListener(new ActionListener() {
@@ -322,9 +320,6 @@ public class Timeline {
 		});
 		
 		frame.getContentPane().add(go);
-		
-		
-
 		panel = new JPanel();
 		//panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);

@@ -86,6 +86,7 @@ public class MainWindow {
 				frame.getContentPane().removeAll();
 				
 				JLabel labelBackground2 = new JLabel();
+				//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
 				Image imagemTEST2 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
 				labelBackground2.setIcon(new ImageIcon(imagemTEST));
 				labelBackground2.setForeground(SystemColor.window);
