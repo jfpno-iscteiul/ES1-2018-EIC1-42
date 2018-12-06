@@ -84,7 +84,17 @@ public class MainWindow {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
+				
+				JLabel labelBackground2 = new JLabel();
+				Image imagemTEST2 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
+				labelBackground2.setIcon(new ImageIcon(imagemTEST));
+				labelBackground2.setForeground(SystemColor.window);
+				labelBackground2.setBackground(SystemColor.activeCaption);
+				labelBackground2.setBounds(0, 0, 863, 594);
+				frame.getContentPane().add(labelBackground2);
+				frame.setIconImage(imagemTEST2);
 				frame.repaint();
+				
 				@SuppressWarnings("unused")
 				SignUp signUp = new SignUp(frame);
 			}
@@ -109,6 +119,7 @@ public class MainWindow {
 		panel.setBounds(410, 120, 313, 154);
 		panel.setLayout(null);
 		
+		panel.setOpaque(false);
 		labelBackground.add(panel);
 	
 		/**
