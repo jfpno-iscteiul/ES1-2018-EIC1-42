@@ -3,7 +3,6 @@ package BDA;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
@@ -36,7 +35,6 @@ public class Configurations {
 	private JTextField textFieldAAT;
 	private JTextField textFieldAATS;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JFrame frame;
 	private String Email;
 

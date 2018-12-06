@@ -10,14 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
-import javax.swing.JEditorPane;
-
 import java.awt.Label;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Frame;
 
-import javax.swing.Box;
 
 public class Notification {
 

@@ -24,7 +24,6 @@ public class MainWindow {
 	private JTextField txtEmail;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
-	private String stringAutores = "Realizado por:";
 
 	/**
 	 * Launch the application.
