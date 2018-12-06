@@ -79,7 +79,17 @@ public class Timeline {
 		gestor = new Gestor();
 		writeFiles();
 		
-		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
+		JLabel labelBackground3 = new JLabel();
+		Image imagemTEST3 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
+		labelBackground3.setIcon(new ImageIcon(imagemTEST3));
+		labelBackground3.setForeground(SystemColor.window);
+		labelBackground3.setBackground(SystemColor.activeCaption);
+		labelBackground3.setBounds(0, 48, 863, 594);
+		frame.getContentPane().add(labelBackground3);
+		frame.setIconImage(imagemTEST3);
+		
+		
+		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -88,8 +98,10 @@ public class Timeline {
 		sourceFilters = new ArrayList<String>();
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(SystemColor.window);
+		//menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
+		
+		
 		frame.getContentPane().add(menuBar);
 
 		JLabel lblNewLabel = new JLabel(" ");
@@ -314,7 +326,7 @@ public class Timeline {
 		
 
 		panel = new JPanel();
-		panel.setBackground(new Color(240, 255, 255));
+		//panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
