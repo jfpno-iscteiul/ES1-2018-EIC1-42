@@ -20,8 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 
 public class MainWindow {
-	
-	private JFrame frame2;
+	private JFrame frame;
 	private JTextField txtEmail;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
@@ -29,43 +28,54 @@ public class MainWindow {
 	/**
 	 * Launch the application.
 	 */
-	
-	
+
+
 	/** @param   args is the main method.
 	 */
-	
+
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		MainWindow window = new MainWindow();
 	}
-	
-	
+
+
 	public JFrame getFrame() {
-		return frame2;
+		return frame;
 	}
-	
+
 	/**
 	 * Create the application.
 	 */
-	
+
 	public MainWindow() {
 		initialize();
-		frame2.setVisible(true);
+		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 *  @author All the members of the team ES1-EIC1-42
 	 */
-	
+
 	private void initialize() {
-		frame2 = new JFrame("Bom Dia Academia");
-		frame2.getContentPane().setBackground(SystemColor.window);
-		frame2.setBounds(100, 100, 863, 594);
-		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame2.getContentPane().setLayout(null);
-		frame2.setResizable(false);
-		frame2.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		frame = new JFrame("Bom Dia Academia");
+		frame.getContentPane().setBackground(SystemColor.window);
+		frame.setBounds(100, 100, 863, 594);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
+		
+		JLabel labelBackground = new JLabel();
+		Image imagemTEST = new ImageIcon(this.getClass().getResource("/iscte.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagemTEST));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 0, 863, 594);
+
+		frame.getContentPane().add(labelBackground);
+		frame.setIconImage(imagemTEST);
+		
+		
 		JButton btnSignUp = new JButton("");
 		Image signUp = new ImageIcon(this.getClass().getResource("/button_sign-up.png")).getImage();
 		btnSignUp.setIcon(new ImageIcon(signUp));
@@ -73,32 +83,34 @@ public class MainWindow {
 		btnSignUp.setBackground(SystemColor.activeCaption);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame2.getContentPane().removeAll();
-				frame2.repaint();
+				frame.getContentPane().removeAll();
+				frame.repaint();
 				@SuppressWarnings("unused")
-				SignUp signUp = new SignUp(frame2);
+				SignUp signUp = new SignUp(frame);
 			}
 		});
-		
+
 		btnSignUp.setFont(new Font("Calibri Light", Font.BOLD, 19));
-		btnSignUp.setBounds(472, 272, 151, 43);
-		frame2.getContentPane().add(btnSignUp);
-		
+		btnSignUp.setBounds(472, 350, 151, 43);
+		labelBackground.add(btnSignUp);
+
 		/**
 		 * Add images which work as buttons
 		 */
-		
+
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(icon));
-		lblNewLabel.setBounds(42, 11, 305, 337);
-		frame2.getContentPane().add(lblNewLabel);
+		lblNewLabel.setBounds(42, 80, 305, 337);
+		
+		labelBackground.add(lblNewLabel);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(393, 39, 313, 215);
-		frame2.getContentPane().add(panel);
+		panel.setBounds(410, 100, 313, 154);
 		panel.setLayout(null);
 		
+		labelBackground.add(panel);
+	
 		/**
 		 * Create a login form
 		 */
@@ -113,53 +125,53 @@ public class MainWindow {
 				txtEmail.setText("");
 			}
 		});
-		txtEmail.setBounds(21, 36, 264, 20);
-
+		txtEmail.setBounds(21, 45, 264, 20);
 		panel.add(txtEmail);
-
 		txtEmail.setToolTipText("");
 		txtEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		txtEmail.setColumns(10);
 
 		JCheckBox chckbxMostrarPassword = new JCheckBox("Mostrar password");
-		chckbxMostrarPassword.setBounds(143, 119, 150, 23);
+		chckbxMostrarPassword.setBounds(143, 128, 150, 23);
+		
+		labelBackground.add(chckbxMostrarPassword);
 		panel.add(chckbxMostrarPassword);
 
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblEmail.setBounds(21, 11, 46, 14);
+		lblEmail.setBounds(21, 21, 46, 14);
 		panel.add(lblEmail);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(21, 92, 264, 20);
+		passwordField.setBounds(21, 104, 264, 20);
 		panel.add(passwordField);
 		passwordField.setEchoChar('*');
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPassword.setBounds(21, 67, 70, 14);
+		lblPassword.setBounds(21, 80, 70, 14);
+		labelBackground.add(lblPassword);
 		panel.add(lblPassword);
 
-		JButton btnLogin = new JButton("");
-		btnLogin.setBounds(76, 161, 151, 43);
-		panel.add(btnLogin);
-		Image logIn = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
-		btnLogin.setIcon(
-				new ImageIcon(logIn));
-		btnLogin.setForeground(SystemColor.window);
-		btnLogin.setBackground(SystemColor.window);
-		
+		JButton buttonLogin= new JButton("");
+		Image logInImage = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
+		buttonLogin.setIcon(new ImageIcon(logInImage));
+		buttonLogin.setBounds(472, 280, 151, 43);
+		buttonLogin.setForeground(SystemColor.window);
+		buttonLogin.setBackground(SystemColor.window);
+		labelBackground.add(buttonLogin);
+
 		/**
 		 * Checks if the email and password are registered in the xml file
 		 */
-		btnLogin.addActionListener(new ActionListener() {
+		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String pass = new String(passwordField.getPassword());
 				if(XMLFile.checkIfUserExists(txtEmail.getText(), pass)) {
-					frame2.getContentPane().removeAll();
-					frame2.repaint();
+					frame.getContentPane().removeAll();
+					frame.repaint();
 					@SuppressWarnings("unused")
-					Timeline timeline= new Timeline(frame2, txtEmail.getText());
+					Timeline timeline= new Timeline(frame, txtEmail.getText());
 				} else {
 					JOptionPane optionPane = new JOptionPane("Os dados que inseriu estão incorretos!", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO!");
@@ -168,7 +180,7 @@ public class MainWindow {
 				}
 			}
 		});
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 7));
+		buttonLogin.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		chckbxMostrarPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxMostrarPassword.isSelected()) {
@@ -177,7 +189,6 @@ public class MainWindow {
 					passwordField.setEchoChar('*');
 				}
 			}
-
 		});
 	}
 }
