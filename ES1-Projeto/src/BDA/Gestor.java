@@ -81,7 +81,7 @@ public class Gestor {
 					if (Sources.get(i).equals("Twitter")) {
 						filteredPosts.addAll(tweets);
 					}
-					if (Sources.get(i).equals("facebook")) {
+					if (Sources.get(i).equals("Facebook")) {
 						filteredPosts.addAll(fbPosts);
 					}
 					if (Sources.get(i).equals("Email")) {
@@ -95,7 +95,7 @@ public class Gestor {
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane optionPane = new JOptionPane("Nï¿½o existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
 			JDialog dialog = optionPane.createDialog("Alerta!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
@@ -138,7 +138,7 @@ public class Gestor {
 		headers.add("Plataforma");
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("Notificaï¿½ï¿½o");
 
 
 		table = new JTable(data, headers);
