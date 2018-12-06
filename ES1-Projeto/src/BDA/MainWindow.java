@@ -66,6 +66,7 @@ public class MainWindow {
 		frame.setResizable(false);
 		
 		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
 		Image imagemTEST = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
 		labelBackground.setIcon(new ImageIcon(imagemTEST));
 		labelBackground.setForeground(SystemColor.window);
@@ -107,12 +108,6 @@ public class MainWindow {
 		JPanel panel = new JPanel();
 		panel.setBounds(410, 120, 313, 154);
 		panel.setLayout(null);
-		
-		
-		//SEM O PANEL A VER-SE
-		panel.setOpaque(false);
-		
-		
 		
 		labelBackground.add(panel);
 	
