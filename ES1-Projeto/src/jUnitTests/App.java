@@ -36,7 +36,7 @@ class App {
 		assertEquals("01", gestor.auxDate(test));
 		
 		String test2="Apenas para testar";
-		String test3="Olá";
+		String test3="Ola";
 		String test4="Vamos verificar se funciona";
 		ArrayList<String> list = new ArrayList<String>();
 		list.add(test2);

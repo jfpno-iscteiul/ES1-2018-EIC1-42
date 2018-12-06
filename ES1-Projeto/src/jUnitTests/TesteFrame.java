@@ -15,6 +15,8 @@ class TesteFrame {
 		   * Test if the frame is visible, and opens with the correct width and height.
 		  */
 		
+		String teste =  "123";
+		
 		MainWindow window = new MainWindow();
 		boolean visible = window.getFrame().isVisible();
 		int w = window.getFrame().getWidth();
@@ -31,7 +33,7 @@ class TesteFrame {
 		assertEquals(779, w);
 		assertEquals(410, h);
 		
-		Timeline timeline = new Timeline(window.getFrame(), "teste@iscte-iul.pt");
+		Timeline timeline = new Timeline(window.getFrame(), teste);
 		visible = timeline.getFrame().isVisible();
 		w = timeline.getFrame().getWidth();
 		h = timeline.getFrame().getHeight();
@@ -39,7 +41,7 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
-		Configurations conf = new Configurations(window.getFrame(), "teste@iscte-iul.pt");
+		Configurations conf = new Configurations(window.getFrame(), teste);
 		visible = conf.getFrame().isVisible();
 		w = conf.getFrame().getWidth();
 		h = conf.getFrame().getHeight();
@@ -47,7 +49,7 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
-		TwitterPage tp = new TwitterPage(window.getFrame(), "teste@iscte-iul.pt");
+		TwitterPage tp = new TwitterPage(window.getFrame(), teste);
 		visible = tp.getFrame().isVisible();
 		w = tp.getFrame().getWidth();
 		h = tp.getFrame().getHeight();
@@ -55,15 +57,7 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
-		FacebookPage fp = new FacebookPage(window.getFrame(), "teste@iscte-iul.pt");
-		visible = fp.getFrame().isVisible();
-		w = fp.getFrame().getWidth();
-		h = fp.getFrame().getHeight();
-		assertEquals(true, visible);
-		assertEquals(863, w);
-		assertEquals(594, h);
-		
-		ConfigurationsRem confrem = new ConfigurationsRem(window.getFrame(), "teste@iscte-iul.pt");
+		ConfigurationsRem confrem = new ConfigurationsRem(window.getFrame(), teste);
 		visible = confrem.getFrame().isVisible();
 		w = confrem.getFrame().getWidth();
 		h = confrem.getFrame().getHeight();
@@ -71,6 +65,37 @@ class TesteFrame {
 		assertEquals(863, w);
 		assertEquals(594, h);
 		
+		SendEmailPage send = new SendEmailPage(teste);
+		visible = send.getFrame().isVisible();
+		w = send.getFrame().getWidth();
+		h = send.getFrame().getHeight();
+		assertEquals(true, visible);
+		assertEquals(594, w);
+		assertEquals(400, h);
+		
+		EmailPage ep = new EmailPage(window.getFrame(), teste);
+		visible = ep.getFrame().isVisible();
+		w = ep.getFrame().getWidth();
+		h = ep.getFrame().getHeight();
+		assertEquals(true, visible);
+		assertEquals(863, w);
+		assertEquals(594, h);
+		
+		ShowSentEmail se = new ShowSentEmail(teste);
+		visible = se.getFrame().isVisible();
+		w = se.getFrame().getWidth();
+		h = se.getFrame().getHeight();
+		assertEquals(true, visible);
+		assertEquals(600, w);
+		assertEquals(450, h);
+		
+		FacebookPage fp = new FacebookPage(window.getFrame(), teste);
+		visible = fp.getFrame().isVisible();
+		w = fp.getFrame().getWidth();
+		h = fp.getFrame().getHeight();
+		assertEquals(true, visible);
+		assertEquals(863, w);
+		assertEquals(594, h);
 	}
 
 }

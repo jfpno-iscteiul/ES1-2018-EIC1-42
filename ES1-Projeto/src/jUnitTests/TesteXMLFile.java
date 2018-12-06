@@ -56,14 +56,8 @@ class TesteXMLFile {
 
 		ArrayList<String> listServices = xml.list_account(email);
 		ArrayList<String> expected = new ArrayList<String>();
-//		expected.add("Twitter");
-//		expected.add("Facebook");
-//		boolean result = listServices.equals(expected);
 		boolean result = listServices.isEmpty();
-		assertEquals(false, result);
+		assertEquals(true, result);
 		
 	} 
-
-	
-
 }

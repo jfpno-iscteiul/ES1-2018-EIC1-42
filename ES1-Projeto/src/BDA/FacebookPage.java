@@ -46,6 +46,7 @@ public class FacebookPage {
 	public FacebookPage(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
+		facebook = new Facebook();
 		initialize();
 		setVisible(true);
 	}
@@ -167,7 +168,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("Notificaï¿½ï¿½o");
 
 		JTable table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);

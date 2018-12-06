@@ -38,6 +38,12 @@ public class SendEmailPage {
 		mail = new Email();
 		initialize();
 	}
+	
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
 
 	/**
 	 * Initialize.
