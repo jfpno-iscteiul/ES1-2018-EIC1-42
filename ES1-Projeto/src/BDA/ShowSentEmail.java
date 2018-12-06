@@ -1,6 +1,7 @@
 package BDA;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -77,7 +78,7 @@ public class ShowSentEmail {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("Notificaï¿½ï¿½o");
 		
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));
@@ -109,6 +110,11 @@ public class ShowSentEmail {
 		
 		frame.add(panel);
 		
+	}
+
+
+	public JFrame getFrame() {
+		return frame;
 	}
 
 }
