@@ -1,6 +1,7 @@
 package BDA;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
@@ -66,7 +67,14 @@ public class ConfigurationsRem {
 	
 	public void initialize() {
 
-		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
+		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 48, 863, 594);
+
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -105,7 +113,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("Serviços Associados");
+		headers.add("Serviï¿½os Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -115,7 +123,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("Não tem serviços associados a esta conta.");
+			row.add("Nï¿½o tem serviï¿½os associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
@@ -192,7 +200,7 @@ public class ConfigurationsRem {
 				MainWindow.main(null);
 			}
 		});
-
+		frame.getContentPane().add(labelBackground);
 	}
 
 	@SuppressWarnings("unused")

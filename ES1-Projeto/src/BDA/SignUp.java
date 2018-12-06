@@ -51,6 +51,14 @@ public class SignUp {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 0, 863, 594);
+		
 		frame.getContentPane().setBackground(SystemColor.window);
 		frame.setBounds(100, 100, 779, 410);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -175,6 +183,7 @@ public class SignUp {
 			}
 		});
 		frame.getContentPane().add(panel);
+		frame.getContentPane().add(labelBackground);
 	}
 
 	public JFrame getFrame() {

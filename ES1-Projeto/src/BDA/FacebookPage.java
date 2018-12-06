@@ -1,6 +1,7 @@
 package BDA;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import java.awt.SystemColor;
@@ -63,6 +64,15 @@ public class FacebookPage {
 	 */
 
 	public void initialize() {
+		
+		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 48, 863, 594);
+		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,6 +198,7 @@ public class FacebookPage {
 		});
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
+		frame.getContentPane().add(labelBackground);
 
 	}
 

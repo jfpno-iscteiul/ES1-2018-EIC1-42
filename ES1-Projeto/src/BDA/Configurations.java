@@ -61,7 +61,15 @@ public class Configurations {
 	 */
 
 	public void initialize() {
-		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
+
+		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 48, 863, 594);
+
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -278,7 +286,7 @@ public class Configurations {
 			});
 
 		} else {
-			JLabel lblEmail = new JLabel("Já tem uma conta de Email adicionada!");
+			JLabel lblEmail = new JLabel("Jï¿½ tem uma conta de Email adicionada!");
 			lblEmail.setBounds(261, 405, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -301,7 +309,7 @@ public class Configurations {
 				MainWindow.main(null);
 			}
 		});
-
+		frame.getContentPane().add(labelBackground);
 	}
 
 	@SuppressWarnings("unused")

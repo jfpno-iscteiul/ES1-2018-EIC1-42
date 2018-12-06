@@ -5,6 +5,8 @@ import javax.swing.JMenuBar;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -78,18 +80,17 @@ public class Timeline {
 	void initialize() {
 		gestor = new Gestor();
 		writeFiles();
+	
 		
-		JLabel labelBackground3 = new JLabel();
+		JLabel labelBackground = new JLabel();
 		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
 		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-		labelBackground3.setIcon(new ImageIcon(imagem3));
-		labelBackground3.setForeground(SystemColor.window);
-		labelBackground3.setBackground(SystemColor.activeCaption);
-		labelBackground3.setBounds(0, 48, 863, 594);
-		frame.getContentPane().add(labelBackground3);
-		frame.setIconImage(imagem3);
-		
-		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 48, 863, 594);
+
+	
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -98,11 +99,12 @@ public class Timeline {
 		sourceFilters = new ArrayList<String>();
 
 		JMenuBar menuBar = new JMenuBar();
-		//menuBar.setBackground(SystemColor.window);
+		menuBar.setBackground(SystemColor.window);
 		menuBar.setBounds(0, 0, 881, 47);
-		
+
 		frame.getContentPane().add(menuBar);
 
+		
 		JLabel lblNewLabel = new JLabel(" ");
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(icone));
@@ -137,7 +139,7 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de Informação");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de InformaÃ§Ã£o");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
@@ -229,21 +231,10 @@ public class Timeline {
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("Configurações");
+		JMenuItem mntmASuaConta = new JMenuItem("ConfiguraÃ§Ãµes");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
-				
-				JLabel labelBackground6 = new JLabel();
-				//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-				Image imagem6 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-				labelBackground6.setIcon(new ImageIcon(imagem6));
-				labelBackground6.setForeground(SystemColor.window);
-				labelBackground6.setBackground(SystemColor.activeCaption);
-				labelBackground6.setBounds(0, 0, 863, 594);
-				frame.getContentPane().add(labelBackground6);
-				frame.setIconImage(imagem6);
-				frame.repaint();
 				@SuppressWarnings("unused")
 				Configurations conf = new Configurations(frame, Email);
 			}
@@ -264,17 +255,6 @@ public class Timeline {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
 						
-						JLabel labelBackground4 = new JLabel();
-						//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-						Image imagem4 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-						labelBackground4.setIcon(new ImageIcon(imagem4));
-						labelBackground4.setForeground(SystemColor.window);
-						labelBackground4.setBackground(SystemColor.activeCaption);
-						labelBackground4.setBounds(0, 0, 863, 594);
-						frame.getContentPane().add(labelBackground4);
-						frame.setIconImage(imagem4);
-						frame.repaint();
-						
 						@SuppressWarnings("unused")
 						TwitterPage tp = new TwitterPage(frame, Email);
 					}
@@ -291,18 +271,6 @@ public class Timeline {
 				button3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
-			
-						JLabel labelBackground5 = new JLabel();
-						//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-						Image imagem5 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-						labelBackground5.setIcon(new ImageIcon(imagem5));
-						labelBackground5.setForeground(SystemColor.window);
-						labelBackground5.setBackground(SystemColor.activeCaption);
-						labelBackground5.setBounds(0, 0, 863, 594);
-						frame.getContentPane().add(labelBackground5);
-						frame.setIconImage(imagem5);
-						frame.repaint();
-						
 						@SuppressWarnings("unused")
 						FacebookPage fbp = new FacebookPage(frame, Email);
 					}
@@ -353,15 +321,16 @@ public class Timeline {
 		
 		frame.getContentPane().add(go);
 		panel = new JPanel();
-		//panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(130, 73, 603, 431);
-
-		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
+		panel.setBackground(new Color(240, 255, 255));
+		panel.setBounds(181, 73, 500, 431);
+		
+		
+		JLabel lblListaDeNotificaes = new JLabel("Lista de NotificaÃ§Ãµes");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
 		gestor.filterBySource(panel, sourceFilters, frame, Email);
-
+	
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
@@ -374,7 +343,7 @@ public class Timeline {
 			}
 		});
 		
-		JButton show = new JButton("Mostrar Notificação Completa");
+		JButton show = new JButton("Mostrar NotificaÃ§Ã£o Completa");
 		show.setBounds(300, 510, 250, 35);
 		frame.getContentPane().add(show);
 		show.addActionListener(new ActionListener() {
@@ -382,6 +351,7 @@ public class Timeline {
 				gestor.selectedRow();
 			}
 		});
+		frame.getContentPane().add(labelBackground);
 	}
 
 	@SuppressWarnings("unused")
@@ -403,6 +373,8 @@ public class Timeline {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+		
+		
 	}
 
 	public JFrame getFrame() {

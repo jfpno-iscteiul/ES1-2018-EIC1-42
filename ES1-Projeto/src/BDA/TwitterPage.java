@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,10 +23,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -80,6 +77,15 @@ public class TwitterPage {
 	 */
 	public void initialize() {
 		gestor = new Gestor();
+		JLabel labelBackground = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem3));
+		labelBackground.setForeground(SystemColor.window);
+		labelBackground.setBackground(SystemColor.activeCaption);
+		labelBackground.setBounds(0, 48, 863, 594);
+
+		
 		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,20 +93,9 @@ public class TwitterPage {
 		frame.setResizable(false);
 		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
-
-		JLabel labelBackground4 = new JLabel();
-		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-		Image imagem4 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-		labelBackground4.setIcon(new ImageIcon(imagem4));
-		labelBackground4.setForeground(SystemColor.window);
-		labelBackground4.setBackground(SystemColor.activeCaption);
-		labelBackground4.setBounds(0, 0, 863, 594);
-		frame.getContentPane().add(labelBackground4);
-		frame.setIconImage(imagem4);
-		
 		panel = new JPanel();
-		//panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(130, 100, 603, 431);
+		panel.setBackground(new Color(240, 255, 255));
+		panel.setBounds(181, 100, 500, 431);
 		
 
 		JMenuBar menuBar = new JMenuBar();
@@ -180,7 +175,7 @@ public class TwitterPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notificação");
+		headers.add("NotificaÃ§Ã£o");
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));
@@ -242,6 +237,7 @@ public class TwitterPage {
 			}
 		});
 		frame.add(retweetar);
+		frame.getContentPane().add(labelBackground);
 	}
 
 	/**
