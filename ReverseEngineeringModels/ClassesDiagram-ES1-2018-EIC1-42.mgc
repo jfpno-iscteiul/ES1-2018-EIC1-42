@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ClassDiagram>
-    <Class name="BDA.SetPasswordPage" x="715" y="233">
+    <Class name="BDA.SetPasswordPage" x="841" y="83">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -8,9 +8,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.Timeline" x="731" y="126">
+    <Class name="BDA.Timeline" x="733" y="202">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -18,12 +20,14 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Association destinationClassName="BDA.Gestor"
             endpointName="gestor" kind="Simple"/>
         <Communication destinationClassName="BDA.Gestor"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.Gestor" x="377" y="30">
+    <Class name="BDA.Gestor" x="550" y="-419">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -31,6 +35,14 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Twitter"
+            endpointName="twitter" kind="Simple"/>
+        <Association destinationClassName="BDA.Email"
+            endpointName="mail" kind="Simple"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
+        <Association destinationClassName="BDA.Facebook"
+            endpointName="facebook" kind="Simple"/>
         <Communication destinationClassName="BDA.Email"/>
         <Communication destinationClassName="BDA.Facebook"/>
         <Communication destinationClassName="BDA.Twitter"/>
@@ -44,8 +56,10 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
     </Class>
-    <Class name="BDA.SendEmailPage" x="846" y="18">
+    <Class name="BDA.SendEmailPage" x="1140" y="-244">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -53,8 +67,10 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Email"
+            endpointName="mail" kind="Simple"/>
     </Class>
-    <Class name="BDA.Email" x="906" y="325">
+    <Class name="BDA.Email" x="972" y="-333">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -62,9 +78,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.ShowSentEmail" x="733" y="25">
+    <Class name="BDA.ShowSentEmail" x="1249" y="-245">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -72,9 +90,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Email"
+            endpointName="mail" kind="Simple"/>
         <Communication destinationClassName="BDA.Email"/>
     </Class>
-    <Class name="BDA.Facebook" x="773" y="321">
+    <Class name="BDA.Facebook" x="1077" y="-51">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -82,9 +102,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.Twitter" x="848" y="325">
+    <Class name="BDA.Twitter" x="130" y="-199">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -92,9 +114,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.XMLFile" x="705" y="318">
+    <Class name="BDA.XMLFile" x="459" y="6">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -103,7 +127,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="BDA.ConfigurationsRem" x="403" y="352">
+    <Class name="BDA.ConfigurationsRem" x="331" y="250">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -111,9 +135,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.ComparadorDatas" x="323" y="218">
+    <Class name="BDA.ComparadorDatas" x="1069" y="146">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -123,7 +149,7 @@
             accessors-accepted="false" constructors-accepted="false"/>
         <Communication destinationClassName="BDA.Data"/>
     </Class>
-    <Class name="BDA.Data" x="255" y="281">
+    <Class name="BDA.Data" x="1075" y="221">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -132,7 +158,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="BDA.EmailPage" x="156" y="124">
+    <Class name="BDA.EmailPage" x="1022" y="-242">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -140,9 +166,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Email"
+            endpointName="mail" kind="Simple"/>
         <Communication destinationClassName="BDA.Email"/>
     </Class>
-    <Class name="BDA.MainWindow" x="131" y="12">
+    <Class name="BDA.MainWindow" x="127" y="-50">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -150,8 +178,10 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
     </Class>
-    <Class name="BDA.FacebookPage" x="12" y="171">
+    <Class name="BDA.FacebookPage" x="130" y="93">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -159,9 +189,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Facebook"
+            endpointName="facebook" kind="Simple"/>
         <Communication destinationClassName="BDA.Facebook"/>
     </Class>
-    <Class name="BDA.Notification" x="11" y="114">
+    <Class name="BDA.Notification" x="1067" y="90">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -170,7 +202,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="BDA.Configurations" x="47" y="264">
+    <Class name="BDA.Configurations" x="131" y="226">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -178,9 +210,11 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.XMLFile"
+            endpointName="xml" kind="Simple"/>
         <Communication destinationClassName="BDA.XMLFile"/>
     </Class>
-    <Class name="BDA.TwitterPage" x="12" y="13">
+    <Class name="BDA.TwitterPage" x="128" y="-347">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -188,6 +222,10 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="BDA.Twitter"
+            endpointName="twitter" kind="Simple"/>
+        <Association destinationClassName="BDA.Gestor"
+            endpointName="gestor" kind="Simple"/>
         <Communication destinationClassName="BDA.Twitter"/>
     </Class>
 </ClassDiagram>
