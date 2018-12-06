@@ -113,7 +113,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("Servi�os Associados");
+		headers.add("Serviços Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -123,7 +123,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("N�o tem servi�os associados a esta conta.");
+			row.add("N�o tem serviços associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
