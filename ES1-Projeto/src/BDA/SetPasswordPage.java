@@ -1,12 +1,10 @@
 package BDA;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -22,6 +20,7 @@ public class SetPasswordPage {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
+	private XMLFile xml = new XMLFile();
 	/**
 	 * Launch the application.
 	*/
@@ -95,7 +94,7 @@ public class SetPasswordPage {
 		JButton alterar= new JButton ("Alterar");
 		alterar.setBounds(180, 235, 80, 22);
 		frame.getContentPane().add(alterar);
-		alterar.addActionListener(new ActionListener() {/////////////NOVO//////////////
+		alterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String password1 = new String(passwordField.getPassword());
 				String password2 = new String(passwordField_1.getPassword());
@@ -109,22 +108,22 @@ public class SetPasswordPage {
 	}
 	
 	public void setPasswords(String emailText, String password1,String password2,String password3) {
-		if(XMLFile.getAttributteByEmail(emailText, "Password").equals(password1)) {
+		if(xml.getAttributteByEmail(emailText, "Password").equals(password1)) {
 			if(password2.equals(password3)) {
-				XMLFile.changeAttributte(emailText, "Password", password2);
+				xml.changeAttributte(emailText, "Password", password2);
 				JOptionPane optionPane = new JOptionPane("Palavra passe alterada com sucesso", JOptionPane.INFORMATION_MESSAGE);    
 				JDialog dialog = optionPane.createDialog("Sucesso!");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
 				frame.dispose();
 			}else {
-				JOptionPane optionPane = new JOptionPane("As palavras pass n√£o coincidem.", JOptionPane.ERROR_MESSAGE);    
+				JOptionPane optionPane = new JOptionPane("As palavras pass n„o coincidem.", JOptionPane.ERROR_MESSAGE);    
 				JDialog dialog = optionPane.createDialog("ERRO!");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
 			}
 		}else {
-			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu est√° errada.", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu est· errada.", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog("ERRO!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);

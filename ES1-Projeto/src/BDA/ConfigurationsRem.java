@@ -36,6 +36,7 @@ public class ConfigurationsRem {
 	private JFrame frame;
 	private String Email;
 	private int selected;
+	private XMLFile xml;
 	
 	/** @param   frame parameter gives an instance of the frame of the main page.
 	 * @param    Email is the email relative to the user.
@@ -44,6 +45,7 @@ public class ConfigurationsRem {
 	public ConfigurationsRem(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
+		xml=new XMLFile();
 		initialize();
 		setVisible(true);
 	}
@@ -70,7 +72,7 @@ public class ConfigurationsRem {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
-		ArrayList<String> accounts_list = XMLFile.list_account(Email);
+		ArrayList<String> accounts_list = xml.list_account(Email);
 
 		/**
 		 * Creates the menu for this window
@@ -103,7 +105,7 @@ public class ConfigurationsRem {
 		panel.setBounds(50, 73, 603, 431);
 
 		Vector<String> headers = new Vector<String>();
-		headers.add("ServiÃ§os Associados");
+		headers.add("Serviços Associados");
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		if (accounts_list.size() != 0) {
 			for (int i = 0; i < accounts_list.size(); i++) {
@@ -113,7 +115,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("NÃ£o tem serviÃ§os associados a esta conta.");
+			row.add("Não tem serviços associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);
@@ -153,22 +155,22 @@ public class ConfigurationsRem {
 			public void actionPerformed(ActionEvent e) {
 				String service = accounts_list.get(selected);
 				if (service.equals("Facebook")) {
-					XMLFile.changeAttributte(Email, "TokenAccessFacebook", "vazio");
+					xml.changeAttributte(Email, "TokenAccessFacebook", "vazio");
 					JOptionPane optionPane = new JOptionPane("Facebook removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
 				} else if (service.equals("Twitter")) {
-					XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
-					XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
-					XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
-					XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
+					xml.changeAttributte(Email, "AuthConsumerKeyTwitter", "vazio");
+					xml.changeAttributte(Email, "AuthConsumerSecretTwitter", "vazio");
+					xml.changeAttributte(Email, "AuthAccessTokenTwitter", "vazio");
+					xml.changeAttributte(Email, "AuthAccessTokenSecretTwitter", "vazio");
 					JOptionPane optionPane = new JOptionPane("Twitter removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);
 				} else if (service.equals("Email")) {
-					XMLFile.changeAttributte(Email, "PassEmail", "vazio");
+					xml.changeAttributte(Email, "PassEmail", "vazio");
 					JOptionPane optionPane = new JOptionPane("Email removido com sucesso!", JOptionPane.INFORMATION_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("Alerta!");
 					dialog.setAlwaysOnTop(true);

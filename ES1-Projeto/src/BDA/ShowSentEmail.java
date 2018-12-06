@@ -18,6 +18,7 @@ public class ShowSentEmail {
 	
 	private String email;
 	private JFrame frame;
+	private Email mail;
 	
 	
 	/**
@@ -27,6 +28,7 @@ public class ShowSentEmail {
 	 */
 	public ShowSentEmail(String email) {
 		this.email = email;
+		mail=new Email();
 		frame = new JFrame("Emails Enviados");
 		initialize();
 		setVisible(true);
@@ -46,7 +48,6 @@ public class ShowSentEmail {
 	 * Initialize.
 	 */
 	private void initialize() {
-		Gestor gestor = new Gestor();
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 600, 450);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,7 +59,7 @@ public class ShowSentEmail {
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(10, 10, 580, 430);
 		
-		ArrayList<String> list = Email.getSentEmails(email);
+		ArrayList<String> list = mail.getSentEmails(email);
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		/**
 		 * Inserts the posts in the table.
@@ -76,7 +77,7 @@ public class ShowSentEmail {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("NotificaÃ§Ã£o");
+		headers.add("Notificação");
 		
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));

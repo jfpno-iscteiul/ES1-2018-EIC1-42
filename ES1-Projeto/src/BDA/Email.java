@@ -22,6 +22,7 @@ import org.jsoup.Jsoup;
  * The Class Email.
  */
 public class Email {
+	private XMLFile xml = new XMLFile();
 
 	/**
 	 * Gets the emails.
@@ -29,9 +30,9 @@ public class Email {
 	 * @param email the email
 	 * @return the emails
 	 */
-	public static ArrayList<String> getEmails(String email) {
+	public ArrayList<String> getEmails(String email) {
 		ArrayList<String> result = new ArrayList<String>();
-		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
+		String password = xml.getAttributteByEmail(email, "PassEmail");
 
 		// set properties
 		Properties properties = new Properties();
@@ -100,9 +101,9 @@ public class Email {
 	 * @param email the email
 	 * @return the sent emails
 	 */
-	public static ArrayList<String> getSentEmails(String email) {
+	public ArrayList<String> getSentEmails(String email) {
 		ArrayList<String> result = new ArrayList<String>();
-		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
+		String password = xml.getAttributteByEmail(email, "PassEmail");
 		Properties properties = new Properties();
 		properties.put("mail.store.protocol", "imaps");
 		properties.put("mail.imaps.host", "imap.outlook.com");
@@ -159,8 +160,8 @@ public class Email {
 	 * @param subject the subject
 	 * @param text    the text
 	 */
-	public static void sendEmail(String email, String to, String subject, String text) {
-		String password = XMLFile.getAttributteByEmail(email, "PassEmail");
+	public void sendEmail(String email, String to, String subject, String text) {
+		String password = xml.getAttributteByEmail(email, "PassEmail");
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -202,7 +203,7 @@ public class Email {
 	 * @param message the message
 	 * @return the text
 	 */
-	private static String getText(Message message) {
+	private String getText(Message message) {
 		String result = new String();
 		if (message instanceof MimeMessage) {
 			MimeMessage m = (MimeMessage) message;

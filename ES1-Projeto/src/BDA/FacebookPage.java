@@ -36,6 +36,7 @@ public class FacebookPage {
 	JPanel panel;
 	private JFrame frame;
 	private String Email;
+	private Facebook facebook;
 	
 	/** @param   frame parameter gives an instance of the frame of the main page.
 	 * @param    Email is the email relative to the user.
@@ -91,7 +92,7 @@ public class FacebookPage {
 		frame.add(postar);
 		postar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Facebook.postOnGroup(textarea.getText(),Email);
+				facebook.postOnGroup(textarea.getText(),Email);
 				JOptionPane optionPane = new JOptionPane("O post foi feito com sucesso!",
 						JOptionPane.INFORMATION_MESSAGE);
 				JDialog dialog = optionPane.createDialog("OK");
@@ -136,7 +137,7 @@ public class FacebookPage {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 
-		ArrayList<String> list = Facebook.getFBNotifications(Email);
+		ArrayList<String> list = facebook.getFBNotifications(Email);
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		
 		/**
@@ -156,7 +157,7 @@ public class FacebookPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("NotificaÃ§Ã£o");
+		headers.add("Notificação");
 
 		JTable table = new JTable(data, headers);
 		table.setDefaultEditor(Object.class, null);

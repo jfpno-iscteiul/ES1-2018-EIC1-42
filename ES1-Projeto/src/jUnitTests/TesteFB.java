@@ -11,6 +11,8 @@ import BDA.Gestor;
 import BDA.Twitter;
 
 class TesteFB {
+	private Gestor gestor= new Gestor();
+	private Facebook fb=new Facebook();
 
 	@Test
 	void test() {
@@ -22,10 +24,10 @@ class TesteFB {
 		  * TEST TO : Write a file with the contents of each user related to facebook when it is offline and gets posts.
 		*/
 		
-		Gestor.writeFacebookPostsFile(email);
+		gestor.writeFacebookPostsFile(email);
 	
 	//	ArrayList<String> fb = Gestor.getFBPosts(email);
-		ArrayList<String> facebook = Facebook.getFBNotifications(email);
+		ArrayList<String> facebook = fb.getFBNotifications(email);
 		ArrayList<String> fbexp = new ArrayList<String>();  
 		fbexp.add("Facebook;;Wed Oct 24 16:38:44 BST 2018;;108383060155492_108424016818063;;Starting a new App, so happy!!");
 	//	assertEquals(fbexp, fb);

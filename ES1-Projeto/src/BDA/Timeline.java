@@ -15,7 +15,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -23,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
@@ -39,10 +37,12 @@ public class Timeline {
 	private JPanel panel;
 	private JFrame frame;
 	private String Email;
+	private XMLFile xml;
 
 	public Timeline(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
+		xml=new XMLFile();
 		initialize();
 		setVisible(true);
 	}
@@ -58,13 +58,13 @@ public class Timeline {
 	@SuppressWarnings("static-access")
 	private void writeFiles() {
 		if (gestor.isOnline()) {
-			if (XMLFile.haveTwitter(Email)) {
+			if (xml.haveTwitter(Email)) {
 				gestor.writeTweetsFile(Email);
 			}
-			if (XMLFile.haveFacebook(Email)) {
+			if (xml.haveFacebook(Email)) {
 				gestor.writeFacebookPostsFile(Email);
 			}
-			if (XMLFile.haveEmail(Email)) {
+			if (xml.haveEmail(Email)) {
 				gestor.writeEmailsFile(Email);
 			}
 		}
@@ -117,7 +117,7 @@ public class Timeline {
 		mnOrdenar.add(mntmAntigasPrimeiro);
 		mntmAntigasPrimeiro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<String> list = Gestor.orderByDate();
+				ArrayList<String> list = gestor.orderByDate();
 				Collections.reverse(list);
 				gestor.addRows(panel, list, frame);
 			}
@@ -128,7 +128,7 @@ public class Timeline {
 		mnOrdenar.add(mntmRecentesPrimeiro);
 		mntmRecentesPrimeiro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<String> list = Gestor.orderByDate();
+				ArrayList<String> list = gestor.orderByDate();
 				gestor.addRows(panel, list, frame);
 			}
 		});
@@ -137,11 +137,11 @@ public class Timeline {
 		mnFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnFiltrar);
 
-		JMenu mnFonteDeInformao = new JMenu("Fonte de InformaÃ§Ã£o");
+		JMenu mnFonteDeInformao = new JMenu("Fonte de Informação");
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
-		if(XMLFile.haveFacebook(Email)) {
+		if(xml.haveFacebook(Email)) {
 		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
 		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxFacebook);
@@ -161,7 +161,7 @@ public class Timeline {
 		});
 		}
 		
-		if(XMLFile.haveEmail(Email)) {
+		if(xml.haveEmail(Email)) {
 		JCheckBox chckbxEmail = new JCheckBox("Email");
 		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxEmail);
@@ -181,7 +181,7 @@ public class Timeline {
 		});
 		}
 
-		if(XMLFile.haveTwitter(Email)) {
+		if(xml.haveTwitter(Email)) {
 		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
 		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFonteDeInformao.add(chckbxTwitter);
@@ -217,7 +217,7 @@ public class Timeline {
 		        	 String date = txtEscrevaAqui.getText();
 
 		        	 // Filtrar por data
-		        	 ArrayList<String> lista = Gestor.filterByDate(date);
+		        	 ArrayList<String> lista = gestor.filterByDate(date);
 		        	 gestor.addRows(panel, lista, frame);
 		        	 
 		         }
@@ -229,7 +229,7 @@ public class Timeline {
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
 
-		JMenuItem mntmASuaConta = new JMenuItem("ConfiguraÃ§Ãµes");
+		JMenuItem mntmASuaConta = new JMenuItem("Configurações");
 		mntmASuaConta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
@@ -253,7 +253,7 @@ public class Timeline {
 
 		if (gestor.isOnline()) {
 
-			if (XMLFile.haveTwitter(Email)) {
+			if (xml.haveTwitter(Email)) {
 				Image icone11 = new ImageIcon(this.getClass().getResource("/twitterm.png")).getImage();
 
 				JButton button2 = new JButton("");
@@ -281,7 +281,7 @@ public class Timeline {
 				});
 			}
 
-			if (XMLFile.haveFacebook(Email)) {
+			if (xml.haveFacebook(Email)) {
 				Image icone2 = new ImageIcon(this.getClass().getResource("/facebookm.png")).getImage();
 
 				JButton button3 = new JButton("");
@@ -309,7 +309,7 @@ public class Timeline {
 				});
 			}
 
-			if (XMLFile.haveEmail(Email)) {
+			if (xml.haveEmail(Email)) {
 				Image icone4 = new ImageIcon(this.getClass().getResource("/emailm.png")).getImage();
 
 				JButton button5 = new JButton("");
@@ -346,7 +346,7 @@ public class Timeline {
 		go.setBounds(290, 47, 100, 20);
 		go.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<String> lista= Gestor.filterByWord(Gestor.getAtualist(),search.getText() );
+				ArrayList<String> lista= gestor.filterByWord(gestor.getAtualist(),search.getText() );
 				gestor.addRows(panel, lista, frame);
 			}
 		});
@@ -356,7 +356,7 @@ public class Timeline {
 		//panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(130, 73, 603, 431);
 
-		JLabel lblListaDeNotificaes = new JLabel("Lista de NotificaÃ§Ãµes");
+		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
 		panel.add(lblListaDeNotificaes);
@@ -374,7 +374,7 @@ public class Timeline {
 			}
 		});
 		
-		JButton show = new JButton("Mostrar NotificaÃ§Ã£o Completa");
+		JButton show = new JButton("Mostrar Notificação Completa");
 		show.setBounds(300, 510, 250, 35);
 		frame.getContentPane().add(show);
 		show.addActionListener(new ActionListener() {

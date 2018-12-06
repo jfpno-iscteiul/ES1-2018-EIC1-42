@@ -1,32 +1,19 @@
 package BDA;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import javax.swing.SpringLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,10 +23,10 @@ import java.awt.Button;
 public class SendEmailPage {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JTextField to;
 	private JTextField subject;
 	private String email;
+	private Email mail;
 
 	/**
 	 * Instantiates a new send email page.
@@ -48,6 +35,7 @@ public class SendEmailPage {
 	 */
 	public SendEmailPage(String email) {
 		this.email = email;
+		mail = new Email();
 		initialize();
 	}
 
@@ -121,7 +109,7 @@ public class SendEmailPage {
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Email.sendEmail(email, to.getText(), subject.getText(), content.getText());
+				mail.sendEmail(email, to.getText(), subject.getText(), content.getText());
 				JOptionPane optionPane = new JOptionPane("Email enviado!",
 						JOptionPane.INFORMATION_MESSAGE);
 				JDialog dialog = optionPane.createDialog("OK");

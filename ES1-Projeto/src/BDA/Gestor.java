@@ -31,13 +31,16 @@ public class Gestor {
 	private ArrayList<String> tweets;
 	private ArrayList<String> fbPosts;
 	private ArrayList<String> emails;
-	private static ArrayList<String> allNotifications;
+	private ArrayList<String> allNotifications;
 	private ArrayList<String> filteredPosts;
-	private static ArrayList<String> atualist;
+	private ArrayList<String> atualist;
 	private JTable table;
 	private int selected;
-
-
+	private XMLFile xml= new XMLFile();
+	private Facebook facebook = new Facebook();
+	private Email mail = new Email();
+	private Twitter twitter =  new Twitter();
+	
 	/**
 	 * Filter by source.
 	 *
@@ -58,15 +61,15 @@ public class Gestor {
 		allNotifications = new ArrayList<String>();
 		atualist = new ArrayList<String>();
 
-		if (XMLFile.haveTwitter(Email)) {
+		if (xml.haveTwitter(Email)) {
 			tweets = getTweets(Email);
 			allNotifications.addAll(tweets);
 		}
-		if (XMLFile.haveFacebook(Email)) {
+		if (xml.haveFacebook(Email)) {
 			fbPosts = getFBPosts(Email);
 			allNotifications.addAll(fbPosts);
 		}
-		if (XMLFile.haveEmail(Email)) {
+		if (xml.haveEmail(Email)) {
 			emails = getEmail(Email);
 			allNotifications.addAll(emails);
 		}
@@ -78,7 +81,7 @@ public class Gestor {
 					if (Sources.get(i).equals("Twitter")) {
 						filteredPosts.addAll(tweets);
 					}
-					if (Sources.get(i).equals("Facebook")) {
+					if (Sources.get(i).equals("facebook")) {
 						filteredPosts.addAll(fbPosts);
 					}
 					if (Sources.get(i).equals("Email")) {
@@ -92,7 +95,7 @@ public class Gestor {
 				addRows(panel, allNotifications, frame);
 			}
 		} else {
-			JOptionPane optionPane = new JOptionPane("NÃ£o existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane optionPane = new JOptionPane("Não existe dados para mostrar!", JOptionPane.INFORMATION_MESSAGE);
 			JDialog dialog = optionPane.createDialog("Alerta!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
@@ -135,7 +138,7 @@ public class Gestor {
 		headers.add("Plataforma");
 		headers.add("Data");
 		headers.add("User");
-		headers.add("NotificaÃ§Ã£o");
+		headers.add("Notificação");
 
 
 		table = new JTable(data, headers);
@@ -149,13 +152,11 @@ public class Gestor {
 		panel.add(new JScrollPane(table));
 		frame.add(panel);
 		frame.repaint();
-
 	}
 
 	/**
 	 * Selected row.
 	 */
-
 	public void selectedRow (){
 		String res = atualist.get(selected);
 		String[] lineSplited = res.split(";;");
@@ -178,8 +179,8 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 */
 
-	public static void writeTweetsFile(String Email) {
-		ArrayList<String> tweets = Twitter.getTweets(Email);
+	public void writeTweetsFile(String Email) {
+		ArrayList<String> tweets = twitter.getTweets(Email);
 		File fold = new File("../src/Tweets/" + Email + ".txt");
 		fold.delete();
 		File fnew = new File("Tweets/" + Email + ".txt");
@@ -218,8 +219,8 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 */
 
-	public static void writeFacebookPostsFile(String Email) {
-		ArrayList<String> posts = Facebook.getFBNotifications(Email);
+	public void writeFacebookPostsFile(String Email) {
+		ArrayList<String> posts = facebook.getFBNotifications(Email);
 		File fold = new File("../src/FBPosts/" + Email + ".txt");
 		fold.delete();
 		File fnew = new File("FBPosts/" + Email + ".txt");
@@ -312,7 +313,7 @@ public class Gestor {
 	 * @throws IOException
 	 */
 
-	public static boolean isOnline() {
+	public boolean isOnline() {
 		try {
 			return isHostAvailable("google.com") || isHostAvailable("outlook.com") || isHostAvailable("facebook.com")
 					|| isHostAvailable("twitter.com");
@@ -329,7 +330,7 @@ public class Gestor {
 	 * @return true, if is host available
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public static boolean isHostAvailable(String hostName) throws IOException {
+	public boolean isHostAvailable(String hostName) throws IOException {
 		boolean aux = false;
 		try (Socket socket = new Socket()) {
 			int port = 80;
@@ -351,8 +352,8 @@ public class Gestor {
 	 * @param Email is the email relative to the user.
 	 */
 
-	public static void writeEmailsFile(String email) {
-		ArrayList<String> emails = Email.getEmails(email);
+	public void writeEmailsFile(String email) {
+		ArrayList<String> emails = mail.getEmails(email);
 		File fold = new File("../src/Emails/" + email + ".txt");
 		fold.delete();
 		File fnew = new File("Emails/" + email + ".txt");
@@ -435,7 +436,7 @@ public class Gestor {
 	 * @return if a twitter has already been retweet.
 	 */
 
-	public static boolean isRetweeted (long tweet, String Email) {
+	public boolean isRetweeted (long tweet, String Email) {
 		boolean res=false;
 		Scanner scanner;
 		String myString = Long.toString(tweet);
@@ -464,7 +465,7 @@ public class Gestor {
 	 * @return a list of filtered notifications by word.
 	 */
 
-	public static  ArrayList<String> filterByWord(ArrayList<String> list, String word){
+	public  ArrayList<String> filterByWord(ArrayList<String> list, String word){
 		ArrayList<String> result = new ArrayList<String>();
 		for(int i =0;i!= list.size();i++) {
 			if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
@@ -475,7 +476,7 @@ public class Gestor {
 		return result;
 	}
 
-	public static ArrayList<String> filterByDate(String searchDate){
+	public ArrayList<String> filterByDate(String searchDate){
 		if (!searchDate.isEmpty()) {
 			ArrayList<String> result= new ArrayList <String>();
 			String [] dateForSearch = searchDate.split("-");
@@ -507,7 +508,7 @@ public class Gestor {
 		 * @return a month.
 		 */
 
-		public static String auxDate(String string) {
+		public String auxDate(String string) {
 			String result="";
 			if(string.equals("Jan")) {
 				result="01";
@@ -547,7 +548,7 @@ public class Gestor {
 		 */
 
 		
-		public static ArrayList<String> orderByDate(){
+		public ArrayList<String> orderByDate(){
 			ArrayList<Data> datesList= new ArrayList<Data>();
 			ArrayList<String> orderedList= new ArrayList<String>();
 			for(int i=0;i!= atualist.size();i++) {
@@ -593,7 +594,7 @@ public class Gestor {
 		/**
 		 * @return an actual list of notifications.
 		 */
-		public static ArrayList<String> getAtualist(){
+		public ArrayList<String> getAtualist(){
 			return atualist;
 		}
 

@@ -14,16 +14,19 @@ import com.restfb.types.Post;
  */
 
 public class Facebook {
+	
+	XMLFile xml = new XMLFile();
+	GraphResponse response;
+	
 	@SuppressWarnings("finally")
-	public static ArrayList<String> getFBNotifications(String email) {
+	public ArrayList<String> getFBNotifications(String email) {
 		ArrayList<String> posts = new ArrayList<String>();
 		try {
-			String tokenAccess = XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
-			@SuppressWarnings("deprecation")
+			String tokenAccess = xml.getAttributteByEmail(email, "TokenAccessFacebook");
 			FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 
 			Connection<Post> result = fbClient.fetchConnection("me/feed", Post.class);
-			//System.out.println("\nPosts:");
+			// System.out.println("\nPosts:");
 			int count = 0;
 			int countTotal = 0;
 			List<Post> listOfPosts = result.getData();
@@ -31,10 +34,10 @@ public class Facebook {
 				posts.add("Facebook" + ";;" + post.getCreatedTime().toString() + ";;" + post.getId() + ";;"
 						+ post.getMessage());
 				// if (post.getMessage() != null && post.getMessage().contains("happy")) {
-//					System.out.println("------ Post "+ count + " ------");
-//					System.out.println("Id: "+"fb.com/" + post.getId());
-//					System.out.println("Message: " + post.getMessage());
-//					System.out.println("Created: " + post.getCreatedTime());
+				//					System.out.println("------ Post "+ count + " ------");
+				//					System.out.println("Id: "+"fb.com/" + post.getId());
+				//					System.out.println("Message: " + post.getMessage());
+				//					System.out.println("Created: " + post.getCreatedTime());
 				count++;
 				countTotal++;
 			}
@@ -51,9 +54,9 @@ public class Facebook {
 	/*
 	 * Needs special access
 	 * 
-	 * @SuppressWarnings("deprecation") public static void publish(String email,
-	 * String text) { String id = "100029513953648"; String pageAccessToken =
-	 * XMLFile.getAttributteByEmail(email, "TokenAccessFacebook"); FacebookClient
+	 * @SuppressWarnings("deprecation") public void publish(String email, String
+	 * text) { String id = "100029513953648"; String pageAccessToken =
+	 * xml.getAttributteByEmail(email, "TokenAccessFacebook"); FacebookClient
 	 * fbClient=null; try { fbClient = new DefaultFacebookClient(pageAccessToken); }
 	 * catch (FacebookException ex) { //So that you can see what went wrong
 	 * ex.printStackTrace(System.err); //in case you did anything incorrectly }
@@ -61,12 +64,13 @@ public class Facebook {
 	 * fbClient.publish(id + "/feed", FacebookType.class, Parameter.with("message",
 	 * text)); }
 	 */
-	
-	public static void postOnGroup (String text,String email) {
+
+	public void postOnGroup(String text, String email) {
 		String groupID = "1254500671355958";
-		String tokenAccess = XMLFile.getAttributteByEmail(email, "TokenAccessFacebook");
+		String tokenAccess = xml.getAttributteByEmail(email, "TokenAccessFacebook");
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
-		GraphResponse response = fbClient.publish(groupID + "/feed", GraphResponse.class, Parameter.with("message",text));
+		response = fbClient.publish(groupID + "/feed", GraphResponse.class,
+				Parameter.with("message", text));
 	}
 
 }

@@ -11,6 +11,8 @@ import BDA.SetPasswordPage;
 import BDA.XMLFile;
 
 class App {
+	private XMLFile xml= new XMLFile();
+	private Gestor gestor = new Gestor();
 
 	@Test
 	void test() {
@@ -27,14 +29,14 @@ class App {
 		assertEquals(true, visible);
 		
 		sp.setPasswords(email, password, password2, password3);
-		assertEquals("123", XMLFile.getAttributteByEmail(email, "Password"));
+		assertEquals("123", xml.getAttributteByEmail(email, "Password"));
 		
 		
 		String test= "Jan";
-		assertEquals("01", Gestor.auxDate(test));
+		assertEquals("01", gestor.auxDate(test));
 		
 		String test2="Apenas para testar";
-		String test3="Ol√°";
+		String test3="Ol·";
 		String test4="Vamos verificar se funciona";
 		ArrayList<String> list = new ArrayList<String>();
 		list.add(test2);
@@ -42,7 +44,7 @@ class App {
 		list.add(test4);
 		ArrayList<String> list2 = new ArrayList<String>();
 		list2.add(test2);
-		assertEquals(list2,Gestor.filterByWord(list, "testar"));
+		assertEquals(list2,gestor.filterByWord(list, "testar"));
 		
 	}
 

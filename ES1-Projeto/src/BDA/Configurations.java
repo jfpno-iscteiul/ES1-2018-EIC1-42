@@ -37,6 +37,7 @@ public class Configurations {
 	private JTextField textField_1;
 	private JFrame frame;
 	private String Email;
+	private XMLFile xml;
 
 	/**
 	 * @param frame parameter gives an instance of the frame of the main page.
@@ -45,6 +46,7 @@ public class Configurations {
 
 	public Configurations(JFrame frame, String Email) {
 		this.frame = frame;
+		xml=new XMLFile();
 		this.Email = Email;
 		initialize();
 		setVisible(true);
@@ -137,7 +139,7 @@ public class Configurations {
 		 * Creates a form for entering twitter data
 		 */
 
-		if (!XMLFile.haveTwitter(Email)) {
+		if (!xml.haveTwitter(Email)) {
 			JLabel AuthConsumerKey = new JLabel("AuthConsumerKey:");
 			AuthConsumerKey.setBounds(261, 110, 150, 14);
 			frame.getContentPane().add(AuthConsumerKey);
@@ -179,10 +181,10 @@ public class Configurations {
 			frame.getContentPane().add(btnAdicionarConta);
 			btnAdicionarConta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					XMLFile.changeAttributte(Email, "AuthConsumerKeyTwitter", textFieldACK.getText());
-					XMLFile.changeAttributte(Email, "AuthConsumerSecretTwitter", textFieldACKS.getText());
-					XMLFile.changeAttributte(Email, "AuthAccessTokenTwitter", textFieldAATS.getText());
-					XMLFile.changeAttributte(Email, "AuthAccessTokenSecretTwitter", textFieldAAT.getText());
+					xml.changeAttributte(Email, "AuthConsumerKeyTwitter", textFieldACK.getText());
+					xml.changeAttributte(Email, "AuthConsumerSecretTwitter", textFieldACKS.getText());
+					xml.changeAttributte(Email, "AuthAccessTokenTwitter", textFieldAATS.getText());
+					xml.changeAttributte(Email, "AuthAccessTokenSecretTwitter", textFieldAAT.getText());
 					JOptionPane optionPane = new JOptionPane("Twitter adicionado com sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Alerta!");
@@ -194,7 +196,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Twitter adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Twitter adicionada!");
 			lblEmail.setBounds(261, 140, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -205,7 +207,7 @@ public class Configurations {
 
 // FACEBOOK (555, 265, 158, 23);
 
-		if (!XMLFile.haveFacebook(Email)) {
+		if (!xml.haveFacebook(Email)) {
 			JLabel lblEmail = new JLabel("tokenAccess:");
 			lblEmail.setBounds(261, 265, 150, 14);
 			frame.getContentPane().add(lblEmail);
@@ -220,7 +222,7 @@ public class Configurations {
 			frame.getContentPane().add(button_1);
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					XMLFile.changeAttributte(Email, "TokenAccessFacebook", textField_1.getText());
+					xml.changeAttributte(Email, "TokenAccessFacebook", textField_1.getText());
 					JOptionPane optionPane = new JOptionPane("Facebook adicionado com sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Alerta!");
@@ -232,7 +234,7 @@ public class Configurations {
 				}
 			});
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Facebook adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Facebook adicionada!");
 			lblEmail.setBounds(261, 265, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}
@@ -240,7 +242,7 @@ public class Configurations {
 		 * Creates a form for entering email data
 		 */
 
-		if (!XMLFile.haveEmail(Email)) {
+		if (!xml.haveEmail(Email)) {
 			passwordField = new JPasswordField();
 			passwordField.setBounds(420, 402, 130, 20);
 			frame.getContentPane().add(passwordField);
@@ -263,7 +265,7 @@ public class Configurations {
 			button_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String pass = new String(passwordField.getPassword());
-					XMLFile.changeAttributte(Email, "PassEmail", pass);
+					xml.changeAttributte(Email, "PassEmail", pass);
 					JOptionPane optionPane = new JOptionPane("Email adicionado com sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Alerta!");
@@ -276,7 +278,7 @@ public class Configurations {
 			});
 
 		} else {
-			JLabel lblEmail = new JLabel("JÃ¡ tem uma conta de Email adicionada!");
+			JLabel lblEmail = new JLabel("Já tem uma conta de Email adicionada!");
 			lblEmail.setBounds(261, 405, 265, 14);
 			frame.getContentPane().add(lblEmail);
 		}

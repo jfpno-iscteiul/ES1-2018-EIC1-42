@@ -1,6 +1,7 @@
 package BDA;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
@@ -39,6 +40,8 @@ public class TwitterPage {
 	private JPanel panel;
 	private JFrame frame;
 	private String Email;
+	private Gestor gestor;
+	private Twitter twitter;
 
 	/**
 	 * Instantiates a new twitter page.
@@ -49,6 +52,7 @@ public class TwitterPage {
 	public TwitterPage(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
+		twitter = new Twitter();
 		initialize();
 		setVisible(true);
 	}
@@ -75,18 +79,29 @@ public class TwitterPage {
 	 * Initialize.
 	 */
 	public void initialize() {
-		Gestor gestor = new Gestor();
-		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
+		gestor = new Gestor();
+		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(240, 255, 255));
-		panel.setBounds(130, 100, 603, 431);
 
+		JLabel labelBackground4 = new JLabel();
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		Image imagem4 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground4.setIcon(new ImageIcon(imagem4));
+		labelBackground4.setForeground(SystemColor.window);
+		labelBackground4.setBackground(SystemColor.activeCaption);
+		labelBackground4.setBounds(0, 0, 863, 594);
+		frame.getContentPane().add(labelBackground4);
+		frame.setIconImage(imagem4);
+		
+		panel = new JPanel();
+		//panel.setBackground(new Color(240, 255, 255));
+		panel.setBounds(130, 100, 603, 431);
+		
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.window);
@@ -118,7 +133,7 @@ public class TwitterPage {
 		frame.add(tweetar);
 		tweetar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Twitter.tweet(textarea.getText(), Email);
+				twitter.tweet(textarea.getText(), Email);
 				JOptionPane optionPane = new JOptionPane("O tweet foi feito com sucesso!",
 						JOptionPane.INFORMATION_MESSAGE);
 				JDialog dialog = optionPane.createDialog("OK");
@@ -146,8 +161,8 @@ public class TwitterPage {
 		scrollPane.setBounds(170, 430, 557, -346);
 		frame.getContentPane().add(scrollPane);
 
-		ArrayList<String> list = Twitter.getTweets(Email);
-		ArrayList<Long> ids = Twitter.getTweetsId();
+		ArrayList<String> list = twitter.getTweets(Email);
+		ArrayList<Long> ids = twitter.getTweetsId();
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		/**
 		 * Inserts the posts in the table.
@@ -165,7 +180,7 @@ public class TwitterPage {
 		Vector<String> headers = new Vector<String>();
 		headers.add("Data");
 		headers.add("User");
-		headers.add("Notifica√ß√£o");
+		headers.add("NotificaÁ„o");
 
 		JTable table = new JTable(data, headers);
 		panel.add(new JScrollPane(table));
@@ -189,8 +204,9 @@ public class TwitterPage {
 				} else {
 					int selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
+					System.out.println(res);
 					String[] lineSplited = res.split(";;");
-					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
+					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], "");
 				}
 				
 			}
@@ -206,8 +222,8 @@ public class TwitterPage {
 
 				int i = table.getSelectedRow();
 				long indice = ids.get(i);
-				if (Gestor.isRetweeted(indice, Email) == false) {
-					Twitter.retweet(indice, Email);
+				if (gestor.isRetweeted(indice, Email) == false) {
+					twitter.retweet(indice, Email);
 					JOptionPane optionPane = new JOptionPane("O retweet foi feito com sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
 					JDialog dialog = optionPane.createDialog("INFO");
@@ -215,7 +231,7 @@ public class TwitterPage {
 					dialog.setVisible(true);
 					gestor.writeRetweet(indice, Email);
 				} else {
-					JOptionPane fail = new JOptionPane("Este tweet j√° foi retweetado!",
+					JOptionPane fail = new JOptionPane("Este tweet j· foi retweetado!",
 							JOptionPane.ERROR_MESSAGE);
 					JDialog ok = fail.createDialog("ERRO");
 					ok.setAlwaysOnTop(true);

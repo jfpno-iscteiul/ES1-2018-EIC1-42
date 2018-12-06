@@ -24,7 +24,7 @@ public class MainWindow {
 	private JTextField txtEmail;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
-
+	private XMLFile xml=new XMLFile();
 	/**
 	 * Launch the application.
 	 */
@@ -179,7 +179,7 @@ public class MainWindow {
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String pass = new String(passwordField.getPassword());
-				if(XMLFile.checkIfUserExists(txtEmail.getText(), pass)) {
+				if(xml.checkIfUserExists(txtEmail.getText(), pass)) {
 					frame.getContentPane().removeAll();
 					frame.repaint();
 					@SuppressWarnings("unused")

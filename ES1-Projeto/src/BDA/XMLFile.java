@@ -41,7 +41,7 @@ public class XMLFile {
 	 */
 
 
-	public static void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF, String passmail) {
+	public  void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF, String passmail) {
 		try {	
 			File inputFile = new File("config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -108,7 +108,7 @@ public class XMLFile {
 	 * @return      true if a given email with a given password is already registered in the XML file.
 	 */
 
-	public static boolean checkIfUserExists(String email, String pass) {
+	public boolean checkIfUserExists(String email, String pass) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
@@ -134,7 +134,7 @@ public class XMLFile {
 	 * @return      true if a user have a valid TokenAccessFacebook in the XML file.
 	 */
 
-	public static boolean haveFacebook(String email) {
+	public boolean haveFacebook(String email) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		try {
@@ -160,7 +160,7 @@ public class XMLFile {
 	}
 
 
-	public static boolean haveEmail(String email) {
+	public boolean haveEmail(String email) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		try {
@@ -191,7 +191,7 @@ public class XMLFile {
 	 * @return      true if a user have a valid TokenAccessFacebook in the XML file.
 	 */
 
-	public static boolean haveTwitter(String email) {
+	public boolean haveTwitter(String email) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		try {
@@ -211,10 +211,7 @@ public class XMLFile {
 						return false;
 				}
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {e.printStackTrace();}
 		return false;
 
 	}
@@ -228,7 +225,7 @@ public class XMLFile {
 	 * @return      true if a user exists with that email
 	 */
 
-	public static boolean checkIfUserExistsByEmail(String email) {
+	public boolean checkIfUserExistsByEmail(String email) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
@@ -253,7 +250,7 @@ public class XMLFile {
 	 * @param    newValue is the new value to assign.
 	 */
 
-	public static void changeAttributte(String email, String Attributte, String newValue) {
+	public void changeAttributte(String email, String Attributte, String newValue) {
 		String filePath = "config.xml";
 		File xmlFile = new File(filePath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -294,7 +291,7 @@ public class XMLFile {
 	 */
 
 
-	private static void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
+	private void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
 		NodeList users = doc.getElementsByTagName("Utilizador");
 		Element user;
 		//loop for each Utilizador
@@ -316,7 +313,7 @@ public class XMLFile {
 	 * @return      the attributte asked in the method
 	 */
 
-	public static String getAttributteByEmail(String email, String attribute) {
+	public String getAttributteByEmail(String email, String attribute) {
 		String value= null;
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -342,7 +339,7 @@ public class XMLFile {
 	/** * @param    email is the email relative to the user.
 	 * @return     a list of services associated with a particular user.
 	 */
-	public static ArrayList<String> list_account(String email){
+	public ArrayList<String> list_account(String email){
 		ArrayList<String> res= new ArrayList<String>();
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

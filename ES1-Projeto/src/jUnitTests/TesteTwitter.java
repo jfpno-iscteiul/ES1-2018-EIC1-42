@@ -15,6 +15,8 @@ import BDA.Gestor;
 import BDA.Twitter;
 
 class TesteTwitter {
+	private Gestor gestor=new Gestor();
+	private Twitter tt = new Twitter();
 
 	@Test
 	void test() {
@@ -24,7 +26,7 @@ class TesteTwitter {
 		  * TEST TO : Write a file with the contents of each user related to twitter when it is offline and gets posts.
 		*/
 		
-		Gestor.writeTweetsFile(email);
+		gestor.writeTweetsFile(email);
 	//	ArrayList<String> tw = Gestor.getTweets(email);
 		ArrayList<String> twexp = new ArrayList<String>(); 
 	//	twexp.add("Twitter;;Fri Nov 23 14:34:38 GMT 2018;;ISTAR-IUL;;Computa��o e Sociedade | Funda��o Calouste Gulbenkian https://t.co/2JMlXjITON");   
@@ -39,7 +41,7 @@ class TesteTwitter {
 		*/
 		
 		final long start = System.nanoTime();
-		Twitter.tweet("Just doing a test!", email);
+		tt.tweet("Just doing a test!", email);
 		final long end = System.nanoTime();
 		Date date=new Date();
 		Calendar calendar=Calendar.getInstance();
@@ -47,7 +49,7 @@ class TesteTwitter {
 		calendar.set(Calendar.SECOND,(int) (calendar.get(Calendar.SECOND) - ((end - start) / 1000000000) - 2));
 		System.out.println(calendar.getTime().toString());
 		twexp.add("Twitter;;" + calendar.getTime() + ";;EIC142;;Just doing a test!");
-		Gestor.writeTweetsFile(email);
+		gestor.writeTweetsFile(email);
 	//	tw = Gestor.getTweets(email);
 		Collections.sort(twexp, Collections.reverseOrder());
 	//	assertEquals(twexp, tw);

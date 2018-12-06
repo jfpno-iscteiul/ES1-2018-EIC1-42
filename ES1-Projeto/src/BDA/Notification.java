@@ -29,6 +29,7 @@ public class Notification {
 	 * @param subject   the subject
 	 * @param content   the content
 	 */
+	@SuppressWarnings("static-access")
 	public Notification(String Plataform, String Sender, String Date, String subject, String content) {
 		frame = new JFrame("Bom dia Academia");
 		frame.setVisible(true);

@@ -29,7 +29,7 @@ public class EmailPage {
 	private JFrame frame;
 	private String email;
 	private int selected;
-
+	private Email mail;
 	/**
 	 * Instantiates a new email page.
 	 *
@@ -39,8 +39,10 @@ public class EmailPage {
 	public EmailPage(JFrame frame, String email) {
 		this.email = email;
 		this.frame = frame;
+		mail = new Email();
 		initialize();
 		setVisible(true);
+		
 	}
 
 	/**
@@ -65,7 +67,6 @@ public class EmailPage {
 	 * Initialize.
 	 */
 	private void initialize() {
-		Gestor gestor = new Gestor();
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,7 +121,7 @@ public class EmailPage {
 		});
 		
 		
-		ArrayList<String> list = Email.getEmails(email);
+		ArrayList<String> list = mail.getEmails(email);
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		/**
 		 * Inserts the posts in the table.
@@ -159,7 +160,7 @@ public class EmailPage {
 				if(lsm.isSelectionEmpty()) {
 					return;
 				} else {
-					int selected = lsm.getMinSelectionIndex();
+					selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
 					String[] lineSplited = res.split(";;");
 					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
@@ -189,7 +190,7 @@ public class EmailPage {
 	 * @param popup the popup
 	 */
 	@SuppressWarnings("unused")
-	private static void addPopup(Component component, final JPopupMenu popup) {
+	private void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
