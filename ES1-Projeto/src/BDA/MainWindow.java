@@ -24,6 +24,7 @@ public class MainWindow {
 	private JTextField txtEmail;
 	private JPasswordField passwordField;
 	private JLabel lblNewLabel;
+	private String stringAutores = "Realizado por:";
 
 	/**
 	 * Launch the application.
@@ -66,15 +67,14 @@ public class MainWindow {
 		frame.setResizable(false);
 		
 		JLabel labelBackground = new JLabel();
-		Image imagemTEST = new ImageIcon(this.getClass().getResource("/iscte.png")).getImage();
+		Image imagemTEST = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
 		labelBackground.setIcon(new ImageIcon(imagemTEST));
 		labelBackground.setForeground(SystemColor.window);
 		labelBackground.setBackground(SystemColor.activeCaption);
 		labelBackground.setBounds(0, 0, 863, 594);
-
+		
 		frame.getContentPane().add(labelBackground);
 		frame.setIconImage(imagemTEST);
-		
 		
 		JButton btnSignUp = new JButton("");
 		Image signUp = new ImageIcon(this.getClass().getResource("/button_sign-up.png")).getImage();
@@ -91,7 +91,7 @@ public class MainWindow {
 		});
 
 		btnSignUp.setFont(new Font("Calibri Light", Font.BOLD, 19));
-		btnSignUp.setBounds(472, 350, 151, 43);
+		btnSignUp.setBounds(484, 360, 151, 43);
 		labelBackground.add(btnSignUp);
 
 		/**
@@ -106,8 +106,14 @@ public class MainWindow {
 		labelBackground.add(lblNewLabel);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(410, 100, 313, 154);
+		panel.setBounds(410, 120, 313, 154);
 		panel.setLayout(null);
+		
+		
+		//SEM O PANEL A VER-SE
+		panel.setOpaque(false);
+		
+		
 		
 		labelBackground.add(panel);
 	
@@ -138,7 +144,7 @@ public class MainWindow {
 		panel.add(chckbxMostrarPassword);
 
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEmail.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblEmail.setBounds(21, 21, 46, 14);
 		panel.add(lblEmail);
 
@@ -148,7 +154,7 @@ public class MainWindow {
 		passwordField.setEchoChar('*');
 
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPassword.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblPassword.setBounds(21, 80, 70, 14);
 		labelBackground.add(lblPassword);
 		panel.add(lblPassword);
@@ -156,7 +162,7 @@ public class MainWindow {
 		JButton buttonLogin= new JButton("");
 		Image logInImage = new ImageIcon(this.getClass().getResource("/button_login.png")).getImage();
 		buttonLogin.setIcon(new ImageIcon(logInImage));
-		buttonLogin.setBounds(472, 280, 151, 43);
+		buttonLogin.setBounds(484, 290, 151, 43);
 		buttonLogin.setForeground(SystemColor.window);
 		buttonLogin.setBackground(SystemColor.window);
 		labelBackground.add(buttonLogin);
@@ -180,7 +186,7 @@ public class MainWindow {
 				}
 			}
 		});
-		buttonLogin.setFont(new Font("Tahoma", Font.PLAIN, 7));
+		buttonLogin.setFont(new Font("Calibri", Font.PLAIN, 7));
 		chckbxMostrarPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxMostrarPassword.isSelected()) {
