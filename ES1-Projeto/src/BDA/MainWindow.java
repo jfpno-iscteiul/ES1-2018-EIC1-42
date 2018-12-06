@@ -67,14 +67,14 @@ public class MainWindow {
 		
 		JLabel labelBackground = new JLabel();
 		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-		Image imagemTEST = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
-		labelBackground.setIcon(new ImageIcon(imagemTEST));
+		Image imagem1 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
+		labelBackground.setIcon(new ImageIcon(imagem1));
 		labelBackground.setForeground(SystemColor.window);
 		labelBackground.setBackground(SystemColor.activeCaption);
 		labelBackground.setBounds(0, 0, 863, 594);
 		
 		frame.getContentPane().add(labelBackground);
-		frame.setIconImage(imagemTEST);
+		frame.setIconImage(imagem1);
 		
 		JButton btnSignUp = new JButton("");
 		Image signUp = new ImageIcon(this.getClass().getResource("/button_sign-up.png")).getImage();
@@ -87,13 +87,13 @@ public class MainWindow {
 				
 				JLabel labelBackground2 = new JLabel();
 				//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-				Image imagemTEST2 = new ImageIcon(this.getClass().getResource("/iscte_wm.png")).getImage();
-				labelBackground2.setIcon(new ImageIcon(imagemTEST));
+				Image imagem2 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+				labelBackground2.setIcon(new ImageIcon(imagem2));
 				labelBackground2.setForeground(SystemColor.window);
 				labelBackground2.setBackground(SystemColor.activeCaption);
 				labelBackground2.setBounds(0, 0, 863, 594);
 				frame.getContentPane().add(labelBackground2);
-				frame.setIconImage(imagemTEST2);
+				frame.setIconImage(imagem2);
 				frame.repaint();
 				
 				@SuppressWarnings("unused")

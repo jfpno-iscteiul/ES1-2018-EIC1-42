@@ -81,13 +81,13 @@ public class Timeline {
 		
 		JLabel labelBackground3 = new JLabel();
 		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-		Image imagemTEST3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-		labelBackground3.setIcon(new ImageIcon(imagemTEST3));
+		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+		labelBackground3.setIcon(new ImageIcon(imagem3));
 		labelBackground3.setForeground(SystemColor.window);
 		labelBackground3.setBackground(SystemColor.activeCaption);
 		labelBackground3.setBounds(0, 48, 863, 594);
 		frame.getContentPane().add(labelBackground3);
-		frame.setIconImage(imagemTEST3);
+		frame.setIconImage(imagem3);
 		
 		//frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
@@ -253,7 +253,18 @@ public class Timeline {
 				button2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
+						
+						JLabel labelBackground4 = new JLabel();
+						//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+						Image imagem4 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+						labelBackground4.setIcon(new ImageIcon(imagem4));
+						labelBackground4.setForeground(SystemColor.window);
+						labelBackground4.setBackground(SystemColor.activeCaption);
+						labelBackground4.setBounds(0, 0, 863, 594);
+						frame.getContentPane().add(labelBackground4);
+						frame.setIconImage(imagem4);
 						frame.repaint();
+						
 						@SuppressWarnings("unused")
 						TwitterPage tp = new TwitterPage(frame, Email);
 					}
@@ -270,7 +281,18 @@ public class Timeline {
 				button3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
+			
+						JLabel labelBackground5 = new JLabel();
+						//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+						Image imagem5 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
+						labelBackground5.setIcon(new ImageIcon(imagem5));
+						labelBackground5.setForeground(SystemColor.window);
+						labelBackground5.setBackground(SystemColor.activeCaption);
+						labelBackground5.setBounds(0, 0, 863, 594);
+						frame.getContentPane().add(labelBackground5);
+						frame.setIconImage(imagem5);
 						frame.repaint();
+						
 						@SuppressWarnings("unused")
 						FacebookPage fbp = new FacebookPage(frame, Email);
 					}
