@@ -88,18 +88,6 @@ public class MainWindow {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
-
-//				JLabel labelBackground2 = new JLabel();
-//				//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
-//				Image imagem2 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
-//				labelBackground2.setIcon(new ImageIcon(imagem2));
-//				labelBackground2.setForeground(SystemColor.window);
-//				labelBackground2.setBackground(SystemColor.activeCaption);
-//				labelBackground2.setBounds(0, 0, 863, 594);
-//				frame.getContentPane().add(labelBackground2);
-//				frame.setIconImage(imagem2);
-
-				
 				@SuppressWarnings("unused")
 				SignUp signUp = new SignUp(frame);
 			}
@@ -148,7 +136,7 @@ public class MainWindow {
 		txtEmail.setColumns(10);
 
 		JCheckBox chckbxMostrarPassword = new JCheckBox("Mostrar password");
-		chckbxMostrarPassword.setBounds(143, 128, 150, 23);
+		chckbxMostrarPassword.setBounds(155, 128, 130, 23);
 		
 		labelBackground.add(chckbxMostrarPassword);
 		panel.add(chckbxMostrarPassword);
