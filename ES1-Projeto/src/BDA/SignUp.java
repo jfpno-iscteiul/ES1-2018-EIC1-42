@@ -64,8 +64,7 @@ public class SignUp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
-		frame.setIconImage(imagem);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
 		Image icon = new ImageIcon(this.getClass().getResource("/logof.png")).getImage();
 		JLabel label = new JLabel("");
@@ -158,7 +157,7 @@ public class SignUp {
 				if(emailField.getText().contains("@iscte-iul.pt")) {
 					if(password1.equals(password2)) {
 						if(xml.checkIfUserExistsByEmail(emailField.getText())) {
-							JOptionPane optionPane = new JOptionPane("O email inserido jï¿½ estï¿½ associado a um utilizador.", JOptionPane.ERROR_MESSAGE);    
+							JOptionPane optionPane = new JOptionPane("O email inserido já está associado a um utilizador.", JOptionPane.ERROR_MESSAGE);    
 							JDialog dialog = optionPane.createDialog("ERRO");
 							dialog.setAlwaysOnTop(true);
 							dialog.setVisible(true);
@@ -170,13 +169,13 @@ public class SignUp {
 						Configurations conf= new Configurations(frame, emailField.getText());
 						}
 					} else {
-						JOptionPane optionPane = new JOptionPane("As password inseridas nï¿½o coincidem.", JOptionPane.ERROR_MESSAGE);    
+						JOptionPane optionPane = new JOptionPane("As password inseridas não coincidem.", JOptionPane.ERROR_MESSAGE);    
 						JDialog dialog = optionPane.createDialog("ERRO");
 						dialog.setAlwaysOnTop(true);
 						dialog.setVisible(true);
 					}
 				}else {
-					JOptionPane optionPane = new JOptionPane("O email inserido nï¿½o ï¿½ do dominio IscteIul.", JOptionPane.ERROR_MESSAGE);    
+					JOptionPane optionPane = new JOptionPane("O email inserido não é do dominio IscteIul.", JOptionPane.ERROR_MESSAGE);    
 					JDialog dialog = optionPane.createDialog("ERRO");
 					dialog.setAlwaysOnTop(true);
 					dialog.setVisible(true);

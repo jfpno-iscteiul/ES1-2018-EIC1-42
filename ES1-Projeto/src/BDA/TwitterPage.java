@@ -91,8 +91,7 @@ public class TwitterPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
-		frame.setIconImage(imagem);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));

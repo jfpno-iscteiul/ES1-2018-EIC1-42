@@ -3,7 +3,6 @@ package BDA;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -54,8 +53,7 @@ public class SetPasswordPage {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
-		frame.setIconImage(imagem);
+		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
 		JLabel lblAlterarPassword = new JLabel("Alterar Password");
 		lblAlterarPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblAlterarPassword.setBounds(149, 13, 165, 33);
@@ -119,13 +117,13 @@ public class SetPasswordPage {
 				dialog.setVisible(true);
 				frame.dispose();
 			}else {
-				JOptionPane optionPane = new JOptionPane("As palavras pass nï¿½o coincidem.", JOptionPane.ERROR_MESSAGE);    
+				JOptionPane optionPane = new JOptionPane("As palavras pass não coincidem.", JOptionPane.ERROR_MESSAGE);    
 				JDialog dialog = optionPane.createDialog("ERRO!");
 				dialog.setAlwaysOnTop(true);
 				dialog.setVisible(true);
 			}
 		}else {
-			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu estï¿½ errada.", JOptionPane.ERROR_MESSAGE);    
+			JOptionPane optionPane = new JOptionPane("A password antiga que inseriu está errada.", JOptionPane.ERROR_MESSAGE);    
 			JDialog dialog = optionPane.createDialog("ERRO!");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
