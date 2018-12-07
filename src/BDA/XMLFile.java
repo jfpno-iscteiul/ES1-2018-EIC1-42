@@ -1,5 +1,6 @@
 package BDA;
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-
 public class XMLFile {
 
 	/**
@@ -44,7 +44,7 @@ public class XMLFile {
 
 	public  void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF, String passmail) {
 		try {	
-			File inputFile = new File("config.xml");
+			File inputFile = new File("resources/config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
@@ -77,7 +77,7 @@ public class XMLFile {
 			// Save XML document
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			StreamResult result = new StreamResult(new FileOutputStream("config.xml"));
+			StreamResult result = new StreamResult(new FileOutputStream("resources/config.xml"));
 			DOMSource source = new DOMSource(doc);
 			transformer.transform(source, result);
 		} catch (Exception e) { e.printStackTrace(); }
@@ -97,7 +97,7 @@ public class XMLFile {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -124,7 +124,7 @@ public class XMLFile {
 		DocumentBuilder db;
 		try {
 			db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -148,7 +148,7 @@ public class XMLFile {
 		DocumentBuilder db;
 		try {
 			db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -178,7 +178,7 @@ public class XMLFile {
 		DocumentBuilder db;
 		try {
 			db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -211,7 +211,7 @@ public class XMLFile {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -233,7 +233,7 @@ public class XMLFile {
 	 */
 
 	public void changeAttributte(String email, String Attributte, String newValue) {
-		String filePath = "config.xml";
+		String filePath = "resources/config.xml";
 		File xmlFile = new File(filePath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -250,7 +250,7 @@ public class XMLFile {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("config.xml"));
+			StreamResult result = new StreamResult(new File("resources/config.xml"));
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.transform(source, result);
 
@@ -300,7 +300,7 @@ public class XMLFile {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
@@ -326,7 +326,7 @@ public class XMLFile {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document document = db.parse(new File("config.xml"));
+			Document document = db.parse(new File("resources/config.xml"));
 			NodeList nodeList = document.getElementsByTagName("Utilizador");
 			for(int x=0,size= nodeList.getLength(); x<size; x++) {
 				String mail = nodeList.item(x).getAttributes().getNamedItem("Email").getNodeValue();
