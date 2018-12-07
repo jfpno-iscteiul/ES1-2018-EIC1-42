@@ -466,14 +466,17 @@ public class Gestor {
 	 */
 
 	public  ArrayList<String> filterByWord(ArrayList<String> list, String word){
-		ArrayList<String> result = new ArrayList<String>();
-		for(int i =0;i!= list.size();i++) {
-			if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
-				result.add(list.get(i));
+		if(!word.isEmpty()){
+			ArrayList<String> result = new ArrayList<String>();
+			for(int i =0;i!= list.size();i++) {
+				if (list.get(i).toLowerCase().contains(word.toLowerCase())) {
+					result.add(list.get(i));
+				}
 			}
+			atualist=result;
+			return result;
 		}
-		atualist=result;
-		return result;
+		return allNotifications;
 	}
 
 	public ArrayList<String> filterByDate(String searchDate){
