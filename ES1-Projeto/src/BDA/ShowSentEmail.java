@@ -2,6 +2,7 @@ package BDA;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -54,7 +55,8 @@ public class ShowSentEmail {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
+		frame.setIconImage(imagem);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));

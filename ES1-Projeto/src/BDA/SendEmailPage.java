@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -56,7 +58,8 @@ public class SendEmailPage {
 		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
+		frame.setIconImage(imagem);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
