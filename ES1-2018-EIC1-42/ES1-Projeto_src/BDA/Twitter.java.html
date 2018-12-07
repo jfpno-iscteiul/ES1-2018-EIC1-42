@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Twitter.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Twitter.java</span></div><h1>Twitter.java</h1><pre class="source lang-java linenums">
+package BDA;
+import java.util.ArrayList;
+import java.util.List;
+import twitter4j.Status;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
+import twitter4j.conf.ConfigurationBuilder;
+
+<span class="fc" id="L11">public final class Twitter {</span>
+	
+	/**
+	 * Get the tweets for the desired account and save them in a list.
+	 */
+	
+	
+<span class="fc" id="L18">	private static ArrayList&lt;Long&gt;  ids = new ArrayList &lt;Long&gt; ();</span>
+<span class="fc" id="L19">	private XMLFile xml = new XMLFile();</span>
+	/**
+	 * @param    email is the email relative to the user.
+	 * @return    a list of tweets.
+	 */
+	
+	public ArrayList&lt;String&gt; getTweets(String email) {
+<span class="fc" id="L26">		ArrayList&lt;String&gt;  content = new ArrayList &lt;String&gt; ();</span>
+<span class="fc" id="L27">		String AuthConsumerKey = xml.getAttributteByEmail(email, &quot;AuthConsumerKeyTwitter&quot;);</span>
+<span class="fc" id="L28">		String AuthConsumerSecret = xml.getAttributteByEmail(email, &quot;AuthConsumerSecretTwitter&quot;);</span>
+<span class="fc" id="L29">		String AuthAccessToken = xml.getAttributteByEmail(email, &quot;AuthAccessTokenTwitter&quot;);</span>
+<span class="fc" id="L30">		String AuthAccessTokenSecret = xml.getAttributteByEmail(email, &quot;AuthAccessTokenSecretTwitter&quot;);</span>
+
+        try {
+<span class="fc" id="L33">        	ConfigurationBuilder cb = new ConfigurationBuilder();</span>
+<span class="fc" id="L34">        	cb.setDebugEnabled(true)</span>
+<span class="fc" id="L35">        	  .setOAuthConsumerKey(AuthConsumerKey)</span>
+<span class="fc" id="L36">        	  .setOAuthConsumerSecret(AuthConsumerSecret)</span>
+<span class="fc" id="L37">        	  .setOAuthAccessToken(AuthAccessToken)</span>
+<span class="fc" id="L38">        	  .setOAuthAccessTokenSecret(AuthAccessTokenSecret);</span>
+<span class="fc" id="L39">        	TwitterFactory tf = new TwitterFactory(cb.build());</span>
+<span class="fc" id="L40">        	twitter4j.Twitter twitter = tf.getInstance();        		</span>
+<span class="fc" id="L41">            List&lt;Status&gt; statuses = twitter.getHomeTimeline();</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (Status status : statuses) {</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">				if (status.getUser().getName() != null) {</span>
+<span class="fc bfc" id="L45" title="All 4 branches covered.">					if (status.getUser().getName().equals(&quot;EIC142&quot;) ||  status.getUser().getName().contains(&quot;IUL&quot;) ) {</span>
+<span class="fc" id="L46">						content.add( &quot;Twitter&quot; + &quot;;;&quot;+ status.getCreatedAt().toString() + &quot;;;&quot;+ status.getUser().getName() + &quot;;;&quot; + status.getText());</span>
+<span class="fc" id="L47">						ids.add(status.getId());</span>
+					}
+				}  
+            }
+<span class="pc" id="L51">        } catch (Exception e) { System.out.println(e.getMessage()); }</span>
+<span class="fc" id="L52">		return content;</span>
+     }
+	
+	
+	
+	/**
+	 * Returns the ids of the timeline tweets.
+	 */
+	
+	
+	/**
+	   * @return    a list with the ids of the tweets.
+	 */
+	public ArrayList&lt;Long&gt; getTweetsId(){
+<span class="fc" id="L66">		return ids;</span>
+	}
+	
+
+
+
+	/**
+	 * Retweets a particular tweet.
+	 */
+	
+	/**
+	 * @param    id is the id relative to the tweet.
+	 @param    email is the email relative to the user.
+	 */
+
+	public void retweet(long id, String email) {
+<span class="nc" id="L82">		String AuthConsumerKey = xml.getAttributteByEmail(email, &quot;AuthConsumerKeyTwitter&quot;);</span>
+<span class="nc" id="L83">		String AuthConsumerSecret = xml.getAttributteByEmail(email, &quot;AuthConsumerSecretTwitter&quot;);</span>
+<span class="nc" id="L84">		String AuthAccessToken = xml.getAttributteByEmail(email, &quot;AuthAccessTokenTwitter&quot;);</span>
+<span class="nc" id="L85">		String AuthAccessTokenSecret = xml.getAttributteByEmail(email, &quot;AuthAccessTokenSecretTwitter&quot;);</span>
+				 // access_secret obtained by authentication user's twitter account
+<span class="nc" id="L87">				Long tweetId = id; // messageId of the tweet to be retweeted</span>
+				
+<span class="nc" id="L89">				 TwitterFactory factory = new TwitterFactory();</span>
+<span class="nc" id="L90">				 twitter4j.Twitter twitter = factory.getInstance();</span>
+<span class="nc" id="L91">				 twitter.setOAuthConsumer(AuthConsumerKey, AuthConsumerSecret);</span>
+<span class="nc" id="L92">				 AccessToken accessToken = new AccessToken(AuthAccessToken, AuthAccessTokenSecret);</span>
+<span class="nc" id="L93">				 twitter.setOAuthAccessToken(accessToken);</span>
+				 try {
+<span class="nc" id="L95">					twitter.retweetStatus(tweetId);</span>
+<span class="nc" id="L96">				} catch (TwitterException e) {e.printStackTrace();}</span>
+<span class="nc" id="L97">	}</span>
+	
+	
+	/**
+	 * Tweets a particular content.
+	 */
+	
+	
+
+	/**
+	 * @param    text is the text which the user wants to tweet.
+	 @param    email is the email relative to the user.
+	 */
+	
+	
+	public void tweet(String text, String email) {
+<span class="nc" id="L113">		String AuthConsumerKey = xml.getAttributteByEmail(email, &quot;AuthConsumerKeyTwitter&quot;);</span>
+<span class="nc" id="L114">		String AuthConsumerSecret = xml.getAttributteByEmail(email, &quot;AuthConsumerSecretTwitter&quot;);</span>
+<span class="nc" id="L115">		String AuthAccessToken = xml.getAttributteByEmail(email, &quot;AuthAccessTokenTwitter&quot;);</span>
+<span class="nc" id="L116">		String AuthAccessTokenSecret = xml.getAttributteByEmail(email, &quot;AuthAccessTokenSecretTwitter&quot;);</span>
+
+<span class="nc" id="L118">	       ConfigurationBuilder cb = new ConfigurationBuilder();</span>
+<span class="nc" id="L119">	       cb.setDebugEnabled(true)</span>
+<span class="nc" id="L120">	           .setOAuthConsumerKey(AuthConsumerKey)</span>
+<span class="nc" id="L121">	           .setOAuthConsumerSecret(AuthConsumerSecret)</span>
+<span class="nc" id="L122">	           .setOAuthAccessToken(AuthAccessToken)</span>
+<span class="nc" id="L123">	           .setOAuthAccessTokenSecret(AuthAccessTokenSecret);</span>
+
+	       try 
+	       {
+<span class="nc" id="L127">	          TwitterFactory factory = new TwitterFactory(cb.build());</span>
+<span class="nc" id="L128">	          twitter4j.Twitter twitter = factory.getInstance();</span>
+	         // System.out.println(twitter.getScreenName());
+	          @SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L131">			Status status = twitter.updateStatus(text);</span>
+	         // System.out.println(&quot;Successfully updated the status to [&quot; + status.getText() + &quot;].&quot;);
+<span class="nc" id="L133">	           }catch (TwitterException te) {</span>
+<span class="nc" id="L134">	              te.printStackTrace();</span>
+	           }
+<span class="nc" id="L136">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</div></body></html>

@@ -77,7 +77,8 @@ public class MainWindow {
 		frame.getContentPane().add(labelBackground);
 
 		//frame.setIconImage(imagem1);
-		frame.setIconImage((new ImageIcon("Imagens/frameImage.png").getImage()));
+		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
+		frame.setIconImage(imagem);
 
 		
 		JButton btnSignUp = new JButton("");

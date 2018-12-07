@@ -44,7 +44,7 @@ public class Timeline {
 	public Timeline(JFrame frame, String Email) {
 		this.frame = frame;
 		this.Email = Email;
-		xml=new XMLFile();
+		xml = new XMLFile();
 		initialize();
 		setVisible(true);
 	}
@@ -56,7 +56,7 @@ public class Timeline {
 	/**
 	 * if the user turns offline.
 	 */
-	
+
 	@SuppressWarnings("static-access")
 	private void writeFiles() {
 		if (gestor.isOnline()) {
@@ -75,22 +75,21 @@ public class Timeline {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
+
 	@SuppressWarnings("static-access")
 	void initialize() {
 		gestor = new Gestor();
 		writeFiles();
-	
-		
+
 		JLabel labelBackground = new JLabel();
-		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+		// imagem retirada do site
+		// https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
 		Image imagem3 = new ImageIcon(this.getClass().getResource("/iscte_wm_1.png")).getImage();
 		labelBackground.setIcon(new ImageIcon(imagem3));
 		labelBackground.setForeground(SystemColor.window);
 		labelBackground.setBackground(SystemColor.activeCaption);
 		labelBackground.setBounds(0, 48, 863, 594);
 
-	
 		frame.setBounds(100, 100, 863, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -104,7 +103,6 @@ public class Timeline {
 
 		frame.getContentPane().add(menuBar);
 
-		
 		JLabel lblNewLabel = new JLabel(" ");
 		Image icone = new ImageIcon(this.getClass().getResource("/icone.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(icone));
@@ -147,77 +145,77 @@ public class Timeline {
 		mnFonteDeInformao.setFont(new Font("Calibri", Font.BOLD, 16));
 		mnFiltrar.add(mnFonteDeInformao);
 
-		if(xml.haveFacebook(Email)) {
-		JCheckBox chckbxFacebook = new JCheckBox("Facebook");
-		chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxFacebook);
-		chckbxFacebook.addActionListener(new ActionListener() {
+		if (xml.haveFacebook(Email)) {
+			JCheckBox chckbxFacebook = new JCheckBox("Facebook");
+			chckbxFacebook.setFont(new Font("Calibri", Font.BOLD, 16));
+			mnFonteDeInformao.add(chckbxFacebook);
+			chckbxFacebook.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (chckbxFacebook.isSelected()) {
-					sourceFilters.add("Facebook");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
-				} else {
-					sourceFilters.remove("Facebook");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (chckbxFacebook.isSelected()) {
+						sourceFilters.add("Facebook");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
+					} else {
+						sourceFilters.remove("Facebook");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
 
+					}
 				}
-			}
-		});
-		}
-		
-		if(xml.haveEmail(Email)) {
-		JCheckBox chckbxEmail = new JCheckBox("Email");
-		chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxEmail);
-		chckbxEmail.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (chckbxEmail.isSelected()) {
-					sourceFilters.add("Email");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
-				} else {
-					sourceFilters.remove("Email");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
-
-				}
-			}
-		});
+			});
 		}
 
-		if(xml.haveTwitter(Email)) {
-		JCheckBox chckbxTwitter = new JCheckBox("Twitter");
-		chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
-		mnFonteDeInformao.add(chckbxTwitter);
-		chckbxTwitter.addActionListener(new ActionListener() {
+		if (xml.haveEmail(Email)) {
+			JCheckBox chckbxEmail = new JCheckBox("Email");
+			chckbxEmail.setFont(new Font("Calibri", Font.BOLD, 16));
+			mnFonteDeInformao.add(chckbxEmail);
+			chckbxEmail.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (chckbxTwitter.isSelected()) {
-					sourceFilters.add("Twitter");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
-				} else {
-					sourceFilters.remove("Twitter");
-					gestor.filterBySource(panel, sourceFilters, frame, Email);
-					frame.getContentPane().add(labelBackground);
-					frame.repaint();
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (chckbxEmail.isSelected()) {
+						sourceFilters.add("Email");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
+					} else {
+						sourceFilters.remove("Email");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
+
+					}
+				}
+			});
+		}
+
+		if (xml.haveTwitter(Email)) {
+			JCheckBox chckbxTwitter = new JCheckBox("Twitter");
+			chckbxTwitter.setFont(new Font("Calibri", Font.BOLD, 16));
+			mnFonteDeInformao.add(chckbxTwitter);
+			chckbxTwitter.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (chckbxTwitter.isSelected()) {
+						sourceFilters.add("Twitter");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
+					} else {
+						sourceFilters.remove("Twitter");
+						gestor.filterBySource(panel, sourceFilters, frame, Email);
+						frame.getContentPane().add(labelBackground);
+						frame.repaint();
+
+					}
 
 				}
-
-			}
-		});
+			});
 		}
 
 		JMenu mnData = new JMenu("Data");
@@ -230,21 +228,20 @@ public class Timeline {
 		txtEscrevaAqui.setColumns(10);
 
 		txtEscrevaAqui.addKeyListener(new KeyAdapter() {
-		    public void keyPressed(KeyEvent e) {
-		         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-		        	 String date = txtEscrevaAqui.getText();
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String date = txtEscrevaAqui.getText();
 
-		        	 // Filtrar por data
-		        	 ArrayList<String> lista = gestor.filterByDate(date);
-		        	 gestor.addRows(panel, lista, frame);
-		        	 frame.getContentPane().add(labelBackground);
+					// Filtrar por data
+					ArrayList<String> lista = gestor.filterByDate(date);
+					gestor.addRows(panel, lista, frame);
+					frame.getContentPane().add(labelBackground);
 					frame.repaint();
-		        	 
-		         }
-		    } 
-		 });
 
-		
+				}
+			}
+		});
+
 		JMenu mnConfiguraes = new JMenu("A minha conta");
 		mnConfiguraes.setFont(new Font("Calibri", Font.BOLD, 18));
 		menuBar.add(mnConfiguraes);
@@ -272,7 +269,7 @@ public class Timeline {
 				button2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
-						
+
 						@SuppressWarnings("unused")
 						TwitterPage tp = new TwitterPage(frame, Email);
 					}
@@ -289,6 +286,7 @@ public class Timeline {
 				button3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						frame.getContentPane().removeAll();
+						frame.repaint();
 						@SuppressWarnings("unused")
 						FacebookPage fbp = new FacebookPage(frame, Email);
 					}
@@ -314,7 +312,7 @@ public class Timeline {
 		}
 
 		Image logout = new ImageIcon(this.getClass().getResource("/logout.png")).getImage();
-		//pesquisa por palavra chave
+		// pesquisa por palavra chave
 		JTextField search = new JTextField();
 		search.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		search.setText("Escreva aqui");
@@ -327,24 +325,23 @@ public class Timeline {
 		});
 		search.setBounds(130, 47, 150, 20);
 		frame.getContentPane().add(search);
-		
-		JButton go = new JButton ("Filtrar");
+
+		JButton go = new JButton("Filtrar");
 		go.setBounds(290, 47, 100, 20);
 		go.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<String> lista= gestor.filterByWord(gestor.getAtualist(),search.getText() );
+				ArrayList<String> lista = gestor.filterByWord(gestor.getAtualist(), search.getText());
 				gestor.addRows(panel, lista, frame);
 				frame.getContentPane().add(labelBackground);
 				frame.repaint();
 			}
 		});
-		
+
 		frame.getContentPane().add(go);
 		panel = new JPanel();
 		panel.setBackground(new Color(240, 255, 255));
 		panel.setBounds(181, 73, 500, 431);
-		
-		
+
 		JLabel lblListaDeNotificaes = new JLabel("Lista de Notificações");
 		lblListaDeNotificaes.setBounds(205, 5, 187, 27);
 		lblListaDeNotificaes.setFont(new Font("Calibri", Font.BOLD, 22));
@@ -352,19 +349,19 @@ public class Timeline {
 		gestor.filterBySource(panel, sourceFilters, frame, Email);
 		frame.getContentPane().add(labelBackground);
 		frame.repaint();
-	
+
 		JButton button = new JButton("");
 		button.setBounds(774, 499, 59, 35);
 		frame.getContentPane().add(button);
 		button.setIcon(new ImageIcon(logout));
-		
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				MainWindow.main(null);
 			}
 		});
-		
+
 		JButton show = new JButton("Mostrar Notificação Completa");
 		show.setBounds(300, 510, 250, 35);
 		frame.getContentPane().add(show);
@@ -395,8 +392,7 @@ public class Timeline {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
-		
-		
+
 	}
 
 	public JFrame getFrame() {

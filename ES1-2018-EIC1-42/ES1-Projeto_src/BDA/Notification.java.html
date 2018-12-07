@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Notification.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Notification.java</span></div><h1>Notification.java</h1><pre class="source lang-java linenums">package BDA;
+
+import java.awt.Image;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
+import java.awt.Label;
+import java.awt.Font;
+import java.awt.Frame;
+
+
+public class Notification {
+
+	private JPanel contentPane;
+	private static JFrame frame;
+
+	/**
+	 * Create the frame.
+	 *
+	 * @param Plataform the plataform
+	 * @param Sender    the sender
+	 * @param Date      the date
+	 * @param subject   the subject
+	 * @param content   the content
+	 */
+	@SuppressWarnings(&quot;static-access&quot;)
+<span class="fc" id="L33">	public Notification(String Plataform, String Sender, String Date, String subject, String content) {</span>
+<span class="fc" id="L34">		frame = new JFrame(&quot;Bom dia Academia&quot;);</span>
+<span class="fc" id="L35">		frame.setVisible(true);</span>
+<span class="fc" id="L36">		frame.setResizable(false);</span>
+<span class="fc" id="L37">		frame.setIconImage((new ImageIcon(&quot;Imagens/frameImage.png&quot;).getImage()));</span>
+
+<span class="fc" id="L39">		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);</span>
+<span class="fc" id="L40">		frame.setBounds(100, 100, 858, 560);</span>
+<span class="fc" id="L41">		contentPane = new JPanel();</span>
+<span class="fc" id="L42">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="fc" id="L43">		frame.setContentPane(contentPane);</span>
+<span class="fc" id="L44">		contentPane.setLayout(null);</span>
+
+<span class="fc" id="L46">		JPanel panel = new JPanel();</span>
+<span class="fc" id="L47">		panel.setBackground(new Color(51, 204, 204));</span>
+<span class="fc" id="L48">		panel.setBounds(0, 0, 863, 60);</span>
+
+<span class="fc" id="L50">		JLabel logo = new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L51">		Image logop = new ImageIcon(this.getClass().getResource(&quot;/logonot.png&quot;)).getImage();</span>
+<span class="fc" id="L52">		logo.setIcon(new ImageIcon(logop));</span>
+<span class="fc" id="L53">		logo.setBounds(0, 0, 863, 60);</span>
+<span class="fc" id="L54">		panel.add(logo);</span>
+
+<span class="fc" id="L56">		Label label_1 = new Label(Plataform);</span>
+<span class="fc" id="L57">		label_1.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 20));</span>
+<span class="fc" id="L58">		panel.add(label_1);</span>
+<span class="fc" id="L59">		contentPane.add(panel);</span>
+
+<span class="fc" id="L61">		JPanel panel_1 = new JPanel();</span>
+<span class="fc" id="L62">		panel_1.setBackground(new Color(112, 219, 219));</span>
+<span class="fc" id="L63">		panel_1.setBounds(0, 60, 863, 40);</span>
+
+<span class="fc" id="L65">		Label user = new Label(Sender);</span>
+<span class="fc" id="L66">		user.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 20));</span>
+<span class="fc" id="L67">		panel_1.add(user);</span>
+<span class="fc" id="L68">		contentPane.add(panel_1);</span>
+
+<span class="fc" id="L70">		JPanel panel_2 = new JPanel();</span>
+<span class="fc" id="L71">		panel_2.setBackground(new Color(173, 235, 235));</span>
+<span class="fc" id="L72">		panel_2.setBounds(0, 100, 863, 40);</span>
+
+<span class="fc" id="L74">		Label date = new Label(Date);</span>
+<span class="fc" id="L75">		date.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 20));</span>
+<span class="fc" id="L76">		panel_2.add(date);</span>
+<span class="fc" id="L77">		contentPane.add(panel_2);</span>
+
+<span class="fc bfc" id="L79" title="All 2 branches covered.">		if (Plataform.equals(&quot;Email&quot;)) {</span>
+<span class="fc" id="L80">			JTextArea textArea = new JTextArea();</span>
+<span class="fc" id="L81">			textArea.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L82">			textArea.setBounds(1, 140, 863, 200);</span>
+<span class="fc" id="L83">			textArea.setEditable(false);</span>
+<span class="fc" id="L84">			textArea.setText(subject);</span>
+<span class="fc" id="L85">			textArea.setLineWrap(true);</span>
+<span class="fc" id="L86">			textArea.setWrapStyleWord(true);</span>
+
+<span class="fc" id="L88">			JScrollPane scrollPane = new JScrollPane(textArea);</span>
+<span class="fc" id="L89">			scrollPane.setBounds(1, 140, 850, 68);</span>
+<span class="fc" id="L90">			contentPane.add(scrollPane);</span>
+<span class="fc" id="L91">			JScrollPane scrollPane_2 = new JScrollPane();</span>
+<span class="fc" id="L92">			scrollPane_2.setBounds(1, 219, 850, 312);</span>
+<span class="fc" id="L93">			contentPane.add(scrollPane_2);</span>
+
+<span class="fc" id="L95">			JTextPane p = new JTextPane();</span>
+<span class="fc" id="L96">			p.setContentType(&quot;text/html&quot;);</span>
+<span class="fc" id="L97">			p.setText(&quot;&lt;html&gt;&quot; + content);</span>
+<span class="fc" id="L98">			p.setEditable(false);</span>
+<span class="fc" id="L99">			scrollPane_2.setViewportView(p);</span>
+
+<span class="fc" id="L101">		} else {</span>
+<span class="fc" id="L102">			JTextArea textArea = new JTextArea();</span>
+<span class="fc" id="L103">			textArea.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L104">			textArea.setBounds(1, 140, 863, 400);</span>
+<span class="fc" id="L105">			textArea.setEditable(false);</span>
+<span class="fc" id="L106">			textArea.setText(subject);</span>
+<span class="fc" id="L107">			textArea.setEditable(false);</span>
+<span class="fc" id="L108">			textArea.setLineWrap(true);</span>
+<span class="fc" id="L109">			textArea.setWrapStyleWord(true);</span>
+
+<span class="fc" id="L111">			JScrollPane scrollPane = new JScrollPane(textArea);</span>
+<span class="fc" id="L112">			scrollPane.setBounds(1, 140, 863, 400);</span>
+<span class="fc" id="L113">			contentPane.add(scrollPane);</span>
+
+		}
+
+<span class="fc" id="L117">		frame.getContentPane().add(panel_2);</span>
+<span class="fc" id="L118">		frame.getContentPane().add(panel_1);</span>
+<span class="fc" id="L119">		frame.getContentPane().add(panel);</span>
+
+<span class="fc" id="L121">	}</span>
+
+	public static Frame getFrame() {
+<span class="fc" id="L124">		return frame;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</div></body></html>

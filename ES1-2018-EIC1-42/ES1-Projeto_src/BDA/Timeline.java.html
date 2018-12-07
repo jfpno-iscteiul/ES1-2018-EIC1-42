@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Timeline.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Timeline.java</span></div><h1>Timeline.java</h1><pre class="source lang-java linenums">package BDA;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import javax.swing.JPopupMenu;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import java.awt.Font;
+import java.awt.Image;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+
+public class Timeline {
+
+	/**
+	 * This is where you can view the content of your accounts.
+	 */
+
+	private JTextField txtEscrevaAqui;
+	private Gestor gestor;
+	private ArrayList&lt;String&gt; sourceFilters;
+	private JPanel panel;
+	private JFrame frame;
+	private String Email;
+	private XMLFile xml;
+
+<span class="fc" id="L44">	public Timeline(JFrame frame, String Email) {</span>
+<span class="fc" id="L45">		this.frame = frame;</span>
+<span class="fc" id="L46">		this.Email = Email;</span>
+<span class="fc" id="L47">		xml=new XMLFile();</span>
+<span class="fc" id="L48">		initialize();</span>
+<span class="fc" id="L49">		setVisible(true);</span>
+<span class="fc" id="L50">	}</span>
+
+	public void setVisible(boolean b) {
+<span class="fc" id="L53">		frame.setVisible(b);</span>
+<span class="fc" id="L54">	}</span>
+
+	/**
+	 * if the user turns offline.
+	 */
+	
+	@SuppressWarnings(&quot;static-access&quot;)
+	private void writeFiles() {
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (gestor.isOnline()) {</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">			if (xml.haveTwitter(Email)) {</span>
+<span class="fc" id="L64">				gestor.writeTweetsFile(Email);</span>
+			}
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">			if (xml.haveFacebook(Email)) {</span>
+<span class="fc" id="L67">				gestor.writeFacebookPostsFile(Email);</span>
+			}
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">			if (xml.haveEmail(Email)) {</span>
+<span class="nc" id="L70">				gestor.writeEmailsFile(Email);</span>
+			}
+		}
+<span class="fc" id="L73">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	
+	@SuppressWarnings(&quot;static-access&quot;)
+	void initialize() {
+<span class="fc" id="L81">		gestor = new Gestor();</span>
+<span class="fc" id="L82">		writeFiles();</span>
+	
+		
+<span class="fc" id="L85">		JLabel labelBackground = new JLabel();</span>
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+<span class="fc" id="L87">		Image imagem3 = new ImageIcon(this.getClass().getResource(&quot;/iscte_wm_1.png&quot;)).getImage();</span>
+<span class="fc" id="L88">		labelBackground.setIcon(new ImageIcon(imagem3));</span>
+<span class="fc" id="L89">		labelBackground.setForeground(SystemColor.window);</span>
+<span class="fc" id="L90">		labelBackground.setBackground(SystemColor.activeCaption);</span>
+<span class="fc" id="L91">		labelBackground.setBounds(0, 48, 863, 594);</span>
+
+	
+<span class="fc" id="L94">		frame.setBounds(100, 100, 863, 594);</span>
+<span class="fc" id="L95">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L96">		frame.getContentPane().setLayout(null);</span>
+<span class="fc" id="L97">		frame.setResizable(false);</span>
+<span class="fc" id="L98">		frame.setIconImage((new ImageIcon(&quot;Imagens/frameImage.png&quot;).getImage()));</span>
+<span class="fc" id="L99">		sourceFilters = new ArrayList&lt;String&gt;();</span>
+
+<span class="fc" id="L101">		JMenuBar menuBar = new JMenuBar();</span>
+<span class="fc" id="L102">		menuBar.setBackground(SystemColor.window);</span>
+<span class="fc" id="L103">		menuBar.setBounds(0, 0, 881, 47);</span>
+
+<span class="fc" id="L105">		frame.getContentPane().add(menuBar);</span>
+
+		
+<span class="fc" id="L108">		JLabel lblNewLabel = new JLabel(&quot; &quot;);</span>
+<span class="fc" id="L109">		Image icone = new ImageIcon(this.getClass().getResource(&quot;/icone.png&quot;)).getImage();</span>
+<span class="fc" id="L110">		lblNewLabel.setIcon(new ImageIcon(icone));</span>
+<span class="fc" id="L111">		menuBar.add(lblNewLabel);</span>
+
+<span class="fc" id="L113">		JMenu mnOrdenar = new JMenu(&quot;Ordenar&quot;);</span>
+<span class="fc" id="L114">		mnOrdenar.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L115">		menuBar.add(mnOrdenar);</span>
+
+<span class="fc" id="L117">		JMenuItem mntmAntigasPrimeiro = new JMenuItem(&quot;Antigas Primeiro&quot;);</span>
+<span class="fc" id="L118">		mntmAntigasPrimeiro.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L119">		mnOrdenar.add(mntmAntigasPrimeiro);</span>
+<span class="fc" id="L120">		mntmAntigasPrimeiro.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L122">				ArrayList&lt;String&gt; list = gestor.orderByDate();</span>
+<span class="nc" id="L123">				Collections.reverse(list);</span>
+<span class="nc" id="L124">				gestor.addRows(panel, list, frame);</span>
+<span class="nc" id="L125">				frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L126">				frame.repaint();</span>
+<span class="nc" id="L127">			}</span>
+		});
+
+<span class="fc" id="L130">		JMenuItem mntmRecentesPrimeiro = new JMenuItem(&quot;Recentes Primeiro&quot;);</span>
+<span class="fc" id="L131">		mntmRecentesPrimeiro.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L132">		mnOrdenar.add(mntmRecentesPrimeiro);</span>
+<span class="fc" id="L133">		mntmRecentesPrimeiro.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L135">				ArrayList&lt;String&gt; list = gestor.orderByDate();</span>
+<span class="nc" id="L136">				gestor.addRows(panel, list, frame);</span>
+<span class="nc" id="L137">				frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L138">				frame.repaint();</span>
+<span class="nc" id="L139">			}</span>
+		});
+
+<span class="fc" id="L142">		JMenu mnFiltrar = new JMenu(&quot;Filtrar&quot;);</span>
+<span class="fc" id="L143">		mnFiltrar.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L144">		menuBar.add(mnFiltrar);</span>
+
+<span class="fc" id="L146">		JMenu mnFonteDeInformao = new JMenu(&quot;Fonte de Informação&quot;);</span>
+<span class="fc" id="L147">		mnFonteDeInformao.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L148">		mnFiltrar.add(mnFonteDeInformao);</span>
+
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">		if(xml.haveFacebook(Email)) {</span>
+<span class="fc" id="L151">		JCheckBox chckbxFacebook = new JCheckBox(&quot;Facebook&quot;);</span>
+<span class="fc" id="L152">		chckbxFacebook.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L153">		mnFonteDeInformao.add(chckbxFacebook);</span>
+<span class="fc" id="L154">		chckbxFacebook.addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L158" title="All 2 branches missed.">				if (chckbxFacebook.isSelected()) {</span>
+<span class="nc" id="L159">					sourceFilters.add(&quot;Facebook&quot;);</span>
+<span class="nc" id="L160">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L161">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L162">					frame.repaint();</span>
+<span class="nc" id="L163">				} else {</span>
+<span class="nc" id="L164">					sourceFilters.remove(&quot;Facebook&quot;);</span>
+<span class="nc" id="L165">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L166">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L167">					frame.repaint();</span>
+
+				}
+<span class="nc" id="L170">			}</span>
+		});
+		}
+		
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		if(xml.haveEmail(Email)) {</span>
+<span class="nc" id="L175">		JCheckBox chckbxEmail = new JCheckBox(&quot;Email&quot;);</span>
+<span class="nc" id="L176">		chckbxEmail.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L177">		mnFonteDeInformao.add(chckbxEmail);</span>
+<span class="nc" id="L178">		chckbxEmail.addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L182" title="All 2 branches missed.">				if (chckbxEmail.isSelected()) {</span>
+<span class="nc" id="L183">					sourceFilters.add(&quot;Email&quot;);</span>
+<span class="nc" id="L184">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L185">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L186">					frame.repaint();</span>
+<span class="nc" id="L187">				} else {</span>
+<span class="nc" id="L188">					sourceFilters.remove(&quot;Email&quot;);</span>
+<span class="nc" id="L189">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L190">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L191">					frame.repaint();</span>
+
+				}
+<span class="nc" id="L194">			}</span>
+		});
+		}
+
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">		if(xml.haveTwitter(Email)) {</span>
+<span class="fc" id="L199">		JCheckBox chckbxTwitter = new JCheckBox(&quot;Twitter&quot;);</span>
+<span class="fc" id="L200">		chckbxTwitter.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L201">		mnFonteDeInformao.add(chckbxTwitter);</span>
+<span class="fc" id="L202">		chckbxTwitter.addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L206" title="All 2 branches missed.">				if (chckbxTwitter.isSelected()) {</span>
+<span class="nc" id="L207">					sourceFilters.add(&quot;Twitter&quot;);</span>
+<span class="nc" id="L208">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L209">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L210">					frame.repaint();</span>
+<span class="nc" id="L211">				} else {</span>
+<span class="nc" id="L212">					sourceFilters.remove(&quot;Twitter&quot;);</span>
+<span class="nc" id="L213">					gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="nc" id="L214">					frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L215">					frame.repaint();</span>
+
+				}
+
+<span class="nc" id="L219">			}</span>
+		});
+		}
+
+<span class="fc" id="L223">		JMenu mnData = new JMenu(&quot;Data&quot;);</span>
+<span class="fc" id="L224">		mnData.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L225">		mnFiltrar.add(mnData);</span>
+
+<span class="fc" id="L227">		txtEscrevaAqui = new JTextField();</span>
+<span class="fc" id="L228">		txtEscrevaAqui.setText(&quot;dd-mm-yyyy&quot;);</span>
+<span class="fc" id="L229">		mnData.add(txtEscrevaAqui);</span>
+<span class="fc" id="L230">		txtEscrevaAqui.setColumns(10);</span>
+
+<span class="fc" id="L232">		txtEscrevaAqui.addKeyListener(new KeyAdapter() {</span>
+		    public void keyPressed(KeyEvent e) {
+<span class="nc bnc" id="L234" title="All 2 branches missed.">		         if(e.getKeyCode() == KeyEvent.VK_ENTER) {</span>
+<span class="nc" id="L235">		        	 String date = txtEscrevaAqui.getText();</span>
+
+		        	 // Filtrar por data
+<span class="nc" id="L238">		        	 ArrayList&lt;String&gt; lista = gestor.filterByDate(date);</span>
+<span class="nc" id="L239">		        	 gestor.addRows(panel, lista, frame);</span>
+<span class="nc" id="L240">		        	 frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L241">					frame.repaint();</span>
+		        	 
+		         }
+<span class="nc" id="L244">		    } </span>
+		 });
+
+		
+<span class="fc" id="L248">		JMenu mnConfiguraes = new JMenu(&quot;A minha conta&quot;);</span>
+<span class="fc" id="L249">		mnConfiguraes.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L250">		menuBar.add(mnConfiguraes);</span>
+
+<span class="fc" id="L252">		JMenuItem mntmASuaConta = new JMenuItem(&quot;Configurações&quot;);</span>
+<span class="fc" id="L253">		mntmASuaConta.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L255">				frame.getContentPane().removeAll();</span>
+				@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L257">				Configurations conf = new Configurations(frame, Email);</span>
+<span class="nc" id="L258">			}</span>
+		});
+<span class="fc" id="L260">		mntmASuaConta.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 16));</span>
+<span class="fc" id="L261">		mnConfiguraes.add(mntmASuaConta);</span>
+
+<span class="pc bpc" id="L263" title="1 of 2 branches missed.">		if (gestor.isOnline()) {</span>
+
+<span class="pc bpc" id="L265" title="1 of 2 branches missed.">			if (xml.haveTwitter(Email)) {</span>
+<span class="fc" id="L266">				Image icone11 = new ImageIcon(this.getClass().getResource(&quot;/twitterm.png&quot;)).getImage();</span>
+
+<span class="fc" id="L268">				JButton button2 = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L269">				button2.setBounds(774, 499, 59, 35);</span>
+<span class="fc" id="L270">				button2.setIcon(new ImageIcon(icone11));</span>
+<span class="fc" id="L271">				menuBar.add(button2);</span>
+<span class="fc" id="L272">				button2.addActionListener(new ActionListener() {</span>
+					public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L274">						frame.getContentPane().removeAll();</span>
+						
+						@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L277">						TwitterPage tp = new TwitterPage(frame, Email);</span>
+<span class="nc" id="L278">					}</span>
+				});
+			}
+
+<span class="pc bpc" id="L282" title="1 of 2 branches missed.">			if (xml.haveFacebook(Email)) {</span>
+<span class="fc" id="L283">				Image icone2 = new ImageIcon(this.getClass().getResource(&quot;/facebookm.png&quot;)).getImage();</span>
+
+<span class="fc" id="L285">				JButton button3 = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L286">				button3.setBounds(774, 499, 59, 35);</span>
+<span class="fc" id="L287">				button3.setIcon(new ImageIcon(icone2));</span>
+<span class="fc" id="L288">				menuBar.add(button3);</span>
+<span class="fc" id="L289">				button3.addActionListener(new ActionListener() {</span>
+					public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L291">						frame.getContentPane().removeAll();</span>
+						@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L293">						FacebookPage fbp = new FacebookPage(frame, Email);</span>
+<span class="nc" id="L294">					}</span>
+				});
+			}
+
+<span class="pc bpc" id="L298" title="1 of 2 branches missed.">			if (xml.haveEmail(Email)) {</span>
+<span class="nc" id="L299">				Image icone4 = new ImageIcon(this.getClass().getResource(&quot;/emailm.png&quot;)).getImage();</span>
+
+<span class="nc" id="L301">				JButton button5 = new JButton(&quot;&quot;);</span>
+<span class="nc" id="L302">				button5.setBounds(774, 499, 59, 35);</span>
+<span class="nc" id="L303">				button5.setIcon(new ImageIcon(icone4));</span>
+<span class="nc" id="L304">				menuBar.add(button5);</span>
+<span class="nc" id="L305">				button5.addActionListener(new ActionListener() {</span>
+					public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L307">						frame.getContentPane().removeAll();</span>
+<span class="nc" id="L308">						frame.repaint();</span>
+						@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L310">						EmailPage email = new EmailPage(frame, Email);</span>
+<span class="nc" id="L311">					}</span>
+				});
+			}
+		}
+
+<span class="fc" id="L316">		Image logout = new ImageIcon(this.getClass().getResource(&quot;/logout.png&quot;)).getImage();</span>
+		//pesquisa por palavra chave
+<span class="fc" id="L318">		JTextField search = new JTextField();</span>
+<span class="fc" id="L319">		search.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));</span>
+<span class="fc" id="L320">		search.setText(&quot;Escreva aqui&quot;);</span>
+
+<span class="fc" id="L322">		search.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+<span class="nc" id="L325">				search.setText(&quot;&quot;);</span>
+<span class="nc" id="L326">			}</span>
+		});
+<span class="fc" id="L328">		search.setBounds(130, 47, 150, 20);</span>
+<span class="fc" id="L329">		frame.getContentPane().add(search);</span>
+		
+<span class="fc" id="L331">		JButton go = new JButton (&quot;Filtrar&quot;);</span>
+<span class="fc" id="L332">		go.setBounds(290, 47, 100, 20);</span>
+<span class="fc" id="L333">		go.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L335">				ArrayList&lt;String&gt; lista= gestor.filterByWord(gestor.getAtualist(),search.getText() );</span>
+<span class="nc" id="L336">				gestor.addRows(panel, lista, frame);</span>
+<span class="nc" id="L337">				frame.getContentPane().add(labelBackground);</span>
+<span class="nc" id="L338">				frame.repaint();</span>
+<span class="nc" id="L339">			}</span>
+		});
+		
+<span class="fc" id="L342">		frame.getContentPane().add(go);</span>
+<span class="fc" id="L343">		panel = new JPanel();</span>
+<span class="fc" id="L344">		panel.setBackground(new Color(240, 255, 255));</span>
+<span class="fc" id="L345">		panel.setBounds(181, 73, 500, 431);</span>
+		
+		
+<span class="fc" id="L348">		JLabel lblListaDeNotificaes = new JLabel(&quot;Lista de Notificações&quot;);</span>
+<span class="fc" id="L349">		lblListaDeNotificaes.setBounds(205, 5, 187, 27);</span>
+<span class="fc" id="L350">		lblListaDeNotificaes.setFont(new Font(&quot;Calibri&quot;, Font.BOLD, 22));</span>
+<span class="fc" id="L351">		panel.add(lblListaDeNotificaes);</span>
+<span class="fc" id="L352">		gestor.filterBySource(panel, sourceFilters, frame, Email);</span>
+<span class="fc" id="L353">		frame.getContentPane().add(labelBackground);</span>
+<span class="fc" id="L354">		frame.repaint();</span>
+	
+<span class="fc" id="L356">		JButton button = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L357">		button.setBounds(774, 499, 59, 35);</span>
+<span class="fc" id="L358">		frame.getContentPane().add(button);</span>
+<span class="fc" id="L359">		button.setIcon(new ImageIcon(logout));</span>
+		
+<span class="fc" id="L361">		button.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L363">				frame.dispose();</span>
+<span class="nc" id="L364">				MainWindow.main(null);</span>
+<span class="nc" id="L365">			}</span>
+		});
+		
+<span class="fc" id="L368">		JButton show = new JButton(&quot;Mostrar Notificação Completa&quot;);</span>
+<span class="fc" id="L369">		show.setBounds(300, 510, 250, 35);</span>
+<span class="fc" id="L370">		frame.getContentPane().add(show);</span>
+<span class="fc" id="L371">		show.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L373">				gestor.selectedRow();</span>
+<span class="nc" id="L374">			}</span>
+		});
+<span class="fc" id="L376">		frame.getContentPane().add(labelBackground);</span>
+<span class="fc" id="L377">	}</span>
+
+	@SuppressWarnings(&quot;unused&quot;)
+	private static void addPopup(Component component, final JPopupMenu popup) {
+<span class="nc" id="L381">		component.addMouseListener(new MouseAdapter() {</span>
+			public void mousePressed(MouseEvent e) {
+<span class="nc bnc" id="L383" title="All 2 branches missed.">				if (e.isPopupTrigger()) {</span>
+<span class="nc" id="L384">					showMenu(e);</span>
+				}
+<span class="nc" id="L386">			}</span>
+
+			public void mouseReleased(MouseEvent e) {
+<span class="nc bnc" id="L389" title="All 2 branches missed.">				if (e.isPopupTrigger()) {</span>
+<span class="nc" id="L390">					showMenu(e);</span>
+				}
+<span class="nc" id="L392">			}</span>
+
+			private void showMenu(MouseEvent e) {
+<span class="nc" id="L395">				popup.show(e.getComponent(), e.getX(), e.getY());</span>
+<span class="nc" id="L396">			}</span>
+		});
+		
+		
+<span class="nc" id="L400">	}</span>
+
+	public JFrame getFrame() {
+<span class="fc" id="L403">		return frame;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</div></body></html>

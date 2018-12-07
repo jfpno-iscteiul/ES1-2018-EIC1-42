@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>XMLFile.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">XMLFile.java</span></div><h1>XMLFile.java</h1><pre class="source lang-java linenums">package BDA;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
+<span class="fc" id="L26">public class XMLFile {</span>
+
+	/**
+	 * Creates an XML file where new users can be saved.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @param    password is the password relative to the user.
+	 * @param    nome is the name relative to the user.
+	 *  @param    username is the username relative to the user.
+	 * @param    ACKT is the AuthConsumerKeyTwitter relative to the user.
+	 * @param    ACST is the AuthConsumerSecretTwitter relative to the user.
+	 * @param    AATT is the AuthAccessTokenTwitter relative to the user.
+	 * @param    ACTST is the AuthAccessTokenSecretTwitter relative to the user.
+	 * @param    TAF is the TokenAccessFacebook relative to the user.
+	 */
+
+
+	public  void addUsers(String email, String password, String nome, String username, String ACKT,String ACST,String AATT,String ACTST, String TAF, String passmail) {
+		try {	
+<span class="fc" id="L46">			File inputFile = new File(&quot;config.xml&quot;);</span>
+<span class="fc" id="L47">			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L48">			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L49">			Document doc = dBuilder.parse(inputFile);</span>
+<span class="fc" id="L50">			doc.getDocumentElement().normalize();         </span>
+			//System.out.println(&quot;\n----- Search the XML document with xpath queries -----&quot;);  
+			// Query 1 
+			// System.out.println(&quot;Query 1: &quot;);
+<span class="fc" id="L54">			XPathFactory xpathFactory = XPathFactory.newInstance();</span>
+<span class="fc" id="L55">			XPath xpath = xpathFactory.newXPath();</span>
+<span class="fc" id="L56">			XPathExpression expr = xpath.compile(&quot;/XML/Service/@*&quot;);</span>
+			@SuppressWarnings(&quot;unused&quot;)
+<span class="fc" id="L58">			NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);</span>
+			//for (int i = 0; i &lt; nl.getLength(); i++) {
+			//    System.out.print(nl.item(i).getNodeName()  + &quot;: &quot;);
+			//    System.out.println(nl.item(i).getFirstChild().getNodeValue());
+			// }
+			// Query 2
+			//System.out.println(&quot;\nQuery 2: &quot;);         
+<span class="fc" id="L65">			expr = xpath.compile(&quot;/XML/Paths/docPath&quot;);</span>
+			@SuppressWarnings(&quot;unused&quot;)
+<span class="fc" id="L67">			String str = (String) expr.evaluate(doc, XPathConstants.STRING);</span>
+
+			//System.out.println(&quot;docPath: &quot; + str);
+
+			// Adding new element Service with attributes to the XML document (root node)
+			//System.out.println(&quot;\n----- Adding new element &lt;Service&gt; with attributes to the XML document -----&quot;);
+
+<span class="fc" id="L74">			Element newElement1 = doc.createElement(&quot;Utilizador&quot;);</span>
+<span class="fc" id="L75">			newElement1.setAttribute(&quot;Nome&quot;, nome);</span>
+<span class="fc" id="L76">			newElement1.setAttribute(&quot;Username&quot;, username);</span>
+<span class="fc" id="L77">			newElement1.setAttribute(&quot;Email&quot;, email);</span>
+<span class="fc" id="L78">			newElement1.setAttribute(&quot;Password&quot;, password);</span>
+<span class="fc" id="L79">			newElement1.setAttribute(&quot;AuthConsumerKeyTwitter&quot;, ACKT);</span>
+<span class="fc" id="L80">			newElement1.setAttribute(&quot;AuthConsumerSecretTwitter&quot;, ACST);</span>
+<span class="fc" id="L81">			newElement1.setAttribute(&quot;AuthAccessTokenTwitter&quot;, AATT);</span>
+<span class="fc" id="L82">			newElement1.setAttribute(&quot;AuthAccessTokenSecretTwitter&quot;, ACTST);</span>
+<span class="fc" id="L83">			newElement1.setAttribute(&quot;TokenAccessFacebook&quot;, TAF);</span>
+<span class="fc" id="L84">			newElement1.setAttribute(&quot;PassEmail&quot;, passmail);</span>
+
+			// Add new nodes to XML document (root element)
+			//System.out.println(&quot;Root element :&quot; + doc.getDocumentElement().getNodeName());         
+<span class="fc" id="L88">			Node n = doc.getDocumentElement();</span>
+<span class="fc" id="L89">			n.appendChild(newElement1);         </span>
+
+			// Save XML document
+			// System.out.println(&quot;\nSave XML document.&quot;);
+<span class="fc" id="L93">			Transformer transformer = TransformerFactory.newInstance().newTransformer();</span>
+<span class="fc" id="L94">			transformer.setOutputProperty(OutputKeys.INDENT, &quot;yes&quot;);</span>
+<span class="fc" id="L95">			StreamResult result = new StreamResult(new FileOutputStream(&quot;config.xml&quot;));</span>
+<span class="fc" id="L96">			DOMSource source = new DOMSource(doc);</span>
+<span class="fc" id="L97">			transformer.transform(source, result);</span>
+<span class="pc" id="L98">		} catch (Exception e) { e.printStackTrace(); }</span>
+<span class="fc" id="L99">	}</span>
+
+
+	/**
+	 * Checks if a given email with a given password is already registered in the XML file.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @param    pass is the password relative to the user.
+	 * @return      true if a given email with a given password is already registered in the XML file.
+	 */
+
+	public boolean checkIfUserExists(String email, String pass) {
+		try {
+<span class="fc" id="L113">			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L114">			DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L115">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L116">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L118">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">					if(nodeList.item(x).getAttributes().getNamedItem(&quot;Password&quot;).getNodeValue().equals(pass)) {</span>
+<span class="fc" id="L121">						return true;</span>
+					}
+				}
+			}
+<span class="pc" id="L125">		} catch (Exception e) {}</span>
+<span class="fc" id="L126">		return false;</span>
+	}
+
+	/**
+	 * Checks if the user have facebook.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @return      true if a user have a valid TokenAccessFacebook in the XML file.
+	 */
+
+	public boolean haveFacebook(String email) {
+<span class="fc" id="L138">		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+		DocumentBuilder db;
+		try {
+<span class="fc" id="L141">			db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L142">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L143">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L145">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+
+<span class="fc bfc" id="L148" title="All 2 branches covered.">					if(!nodeList.item(x).getAttributes().getNamedItem(&quot;TokenAccessFacebook&quot;).getNodeValue().equals(&quot;vazio&quot;)) {</span>
+<span class="fc" id="L149">						return true;</span>
+					}else
+<span class="fc" id="L151">						return false;</span>
+				}
+			}
+<span class="pc" id="L154">		} catch (Exception e) {</span>
+<span class="nc" id="L155">			return false;</span>
+		}
+<span class="fc" id="L157">		return false;</span>
+	}
+
+
+	public boolean haveEmail(String email) {
+<span class="fc" id="L162">		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+		DocumentBuilder db;
+		try {
+<span class="fc" id="L165">			db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L166">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L167">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L169">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">					if(!nodeList.item(x).getAttributes().getNamedItem(&quot;PassEmail&quot;).getNodeValue().equals(&quot;vazio&quot;)) {</span>
+<span class="nc" id="L172">						return true;</span>
+					} else
+<span class="fc" id="L174">						return false;</span>
+				}
+			}
+<span class="pc" id="L177">		} catch (Exception e) {</span>
+<span class="nc" id="L178">			return false;</span>
+		}
+<span class="fc" id="L180">		return false;</span>
+	}
+
+	/**
+	 * Checks if the user have twitter.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @return      true if a user have a valid TokenAccessFacebook in the XML file.
+	 */
+
+	public boolean haveTwitter(String email) {
+<span class="fc" id="L192">		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+		DocumentBuilder db;
+		try {
+<span class="fc" id="L195">			db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L196">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L197">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L199">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+
+<span class="fc bfc" id="L202" title="All 2 branches covered.">					if(!(nodeList.item(x).getAttributes().getNamedItem(&quot;AuthAccessTokenSecretTwitter&quot;).getNodeValue().equals(&quot;vazio&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L203" title="1 of 2 branches missed.">							nodeList.item(x).getAttributes().getNamedItem(&quot;AuthConsumerKeyTwitter&quot;).getNodeValue().equals(&quot;vazio&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">							nodeList.item(x).getAttributes().getNamedItem(&quot;AuthConsumerSecretTwitter&quot;).getNodeValue().equals(&quot;vazio&quot;)&amp;&amp; </span>
+<span class="pc bpc" id="L205" title="1 of 2 branches missed.">							nodeList.item(x).getAttributes().getNamedItem(&quot;AuthAccessTokenTwitter&quot;).getNodeValue().equals(&quot;vazio&quot;))){</span>
+<span class="fc" id="L206">						return true;</span>
+					}else
+<span class="fc" id="L208">						return false;</span>
+				}
+			}
+<span class="pc" id="L211">		} catch (Exception e) {return false;}</span>
+<span class="fc" id="L212">		return false;</span>
+
+	}
+
+	/**
+	 * Checks if a given email is already registered in the XML file.
+	 */
+
+
+	/**  @param    email is the email relative to the user.
+	 * @return      true if a user exists with that email
+	 */
+
+	public boolean checkIfUserExistsByEmail(String email) {
+		try {
+<span class="fc" id="L227">			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L228">			DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L229">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L230">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L232">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+<span class="fc" id="L234">					return true;</span>
+				}
+			}
+<span class="pc" id="L237">		} catch (Exception e) {}</span>
+<span class="fc" id="L238">		return false;</span>
+	}
+
+	/**
+	 * Changes the data of a user in the XML file.
+	 */
+
+	/**  @param    email is the email relative to the user.
+	 * @param    Attributte is the name of the attribute to modify.
+	 * @param    newValue is the new value to assign.
+	 */
+
+	public void changeAttributte(String email, String Attributte, String newValue) {
+<span class="fc" id="L251">		String filePath = &quot;config.xml&quot;;</span>
+<span class="fc" id="L252">		File xmlFile = new File(filePath);</span>
+<span class="fc" id="L253">		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+		DocumentBuilder dBuilder;
+		try {
+<span class="fc" id="L256">			dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L257">			Document doc = dBuilder.parse(xmlFile);</span>
+<span class="fc" id="L258">			doc.getDocumentElement().normalize();</span>
+
+			//update attribute value
+<span class="fc" id="L261">			updateAttributeValue(doc,email, Attributte, newValue );</span>
+
+			//write the updated document to file or console
+<span class="fc" id="L264">			doc.getDocumentElement().normalize();</span>
+<span class="fc" id="L265">			TransformerFactory transformerFactory = TransformerFactory.newInstance();</span>
+<span class="fc" id="L266">			Transformer transformer = transformerFactory.newTransformer();</span>
+<span class="fc" id="L267">			DOMSource source = new DOMSource(doc);</span>
+<span class="fc" id="L268">			StreamResult result = new StreamResult(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L269">			transformer.setOutputProperty(OutputKeys.INDENT, &quot;yes&quot;);</span>
+<span class="fc" id="L270">			transformer.transform(source, result);</span>
+
+
+<span class="pc" id="L273">		} catch (SAXException | ParserConfigurationException | IOException | TransformerException e1) {</span>
+<span class="nc" id="L274">			e1.printStackTrace();</span>
+		}
+<span class="fc" id="L276">	}</span>
+
+
+
+	/**
+	 * Changes the data of a user in the XML file.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @param    Attributte is the name of the attribute to modify.
+	 * @param    newValue is the new value to assign.
+	 * @param    doc is the DocumentBuilderFactory.
+	 */
+
+
+	private void updateAttributeValue(Document doc, String email, String Attributte, String newValue) {
+<span class="fc" id="L292">		NodeList users = doc.getElementsByTagName(&quot;Utilizador&quot;);</span>
+		Element user;
+		//loop for each Utilizador
+<span class="fc bfc" id="L295" title="All 2 branches covered.">		for(int x=0,size= users.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L296">			String mail = users.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc" id="L297">			user = (Element) users.item(x);</span>
+<span class="fc bfc" id="L298" title="All 2 branches covered.">			if(mail.equalsIgnoreCase(email)){</span>
+<span class="fc" id="L299">				user.setAttribute(Attributte, newValue);</span>
+			}
+		}
+<span class="fc" id="L302">	}</span>
+
+	/**
+	 * Returns an attribute of a particular user.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @param    attribute is the name of the attribute to modify.
+	 * @return      the attributte asked in the method
+	 */
+
+	public String getAttributteByEmail(String email, String attribute) {
+<span class="fc" id="L314">		String value= null;</span>
+		try {
+<span class="fc" id="L316">			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L317">			DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L318">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L319">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L320" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L321">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L322" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+<span class="fc" id="L323">					value = nodeList.item(x).getAttributes().getNamedItem(attribute).getNodeValue();</span>
+				}
+			}
+<span class="pc" id="L326">		} catch (Exception e) {} </span>
+<span class="fc" id="L327">		return value;</span>
+
+
+	}
+
+	/**
+	 * Returns a list of services associated with a particular user.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @return     a list of services associated with a particular user.
+	 */
+	public ArrayList&lt;String&gt; list_account(String email){
+<span class="fc" id="L340">		ArrayList&lt;String&gt; res= new ArrayList&lt;String&gt;();</span>
+		try {
+<span class="fc" id="L342">			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L343">			DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L344">			Document document = db.parse(new File(&quot;config.xml&quot;));</span>
+<span class="fc" id="L345">			NodeList nodeList = document.getElementsByTagName(&quot;Utilizador&quot;);</span>
+<span class="fc bfc" id="L346" title="All 2 branches covered.">			for(int x=0,size= nodeList.getLength(); x&lt;size; x++) {</span>
+<span class="fc" id="L347">				String mail = nodeList.item(x).getAttributes().getNamedItem(&quot;Email&quot;).getNodeValue();</span>
+<span class="fc bfc" id="L348" title="All 2 branches covered.">				if (mail.equals(email)) {</span>
+
+<span class="fc bfc" id="L350" title="All 2 branches covered.">					if(!nodeList.item(x).getAttributes().getNamedItem(&quot;AuthConsumerKeyTwitter&quot;).getNodeValue().equals(&quot;vazio&quot;))</span>
+<span class="fc" id="L351">						res.add(&quot;Twitter&quot;);</span>
+<span class="fc bfc" id="L352" title="All 2 branches covered.">					if(!nodeList.item(x).getAttributes().getNamedItem(&quot;TokenAccessFacebook&quot;).getNodeValue().equals(&quot;vazio&quot;))</span>
+<span class="fc" id="L353">						res.add(&quot;Facebook&quot;);</span>
+<span class="pc bpc" id="L354" title="1 of 2 branches missed.">					if(!nodeList.item(x).getAttributes().getNamedItem(&quot;PassEmail&quot;).getNodeValue().equals(&quot;vazio&quot;))</span>
+<span class="nc" id="L355">						res.add(&quot;Email&quot;);</span>
+				}
+			}
+<span class="pc" id="L358">		} catch (Exception e) {}</span>
+<span class="fc" id="L359">		return res;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</div></body></html>

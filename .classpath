@@ -11,11 +11,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="Imagens">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="ES1-Projeto/jgoodies-common-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="ES1-Projeto/jgoodies-common-1.8.0.jar"/>
 	<classpathentry kind="lib" path="ES1-Projeto/jgoodies-forms-1.8.0-sources.jar"/>

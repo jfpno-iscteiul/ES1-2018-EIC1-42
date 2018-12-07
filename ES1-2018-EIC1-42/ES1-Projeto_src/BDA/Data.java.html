@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Data.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">Data.java</span></div><h1>Data.java</h1><pre class="source lang-java linenums">package BDA;
+
+/**
+ * Allows to create date objects
+ */
+
+
+
+public class Data implements Comparable&lt;Data&gt; {
+	private int dia;
+	private int mes;
+	private int ano;
+	private int hora;
+	private int min;
+	private int seg;
+	
+
+	
+<span class="fc" id="L19">	public Data(int dia, int mes, int ano, int hora, int min, int seg) {</span>
+<span class="fc" id="L20">		this.dia = dia;</span>
+<span class="fc" id="L21">		this.mes = mes;</span>
+<span class="fc" id="L22">		this.ano = ano;</span>
+<span class="fc" id="L23">		this.hora = hora;</span>
+<span class="fc" id="L24">		this.min = min;</span>
+<span class="fc" id="L25">		this.seg = seg;</span>
+<span class="fc" id="L26">	}</span>
+
+	public int getDia() {
+<span class="fc" id="L29">		return dia;</span>
+	}
+
+	public int getMes() {
+<span class="fc" id="L33">		return mes;</span>
+	}
+
+	public int getAno() {
+<span class="fc" id="L37">		return ano;</span>
+	}
+
+	public int getHora() {
+<span class="fc" id="L41">		return hora;</span>
+	}
+
+	public int getMin() {
+<span class="fc" id="L45">		return min;</span>
+	}
+
+	public int getSeg() {
+<span class="fc" id="L49">		return seg;</span>
+	}
+
+	@Override
+	public int compareTo(Data data) {
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">		if(this.getAno()&lt;data.getAno()){</span>
+<span class="nc" id="L55">			return -1;</span>
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">		}else if((this.getAno()==data.getAno()) &amp;&amp; (this.getMes() &lt;data.getMes())){</span>
+<span class="nc" id="L57">			return -1;</span>
+<span class="pc bpc" id="L58" title="2 of 6 branches missed.">		}else if((this.getAno()==data.getAno()) &amp;&amp; (this.getMes()==data.getMes()) &amp;&amp; (this.getDia()&lt;data.getDia())){</span>
+<span class="nc" id="L59">			return -1;</span>
+<span class="pc bpc" id="L60" title="3 of 8 branches missed.">		}else if((this.getAno()==data.getAno()) &amp;&amp; (this.getMes()==data.getMes()) &amp;&amp; (this.getDia()==data.getDia()) &amp;&amp; (this.getHora()&lt;data.getHora())){</span>
+<span class="nc" id="L61">			return -1;</span>
+<span class="pc bpc" id="L62" title="3 of 10 branches missed.">		}else if((this.getAno()==data.getAno())  &amp;&amp; (this.getMes()==data.getMes()) &amp;&amp; (this.getDia()==data.getDia()) &amp;&amp; (this.getHora()==data.getHora()) &amp;&amp; (this.getMin()&lt;data.getMin())){</span>
+<span class="fc" id="L63">			return -1;</span>
+<span class="pc bpc" id="L64" title="3 of 8 branches missed.">		}else if((this.getAno()==data.getAno()) &amp;&amp; (this.getDia()==data.getDia()) &amp;&amp; (this.getHora()==data.getHora()) &amp;&amp; (this.getMin()==data.getMin())</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">				&amp;&amp; (this.getSeg()&lt;data.getSeg())){</span>
+<span class="fc" id="L66">			return -1;</span>
+<span class="pc bpc" id="L67" title="3 of 8 branches missed.">		}else if((this.getAno()==data.getAno()) &amp;&amp; (this.getDia()==data.getDia()) &amp;&amp; (this.getHora()==data.getHora()) &amp;&amp; (this.getMin()==data.getMin())</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">				&amp;&amp; (this.getSeg()==data.getSeg())){</span>
+<span class="fc" id="L69">			return 0;</span>
+		}else {
+<span class="fc" id="L71">			return 1;</span>
+		}
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L77">		return &quot;Data [dia=&quot; + dia + &quot;, mes=&quot; + mes + &quot;, ano=&quot; + ano + &quot;, hora=&quot; + hora + &quot;, min=&quot; + min + &quot;, seg=&quot; + seg</span>
+<span class="fc" id="L78">				+ &quot;]&quot;;</span>
+	}
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 12:49:04)</div></body></html>

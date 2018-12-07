@@ -73,6 +73,8 @@ public class FacebookPage {
 		labelBackground.setForeground(SystemColor.window);
 		labelBackground.setBackground(SystemColor.activeCaption);
 		labelBackground.setBounds(0, 48, 863, 594);
+		Image imagem = new ImageIcon(this.getClass().getResource("/frameImage.png")).getImage();
+		frame.setIconImage(imagem);
 		
 		frame.getContentPane().setBackground(UIManager.getColor("List.background"));
 		frame.setBounds(100, 100, 863, 594);
