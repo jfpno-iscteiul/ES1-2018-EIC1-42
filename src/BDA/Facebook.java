@@ -23,6 +23,7 @@ public class Facebook {
 		ArrayList<String> posts = new ArrayList<String>();
 		try {
 			String tokenAccess = xml.getAttributteByEmail(email, "TokenAccessFacebook");
+			@SuppressWarnings("deprecation")
 			FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 
 			Connection<Post> result = fbClient.fetchConnection("me/feed", Post.class);
@@ -33,15 +34,9 @@ public class Facebook {
 			for (Post post : listOfPosts) {
 				posts.add("Facebook" + ";;" + post.getCreatedTime().toString() + ";;" + post.getId() + ";;"
 						+ post.getMessage());
-				// if (post.getMessage() != null && post.getMessage().contains("happy")) {
-				//					System.out.println("------ Post "+ count + " ------");
-				//					System.out.println("Id: "+"fb.com/" + post.getId());
-				//					System.out.println("Message: " + post.getMessage());
-				//					System.out.println("Created: " + post.getCreatedTime());
 				count++;
 				countTotal++;
 			}
-			// }
 			System.out.println("-------------\nNumber of Results: " + count + "/" + countTotal);
 		} finally {
 			return posts;
@@ -64,10 +59,21 @@ public class Facebook {
 	 * fbClient.publish(id + "/feed", FacebookType.class, Parameter.with("message",
 	 * text)); }
 	 */
+	
+	/**
+	 * Posts a post on a facebook group.
+	 */
+
+	/** * @param    email is the email relative to the user.
+	 * @param    text is the text of that the user wants to post.
+	 */
+
+	
 
 	public void postOnGroup(String text, String email) {
 		String groupID = "1254500671355958";
 		String tokenAccess = xml.getAttributteByEmail(email, "TokenAccessFacebook");
+		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(tokenAccess);
 		response = fbClient.publish(groupID + "/feed", GraphResponse.class,
 				Parameter.with("message", text));

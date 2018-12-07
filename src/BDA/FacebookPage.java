@@ -97,8 +97,6 @@ public class FacebookPage {
 		textarea.setBorder(BorderFactory.createCompoundBorder(border, 
 		BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		textarea.setBounds(200, 50, 400, 40);
-		//JScrollPane sampleScrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		//frame.add(textarea);
 		frame.getContentPane().add(textarea);
 		JButton postar = new JButton("Publicar Post no grupo de ESI");
 		postar.setBounds(620, 70, 220, 20);
@@ -194,6 +192,7 @@ public class FacebookPage {
 					int selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
 					String[] lineSplited = res.split(";;");
+					@SuppressWarnings("unused")
 					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], null);
 				}
 				

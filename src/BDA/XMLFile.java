@@ -38,6 +38,7 @@ public class XMLFile {
 	 * @param    AATT is the AuthAccessTokenTwitter relative to the user.
 	 * @param    ACTST is the AuthAccessTokenSecretTwitter relative to the user.
 	 * @param    TAF is the TokenAccessFacebook relative to the user.
+	 * @param    passmail is the password of the email relative to the user.
 	 */
 
 
@@ -48,28 +49,14 @@ public class XMLFile {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
 			doc.getDocumentElement().normalize();         
-			//System.out.println("\n----- Search the XML document with xpath queries -----");  
-			// Query 1 
-			// System.out.println("Query 1: ");
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			XPath xpath = xpathFactory.newXPath();
 			XPathExpression expr = xpath.compile("/XML/Service/@*");
 			@SuppressWarnings("unused")
-			NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-			//for (int i = 0; i < nl.getLength(); i++) {
-			//    System.out.print(nl.item(i).getNodeName()  + ": ");
-			//    System.out.println(nl.item(i).getFirstChild().getNodeValue());
-			// }
-			// Query 2
-			//System.out.println("\nQuery 2: ");         
+			NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);         
 			expr = xpath.compile("/XML/Paths/docPath");
 			@SuppressWarnings("unused")
 			String str = (String) expr.evaluate(doc, XPathConstants.STRING);
-
-			//System.out.println("docPath: " + str);
-
-			// Adding new element Service with attributes to the XML document (root node)
-			//System.out.println("\n----- Adding new element <Service> with attributes to the XML document -----");
 
 			Element newElement1 = doc.createElement("Utilizador");
 			newElement1.setAttribute("Nome", nome);
@@ -83,13 +70,11 @@ public class XMLFile {
 			newElement1.setAttribute("TokenAccessFacebook", TAF);
 			newElement1.setAttribute("PassEmail", passmail);
 
-			// Add new nodes to XML document (root element)
-			//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());         
+			// Add new nodes to XML document (root element)      
 			Node n = doc.getDocumentElement();
 			n.appendChild(newElement1);         
 
 			// Save XML document
-			// System.out.println("\nSave XML document.");
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			StreamResult result = new StreamResult(new FileOutputStream("config.xml"));

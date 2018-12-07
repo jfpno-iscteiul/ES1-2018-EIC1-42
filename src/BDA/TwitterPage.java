@@ -200,8 +200,8 @@ public class TwitterPage {
 				} else {
 					int selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
-					System.out.println(res);
 					String[] lineSplited = res.split(";;");
+					@SuppressWarnings("unused")
 					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], null);
 				}
 				

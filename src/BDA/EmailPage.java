@@ -117,6 +117,7 @@ public class EmailPage {
 		frame.add(b);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
 				SendEmailPage s = new SendEmailPage(email);
 			}
 		});
@@ -126,6 +127,7 @@ public class EmailPage {
 		frame.add(bu);
 		bu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
 				ShowSentEmail s = new ShowSentEmail(email);
 			}
 		});
@@ -173,6 +175,7 @@ public class EmailPage {
 					selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
 					String[] lineSplited = res.split(";;");
+					@SuppressWarnings("unused")
 					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
 				}
 				

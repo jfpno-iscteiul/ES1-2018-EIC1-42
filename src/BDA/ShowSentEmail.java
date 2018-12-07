@@ -1,11 +1,9 @@
 package BDA;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -104,6 +102,7 @@ public class ShowSentEmail {
 					int selected = lsm.getMinSelectionIndex();
 					String res = list.get(selected);
 					String[] lineSplited = res.split(";;");
+					@SuppressWarnings("unused")
 					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], lineSplited[4]);
 				}
 				

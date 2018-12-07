@@ -310,7 +310,6 @@ public class Gestor {
 
 	/**
 	 * @return true if the user is online and false otherwise.
-	 * @throws IOException
 	 */
 
 	public boolean isOnline() {
@@ -349,7 +348,7 @@ public class Gestor {
 	 */
 
 	/**
-	 * @param Email is the email relative to the user.
+	 * @param email is the email relative to the user.
 	 */
 
 	public void writeEmailsFile(String email) {
@@ -413,7 +412,7 @@ public class Gestor {
 	 */
 
 	/** * @param    tweet is id of the tweet.
-	 * @param   email is the email relative to the user.
+	 * @param   Email is the email relative to the user.
 	 */
 
 
@@ -432,7 +431,7 @@ public class Gestor {
 	 */
 
 	/** * @param    tweet is id of the tweet.
-	 * @param   email is the email relative to the user.
+	 * @param   Email is the email relative to the user.
 	 * @return if a twitter has already been retweet.
 	 */
 
