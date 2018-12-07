@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TesteFrame.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">jUnitTests</a> &gt; <span class="el_source">TesteFrame.java</span></div><h1>TesteFrame.java</h1><pre class="source lang-java linenums">package jUnitTests;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import BDA.*;
+
+<span class="fc" id="L9">class TesteFrame {</span>
+
+	@Test
+	void test() {
+		
+		 /**
+		   * Test if the frame is visible, and opens with the correct width and height.
+		  */
+		
+<span class="fc" id="L18">		String teste =  &quot;123&quot;;</span>
+		
+<span class="fc" id="L20">		MainWindow window = new MainWindow();</span>
+<span class="fc" id="L21">		boolean visible = window.getFrame().isVisible();</span>
+<span class="fc" id="L22">		int w = window.getFrame().getWidth();</span>
+<span class="fc" id="L23">		int h = window.getFrame().getHeight();</span>
+<span class="fc" id="L24">		assertEquals(863, w);</span>
+<span class="fc" id="L25">		assertEquals(594, h);</span>
+<span class="fc" id="L26">		assertEquals(true, visible);</span>
+		
+<span class="fc" id="L28">		SignUp sign = new SignUp(window.getFrame());</span>
+<span class="fc" id="L29">		boolean sv = sign.getFrame().isVisible();</span>
+<span class="fc" id="L30">		w = sign.getFrame().getWidth();</span>
+<span class="fc" id="L31">		h = sign.getFrame().getHeight();</span>
+<span class="fc" id="L32">		assertEquals(true, sv);</span>
+<span class="fc" id="L33">		assertEquals(779, w);</span>
+<span class="fc" id="L34">		assertEquals(410, h);</span>
+		
+<span class="fc" id="L36">		Timeline timeline = new Timeline(window.getFrame(), teste);</span>
+<span class="fc" id="L37">		visible = timeline.getFrame().isVisible();</span>
+<span class="fc" id="L38">		w = timeline.getFrame().getWidth();</span>
+<span class="fc" id="L39">		h = timeline.getFrame().getHeight();</span>
+<span class="fc" id="L40">		assertEquals(true, visible);</span>
+<span class="fc" id="L41">		assertEquals(863, w);</span>
+<span class="fc" id="L42">		assertEquals(594, h);</span>
+		
+<span class="fc" id="L44">		Configurations conf = new Configurations(window.getFrame(), &quot;teste@iscte-iul.pt&quot;);</span>
+<span class="fc" id="L45">		visible = conf.getFrame().isVisible();</span>
+<span class="fc" id="L46">		w = conf.getFrame().getWidth();</span>
+<span class="fc" id="L47">		h = conf.getFrame().getHeight();</span>
+<span class="fc" id="L48">		assertEquals(true, visible);</span>
+<span class="fc" id="L49">		assertEquals(863, w);</span>
+<span class="fc" id="L50">		assertEquals(594, h);</span>
+		
+<span class="fc" id="L52">		TwitterPage tp = new TwitterPage(window.getFrame(), teste);</span>
+<span class="fc" id="L53">		visible = tp.getFrame().isVisible();</span>
+<span class="fc" id="L54">		w = tp.getFrame().getWidth();</span>
+<span class="fc" id="L55">		h = tp.getFrame().getHeight();</span>
+<span class="fc" id="L56">		assertEquals(true, visible);</span>
+<span class="fc" id="L57">		assertEquals(863, w);</span>
+<span class="fc" id="L58">		assertEquals(594, h);</span>
+		
+<span class="fc" id="L60">		ConfigurationsRem confrem = new ConfigurationsRem(window.getFrame(), teste);</span>
+<span class="fc" id="L61">		visible = confrem.getFrame().isVisible();</span>
+<span class="fc" id="L62">		w = confrem.getFrame().getWidth();</span>
+<span class="fc" id="L63">		h = confrem.getFrame().getHeight();</span>
+<span class="fc" id="L64">		assertEquals(true, visible);</span>
+<span class="fc" id="L65">		assertEquals(863, w);</span>
+<span class="fc" id="L66">		assertEquals(594, h);</span>
+		
+<span class="fc" id="L68">		SendEmailPage send = new SendEmailPage(teste);</span>
+<span class="fc" id="L69">		visible = send.getFrame().isVisible();</span>
+<span class="fc" id="L70">		w = send.getFrame().getWidth();</span>
+<span class="fc" id="L71">		h = send.getFrame().getHeight();</span>
+<span class="fc" id="L72">		assertEquals(true, visible);</span>
+<span class="fc" id="L73">		assertEquals(594, w);</span>
+<span class="fc" id="L74">		assertEquals(400, h);</span>
+		
+<span class="fc" id="L76">		EmailPage ep = new EmailPage(window.getFrame(), &quot;cacaa@iscte-iul.pt&quot;);</span>
+<span class="fc" id="L77">		visible = ep.getFrame().isVisible();</span>
+<span class="fc" id="L78">		w = ep.getFrame().getWidth();</span>
+<span class="fc" id="L79">		h = ep.getFrame().getHeight();</span>
+<span class="fc" id="L80">		assertEquals(true, visible);</span>
+<span class="fc" id="L81">		assertEquals(863, w);</span>
+<span class="fc" id="L82">		assertEquals(594, h);</span>
+		
+<span class="fc" id="L84">		ShowSentEmail se = new ShowSentEmail(&quot;cacaa@iscte-iul.pt&quot;);</span>
+<span class="fc" id="L85">		visible = se.getFrame().isVisible();</span>
+<span class="fc" id="L86">		w = se.getFrame().getWidth();</span>
+<span class="fc" id="L87">		h = se.getFrame().getHeight();</span>
+<span class="fc" id="L88">		assertEquals(true, visible);</span>
+<span class="fc" id="L89">		assertEquals(600, w);</span>
+<span class="fc" id="L90">		assertEquals(450, h);</span>
+		
+<span class="fc" id="L92">		FacebookPage fp = new FacebookPage(window.getFrame(), teste);</span>
+<span class="fc" id="L93">		visible = fp.getFrame().isVisible();</span>
+<span class="fc" id="L94">		w = fp.getFrame().getWidth();</span>
+<span class="fc" id="L95">		h = fp.getFrame().getHeight();</span>
+<span class="fc" id="L96">		assertEquals(true, visible);</span>
+<span class="fc" id="L97">		assertEquals(863, w);</span>
+<span class="fc" id="L98">		assertEquals(594, h);</span>
+<span class="fc" id="L99">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</div></body></html>

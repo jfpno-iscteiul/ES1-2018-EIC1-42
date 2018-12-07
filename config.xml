@@ -3,15 +3,12 @@
         
     
     <Utilizador AuthAccessTokenSecretTwitter="3VpBfl2BgLp3xXy7jNWlQhTzLo4GDolc0uoJMYh9mT8nC" AuthAccessTokenTwitter="1053330543281094656-GHcgJiGjTmt6WUS2RpMsh1kW9ijn7a" AuthConsumerKeyTwitter="PaQDlX63u15a6moYQ2VmxZEbg" AuthConsumerSecretTwitter="PSptJzC05HXYaiHLDdBtJfqwIjTOq4MEXh2OKVtN9zsMpsVbox" Email="123" Nome="Carlos" PassEmail="vazio" Password="123" TokenAccessFacebook="EAADlXhdm78kBAOKFtFenkmD5FDNowheADeUp6HukIcunllNB8nP8IZCZBZCoj8pWhf4DMR8qXlYIqF7X2otZA2HO4eOoASIKJcMu0ire8aeQg6nPUlIRBgFfwlKt0zZBk1GNadH2e69s2PZCZACK09T9qbjjXTzZAZA0GO8DFYBtC3OUkLRwrWwQH" Username="zecarlos"/>
-        
-    
-    <Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="rmfss1@iscte-iul.pt" Nome="Raquel" PassEmail="vazio" Password="123456" TokenAccessFacebook="vazio" Username="RF"/>
-    
-    <Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
-    
-    <Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
-    
-    <Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
-    
-    <Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="xxxx@iscte-iul.pt" Nome="" PassEmail="vazio" Password="" TokenAccessFacebook="vazio" Username=""/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="cacaa@iscte-iul.pt" Nome="oi" PassEmail="MILTONmiguel98" Password="oi" TokenAccessFacebook="vazio" Username="oi"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
+<Utilizador AuthAccessTokenSecretTwitter="vazio" AuthAccessTokenTwitter="vazio" AuthConsumerKeyTwitter="vazio" AuthConsumerSecretTwitter="vazio" Email="teste@iscte-iul.pt" Nome="novoteste" PassEmail="vazio" Password="teste" TokenAccessFacebook="vazio" Username="teste"/>
 </XML>

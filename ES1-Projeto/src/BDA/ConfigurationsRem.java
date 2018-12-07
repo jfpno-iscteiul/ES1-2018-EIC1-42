@@ -22,7 +22,6 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JTable;
@@ -123,7 +122,7 @@ public class ConfigurationsRem {
 			}
 		} else {
 			Vector<Object> row = new Vector<Object>();
-			row.add("N�o tem serviços associados a esta conta.");
+			row.add("Não tem serviços associados a esta conta.");
 			data.add(row);
 		}
 		JTable table_1 = new JTable(data, headers);

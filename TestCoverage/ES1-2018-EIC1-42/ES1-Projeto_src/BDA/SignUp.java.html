@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SignUp.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">SignUp.java</span></div><h1>SignUp.java</h1><pre class="source lang-java linenums">package BDA;
+import java.awt.Image;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.Cursor;
+
+public class SignUp {
+	
+	/**
+	 * This class allows the user to create an account in this application
+	 */
+
+	private JTextField nomeField;
+	private JTextField usernameField;
+	private JTextField emailField;
+	private JPasswordField passField;
+	private JPasswordField confirmarpassField;
+	private JFrame frame;
+	private XMLFile xml;
+	 
+	
+	
+	/** @param   frame parameter gives an instance of the frame of the main page.
+	 */
+<span class="fc" id="L38">	public SignUp(JFrame frame) {</span>
+<span class="fc" id="L39">		this.frame = frame;</span>
+<span class="fc" id="L40">		xml = new XMLFile();</span>
+<span class="fc" id="L41">		initialize();</span>
+<span class="fc" id="L42">		setVisible(true);</span>
+<span class="fc" id="L43">	}</span>
+
+	
+	public void setVisible(boolean b) {
+<span class="fc" id="L47">		frame.setVisible(b);</span>
+<span class="fc" id="L48">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public void initialize() {
+<span class="fc" id="L54">		JLabel labelBackground = new JLabel();</span>
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+<span class="fc" id="L56">		Image imagem3 = new ImageIcon(this.getClass().getResource(&quot;/iscte_wm_1.png&quot;)).getImage();</span>
+<span class="fc" id="L57">		labelBackground.setIcon(new ImageIcon(imagem3));</span>
+<span class="fc" id="L58">		labelBackground.setForeground(SystemColor.window);</span>
+<span class="fc" id="L59">		labelBackground.setBackground(SystemColor.activeCaption);</span>
+<span class="fc" id="L60">		labelBackground.setBounds(0, 0, 863, 594);</span>
+		
+<span class="fc" id="L62">		frame.getContentPane().setBackground(SystemColor.window);</span>
+<span class="fc" id="L63">		frame.setBounds(100, 100, 779, 410);</span>
+<span class="fc" id="L64">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L65">		frame.getContentPane().setLayout(null);</span>
+<span class="fc" id="L66">		frame.setResizable(false);</span>
+<span class="fc" id="L67">		frame.setIconImage((new ImageIcon(&quot;Imagens/frameImage.png&quot;).getImage()));</span>
+		
+<span class="fc" id="L69">		Image icon = new ImageIcon(this.getClass().getResource(&quot;/logof.png&quot;)).getImage();</span>
+<span class="fc" id="L70">		JLabel label = new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L71">		label.setIcon(new ImageIcon(icon));</span>
+<span class="fc" id="L72">		label.setBounds(42, 11, 305, 337);</span>
+<span class="fc" id="L73">		frame.getContentPane().add(label);</span>
+		
+<span class="fc" id="L75">		JPanel panel = new JPanel();</span>
+<span class="fc" id="L76">		panel.setBounds(393, 23, 334, 337);</span>
+<span class="fc" id="L77">		panel.setLayout(null);</span>
+		
+<span class="fc" id="L79">		JLabel lblNome = new JLabel(&quot;Nome &quot;);</span>
+<span class="fc" id="L80">		lblNome.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L81">		lblNome.setBounds(10, 11, 46, 14);</span>
+<span class="fc" id="L82">		panel.add(lblNome);</span>
+		
+<span class="fc" id="L84">		JLabel lblUsername = new JLabel(&quot;Username&quot;);</span>
+<span class="fc" id="L85">		lblUsername.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L86">		lblUsername.setBounds(10, 66, 83, 14);</span>
+<span class="fc" id="L87">		panel.add(lblUsername);</span>
+		
+<span class="fc" id="L89">		JLabel lblEmail = new JLabel(&quot;E-mail&quot;);</span>
+<span class="fc" id="L90">		lblEmail.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L91">		lblEmail.setBounds(10, 123, 71, 14);</span>
+<span class="fc" id="L92">		panel.add(lblEmail);</span>
+		
+<span class="fc" id="L94">		JLabel lblPassword = new JLabel(&quot;Password&quot;);</span>
+<span class="fc" id="L95">		lblPassword.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L96">		lblPassword.setBounds(10, 179, 113, 14);</span>
+<span class="fc" id="L97">		panel.add(lblPassword);</span>
+		
+<span class="fc" id="L99">		JLabel lblConfirmePassword = new JLabel(&quot;Confirmar Password&quot;);</span>
+<span class="fc" id="L100">		lblConfirmePassword.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L101">		lblConfirmePassword.setBounds(10, 235, 144, 14);</span>
+<span class="fc" id="L102">		panel.add(lblConfirmePassword);</span>
+		
+<span class="fc" id="L104">		nomeField = new JTextField();</span>
+<span class="fc" id="L105">		nomeField.setBounds(10, 35, 314, 20);</span>
+<span class="fc" id="L106">		panel.add(nomeField);</span>
+<span class="fc" id="L107">		nomeField.setColumns(10);</span>
+		
+<span class="fc" id="L109">		usernameField = new JTextField();</span>
+<span class="fc" id="L110">		usernameField.setBounds(10, 91, 314, 20);</span>
+<span class="fc" id="L111">		panel.add(usernameField);</span>
+<span class="fc" id="L112">		usernameField.setColumns(10);</span>
+		
+<span class="fc" id="L114">		emailField = new JTextField();</span>
+<span class="fc" id="L115">		emailField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));</span>
+<span class="fc" id="L116">		emailField.setText(&quot;xxxx@iscte-iul.pt&quot;);</span>
+<span class="fc" id="L117">		emailField.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+<span class="nc" id="L120">				emailField.setText(&quot;&quot;);</span>
+<span class="nc" id="L121">			}</span>
+		});
+<span class="fc" id="L123">		emailField.setBounds(10, 148, 314, 20);</span>
+<span class="fc" id="L124">		panel.add(emailField);</span>
+<span class="fc" id="L125">		emailField.setColumns(10);</span>
+		
+		
+<span class="fc" id="L128">		passField = new JPasswordField();</span>
+<span class="fc" id="L129">		passField.setBounds(10, 204, 314, 20);</span>
+<span class="fc" id="L130">		panel.add(passField);</span>
+<span class="fc" id="L131">		passField.setColumns(10);</span>
+<span class="fc" id="L132">		passField.setEchoChar('*');</span>
+		
+<span class="fc" id="L134">		confirmarpassField = new JPasswordField(&quot;&quot;);</span>
+<span class="fc" id="L135">		confirmarpassField.setBounds(10, 260, 314, 20);</span>
+<span class="fc" id="L136">		panel.add(confirmarpassField);</span>
+<span class="fc" id="L137">		confirmarpassField.setColumns(10);</span>
+<span class="fc" id="L138">		confirmarpassField.setEchoChar('*');</span>
+		
+<span class="fc" id="L140">		Image signUp = new ImageIcon(this.getClass().getResource(&quot;/button_sign-up.png&quot;)).getImage();</span>
+<span class="fc" id="L141">		JButton btnSignUp = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L142">		btnSignUp.setFont(new Font(&quot;Calibri Light&quot;, Font.BOLD, 19));</span>
+<span class="fc" id="L143">		btnSignUp.setBounds(94, 291, 151, 35);</span>
+<span class="fc" id="L144">		panel.add(btnSignUp);</span>
+<span class="fc" id="L145">		btnSignUp.setIcon(new ImageIcon(signUp));</span>
+<span class="fc" id="L146">		btnSignUp.setForeground(SystemColor.window);</span>
+<span class="fc" id="L147">		btnSignUp.setBackground(SystemColor.activeCaption);</span>
+		
+		/**
+		 * Checks if a registered user already exists with the email entered, if the entered passwords are the same and if the email is the right type
+		 */
+		
+<span class="fc" id="L153">		btnSignUp.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L155">				String password1 = new String(passField.getPassword());</span>
+<span class="nc" id="L156">				String password2 = new String(confirmarpassField.getPassword());</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">				if(emailField.getText().contains(&quot;@iscte-iul.pt&quot;)) {</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">					if(password1.equals(password2)) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">						if(xml.checkIfUserExistsByEmail(emailField.getText())) {</span>
+<span class="nc" id="L160">							JOptionPane optionPane = new JOptionPane(&quot;O email inserido j� est� associado a um utilizador.&quot;, JOptionPane.ERROR_MESSAGE);    </span>
+<span class="nc" id="L161">							JDialog dialog = optionPane.createDialog(&quot;ERRO&quot;);</span>
+<span class="nc" id="L162">							dialog.setAlwaysOnTop(true);</span>
+<span class="nc" id="L163">							dialog.setVisible(true);</span>
+<span class="nc" id="L164">						}else {</span>
+<span class="nc" id="L165">						xml.addUsers(emailField.getText(), password1, nomeField.getText(),usernameField.getText(), &quot;vazio&quot;,  &quot;vazio&quot;,  &quot;vazio&quot;, &quot;vazio&quot;, &quot;vazio&quot;, &quot;vazio&quot;);</span>
+<span class="nc" id="L166">						frame.getContentPane().removeAll();</span>
+<span class="nc" id="L167">						frame.repaint();</span>
+						@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L169">						Configurations conf= new Configurations(frame, emailField.getText());</span>
+						}
+<span class="nc" id="L171">					} else {</span>
+<span class="nc" id="L172">						JOptionPane optionPane = new JOptionPane(&quot;As password inseridas n�o coincidem.&quot;, JOptionPane.ERROR_MESSAGE);    </span>
+<span class="nc" id="L173">						JDialog dialog = optionPane.createDialog(&quot;ERRO&quot;);</span>
+<span class="nc" id="L174">						dialog.setAlwaysOnTop(true);</span>
+<span class="nc" id="L175">						dialog.setVisible(true);</span>
+					}
+<span class="nc" id="L177">				}else {</span>
+<span class="nc" id="L178">					JOptionPane optionPane = new JOptionPane(&quot;O email inserido n�o � do dominio IscteIul.&quot;, JOptionPane.ERROR_MESSAGE);    </span>
+<span class="nc" id="L179">					JDialog dialog = optionPane.createDialog(&quot;ERRO&quot;);</span>
+<span class="nc" id="L180">					dialog.setAlwaysOnTop(true);</span>
+<span class="nc" id="L181">					dialog.setVisible(true);</span>
+				}
+<span class="nc" id="L183">			}</span>
+		});
+<span class="fc" id="L185">		frame.getContentPane().add(panel);</span>
+<span class="fc" id="L186">		frame.getContentPane().add(labelBackground);</span>
+<span class="fc" id="L187">	}</span>
+
+	public JFrame getFrame() {
+<span class="fc" id="L190">		return frame;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</div></body></html>

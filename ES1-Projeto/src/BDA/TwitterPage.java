@@ -226,7 +226,7 @@ public class TwitterPage {
 					dialog.setVisible(true);
 					gestor.writeRetweet(indice, Email);
 				} else {
-					JOptionPane fail = new JOptionPane("Este tweet j· foi retweetado!",
+					JOptionPane fail = new JOptionPane("Este tweet j√° foi retweetado!",
 							JOptionPane.ERROR_MESSAGE);
 					JDialog ok = fail.createDialog("ERRO");
 					ok.setAlwaysOnTop(true);

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TwitterPage.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">BDA</a> &gt; <span class="el_source">TwitterPage.java</span></div><h1>TwitterPage.java</h1><pre class="source lang-java linenums">package BDA;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
+import java.awt.SystemColor;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.awt.Image;
+import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+public class TwitterPage {
+
+	/**
+	 * Allows the user to view and retweet tweets.
+	 */
+
+	private JPanel panel;
+	private JFrame frame;
+	private String Email;
+	private Gestor gestor;
+	private Twitter twitter;
+
+	/**
+	 * Instantiates a new twitter page.
+	 *
+	 * @param frame the frame
+	 * @param Email the email
+	 */
+<span class="fc" id="L49">	public TwitterPage(JFrame frame, String Email) {</span>
+<span class="fc" id="L50">		this.frame = frame;</span>
+<span class="fc" id="L51">		this.Email = Email;</span>
+<span class="fc" id="L52">		twitter = new Twitter();</span>
+<span class="fc" id="L53">		initialize();</span>
+<span class="fc" id="L54">		setVisible(true);</span>
+<span class="fc" id="L55">	}</span>
+
+	/**
+	 * Sets the visible.
+	 *
+	 * @param b the new visible
+	 */
+	public void setVisible(boolean b) {
+<span class="fc" id="L63">		frame.setVisible(b);</span>
+<span class="fc" id="L64">	}</span>
+
+	/**
+	 * Gets the frame.
+	 *
+	 * @return the frame
+	 */
+	public JFrame getFrame() {
+<span class="fc" id="L72">		return frame;</span>
+	}
+
+	/**
+	 * Initialize.
+	 */
+	public void initialize() {
+<span class="fc" id="L79">		gestor = new Gestor();</span>
+<span class="fc" id="L80">		JLabel labelBackground = new JLabel();</span>
+		//imagem retirada do site https://www.univercidade.net/wp-content/uploads/2015/12/Inaugurac%CC%A7a%CC%83o-EDIFI%CC%81CIO-CONVI%CC%81VIO_ISCTE-768x510.jpg
+<span class="fc" id="L82">		Image imagem3 = new ImageIcon(this.getClass().getResource(&quot;/iscte_wm_1.png&quot;)).getImage();</span>
+<span class="fc" id="L83">		labelBackground.setIcon(new ImageIcon(imagem3));</span>
+<span class="fc" id="L84">		labelBackground.setForeground(SystemColor.window);</span>
+<span class="fc" id="L85">		labelBackground.setBackground(SystemColor.activeCaption);</span>
+<span class="fc" id="L86">		labelBackground.setBounds(0, 48, 863, 594);</span>
+
+		
+		//frame.getContentPane().setBackground(UIManager.getColor(&quot;List.background&quot;));
+<span class="fc" id="L90">		frame.setBounds(100, 100, 863, 594);</span>
+<span class="fc" id="L91">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L92">		frame.getContentPane().setLayout(null);</span>
+<span class="fc" id="L93">		frame.setResizable(false);</span>
+<span class="fc" id="L94">		frame.setIconImage((new ImageIcon(&quot;Imagens/frameImage.png&quot;).getImage()));</span>
+		
+<span class="fc" id="L96">		panel = new JPanel();</span>
+<span class="fc" id="L97">		panel.setBackground(new Color(240, 255, 255));</span>
+<span class="fc" id="L98">		panel.setBounds(181, 100, 500, 431);</span>
+		
+
+<span class="fc" id="L101">		JMenuBar menuBar = new JMenuBar();</span>
+<span class="fc" id="L102">		menuBar.setBackground(SystemColor.window);</span>
+<span class="fc" id="L103">		menuBar.setBounds(0, 0, 881, 47);</span>
+<span class="fc" id="L104">		frame.getContentPane().add(menuBar);</span>
+
+<span class="fc" id="L106">		Image icone = new ImageIcon(this.getClass().getResource(&quot;/icone.png&quot;)).getImage();</span>
+
+<span class="fc" id="L108">		JButton button2 = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L109">		button2.setBounds(774, 499, 59, 35);</span>
+<span class="fc" id="L110">		button2.setIcon(new ImageIcon(icone));</span>
+<span class="fc" id="L111">		menuBar.add(button2);</span>
+<span class="fc" id="L112">		button2.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L114">				frame.getContentPane().removeAll();</span>
+<span class="nc" id="L115">				frame.repaint();</span>
+				@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L117">				Timeline tm = new Timeline(frame, Email);</span>
+<span class="nc" id="L118">			}</span>
+		});
+
+<span class="fc" id="L121">		JTextArea textarea = new JTextArea(&quot;&quot;);</span>
+<span class="fc" id="L122">		javax.swing.border.Border border = BorderFactory.createLineBorder(Color.BLACK);</span>
+<span class="fc" id="L123">		textarea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));</span>
+<span class="fc" id="L124">		textarea.setBounds(200, 50, 400, 40);</span>
+<span class="fc" id="L125">		frame.getContentPane().add(textarea);</span>
+<span class="fc" id="L126">		JButton tweetar = new JButton(&quot;Publicar Tweet&quot;);</span>
+<span class="fc" id="L127">		tweetar.setBounds(620, 70, 150, 20);</span>
+<span class="fc" id="L128">		frame.add(tweetar);</span>
+<span class="fc" id="L129">		tweetar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L131">				twitter.tweet(textarea.getText(), Email);</span>
+<span class="nc" id="L132">				JOptionPane optionPane = new JOptionPane(&quot;O tweet foi feito com sucesso!&quot;,</span>
+<span class="nc" id="L133">						JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L134">				JDialog dialog = optionPane.createDialog(&quot;OK&quot;);</span>
+<span class="nc" id="L135">				dialog.setAlwaysOnTop(true);</span>
+<span class="nc" id="L136">				dialog.setVisible(true);</span>
+<span class="nc" id="L137">				frame.getContentPane().removeAll();</span>
+<span class="nc" id="L138">				frame.repaint();</span>
+<span class="nc" id="L139">				initialize();</span>
+<span class="nc" id="L140">			}</span>
+		});
+
+<span class="fc" id="L143">		Image logout = new ImageIcon(this.getClass().getResource(&quot;/logout.png&quot;)).getImage();</span>
+<span class="fc" id="L144">		JButton button = new JButton(&quot;&quot;);</span>
+<span class="fc" id="L145">		button.setBounds(774, 499, 59, 35);</span>
+<span class="fc" id="L146">		frame.getContentPane().add(button);</span>
+<span class="fc" id="L147">		button.setIcon(new ImageIcon(logout));</span>
+<span class="fc" id="L148">		button.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L150">				frame.dispose();</span>
+<span class="nc" id="L151">				MainWindow.main(null);</span>
+<span class="nc" id="L152">			}</span>
+		});
+
+<span class="fc" id="L155">		JScrollPane scrollPane = new JScrollPane();</span>
+<span class="fc" id="L156">		scrollPane.setBounds(170, 430, 557, -346);</span>
+<span class="fc" id="L157">		frame.getContentPane().add(scrollPane);</span>
+
+<span class="fc" id="L159">		ArrayList&lt;String&gt; list = twitter.getTweets(Email);</span>
+<span class="fc" id="L160">		ArrayList&lt;Long&gt; ids = twitter.getTweetsId();</span>
+<span class="fc" id="L161">		Vector&lt;Vector&lt;Object&gt;&gt; data = new Vector&lt;Vector&lt;Object&gt;&gt;();</span>
+		/**
+		 * Inserts the posts in the table.
+		 */
+<span class="fc bfc" id="L165" title="All 2 branches covered.">		for (int i = 0; i &lt; list.size(); i++) {</span>
+<span class="fc" id="L166">			String[] lineSplited = list.get(i).split(&quot;;;&quot;);</span>
+<span class="fc" id="L167">			Vector&lt;Object&gt; row = new Vector&lt;Object&gt;();</span>
+<span class="fc" id="L168">			row.add(lineSplited[1]);</span>
+<span class="fc" id="L169">			row.add(lineSplited[2]);</span>
+<span class="fc" id="L170">			row.add(lineSplited[3]);</span>
+<span class="fc" id="L171">			data.add(row);</span>
+
+		}
+
+<span class="fc" id="L175">		Vector&lt;String&gt; headers = new Vector&lt;String&gt;();</span>
+<span class="fc" id="L176">		headers.add(&quot;Data&quot;);</span>
+<span class="fc" id="L177">		headers.add(&quot;User&quot;);</span>
+<span class="fc" id="L178">		headers.add(&quot;Notificação&quot;);</span>
+
+<span class="fc" id="L180">		JTable table = new JTable(data, headers);</span>
+<span class="fc" id="L181">		panel.add(new JScrollPane(table));</span>
+<span class="fc" id="L182">		table.setDefaultEditor(Object.class, null);</span>
+
+<span class="fc" id="L184">		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</span>
+<span class="fc" id="L185">		ListSelectionModel model = table.getSelectionModel();</span>
+<span class="fc" id="L186">		table.setDefaultEditor(Object.class, null);</span>
+		
+<span class="fc" id="L188">		model.addListSelectionListener(new ListSelectionListener() {</span>
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+<span class="nc bnc" id="L192" title="All 2 branches missed.">				if(e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L193">					return;</span>
+				} 
+<span class="nc" id="L195">				ListSelectionModel lsm = (ListSelectionModel) e.getSource();</span>
+				
+<span class="nc bnc" id="L197" title="All 2 branches missed.">				if(lsm.isSelectionEmpty()) {</span>
+<span class="nc" id="L198">					return;</span>
+				} else {
+<span class="nc" id="L200">					int selected = lsm.getMinSelectionIndex();</span>
+<span class="nc" id="L201">					String res = list.get(selected);</span>
+<span class="nc" id="L202">					System.out.println(res);</span>
+<span class="nc" id="L203">					String[] lineSplited = res.split(&quot;;;&quot;);</span>
+<span class="nc" id="L204">					Notification n = new Notification(lineSplited[0], lineSplited[1], lineSplited[2], lineSplited[3], &quot;&quot;);</span>
+				}
+				
+<span class="nc" id="L207">			}</span>
+		});
+		
+<span class="fc" id="L210">		frame.add(panel);</span>
+
+<span class="fc" id="L212">		JButton retweetar = new JButton(&quot;Retweetar&quot;);</span>
+<span class="fc" id="L213">		retweetar.setBounds(734, 200, 100, 20);</span>
+
+<span class="fc" id="L215">		retweetar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L218">				int i = table.getSelectedRow();</span>
+<span class="nc" id="L219">				long indice = ids.get(i);</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">				if (gestor.isRetweeted(indice, Email) == false) {</span>
+<span class="nc" id="L221">					twitter.retweet(indice, Email);</span>
+<span class="nc" id="L222">					JOptionPane optionPane = new JOptionPane(&quot;O retweet foi feito com sucesso!&quot;,</span>
+<span class="nc" id="L223">							JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L224">					JDialog dialog = optionPane.createDialog(&quot;INFO&quot;);</span>
+<span class="nc" id="L225">					dialog.setAlwaysOnTop(true);</span>
+<span class="nc" id="L226">					dialog.setVisible(true);</span>
+<span class="nc" id="L227">					gestor.writeRetweet(indice, Email);</span>
+<span class="nc" id="L228">				} else {</span>
+<span class="nc" id="L229">					JOptionPane fail = new JOptionPane(&quot;Este tweet já foi retweetado!&quot;,</span>
+<span class="nc" id="L230">							JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L231">					JDialog ok = fail.createDialog(&quot;ERRO&quot;);</span>
+<span class="nc" id="L232">					ok.setAlwaysOnTop(true);</span>
+<span class="nc" id="L233">					ok.setVisible(true);</span>
+<span class="nc" id="L234">					gestor.writeRetweet(indice, Email);</span>
+
+				}
+<span class="nc" id="L237">			}</span>
+		});
+<span class="fc" id="L239">		frame.add(retweetar);</span>
+<span class="fc" id="L240">		frame.getContentPane().add(labelBackground);</span>
+<span class="fc" id="L241">	}</span>
+
+	/**
+	 * Adds the popup.
+	 *
+	 * @param component the component
+	 * @param popup     the popup
+	 */
+	@SuppressWarnings(&quot;unused&quot;)
+	private static void addPopup(Component component, final JPopupMenu popup) {
+<span class="nc" id="L251">		component.addMouseListener(new MouseAdapter() {</span>
+			public void mousePressed(MouseEvent e) {
+<span class="nc bnc" id="L253" title="All 2 branches missed.">				if (e.isPopupTrigger()) {</span>
+<span class="nc" id="L254">					showMenu(e);</span>
+				}
+<span class="nc" id="L256">			}</span>
+
+			public void mouseReleased(MouseEvent e) {
+<span class="nc bnc" id="L259" title="All 2 branches missed.">				if (e.isPopupTrigger()) {</span>
+<span class="nc" id="L260">					showMenu(e);</span>
+				}
+<span class="nc" id="L262">			}</span>
+
+			private void showMenu(MouseEvent e) {
+<span class="nc" id="L265">				popup.show(e.getComponent(), e.getX(), e.getY());</span>
+<span class="nc" id="L266">			}</span>
+		});
+<span class="nc" id="L268">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</div></body></html>

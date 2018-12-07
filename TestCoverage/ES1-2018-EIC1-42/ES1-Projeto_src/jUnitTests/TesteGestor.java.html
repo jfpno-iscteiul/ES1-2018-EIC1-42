@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TesteGestor.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</a> &gt; <a href="../../index.html" class="el_group">ES1-2018-EIC1-42</a> &gt; <a href="../index.html" class="el_bundle">ES1-Projeto/src</a> &gt; <a href="index.source.html" class="el_package">jUnitTests</a> &gt; <span class="el_source">TesteGestor.java</span></div><h1>TesteGestor.java</h1><pre class="source lang-java linenums">package jUnitTests;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import BDA.ComparadorDatas;
+import BDA.Data;
+import BDA.Gestor;
+
+<span class="fc" id="L14">class TesteGestor {</span>
+
+	@Test
+	void test() throws IOException {
+<span class="fc" id="L18">		Gestor gestor = new Gestor();</span>
+<span class="fc" id="L19">		String email = &quot;123&quot;;</span>
+		
+<span class="fc" id="L21">		boolean online = gestor.isHostAvailable(&quot;facebook.com&quot;);</span>
+<span class="fc" id="L22">		assertEquals(true, online);</span>
+<span class="fc" id="L23">		boolean on = gestor.isOnline();</span>
+<span class="fc" id="L24">		assertEquals(true, on);</span>
+		
+<span class="fc" id="L26">		gestor.writeTweetsFile(email);</span>
+<span class="fc" id="L27">		File tmpDir = new File(&quot;Tweets/&quot; + email +&quot;.txt&quot;);</span>
+<span class="fc" id="L28">		boolean exists = tmpDir.exists();</span>
+<span class="fc" id="L29">		assertEquals(true, exists);</span>
+		
+<span class="fc" id="L31">		gestor.writeFacebookPostsFile(email);</span>
+<span class="fc" id="L32">		File f = new File(&quot;FBPosts/&quot; + email +&quot;.txt&quot;);</span>
+<span class="fc" id="L33">		boolean ef = f.exists();</span>
+<span class="fc" id="L34">		assertEquals(true, ef);</span>
+		
+<span class="fc" id="L36">		gestor.writeEmailsFile(&quot;cacaa@iscte-iul.pt&quot;);</span>
+<span class="fc" id="L37">		File fe = new File(&quot;Emails/cacaa@iscte-iul.pt.txt&quot;);</span>
+<span class="fc" id="L38">		boolean a = fe.exists();</span>
+<span class="fc" id="L39">		assertEquals(true, a);</span>
+		
+		
+<span class="fc" id="L42">		assertEquals(&quot;01&quot;, gestor.auxDate(&quot;Jan&quot;));</span>
+<span class="fc" id="L43">		assertEquals(&quot;02&quot;, gestor.auxDate(&quot;Feb&quot;));</span>
+<span class="fc" id="L44">		assertEquals(&quot;03&quot;, gestor.auxDate(&quot;Mar&quot;));</span>
+<span class="fc" id="L45">		assertEquals(&quot;04&quot;, gestor.auxDate(&quot;Apr&quot;));</span>
+<span class="fc" id="L46">		assertEquals(&quot;05&quot;, gestor.auxDate(&quot;May&quot;));		</span>
+<span class="fc" id="L47">		assertEquals(&quot;06&quot;, gestor.auxDate(&quot;Jun&quot;));</span>
+<span class="fc" id="L48">		assertEquals(&quot;07&quot;, gestor.auxDate(&quot;Jul&quot;));	</span>
+<span class="fc" id="L49">		assertEquals(&quot;08&quot;, gestor.auxDate(&quot;Aug&quot;));</span>
+<span class="fc" id="L50">		assertEquals(&quot;09&quot;, gestor.auxDate(&quot;Sep&quot;));</span>
+<span class="fc" id="L51">		assertEquals(&quot;10&quot;, gestor.auxDate(&quot;Oct&quot;));</span>
+<span class="fc" id="L52">		assertEquals(&quot;11&quot;, gestor.auxDate(&quot;Nov&quot;));</span>
+<span class="fc" id="L53">		assertEquals(&quot;12&quot;, gestor.auxDate(&quot;Dec&quot;));</span>
+		
+<span class="fc" id="L55">		Data d = new Data(1, 1, 2018, 1, 1, 1);</span>
+<span class="fc" id="L56">		assertEquals(1, d.getDia());</span>
+<span class="fc" id="L57">		assertEquals(1, d.getHora());</span>
+<span class="fc" id="L58">		assertEquals(1, d.getMin());</span>
+<span class="fc" id="L59">		assertEquals(1, d.getSeg());</span>
+<span class="fc" id="L60">		assertEquals(1, d.getMes());</span>
+<span class="fc" id="L61">		assertEquals(2018, d.getAno());</span>
+		
+<span class="fc" id="L63">		String s = &quot;Data [dia=&quot; + 1 + &quot;, mes=&quot; + 1 + &quot;, ano=&quot; + 2018 + &quot;, hora=&quot; + 1 + &quot;, min=&quot; + 1 + &quot;, seg=&quot; + 1 + &quot;]&quot;;</span>
+<span class="fc" id="L64">		assertEquals(s, d.toString());</span>
+		
+<span class="fc" id="L66">		Data dat = new Data(1, 1, 2018, 1, 1, 1);</span>
+<span class="fc" id="L67">		Data less = new Data(1,1,2010, 1, 1, 1);</span>
+<span class="fc" id="L68">		Data m = new Data(1, 1, 2018, 1, 1, 2);</span>
+<span class="fc" id="L69">		Data l = new Data(1, 1, 2018, 1, 2, 1);</span>
+<span class="fc" id="L70">		assertEquals(-1, d.compareTo(l));</span>
+<span class="fc" id="L71">		assertEquals(-1, d.compareTo(m));</span>
+<span class="fc" id="L72">		assertEquals(1 , d.compareTo(less));</span>
+<span class="fc" id="L73">		assertEquals(0, d.compareTo(dat));</span>
+		
+<span class="fc" id="L75">		ComparadorDatas cd = new ComparadorDatas();</span>
+<span class="fc" id="L76">		assertEquals(0, cd.compare(d, dat));</span>
+<span class="fc" id="L77">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>ES1-2018-EIC1-42 (7/dez/2018 0:05:49)</div></body></html>
